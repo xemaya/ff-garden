@@ -37,3 +37,12 @@ test('map fits actual walls, route, palace and all role targets within its paddi
 test('complete hill footprints stay outside royal bounds with space between scenery and playable ground',()=>{
  const p=plan();for(const h of royalScenerySpec(p.bounds)){const minX=h.x-h.r*h.sx,maxX=h.x+h.r*h.sx,minZ=h.z-h.r*h.sz,maxZ=h.z+h.r*h.sz;assert.ok(maxX<p.bounds.minX-8||minX>p.bounds.maxX+8||maxZ<p.bounds.minZ-8||minZ>p.bounds.maxZ+8,'hill must be fully outside city, not just its center');}
 });
+
+test('shop frontages, optional plaques and the keepsake table can reconnect to the entrance with final props present',async()=>{
+ const {observationSites,attachObservationSites}=await import('../src/postal-observations.js'),{attachPostalMemorial,MEMORIAL_POSITION}=await import('../src/postal-memorial.js');
+ const p=plan(),sites=observationSites(p,'royal');attachObservationSites(p,sites);attachPostalMemorial(p);
+ const step=.5,key=(x,z)=>x+','+z,queue=[{x:0,z:96}],seen=new Set(['0,96']);
+ for(let h=0;h<queue.length;h++)for(const [dx,dz]of[[1,0],[-1,0],[0,1],[0,-1]]){const a=queue[h],b={x:a.x+dx,z:a.z+dz},k=key(b.x,b.z);if(seen.has(k)||!clearSegment(p,{x:a.x*step,z:a.z*step},{x:b.x*step,z:b.z*step}))continue;seen.add(k);queue.push(b);}
+ const points=[...p.buildings.map(b=>({label:b.name,x:b.x+Math.sin(b.rotation)*2,z:b.z+Math.cos(b.rotation)*2})),...sites.map(s=>({label:s.id,x:s.position.x,z:s.position.z+1.5})),{label:'keepsake table',x:MEMORIAL_POSITION.x,z:MEMORIAL_POSITION.z+1.5},...[-1,1].flatMap(side=>[{label:'wall edge '+side,x:side*20,z:-32},{label:'courtyard side '+side,x:side*6,z:-54}])];
+ for(const point of points){assert(canOccupy(p,point.x,point.z,.3),point.label+' clear');const rounded={x:Math.round(point.x/step),z:Math.round(point.z/step)};assert(seen.has(key(rounded.x,rounded.z)),point.label+' connected');assert(clearSegment(p,{x:rounded.x*step,z:rounded.z*step},point),point.label+' fine approach');}
+});

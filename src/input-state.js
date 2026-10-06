@@ -19,3 +19,10 @@ export function createLookInput(threshold=8){
     clear(){active=null;}
   };
 }
+
+// A background tab or a changed viewport must not resume an unattended walk.
+export function bindInputLifecycle(events,document,{clearInput,pauseTour}){
+  const stop=()=>{pauseTour();clearInput();};
+  events.addEventListener('blur',stop);events.addEventListener('resize',stop);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+}

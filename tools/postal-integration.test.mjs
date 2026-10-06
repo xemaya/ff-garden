@@ -47,7 +47,7 @@ class Element{
  append(...children){this.children.push(...children);}focus(){this.document.activeElement=this;}setAttribute(key,value){this[key]=value;}scrollIntoView(){}
 }
 function dom(){const document={activeElement:null,nodes:new Map(),getElementById(id){assert(this.nodes.has(id),'missing '+id);return this.nodes.get(id);},createElement(){return new Element(this);}};const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');for(const [,id] of html.matchAll(/id="([^"]+)"/g))document.nodes.set(id,new Element(document,id));return document;}
-function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){},getObservation:()=>s.observation||null,onVisibilityChange:open=>s.onVisibilityChange?.(open),onEnding:()=>{s.endings=(s.endings||0)+1;}});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
+function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';s.onOpenMap?.();},returnToStreet:()=>{s.view.mode='street';},clearInput(){s.onClearInput?.();},getObservation:()=>s.observation||null,onVisibilityChange:open=>s.onVisibilityChange?.(open),onEnding:()=>{s.endings=(s.endings||0)+1;}});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
 
 test('complete UI-event slice: separate handoffs, wrong/correct reply, final keepsake',()=>{
  const s=setup(),ui=mount(s);ui.$('letter-quest-open').click();assert(!ui.$('letter-quest-panel').hidden);
@@ -125,4 +125,12 @@ test('optional greeting rejects notebook, wrong resident, distance, busy, unload
  s.actors.moogle[0].root.position.x=5;conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);assert(ui.$('royal-greeting').hidden);s.actors.moogle[0].root.position.x=0;
  s.view.mode='map';conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);s.view.mode='street';s.actors.moogle.length=0;conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);
  const old=setup(),oldUi=mount(old);old.journey.discover({id:'royal-gate-message',near:true,streetMode:true});const oldConversation=createNpcConversation({document:oldUi.document,world:old.world,journey:old.journey,royal:false,clearInput(){},openNotebook:oldUi.controller.show});oldConversation.update();oldUi.$('royal-greeting-options').children[0].emit('click');assert(oldUi.$('royal-greeting').hidden);assert.equal(old.counts.receive,0);
+});
+
+test('all notebook entrances clear a held movement and map handoff does not leave a hidden open notebook',()=>{
+ const s=setup();let held=true,clears=0;s.onClearInput=()=>{held=false;clears++;};const ui=mount(s);
+ ui.controller.show();assert(!held);assert(ui.controller.isOpen());
+ held=true;ui.$('letter-quest-close').click();assert(!held);assert(!ui.controller.isOpen());
+ held=true;ui.$('letter-quest-open').click();assert(!held);assert(ui.controller.isOpen());
+ const focus=ui.document.activeElement;s.onOpenMap=()=>ui.controller.hide();ui.$('letter-quest-guide').click();assert.equal(s.view.mode,'map');assert(!ui.controller.isOpen());assert(ui.$('letter-quest-panel').hidden);assert.equal(ui.document.activeElement,focus);assert(clears>=4);
 });

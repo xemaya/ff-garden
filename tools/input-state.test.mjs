@@ -11,3 +11,16 @@ test('look ignores other fingers and cancellations never select a character',()=
 test('blocked storage is optional and quality remains unchanged by default',()=>{
  const blocked={getItem(){throw Error('denied');},setItem(){throw Error('full');}};assert.equal(readPreference(blocked,'quality','quality'),'quality');assert.equal(writePreference(blocked,'quality','smooth'),false);assert.deepEqual(renderProfiles.quality,{pixelRatio:1.5,shadowSize:2048,ao:true});assert(renderProfiles.smooth.pixelRatio<renderProfiles.quality.pixelRatio);
 });
+
+test('losing focus or resizing clears held fingers and look, and pauses the unattended tour',async()=>{
+ const {bindInputLifecycle}=await import('../src/input-state.js'),events=new EventTarget(),document=new EventTarget();document.hidden=false;
+ const input=createMovementInput(),look=createLookInput(),pending=new Set();let touring=false,stops=0;
+ bindInputLifecycle(events,document,{clearInput(){input.clear();look.clear();pending.clear();},pauseTour(){touring=false;stops++;}});
+ for(const type of ['blur','resize','visibilitychange']){
+  input.keyboard.add('w');input.press(1,'d');pending.add('w');look.start(2,10,10);touring=true;
+  if(type==='visibilitychange'){document.hidden=true;document.dispatchEvent(new Event(type));}else events.dispatchEvent(new Event(type));
+  assert(!touring);assert(!input.has('w'));assert(!input.has('d'));assert.equal(pending.size,0);assert.equal(look.end(2),null);
+ }
+ document.hidden=false;touring=true;input.keyboard.add('w');document.dispatchEvent(new Event('visibilitychange'));
+ assert(touring);assert(input.has('w'));assert.equal(stops,3);
+});

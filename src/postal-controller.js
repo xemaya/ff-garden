@@ -69,8 +69,8 @@ export function createPostalController({document,events,journey,world,toast,open
   }
   function cancelConfirmations(){journey.cancelReset();journey.cancelRecovery();}
   function cancelReset(){const source=journey.snapshot().recoverySource;cancelConfirmations();update();if(open&&world.view().mode==='street')$(source?'postal-recover-'+source:'letter-quest-reset').focus();}
-  function show(){returnToStreet();tab='letters';open=true;update();$('postal-tab-letters').focus();}
-  function close(){cancelConfirmations();open=false;update();$('letter-quest-open').focus();}
+  function show(){returnToStreet();clearInput();tab='letters';open=true;update();$('postal-tab-letters').focus();}
+  function close(restoreFocus=true){cancelConfirmations();clearInput();open=false;update();if(restoreFocus)$('letter-quest-open').focus();}
   function selectTab(name){tab=name;update();}
   for(const name of ['letters','observations']){
     $('postal-tab-'+name).addEventListener('click',()=>selectTab(name));
@@ -82,8 +82,8 @@ export function createPostalController({document,events,journey,world,toast,open
     if(!observation.recorded&&!journey.discover({id:observation.entry.id,near:observation.near,streetMode:true}))return;
     feedback='';tab='observations';open=true;clearInput();update();$('postal-observation-title').focus();if(!observation.recorded)toast(observation.entry.keepsake);
   });
-  $('letter-quest-open').addEventListener('click',()=>{const fromMap=world.view().mode!=='street';returnToStreet();if(open&&!fromMap){close();return;}open=true;update();$('postal-tab-'+tab).focus();});
-  $('letter-quest-close').addEventListener('click',close);
+  $('letter-quest-open').addEventListener('click',()=>{const fromMap=world.view().mode!=='street';returnToStreet();if(open&&!fromMap){close();return;}clearInput();open=true;update();$('postal-tab-'+tab).focus();});
+  $('letter-quest-close').addEventListener('click',()=>close());
   $('letter-quest-guide').addEventListener('click',()=>{const snapshot=journey.snapshot(),target=world.currentTarget(snapshot);if(!target?.exists||snapshot.resetPending||snapshot.recoveryPending)return;openMap();update();});
   $('letter-quest-action').addEventListener('keydown',event=>{if(event.repeat&&['Enter','Space'].includes(event.code))event.preventDefault();});
   $('letter-quest-action').addEventListener('click',event=>{
@@ -108,7 +108,7 @@ export function createPostalController({document,events,journey,world,toast,open
   $('postal-save-tools').addEventListener('toggle',()=>{if(!$('postal-save-tools').open){cancelConfirmations();update();}});
   events.addEventListener('storage',event=>{if(event.key===JOURNEY_KEY||event.key===null){if(event.key===null)journey.restore();else journey.syncStoredJourney();feedback='';update();}else if([PREVIOUS_JOURNEYS_KEY,LEGACY_BACKUP_KEY].includes(event.key)){journey.refreshBackups();update();}});
   update();
-  return {update,show,cancelConfirmations,isOpen:()=>open,
+  return {update,show,hide:()=>close(false),cancelConfirmations,isOpen:()=>open,
     handleEscape(){if(journey.snapshot().resetPending||journey.snapshot().recoveryPending){cancelReset();clearInput();return true;}if(!open)return false;close();clearInput();return true;}
   };
 }
