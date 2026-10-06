@@ -24,3 +24,12 @@ test('enabled ending schedules exactly two short notes and one longer note at th
 });
 
 test('switching sound off cancels pending completion notes so re-enabling does not replay them',()=>{const a=audio();playPostalChime(a);cancelPostalChime(a);assert.equal(a.postalNodes.length,0);assert.equal(a.chimeUntil,0);assert(a.notes.every(note=>note.stopTime===a.ac.currentTime));});
+
+test('all authored character preview return links retain workshops and their role query',async()=>{
+ const {readFileSync}=await import('node:fs');
+ for(const species of['moogle','mage','chocobo']){
+  const html=readFileSync(new URL('../'+species+'.html',import.meta.url),'utf8'),link=[...html.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).find(h=>h.includes('street='));assert(link);
+  const query=new URL(link,'https://local.invalid').searchParams;assert.equal(selectStreet(query,manifest).street.id,'workshops');assert(query.has(species));
+  assert.equal(selectStreet(new URLSearchParams(species+'=1'),manifest).street.id,'residential');assert.equal(selectStreet(new URLSearchParams('district=royal&'+species+'=1'),manifest).street.id,'royal');
+ }
+});

@@ -19,16 +19,19 @@ export function createNpcConversation({document,world,journey,clearInput,openNot
   }
   function hideGreeting(){$('royal-greeting').hidden=true;$('royal-greeting').open=false;}
   function update(){
+    const snapshot=journey.snapshot(),greetingAvailable=canLeaveRoyalGreeting(snapshot,royal);
+    // Reset/recovery can happen while the notebook owns the screen or away
+    // from the courier. Do not carry a previous visit's reply into that route.
+    if(!greetingAvailable){greetingChoice=null;$('royal-greeting-feedback').hidden=true;setText('royal-greeting-feedback','');}
     if(isNotebookOpen()){active=null;$('moogle-panel').hidden=true;hideGreeting();return null;}
     active=world.nearbyPerson();$('moogle-panel').hidden=!active;
     if(!active){responseKey=null;hideGreeting();return null;}
-    const snapshot=journey.snapshot(),dialogue=postalDialogue(active.species,snapshot),context=world.interaction(active.species);
+    const dialogue=postalDialogue(active.species,snapshot),context=world.interaction(active.species);
     setText('npc-name',active.name||names[active.species]);setText('moogle-status',context.approaching?'正在走近，请稍候':context.busy?'正在整理邮包':snapshot.ending?'今天的邮路已收工':active.species==='moogle'?'在广场边等信':active.species==='mage'?'把笔暂时放下':'向你歪了歪头');
     setText('npc-response',responseKey===dialogue.key?dialogue.response:dialogue.greeting);
     $('npc-talk').disabled=!context.near||context.busy;setText('npc-talk',active.species==='chocobo'?'看看它的回应':'听一句街坊话');
     $('moogle-letter').disabled=false;setText('moogle-letter','打开委托手记');
     $('npc-preview').href='/'+active.species+'.html';
-    const greetingAvailable=canLeaveRoyalGreeting(snapshot,royal);if(!greetingAvailable)greetingChoice=null;
     if(active.species!=='moogle'||!greetingAvailable)hideGreeting();else $('royal-greeting').hidden=false;
     for(const button of greetingButtons)button.disabled=active.species!=='moogle'||!greetingAvailable||!context.near||context.busy;
     const reply=greetingChoice?royalGreetingReply(greetingChoice,snapshot,royal):null;

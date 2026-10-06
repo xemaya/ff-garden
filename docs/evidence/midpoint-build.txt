@@ -1,0 +1,27 @@
+
+> ff-garden@0.1.0 build
+> vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 68 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/mage.html                              1.40 kB │ gzip:   0.97 kB
+dist/moogle.html                            1.41 kB │ gzip:   0.98 kB
+dist/chocobo.html                           1.41 kB │ gzip:   0.97 kB
+dist/index.html                             7.30 kB │ gzip:   3.55 kB
+dist/assets/RoomEnvironment-BGomz7rB.css    2.76 kB │ gzip:   1.19 kB
+dist/assets/street-DPPO8MwN.css            18.23 kB │ gzip:   4.50 kB
+dist/assets/chocobo-CIhvZmd6.js             4.02 kB │ gzip:   2.13 kB
+dist/assets/mage-C3ig7LHL.js                4.02 kB │ gzip:   2.12 kB
+dist/assets/moogle-fNoij1kH.js              4.04 kB │ gzip:   2.13 kB
+dist/assets/RoomEnvironment-DmVGb-_w.js    20.77 kB │ gzip:   5.09 kB
+dist/assets/street-C5xhmXVq.js            128.15 kB │ gzip:  56.01 kB
+dist/assets/fantasy-BfBbDSTE.js           692.93 kB │ gzip: 184.17 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 971ms

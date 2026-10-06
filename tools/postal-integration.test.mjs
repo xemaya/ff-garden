@@ -134,3 +134,21 @@ test('all notebook entrances clear a held movement and map handoff does not leav
  held=true;ui.$('letter-quest-open').click();assert(!held);assert(ui.controller.isOpen());
  const focus=ui.document.activeElement;s.onOpenMap=()=>ui.controller.hide();ui.$('letter-quest-guide').click();assert.equal(s.view.mode,'map');assert(!ui.controller.isOpen());assert(ui.$('letter-quest-panel').hidden);assert.equal(ui.document.activeElement,focus);assert(clears>=4);
 });
+
+test('reset or restore while the notebook hides the courier clears the session greeting before rereading the gate',()=>{
+ for(const recover of[false,true]){
+  const s=setup(),ui=mount(s),conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,royal:true,isNotebookOpen:ui.controller.isOpen,clearInput(){},openNotebook:ui.controller.show});
+  s.journey.discover({id:'royal-gate-message',near:true,streetMode:true});conversation.update();ui.$('royal-greeting-options').children[0].click();assert(!ui.$('royal-greeting-feedback').hidden);
+  ui.controller.show();conversation.update();
+  if(recover){s.data.set(JOURNEY_KEY,JSON.stringify({version:2,chapter:0,state:'available',discoveries:[]}));s.journey.restore();}else{s.journey.requestReset();s.journey.confirmReset();}
+  conversation.update();assert(ui.$('royal-greeting-feedback').hidden);assert.equal(ui.$('royal-greeting-feedback').textContent,'');
+  ui.$('letter-quest-close').click();s.view.player.x=10;conversation.update();s.journey.discover({id:'royal-gate-message',near:true,streetMode:true});conversation.update();s.view.player.x=0;conversation.update();assert(!ui.$('royal-greeting').hidden);assert(ui.$('royal-greeting-feedback').hidden);assert.equal(s.counts.receive,1);
+ }
+});
+
+test('without character models the notebook and physical observations remain usable without granting an unavailable handoff',()=>{
+ const s=setup();for(const species of['moogle','mage','chocobo'])s.actors[species]=[];const ui=mount(s),entry=discoveries.find(e=>e.id==='royal-gate-message');
+ ui.controller.show();assert(ui.controller.isOpen());assert(ui.$('letter-quest-action').disabled);assert(!ui.$('letter-quest-guide').disabled);ui.$('letter-quest-action').emit('click');assert.equal(s.journey.snapshot().state,'available');assert.equal(s.counts.deliver,0);
+ ui.$('letter-quest-close').click();s.observation={entry,near:true,canObserve:true,recorded:false};ui.$('postal-observe').click();assert(ui.controller.isOpen());assert.deepEqual(s.journey.snapshot().discoveries,[entry.id]);assert.equal(s.journey.snapshot().state,'available');
+ const conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,royal:true,isNotebookOpen:ui.controller.isOpen,clearInput(){},openNotebook:ui.controller.show});ui.$('letter-quest-close').click();conversation.update();assert(ui.$('moogle-panel').hidden);assert(ui.$('royal-greeting').hidden);assert.equal(s.counts.receive,0);
+});
