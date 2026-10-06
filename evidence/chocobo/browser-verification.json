@@ -1,0 +1,529 @@
+{
+  "assetSha256": "1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1",
+  "studio": [
+    {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+        "clip": "Idle",
+        "frozen": true,
+        "time": 1.697,
+        "history": [
+          "Idle"
+        ],
+        "bones": {
+          "Head": [
+            -0.00517,
+            0.01613,
+            -0.00439,
+            0.99985
+          ],
+          "Neck": [
+            -0.01788,
+            0,
+            0,
+            0.99984
+          ],
+          "Crest": [
+            -0.68138,
+            0.00363,
+            -0.00681,
+            0.73189
+          ],
+          "Wing_L": [
+            -0.90777,
+            0.13941,
+            0.11174,
+            0.37952
+          ],
+          "Wing_R": [
+            -0.90777,
+            -0.13941,
+            -0.11174,
+            0.37952
+          ],
+          "Tail": [
+            -0.64306,
+            0,
+            0,
+            0.76581
+          ],
+          "Foot_L": [
+            -0.51254,
+            -0.0163,
+            0.00203,
+            0.85851
+          ],
+          "Foot_R": [
+            -0.51254,
+            0.0163,
+            -0.00203,
+            0.85851
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 2.22
+      },
+      "render": {
+        "calls": 154,
+        "triangles": 543112
+      }
+    },
+    {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+        "clip": "Walk",
+        "frozen": true,
+        "time": 0.42,
+        "history": [
+          "Idle",
+          "Walk"
+        ],
+        "bones": {
+          "Head": [
+            -0.00517,
+            0.00827,
+            -0.00225,
+            0.99995
+          ],
+          "Neck": [
+            -0.017,
+            0,
+            0,
+            0.99986
+          ],
+          "Crest": [
+            -0.68066,
+            0.00431,
+            -0.00811,
+            0.73254
+          ],
+          "Wing_L": [
+            -0.90793,
+            0.13813,
+            0.11285,
+            0.37927
+          ],
+          "Wing_R": [
+            -0.90793,
+            -0.13813,
+            -0.11285,
+            0.37927
+          ],
+          "Tail": [
+            -0.64175,
+            0,
+            0,
+            0.76691
+          ],
+          "Foot_L": [
+            -0.48065,
+            -0.01622,
+            0.00263,
+            0.87676
+          ],
+          "Foot_R": [
+            -0.54373,
+            0.01637,
+            -0.00143,
+            0.8391
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 2.22
+      },
+      "render": {
+        "calls": 154,
+        "triangles": 543112
+      }
+    },
+    {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+        "clip": "Chirp",
+        "frozen": true,
+        "time": 1.278,
+        "history": [
+          "Idle",
+          "Walk",
+          "Chirp"
+        ],
+        "bones": {
+          "Head": [
+            -0.04515,
+            0.01971,
+            -0.00453,
+            0.99878
+          ],
+          "Neck": [
+            -0.07245,
+            0,
+            0,
+            0.99737
+          ],
+          "Crest": [
+            -0.70847,
+            0,
+            0,
+            0.70574
+          ],
+          "Wing_L": [
+            -0.90846,
+            0.13397,
+            0.11644,
+            0.37842
+          ],
+          "Wing_R": [
+            -0.90846,
+            -0.13397,
+            -0.11644,
+            0.37842
+          ],
+          "Tail": [
+            -0.63745,
+            0,
+            0,
+            0.77049
+          ],
+          "Foot_L": [
+            -0.51254,
+            -0.0163,
+            0.00203,
+            0.85851
+          ],
+          "Foot_R": [
+            -0.51254,
+            0.0163,
+            -0.00203,
+            0.85851
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 2.22
+      },
+      "render": {
+        "calls": 154,
+        "triangles": 543112
+      }
+    },
+    {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+        "clip": "Flap",
+        "frozen": true,
+        "time": 1.697,
+        "history": [
+          "Idle",
+          "Walk",
+          "Chirp",
+          "Flap"
+        ],
+        "bones": {
+          "Head": [
+            -0.00517,
+            0.01613,
+            -0.00439,
+            0.99985
+          ],
+          "Neck": [
+            -0.045,
+            0,
+            0,
+            0.99899
+          ],
+          "Crest": [
+            -0.68138,
+            0.00363,
+            -0.00681,
+            0.73189
+          ],
+          "Wing_L": [
+            -0.86459,
+            0.29851,
+            -0.03114,
+            0.403
+          ],
+          "Wing_R": [
+            -0.86459,
+            -0.29851,
+            0.03114,
+            0.403
+          ],
+          "Tail": [
+            -0.64306,
+            0,
+            0,
+            0.76581
+          ],
+          "Foot_L": [
+            -0.51254,
+            -0.0163,
+            0.00203,
+            0.85851
+          ],
+          "Foot_R": [
+            -0.51254,
+            0.0163,
+            -0.00203,
+            0.85851
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 2.22
+      },
+      "render": {
+        "calls": 154,
+        "triangles": 543112
+      }
+    }
+  ],
+  "views": [
+    "side.jpg",
+    "back.jpg",
+    "legacy.jpg",
+    "final.jpg"
+  ],
+  "legacyComparison": true,
+  "streets": [
+    {
+      "street": "workshops",
+      "birds": [
+        {
+          "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 1.03,
+          "history": [
+            "Idle",
+            "Chirp",
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              -0.00517,
+              0.03133,
+              -0.00853,
+              0.99946
+            ],
+            "Neck": [
+              -0.01352,
+              0,
+              0,
+              0.99991
+            ],
+            "Crest": [
+              -0.67777,
+              0.00698,
+              -0.01327,
+              0.73512
+            ],
+            "Wing_L": [
+              -0.90856,
+              0.13308,
+              0.1172,
+              0.37824
+            ],
+            "Wing_R": [
+              -0.90856,
+              -0.13308,
+              -0.1172,
+              0.37824
+            ],
+            "Tail": [
+              -0.63654,
+              0,
+              0,
+              0.77124
+            ],
+            "Foot_L": [
+              -0.51254,
+              -0.0163,
+              0.00203,
+              0.85851
+            ],
+            "Foot_R": [
+              -0.51254,
+              0.0163,
+              -0.00203,
+              0.85851
+            ]
+          },
+          "position": {
+            "x": 5,
+            "z": -20.4
+          },
+          "height": 2.22
+        }
+      ],
+      "mageAsset": "/assets/characters/mage/black-mage-v2.glb",
+      "moogleAsset": "/assets/characters/moogle/moogle-courier-v3.glb"
+    },
+    {
+      "street": "residential",
+      "birds": [
+        {
+          "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+          "clip": "Chirp",
+          "frozen": false,
+          "time": 0.8,
+          "history": [
+            "Idle",
+            "Chirp"
+          ],
+          "bones": {
+            "Head": [
+              -0.04515,
+              -0.02153,
+              0.00495,
+              0.99874
+            ],
+            "Neck": [
+              -0.07245,
+              0,
+              0,
+              0.99737
+            ],
+            "Crest": [
+              -0.70847,
+              0,
+              0,
+              0.70574
+            ],
+            "Wing_L": [
+              -0.90845,
+              0.13401,
+              0.1164,
+              0.37843
+            ],
+            "Wing_R": [
+              -0.90845,
+              -0.13401,
+              -0.1164,
+              0.37843
+            ],
+            "Tail": [
+              -0.6375,
+              0,
+              0,
+              0.77045
+            ],
+            "Foot_L": [
+              -0.51254,
+              -0.0163,
+              0.00203,
+              0.85851
+            ],
+            "Foot_R": [
+              -0.51254,
+              0.0163,
+              -0.00203,
+              0.85851
+            ]
+          },
+          "position": {
+            "x": 5,
+            "z": -20.4
+          },
+          "height": 2.22
+        }
+      ],
+      "mageAsset": "/assets/characters/mage/black-mage-v2.glb",
+      "moogleAsset": "/assets/characters/moogle/moogle-courier-v3.glb"
+    },
+    {
+      "street": "market",
+      "birds": [
+        {
+          "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+          "clip": "Chirp",
+          "frozen": false,
+          "time": 0.678,
+          "history": [
+            "Idle",
+            "Chirp"
+          ],
+          "bones": {
+            "Head": [
+              -0.04515,
+              -0.01368,
+              0.00314,
+              0.99888
+            ],
+            "Neck": [
+              -0.07245,
+              0,
+              0,
+              0.99737
+            ],
+            "Crest": [
+              -0.70847,
+              0,
+              0,
+              0.70574
+            ],
+            "Wing_L": [
+              -0.90831,
+              0.13515,
+              0.11542,
+              0.37866
+            ],
+            "Wing_R": [
+              -0.90831,
+              -0.13515,
+              -0.11542,
+              0.37866
+            ],
+            "Tail": [
+              -0.63867,
+              0,
+              0,
+              0.76948
+            ],
+            "Foot_L": [
+              -0.51254,
+              -0.0163,
+              0.00203,
+              0.85851
+            ],
+            "Foot_R": [
+              -0.51254,
+              0.0163,
+              -0.00203,
+              0.85851
+            ]
+          },
+          "position": {
+            "x": 5,
+            "z": -20.4
+          },
+          "height": 2.22
+        }
+      ],
+      "mageAsset": "/assets/characters/mage/black-mage-v2.glb",
+      "moogleAsset": "/assets/characters/moogle/moogle-courier-v3.glb"
+    }
+  ]
+}

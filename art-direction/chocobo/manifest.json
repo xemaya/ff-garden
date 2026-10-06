@@ -1,0 +1,27 @@
+{
+  "id": "chocobo-v1",
+  "asset": "public/assets/characters/chocobo/chocobo-v1.glb",
+  "sourceBlend": "public/assets/characters/chocobo/chocobo-v1.blend",
+  "source": "tools/build-chocobo.py",
+  "sha256": "1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1",
+  "joints": 24,
+  "triangles": 135776,
+  "reference": "art-direction/chocobo/target-v1.png",
+  "prompts": "art-direction/chocobo/prompts.json",
+  "imageGenerationMode": "built-in imagegen",
+  "newImageGenerationCalls": 2,
+  "materialImages": [
+    "feathers.png",
+    "leather.png"
+  ],
+  "leatherReusedFrom": "moogle",
+  "server4090TasksStarted": 0,
+  "sameAssetInThreeStreets": true,
+  "visualAcceptance": "approved for scene use by user",
+  "visualAcceptanceRecord": {
+    "date": "2026-10-06",
+    "feedback": "陆行鸟不错。你总结我们生成这些东西的经验。然后摆放到布景中吧",
+    "scope": "current v1 for scene placement",
+    "sha256": "1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1"
+  }
+}

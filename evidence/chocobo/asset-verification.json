@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "assetSha256": "1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1",
+  "bytes": 9973720,
+  "joints": 24,
+  "meshes": 33,
+  "vertices": 78952,
+  "triangles": 135776,
+  "images": 2,
+  "clips": [
+    {
+      "name": "Chirp",
+      "seconds": 3.0416667461395264,
+      "animatedChannels": 9,
+      "loopSeam": 0.03270573541522026
+    },
+    {
+      "name": "Flap",
+      "seconds": 4.041666507720947,
+      "animatedChannels": 10,
+      "loopSeam": 7.680715267509071e-18
+    },
+    {
+      "name": "Idle",
+      "seconds": 4.041666507720947,
+      "animatedChannels": 8,
+      "loopSeam": 7.680715267509071e-18
+    },
+    {
+      "name": "Walk",
+      "seconds": 1,
+      "animatedChannels": 15,
+      "loopSeam": 3.3086161575033976e-18
+    }
+  ],
+  "groundSamples": {
+    "Idle": {
+      "frames": 97,
+      "minimumToeZ": 0.00300002284348011,
+      "maximumLowestToeZ": 0.00300002284348011
+    },
+    "Walk": {
+      "frames": 24,
+      "minimumToeZ": 0.002999950898811221,
+      "maximumLowestToeZ": 0.003000045893713832
+    },
+    "Chirp": {
+      "frames": 73,
+      "minimumToeZ": 0.00300002284348011,
+      "maximumLowestToeZ": 0.00300002284348011
+    },
+    "Flap": {
+      "frames": 97,
+      "minimumToeZ": 0.00300002284348011,
+      "maximumLowestToeZ": 0.00300002284348011
+    }
+  },
+  "toesPerFoot": 3,
+  "streets": [
+    "residential",
+    "market",
+    "workshops"
+  ],
+  "sharedAsset": true
+}

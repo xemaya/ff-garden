@@ -1,0 +1,24 @@
+{
+  "domain": "ff.buplayground.cn",
+  "dns": {
+    "provider": "Alibaba Cloud DNS",
+    "type": "A",
+    "value": "60.165.239.26",
+    "ttl": 600,
+    "recordId": "2107310635138010112"
+  },
+  "repository": "https://github.com/xemaya/ff-garden",
+  "visibility": "private",
+  "httpsCertificate": {
+    "name": "ff.buplayground.cn",
+    "expires": "2027-01-04",
+    "existingCertificatesReplaced": false
+  },
+  "packaging": {
+    "blenderSources": "authoring/characters",
+    "dependencySiblingRequired": false,
+    "runtimeRequiresGPU": false,
+    "generationHelpersIncluded": true
+  },
+  "sourceCredentialPatternHits": 0
+}

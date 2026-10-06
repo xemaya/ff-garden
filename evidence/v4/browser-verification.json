@@ -1,0 +1,698 @@
+{
+  "passed": true,
+  "checks": {
+    "threeRenderedLayouts": true,
+    "allUseFiveExistingTextures": true,
+    "allBuildingsUseKit": true,
+    "threeCompleteWalks": true,
+    "generatedSpecs": true,
+    "newImageCallsZero": true,
+    "allConsolesClean": true,
+    "manualMovement": true,
+    "dragView": true,
+    "mapMode": true,
+    "studyMapRestoresWalk": true,
+    "afternoonLight": true,
+    "readyAtEntry": true
+  },
+  "records": [
+    {
+      "id": "residential",
+      "study": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "residential",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 6,
+          "roadWidth": 5.6,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 3,
+          "bays": 0,
+          "balconies": 6,
+          "awnings": 1,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 5,
+          "maxPlacementShift": 3.719999999999999
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": true,
+        "hero": {
+          "roofTiles": 1684,
+          "sculptedPavers": 99,
+          "recessedWindows": 88,
+          "heroBuildings": 6,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -0.2,
+          "y": 3.15,
+          "z": 33.9,
+          "yaw": -0.055,
+          "pitch": 0.09
+        },
+        "location": "花香与面包",
+        "progress": 0,
+        "buildings": 6,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 7444,
+          "batches": 92
+        },
+        "render": {
+          "calls": 434,
+          "triangles": 2526545
+        },
+        "meanFrameMs": 10.011956520702528
+      },
+      "end": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "residential",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 6,
+          "roadWidth": 5.6,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 3,
+          "bays": 0,
+          "balconies": 6,
+          "awnings": 1,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 5,
+          "maxPlacementShift": 3.719999999999999
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 1684,
+          "sculptedPavers": 99,
+          "recessedWindows": 88,
+          "heroBuildings": 6,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": true,
+        "afternoon": false,
+        "pose": {
+          "x": 2.2,
+          "y": 1.68,
+          "z": -32.5,
+          "yaw": 0.04292663377473995,
+          "pitch": 0.34
+        },
+        "location": "望向城堡",
+        "progress": 1,
+        "buildings": 6,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 7444,
+          "batches": 92
+        },
+        "render": {
+          "calls": 371,
+          "triangles": 1649817
+        },
+        "meanFrameMs": 8.334999999735091
+      },
+      "logs": []
+    },
+    {
+      "id": "market",
+      "study": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "market",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 10,
+          "roadWidth": 7.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 4,
+          "bays": 1,
+          "balconies": 1,
+          "awnings": 10,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 8,
+          "maxPlacementShift": 5.52
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": true,
+        "hero": {
+          "roofTiles": 2752,
+          "sculptedPavers": 127,
+          "recessedWindows": 85,
+          "heroBuildings": 10,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -0.2,
+          "y": 3.15,
+          "z": 33.9,
+          "yaw": -0.055,
+          "pitch": 0.09
+        },
+        "location": "花香与面包",
+        "progress": 0,
+        "buildings": 10,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 11445,
+          "batches": 117
+        },
+        "render": {
+          "calls": 534,
+          "triangles": 3970843
+        },
+        "meanFrameMs": 8.333333333333334
+      },
+      "end": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "market",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 10,
+          "roadWidth": 7.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 4,
+          "bays": 1,
+          "balconies": 1,
+          "awnings": 10,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 8,
+          "maxPlacementShift": 5.52
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 2752,
+          "sculptedPavers": 127,
+          "recessedWindows": 85,
+          "heroBuildings": 10,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": true,
+        "afternoon": false,
+        "pose": {
+          "x": 2.2,
+          "y": 1.68,
+          "z": -32.5,
+          "yaw": 0.04292663377473995,
+          "pitch": 0.34
+        },
+        "location": "望向城堡",
+        "progress": 1,
+        "buildings": 10,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 11445,
+          "batches": 117
+        },
+        "render": {
+          "calls": 423,
+          "triangles": 2372489
+        },
+        "meanFrameMs": 8.337777777512867
+      },
+      "logs": []
+    },
+    {
+      "id": "workshops",
+      "study": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "workshops",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 8,
+          "roadWidth": 6.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 7,
+          "bays": 4,
+          "balconies": 1,
+          "awnings": 2,
+          "chimneys": 6,
+          "stories3": 0,
+          "packedPlacements": 6,
+          "maxPlacementShift": 3.6336000000000013
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": true,
+        "hero": {
+          "roofTiles": 2204,
+          "sculptedPavers": 110,
+          "recessedWindows": 78,
+          "heroBuildings": 8,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -0.2,
+          "y": 3.15,
+          "z": 33.9,
+          "yaw": -0.055,
+          "pitch": 0.09
+        },
+        "location": "花香与面包",
+        "progress": 0,
+        "buildings": 8,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 8439,
+          "batches": 108
+        },
+        "render": {
+          "calls": 498,
+          "triangles": 2736189
+        },
+        "meanFrameMs": 8.33111111190584
+      },
+      "end": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "workshops",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 8,
+          "roadWidth": 6.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 7,
+          "bays": 4,
+          "balconies": 1,
+          "awnings": 2,
+          "chimneys": 6,
+          "stories3": 0,
+          "packedPlacements": 6,
+          "maxPlacementShift": 3.6336000000000013
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 2204,
+          "sculptedPavers": 110,
+          "recessedWindows": 78,
+          "heroBuildings": 8,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": true,
+        "afternoon": false,
+        "pose": {
+          "x": 2.2,
+          "y": 1.68,
+          "z": -32.5,
+          "yaw": 0.04292663377473995,
+          "pitch": 0.34
+        },
+        "location": "望向城堡",
+        "progress": 1,
+        "buildings": 8,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 8439,
+          "batches": 108
+        },
+        "render": {
+          "calls": 405,
+          "triangles": 1755337
+        },
+        "meanFrameMs": 8.34000000026491
+      },
+      "logs": []
+    }
+  ],
+  "map": {
+    "ready": true,
+    "theme": "ff9-alexandria-crafted-corner",
+    "revision": 4,
+    "layoutId": "workshops",
+    "generated": true,
+    "assemblyMetrics": {
+      "buildings": 8,
+      "roadWidth": 6.2,
+      "roadBend": 0.8,
+      "roadSway": 0.3,
+      "pathLength": 64.22627802833485,
+      "combinations": 7,
+      "bays": 4,
+      "balconies": 1,
+      "awnings": 2,
+      "chimneys": 6,
+      "stories3": 0,
+      "packedPlacements": 6,
+      "maxPlacementShift": 3.6336000000000013
+    },
+    "newImageGenerationCalls": 0,
+    "artStudy": false,
+    "hero": {
+      "roofTiles": 2204,
+      "sculptedPavers": 110,
+      "recessedWindows": 78,
+      "heroBuildings": 8,
+      "generatedMaterials": [
+        "plaster",
+        "wood",
+        "pavers",
+        "roof-clay",
+        "roof-teal"
+      ]
+    },
+    "ambientOcclusion": true,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "moogle",
+      "chocobo",
+      "mage"
+    ],
+    "authoredLayout": false,
+    "mapMode": true,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": 19,
+      "y": 46,
+      "z": 25,
+      "yaw": 0.6202494859828214,
+      "pitch": -0.9285583109335144
+    },
+    "location": "工坊街入口",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 64.22627802833485,
+    "batches": {
+      "parts": 8439,
+      "batches": 108
+    },
+    "render": {
+      "calls": 632,
+      "triangles": 2803957
+    },
+    "meanFrameMs": 8.333333333333334
+  },
+  "manual": {
+    "ready": true,
+    "theme": "ff9-alexandria-crafted-corner",
+    "revision": 4,
+    "layoutId": "workshops",
+    "generated": true,
+    "assemblyMetrics": {
+      "buildings": 8,
+      "roadWidth": 6.2,
+      "roadBend": 0.8,
+      "roadSway": 0.3,
+      "pathLength": 64.22627802833485,
+      "combinations": 7,
+      "bays": 4,
+      "balconies": 1,
+      "awnings": 2,
+      "chimneys": 6,
+      "stories3": 0,
+      "packedPlacements": 6,
+      "maxPlacementShift": 3.6336000000000013
+    },
+    "newImageGenerationCalls": 0,
+    "artStudy": false,
+    "hero": {
+      "roofTiles": 2204,
+      "sculptedPavers": 110,
+      "recessedWindows": 78,
+      "heroBuildings": 8,
+      "generatedMaterials": [
+        "plaster",
+        "wood",
+        "pavers",
+        "roof-clay",
+        "roof-teal"
+      ]
+    },
+    "ambientOcclusion": true,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "moogle",
+      "chocobo",
+      "mage"
+    ],
+    "authoredLayout": false,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": 0.0009717408092941699,
+      "y": 1.6800000000000008,
+      "z": 29.97571943769401,
+      "yaw": 0.10400000000000001,
+      "pitch": 0.09800000000000002
+    },
+    "location": "工坊街入口",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 64.22627802833485,
+    "batches": {
+      "parts": 8439,
+      "batches": 108
+    },
+    "render": {
+      "calls": 688,
+      "triangles": 2816341
+    },
+    "meanFrameMs": 8.333333333333334
+  },
+  "final": {
+    "ready": true,
+    "theme": "ff9-alexandria-crafted-corner",
+    "revision": 4,
+    "layoutId": "workshops",
+    "generated": true,
+    "assemblyMetrics": {
+      "buildings": 8,
+      "roadWidth": 6.2,
+      "roadBend": 0.8,
+      "roadSway": 0.3,
+      "pathLength": 64.22627802833485,
+      "combinations": 7,
+      "bays": 4,
+      "balconies": 1,
+      "awnings": 2,
+      "chimneys": 6,
+      "stories3": 0,
+      "packedPlacements": 6,
+      "maxPlacementShift": 3.6336000000000013
+    },
+    "newImageGenerationCalls": 0,
+    "artStudy": false,
+    "hero": {
+      "roofTiles": 2204,
+      "sculptedPavers": 110,
+      "recessedWindows": 78,
+      "heroBuildings": 8,
+      "generatedMaterials": [
+        "plaster",
+        "wood",
+        "pavers",
+        "roof-clay",
+        "roof-teal"
+      ]
+    },
+    "ambientOcclusion": true,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "moogle",
+      "chocobo",
+      "mage"
+    ],
+    "authoredLayout": false,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": 0,
+      "y": 1.68,
+      "z": 30,
+      "yaw": -0.04,
+      "pitch": 0.13
+    },
+    "location": "工坊街入口",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 64.22627802833485,
+    "batches": {
+      "parts": 8439,
+      "batches": 108
+    },
+    "render": {
+      "calls": 690,
+      "triangles": 2816789
+    },
+    "meanFrameMs": 8.333333333333334
+  },
+  "finalConsole": [],
+  "visualAcceptance": "Shared palette/materials and module language inspected in screenshots; subjective FF9 quality remains for human review.",
+  "screenshots": [
+    "residential.jpg",
+    "market.jpg",
+    "workshops.jpg",
+    "workshops-map.jpg",
+    "workshops-ui.jpg"
+  ]
+}

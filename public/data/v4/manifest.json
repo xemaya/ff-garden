@@ -1,0 +1,78 @@
+{
+  "version": 4,
+  "kit": "ff9-crafted-corner-v3",
+  "defaultStreet": "residential",
+  "streets": [
+    {
+      "id": "residential",
+      "label": "住宅巷",
+      "path": "data/v4/residential.json",
+      "attempts": 1,
+      "metrics": {
+        "buildings": 6,
+        "roadWidth": 5.6,
+        "roadBend": 0.8,
+        "roadSway": 0.3,
+        "pathLength": 64.22627802833485,
+        "combinations": 3,
+        "bays": 0,
+        "balconies": 6,
+        "awnings": 1,
+        "chimneys": 0,
+        "stories3": 0,
+        "packedPlacements": 5,
+        "maxPlacementShift": 3.719999999999999
+      }
+    },
+    {
+      "id": "market",
+      "label": "集市街",
+      "path": "data/v4/market.json",
+      "attempts": 1,
+      "metrics": {
+        "buildings": 10,
+        "roadWidth": 7.2,
+        "roadBend": 0.8,
+        "roadSway": 0.3,
+        "pathLength": 64.22627802833485,
+        "combinations": 4,
+        "bays": 1,
+        "balconies": 1,
+        "awnings": 10,
+        "chimneys": 0,
+        "stories3": 0,
+        "packedPlacements": 8,
+        "maxPlacementShift": 5.52
+      }
+    },
+    {
+      "id": "workshops",
+      "label": "工坊街",
+      "path": "data/v4/workshops.json",
+      "attempts": 1,
+      "metrics": {
+        "buildings": 8,
+        "roadWidth": 6.2,
+        "roadBend": 0.8,
+        "roadSway": 0.3,
+        "pathLength": 64.22627802833485,
+        "combinations": 7,
+        "bays": 4,
+        "balconies": 1,
+        "awnings": 2,
+        "chimneys": 6,
+        "stories3": 0,
+        "packedPlacements": 6,
+        "maxPlacementShift": 3.6336000000000013
+      }
+    }
+  ],
+  "newImageGenerationCalls": 0,
+  "assets": {
+    "pavers.png": "853a594263ca14c63320c4269ba22e08fb836aa5b901cf606bf2ec40e30b99c6",
+    "plaster.png": "24ca8ffcbc2c4156a1d339ad918d6b640728a7c2dc42fc5313d61910472512be",
+    "roof-clay.png": "f9f419ae9ebe9dfc5e1e511d1e10d77579fa244e2088d013c606dbeedf8cf751",
+    "roof-teal.png": "3fdf5a3c89ba07aa694885defb74502dc17d0a107b1a72a80aa925d1ce3921cd",
+    "wood.png": "87982e6b27cd5d9786ac6a013226a3cbfd05aab2dce9c752b72634aa5bfc797b"
+  }
+}

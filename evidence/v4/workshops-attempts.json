@@ -1,0 +1,22 @@
+{
+  "brief": "生成一条 FF9 风格的书匠、药草与木玩具工坊街，恰好 8 栋建筑，至少 5 栋为 books、apothecary 或 toys，至少 3 栋有 octagonal 凸窗，至少 3 栋有 tall-stone 烟囱。街宽 5.9–6.4 米。",
+  "attempts": [
+    {
+      "attempt": 1,
+      "ok": true,
+      "content": "{\n  \"version\": 4,\n  \"kit\": \"ff9-crafted-corner-v3\",\n  \"title\": \"书匠、药草与木玩具工坊街\",\n  \"subtitle\": \"一座蜿蜒的皇家市街，融合智慧与手作\",\n  \"road\": {\n    \"width\": 6.2,\n    \"bend\": 0.8,\n    \"sway\": 0.3\n  },\n  \"buildings\": [\n    {\n      \"kind\": \"books\",\n      \"name\": \"墨渊书舍\",\n      \"side\": \"left\",\n      \"z\": 23.5,\n      \"width\": 5.6,\n      \"depth\": 4.8,\n      \"setback\": 0.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 3.2,\n        \"bay\": \"none\",\n        \"awning\": \"striped\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"tall-stone\"\n      }\n    },\n    {\n      \"kind\": \"toys\",\n      \"name\": \"木灵工坊\",\n      \"side\": \"left\",\n      \"z\": 18.5,\n      \"width\": 5.2,\n      \"depth\": 4.4,\n      \"setback\": 0.75,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 3.6,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"tall-stone\"\n      }\n    },\n    {\n      \"kind\": \"books\",\n      \"name\": \"青简阁\",\n      \"side\": \"left\",\n      \"z\": 13.5,\n      \"width\": 6.4,\n      \"depth\": 5.2,\n      \"setback\": 0.25,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 2.8,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"apothecary\",\n      \"name\": \"草木堂\",\n      \"side\": \"right\",\n      \"z\": 10.5,\n      \"width\": 5.6,\n      \"depth\": 4.8,\n      \"setback\": 0.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 3.2,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"tall-stone\"\n      }\n    },\n    {\n      \"kind\": \"toys\",\n      \"name\": \"笑风铃坊\",\n      \"side\": \"right\",\n      \"z\": 7.5,\n      \"width\": 5.2,\n      \"depth\": 4.4,\n      \"setback\": 0.75,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 4,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"books\",\n      \"name\": \"琅嬛书屋\",\n      \"side\": \"right\",\n      \"z\": 3.5,\n      \"width\": 6.4,\n      \"depth\": 4.8,\n      \"setback\": 0.25,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 3.6,\n        \"bay\": \"octagonal\",\n        \"awning\": \"striped\",\n        \"balcony\": \"none\",\n        \"chimney\": \"tall-stone\"\n      }\n    },\n    {\n      \"kind\": \"apothecary\",\n      \"name\": \"药香居\",\n      \"side\": \"left\",\n      \"z\": -1.5,\n      \"width\": 5.6,\n      \"depth\": 4.4,\n      \"setback\": 0.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 3.2,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"tall-stone\"\n      }\n    },\n    {\n      \"kind\": \"toys\",\n      \"name\": \"稚趣园\",\n      \"side\": \"right\",\n      \"z\": -5.5,\n      \"width\": 5.2,\n      \"depth\": 5.2,\n      \"setback\": 0.75,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 2.8,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"tall-stone\"\n      }\n    }\n  ]\n}",
+      "finishReason": "stop",
+      "elapsedSeconds": 6.627,
+      "usage": {
+        "completion_tokens": 1226,
+        "prompt_tokens": 531,
+        "total_tokens": 1757,
+        "prompt_tokens_details": {
+          "cached_tokens": 446
+        }
+      },
+      "model": "ff7-layout-4b",
+      "validatorError": null
+    }
+  ]
+}

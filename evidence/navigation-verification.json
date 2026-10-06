@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "theme": "ff9-alexandria-crafted-corner",
+  "revision": 3,
+  "authoredLayout": true,
+  "buildings": 8,
+  "uniqueShopKinds": 8,
+  "pathLength": 63.906842787616625,
+  "curvedRoute": true,
+  "sweptNavigation": true,
+  "buildingAndPropCollision": true,
+  "fountainCollision": true,
+  "boundaryProtection": true,
+  "allStopsReachable": true
+}

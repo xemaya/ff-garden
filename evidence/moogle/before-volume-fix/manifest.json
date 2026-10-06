@@ -1,0 +1,24 @@
+{
+  "id": "moogle-courier-v1",
+  "asset": "public/assets/characters/moogle/moogle-courier-v1.glb",
+  "source": "tools/build-moogle.py",
+  "sourceBlend": "public/assets/characters/moogle/moogle-courier-v1.blend",
+  "sha256": "72ca5cb6f414781d58122622a5fd0fed8012eb09865145a7b879580fb202877d",
+  "joints": 27,
+  "triangles": 51440,
+  "animations": [
+    "Deliver",
+    "Idle",
+    "Walk",
+    "Wave"
+  ],
+  "materialImages": [
+    "fur.png",
+    "leather.png"
+  ],
+  "newImageGenerationCallsForAssetProduction": 3,
+  "perStreetAssetGeneration": false,
+  "server4090TasksStarted": 0,
+  "reuse": "same GLB instantiated with independent skeletons and mixers in all streets",
+  "visualAcceptance": "pending human review"
+}

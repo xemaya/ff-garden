@@ -1,0 +1,282 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "kit",
+    "title",
+    "subtitle",
+    "road",
+    "buildings"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "enum": [
+        4
+      ]
+    },
+    "kit": {
+      "type": "string",
+      "enum": [
+        "ff9-crafted-corner-v3"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "road": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "bend",
+        "sway"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "enum": [
+            5.4,
+            5.6,
+            5.8
+          ]
+        },
+        "bend": {
+          "type": "number",
+          "enum": [
+            -2.2,
+            -1.6,
+            -0.8,
+            0,
+            0.8,
+            1.6,
+            2.2
+          ]
+        },
+        "sway": {
+          "type": "number",
+          "enum": [
+            -0.6,
+            -0.3,
+            0,
+            0.3,
+            0.6
+          ]
+        }
+      }
+    },
+    "buildings": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "name",
+          "side",
+          "z",
+          "width",
+          "depth",
+          "setback",
+          "assembly"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "bakery",
+              "florist",
+              "inn",
+              "toys",
+              "cafe",
+              "books",
+              "home",
+              "apothecary"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "z": {
+            "type": "number",
+            "enum": [
+              -8.5,
+              -8,
+              -7.5,
+              -7,
+              -6.5,
+              -6,
+              -5.5,
+              -5,
+              -4.5,
+              -4,
+              -3.5,
+              -3,
+              -2.5,
+              -2,
+              -1.5,
+              -1,
+              -0.5,
+              0,
+              0.5,
+              1,
+              1.5,
+              2,
+              2.5,
+              3,
+              3.5,
+              4,
+              4.5,
+              5,
+              5.5,
+              6,
+              6.5,
+              7,
+              7.5,
+              8,
+              8.5,
+              9,
+              9.5,
+              10,
+              10.5,
+              11,
+              11.5,
+              12,
+              12.5,
+              13,
+              13.5,
+              14,
+              14.5,
+              15,
+              15.5,
+              16,
+              16.5,
+              17,
+              17.5,
+              18,
+              18.5,
+              19,
+              19.5,
+              20,
+              20.5,
+              21,
+              21.5,
+              22,
+              22.5,
+              23,
+              23.5
+            ]
+          },
+          "width": {
+            "type": "number",
+            "enum": [
+              4.8,
+              5.2,
+              5.6,
+              6,
+              6.4
+            ]
+          },
+          "depth": {
+            "type": "number",
+            "enum": [
+              4,
+              4.4,
+              4.8,
+              5.2
+            ]
+          },
+          "setback": {
+            "type": "number",
+            "enum": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ]
+          },
+          "assembly": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "stories",
+              "roof",
+              "roofRise",
+              "bay",
+              "awning",
+              "balcony",
+              "chimney"
+            ],
+            "properties": {
+              "stories": {
+                "type": "integer",
+                "enum": [
+                  2,
+                  3
+                ]
+              },
+              "roof": {
+                "type": "string",
+                "enum": [
+                  "clay",
+                  "teal"
+                ]
+              },
+              "roofRise": {
+                "type": "number",
+                "enum": [
+                  2.8,
+                  3.2,
+                  3.6,
+                  4
+                ]
+              },
+              "bay": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "octagonal"
+                ]
+              },
+              "awning": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "striped"
+                ]
+              },
+              "balcony": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "timber"
+                ]
+              },
+              "chimney": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "tall-stone"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

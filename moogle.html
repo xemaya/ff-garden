@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>莫古利邮差 · 角色样板</title></head><body>
+<canvas id="portrait" aria-label="可环顾的莫古利角色"></canvas>
+<header><div class="overline">A LETTER FROM THE KINGDOM</div><h1>莫古利邮差</h1><p>广场旁的一位小街坊。</p></header>
+<aside><p class="section-label">看看它的动作</p><div class="actions"><button data-clip="Idle">待机</button><button data-clip="Walk">走路</button><button data-clip="Wave">招手</button><button data-clip="Deliver">送信</button></div><button id="freeze" aria-pressed="false">定格查看</button><button id="demo" aria-pressed="false">连续演示</button><label class="pose-scrub" for="pose-frame">查看动作帧 <input id="pose-frame" type="range" min="0" max="100" step="1" value="42" aria-label="动作进度"></label><button id="legacy" aria-pressed="false">对照旧原型</button><div class="caption"><strong id="mode">精修莫古利</strong><p id="action-note">呼吸、眨眼，绒球随身体轻轻摆动。</p></div><a href="/?street=workshops&moogle=1">去街上找它 ↗</a><small>拖拽环顾 · 滚轮缩放</small></aside>
+<div id="loading">莫古利正在准备信件…</div><script type="module" src="/src/moogle-studio.js"></script></body></html>

@@ -1,0 +1,288 @@
+{
+  "version": 4,
+  "kit": "ff9-crafted-corner-v3",
+  "title": "王城集市街：晨光与花香",
+  "subtitle": "FF9 风格的喧闹市集，烟火气与古典优雅交织",
+  "road": {
+    "width": 7.2,
+    "bend": 0.8,
+    "sway": 0.3
+  },
+  "buildings": [
+    {
+      "kind": "bakery",
+      "name": "晨曦甜坊",
+      "side": "left",
+      "z": 23.5,
+      "width": 5.6,
+      "depth": 4.8,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "florist",
+      "name": "花语阁",
+      "side": "left",
+      "z": 19.5,
+      "width": 5.2,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "cafe",
+      "name": "云影茶庐",
+      "side": "left",
+      "z": 15.5,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "books",
+      "name": "墨阁藏书",
+      "side": "right",
+      "z": 17.5,
+      "width": 5.6,
+      "depth": 4.8,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 4,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "toys",
+      "name": "童梦工坊",
+      "side": "right",
+      "z": 13.5,
+      "width": 6.4,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "octagonal",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "apothecary",
+      "name": "药香坊",
+      "side": "right",
+      "z": 9.5,
+      "width": 5.2,
+      "depth": 4.8,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "bakery",
+      "name": "金轮饼屋",
+      "side": "right",
+      "z": 5.5,
+      "width": 5.6,
+      "depth": 5.2,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "cafe",
+      "name": "风铃咖啡",
+      "side": "left",
+      "z": 3.5,
+      "width": 6.4,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 4,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "books",
+      "name": "书海阁",
+      "side": "left",
+      "z": -1.5,
+      "width": 5.2,
+      "depth": 4.8,
+      "setback": 0.25,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "florist",
+      "name": "芳华苑",
+      "side": "right",
+      "z": -5.5,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    }
+  ],
+  "provenance": {
+    "source": "qwen3-4b-instruct-2507-q4_k_m",
+    "caseId": "market",
+    "seed": 617,
+    "attempt": 1,
+    "training": "none",
+    "newImageGenerationCalls": 0,
+    "kit": "ff9-crafted-corner-v3",
+    "placement": "model-preferences+isotonic-constraint-packing"
+  },
+  "realization": {
+    "placementAlgorithm": "least-squares-isotonic-roadside-packing",
+    "positions": [
+      {
+        "id": "building-0",
+        "side": "left",
+        "requestedZ": 23.5,
+        "realizedZ": 23.5,
+        "x": -4.374184628249723,
+        "z": 23.21695390882143
+      },
+      {
+        "id": "building-1",
+        "side": "left",
+        "requestedZ": 19.5,
+        "realizedZ": 16.9464,
+        "x": -3.784525666945519,
+        "z": 16.74584345264374
+      },
+      {
+        "id": "building-2",
+        "side": "left",
+        "requestedZ": 15.5,
+        "realizedZ": 9.98,
+        "x": -4.05850866657418,
+        "z": 9.875840536669147
+      },
+      {
+        "id": "building-3",
+        "side": "right",
+        "requestedZ": 17.5,
+        "realizedZ": 21.983600000000003,
+        "x": 5.277613439059315,
+        "z": 22.25390675648742
+      },
+      {
+        "id": "building-4",
+        "side": "right",
+        "requestedZ": 13.5,
+        "realizedZ": 14.830000000000002,
+        "x": 5.374634102036428,
+        "z": 15.001075732242391
+      },
+      {
+        "id": "building-5",
+        "side": "right",
+        "requestedZ": 9.5,
+        "realizedZ": 7.8764,
+        "x": 6.0551384244223065,
+        "z": 7.940359758602726
+      },
+      {
+        "id": "building-6",
+        "side": "right",
+        "requestedZ": 5.5,
+        "realizedZ": 1.3099999999999987,
+        "x": 5.805416850984995,
+        "z": 1.2502579041117265
+      },
+      {
+        "id": "building-7",
+        "side": "left",
+        "requestedZ": 3.5,
+        "realizedZ": 2.413599999999999,
+        "x": -3.512561300884658,
+        "z": 2.451458752969666
+      },
+      {
+        "id": "building-8",
+        "side": "left",
+        "requestedZ": -1.5,
+        "realizedZ": -4.540000000000003,
+        "x": -3.4052618767867164,
+        "z": -4.400875406751164
+      },
+      {
+        "id": "building-9",
+        "side": "right",
+        "requestedZ": -5.5,
+        "realizedZ": -5.5,
+        "x": 5.886819348073717,
+        "z": -5.677760702825647
+      }
+    ]
+  }
+}

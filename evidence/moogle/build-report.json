@@ -1,0 +1,88 @@
+{
+  "boneCount": 27,
+  "meshCount": 32,
+  "bodyVertices": 24000,
+  "polygons": 63069,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Wave",
+    "Deliver"
+  ],
+  "allWeightsNormalized": true,
+  "sampledGroundContacts": {
+    "Idle": {
+      "minimumBodyZ": 0.003000002820044756,
+      "maximumBodyZ": 0.003000002820044756
+    },
+    "Walk": {
+      "minimumBodyZ": 0.0029999949038028717,
+      "maximumBodyZ": 0.00547579862177372
+    },
+    "Wave": {
+      "minimumBodyZ": 0.003000002820044756,
+      "maximumBodyZ": 0.003000002820044756
+    },
+    "Deliver": {
+      "minimumBodyZ": 0.003000002820044756,
+      "maximumBodyZ": 0.003000002820044756
+    }
+  },
+  "sampledSurfaceIntersections": {
+    "Idle": {
+      "frames": 97,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    },
+    "Walk": {
+      "frames": 20,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    },
+    "Wave": {
+      "frames": 73,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    },
+    "Deliver": {
+      "frames": 85,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    }
+  },
+  "revision": "v3 welded sculpt, leaf ears and fitted satchel",
+  "bodyConnectedComponents": 1,
+  "bodyNonmanifoldEdges": 0,
+  "sampledJointStrain": {
+    "Idle": {
+      "maxStretch": 1.1769092426726464,
+      "p99Stretch": 1.026282409161195,
+      "p01Compression": 0.9765862207725093
+    },
+    "Walk": {
+      "maxStretch": 2.830367330288755,
+      "p99Stretch": 1.2819157152172018,
+      "p01Compression": 0.8044900144324892
+    },
+    "Wave": {
+      "maxStretch": 8.23474244422503,
+      "p99Stretch": 1.825890616327477,
+      "p01Compression": 0.5234080310487399
+    },
+    "Deliver": {
+      "maxStretch": 6.379593137481312,
+      "p99Stretch": 1.673317333110739,
+      "p01Compression": 0.6642667266574204
+    }
+  },
+  "strapEndCentersMatchRingCenters": true,
+  "bodyBinding": "Blender bone heat normalized to four influences",
+  "beltBinding": "Spine, rigid leather anchored to hip pouch",
+  "scale": 0.85,
+  "source": "authored Blender sculpt/rig with generated material references",
+  "training": "none"
+}

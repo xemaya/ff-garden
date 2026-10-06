@@ -1,0 +1,25 @@
+{
+  "name": "ff-garden",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5209",
+    "build": "vite build",
+    "verify": "node tools/verify.mjs",
+    "verify:v4": "node tools/verify-v4.mjs",
+    "generate:streets": "node tools/generate-streets.mjs",
+    "verify:moogle": "node tools/verify-moogle.mjs",
+    "verify:mage": "node tools/verify-mage.mjs",
+    "verify:chocobo": "node tools/verify-chocobo.mjs",
+    "verify:cast": "node tools/verify-cast.mjs",
+    "check": "npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo",
+    "deploy": "python3 deploy/publish.py"
+  },
+  "dependencies": {
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "vite": "5.4.21"
+  }
+}

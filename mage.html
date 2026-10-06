@@ -1,0 +1,5 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>黑魔导士 · 角色样板</title></head><body>
+<canvas id="portrait" aria-label="可环顾的魔导士角色"></canvas>
+<header><div class="overline">A LITTLE MAGIC AT THE CORNER</div><h1>黑魔导士</h1><p>帽影里，亮起两盏小灯。</p></header>
+<aside><p class="section-label">看看它的动作</p><div class="actions"><button data-clip="Idle">待机</button><button data-clip="Walk">走路</button><button data-clip="Greet">招呼</button><button data-clip="Magic">小魔法</button></div><button id="freeze" aria-pressed="false">定格查看</button><button id="demo" aria-pressed="false">连续演示</button><label class="pose-scrub" for="pose-frame">查看动作帧 <input id="pose-frame" type="range" min="0" max="100" step="1" value="42" aria-label="动作进度"></label><button id="legacy" aria-pressed="false">对照旧原型</button><div class="caption"><strong id="mode">精修魔导士</strong><p id="action-note">帽影下的黄眼，轻轻呼吸与转头。</p></div><a href="/?street=workshops&mage=1">去街上找它 ↗</a><small>拖拽环顾 · 滚轮缩放</small></aside>
+<div id="loading">魔导士正在整理帽子…</div><script type="module" src="/src/mage-studio.js"></script></body></html>

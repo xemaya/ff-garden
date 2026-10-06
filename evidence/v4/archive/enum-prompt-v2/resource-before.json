@@ -1,0 +1,102 @@
+{
+  "gpus": [
+    {
+      "index": 0,
+      "uuid": "GPU-56a03cb0-dfc1-c913-b2e5-0ec9dc1a9811",
+      "usedMiB": 21059,
+      "freeMiB": 3150
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-5dac4b84-d651-c998-5bee-c4fdce1932f8",
+      "usedMiB": 2305,
+      "freeMiB": 21904
+    },
+    {
+      "index": 2,
+      "uuid": "GPU-a8dcc033-eeca-0106-5a93-0b97dc659bb9",
+      "usedMiB": 2299,
+      "freeMiB": 21910
+    },
+    {
+      "index": 3,
+      "uuid": "GPU-767b9b9f-3d08-4f58-c827-86c1efdcc29a",
+      "usedMiB": 19281,
+      "freeMiB": 4928
+    },
+    {
+      "index": 4,
+      "uuid": "GPU-4d1f057c-643d-5696-d668-e31629eabd6c",
+      "usedMiB": 17889,
+      "freeMiB": 6320
+    },
+    {
+      "index": 5,
+      "uuid": "GPU-95ec34ae-5767-67d3-7d19-156ba84f05c9",
+      "usedMiB": 22031,
+      "freeMiB": 2178
+    },
+    {
+      "index": 6,
+      "uuid": "GPU-77821c36-5528-4bd8-aaa8-1777375655b7",
+      "usedMiB": 16419,
+      "freeMiB": 6264
+    },
+    {
+      "index": 7,
+      "uuid": "GPU-33bd9dd6-1f61-1331-f038-ce5985f460f7",
+      "usedMiB": 19007,
+      "freeMiB": 5202
+    }
+  ],
+  "processes": [
+    {
+      "pid": 1585565,
+      "gpu": "GPU-56a03cb0-dfc1-c913-b2e5-0ec9dc1a9811",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 21028
+    },
+    {
+      "pid": 1585567,
+      "gpu": "GPU-5dac4b84-d651-c998-5bee-c4fdce1932f8",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 2294
+    },
+    {
+      "pid": 1625318,
+      "gpu": "GPU-a8dcc033-eeca-0106-5a93-0b97dc659bb9",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 2290
+    },
+    {
+      "pid": 1706593,
+      "gpu": "GPU-767b9b9f-3d08-4f58-c827-86c1efdcc29a",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 19274
+    },
+    {
+      "pid": 2112445,
+      "gpu": "GPU-4d1f057c-643d-5696-d668-e31629eabd6c",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 17874
+    },
+    {
+      "pid": 2698185,
+      "gpu": "GPU-95ec34ae-5767-67d3-7d19-156ba84f05c9",
+      "name": "/home/huanghaibin/llama.cpp/build/bin/llama-server",
+      "usedMiB": 22024
+    },
+    {
+      "pid": 1633325,
+      "gpu": "GPU-77821c36-5528-4bd8-aaa8-1777375655b7",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 16402
+    },
+    {
+      "pid": 1679920,
+      "gpu": "GPU-33bd9dd6-1f61-1331-f038-ce5985f460f7",
+      "name": "/home/huanghaibin/envs/comfy/bin/python",
+      "usedMiB": 18994
+    }
+  ]
+}

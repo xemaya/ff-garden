@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "model": "Qwen3-4B-Instruct-2507 Q4_K_M",
+  "training": "none",
+  "newImageGenerationCalls": 0,
+  "assetsBefore": {
+    "pavers.png": "853a594263ca14c63320c4269ba22e08fb836aa5b901cf606bf2ec40e30b99c6",
+    "plaster.png": "24ca8ffcbc2c4156a1d339ad918d6b640728a7c2dc42fc5313d61910472512be",
+    "roof-clay.png": "f9f419ae9ebe9dfc5e1e511d1e10d77579fa244e2088d013c606dbeedf8cf751",
+    "roof-teal.png": "3fdf5a3c89ba07aa694885defb74502dc17d0a107b1a72a80aa925d1ce3921cd",
+    "wood.png": "87982e6b27cd5d9786ac6a013226a3cbfd05aab2dce9c752b72634aa5bfc797b"
+  },
+  "assetsAfter": {
+    "pavers.png": "853a594263ca14c63320c4269ba22e08fb836aa5b901cf606bf2ec40e30b99c6",
+    "plaster.png": "24ca8ffcbc2c4156a1d339ad918d6b640728a7c2dc42fc5313d61910472512be",
+    "roof-clay.png": "f9f419ae9ebe9dfc5e1e511d1e10d77579fa244e2088d013c606dbeedf8cf751",
+    "roof-teal.png": "3fdf5a3c89ba07aa694885defb74502dc17d0a107b1a72a80aa925d1ce3921cd",
+    "wood.png": "87982e6b27cd5d9786ac6a013226a3cbfd05aab2dce9c752b72634aa5bfc797b"
+  },
+  "assetsUnchanged": true,
+  "records": [],
+  "resource": {
+    "startInfo": {
+      "pid": 2737665,
+      "gpu": 1,
+      "port": 8087,
+      "modelPath": "/data/app/huanghaibin/llm/models/ff7-layout-poc/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+      "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+      "modelBytes": 2497281120,
+      "startedAt": 1791165976.103455
+    },
+    "stopped": {
+      "stoppedPid": 2737665,
+      "ownedProcessRemaining": null
+    },
+    "missingSharedPids": []
+  },
+  "failure": "residential failed all bounded attempts"
+}

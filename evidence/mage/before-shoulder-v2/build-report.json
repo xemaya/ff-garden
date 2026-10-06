@@ -1,0 +1,53 @@
+{
+  "joints": 23,
+  "meshes": 20,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Greet",
+    "Magic"
+  ],
+  "allWeightsNormalized": true,
+  "groundSamples": {
+    "Idle": {
+      "minimumSoleZ": 0.0030000072438269854,
+      "frames": 97
+    },
+    "Walk": {
+      "minimumSoleZ": 0.002999958349391818,
+      "frames": 23
+    },
+    "Greet": {
+      "minimumSoleZ": 0.0030000072438269854,
+      "frames": 73
+    },
+    "Magic": {
+      "minimumSoleZ": 0.0030000072438269854,
+      "frames": 97
+    }
+  },
+  "surfaceIntersections": {
+    "Idle": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    },
+    "Walk": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    },
+    "Greet": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    },
+    "Magic": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    }
+  },
+  "scale": 0.8,
+  "newImageCalls": 2,
+  "server4090Tasks": 0,
+  "training": "none",
+  "coatBinding": "bone heat on closed solid proxy transferred to cloth shell",
+  "source": "authored cloth geometry, Blender heat skin, one generated atlas and reused leather"
+}

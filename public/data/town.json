@@ -1,0 +1,145 @@
+{
+  "title": "风铃街",
+  "subtitle": "飞空艇将靠岸，王城的剧场刚刚开幕",
+  "provenance": {
+    "source": "authored-art-and-layout-experiment",
+    "training": "none",
+    "date": "2026-10-05",
+    "revision": 3,
+    "artDirection": "Alexandria royal city, theater airship, hand-built fantasy inhabitants",
+    "generatedTextureAssets": 5,
+    "artTarget": "art-direction/ff9-street-target-v1.png"
+  },
+  "buildings": [
+    {
+      "id": "bakery",
+      "kind": "bakery",
+      "name": "麦穗面包店",
+      "side": "right",
+      "z": 22,
+      "width": 6.2,
+      "height": 6.8,
+      "depth": 4.8,
+      "roof": "coral",
+      "wall": "cream",
+      "seed": 71
+    },
+    {
+      "id": "flowers",
+      "kind": "florist",
+      "name": "五月花屋",
+      "side": "left",
+      "z": 22,
+      "width": 5.9,
+      "height": 5.9,
+      "depth": 4.8,
+      "roof": "sage",
+      "wall": "peach",
+      "seed": 82
+    },
+    {
+      "id": "inn",
+      "kind": "inn",
+      "name": "月亮旅店",
+      "side": "right",
+      "z": 13,
+      "width": 6.5,
+      "height": 8.1,
+      "depth": 5.5,
+      "roof": "blue",
+      "wall": "butter",
+      "seed": 93
+    },
+    {
+      "id": "toys",
+      "kind": "toys",
+      "name": "星星玩具铺",
+      "side": "left",
+      "z": 12,
+      "width": 5.8,
+      "height": 6.6,
+      "depth": 4.6,
+      "roof": "lavender",
+      "wall": "cream",
+      "seed": 104
+    },
+    {
+      "id": "cafe",
+      "kind": "cafe",
+      "name": "风铃茶馆",
+      "side": "right",
+      "z": 3,
+      "width": 6.0,
+      "height": 6.3,
+      "depth": 5.0,
+      "roof": "sage",
+      "wall": "mint",
+      "seed": 115
+    },
+    {
+      "id": "books",
+      "kind": "books",
+      "name": "旅人书房",
+      "side": "left",
+      "z": -1,
+      "width": 5.6,
+      "height": 7.6,
+      "depth": 4.8,
+      "roof": "coral",
+      "wall": "butter",
+      "seed": 126
+    },
+    {
+      "id": "home",
+      "kind": "home",
+      "name": "藤蔓小屋",
+      "side": "right",
+      "z": -7,
+      "width": 5.8,
+      "height": 6.9,
+      "depth": 5.1,
+      "roof": "coral",
+      "wall": "peach",
+      "seed": 137
+    },
+    {
+      "id": "apothecary",
+      "kind": "apothecary",
+      "name": "森林药草屋",
+      "side": "left",
+      "z": -10,
+      "width": 5.5,
+      "height": 6.1,
+      "depth": 4.6,
+      "roof": "blue",
+      "wall": "mint",
+      "seed": 148
+    }
+  ],
+  "stops": [
+    {
+      "id": "entry",
+      "title": "花香与面包",
+      "text": "刚出炉的面包香从街角飘过来，花店已经摆好了今天的花。",
+      "z": 28
+    },
+    {
+      "id": "garden",
+      "title": "树荫下歇一会",
+      "text": "走过彩色遮雨棚，在花园的长凳旁停一停。",
+      "z": 5
+    },
+    {
+      "id": "square",
+      "title": "喷泉广场",
+      "text": "街道在这里打开了。看看水花，也看看头顶缓缓经过的飞空艇。",
+      "z": -21
+    },
+    {
+      "id": "castle",
+      "title": "望向城堡",
+      "text": "高耸的剑形塔楼与王城屋顶，街坊们在这里等飞空艇靠岸。",
+      "z": -32
+    }
+  ]
+}

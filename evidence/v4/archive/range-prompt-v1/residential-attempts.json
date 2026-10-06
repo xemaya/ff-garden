@@ -1,0 +1,56 @@
+{
+  "brief": "生成一条安静的 FF9 风格王城住宅巷，恰好 6 栋建筑，至少 3 栋 home 或 inn，至少 3 栋有 timber 阳台，striped 雨棚不超过 2 栋。留出宽松建筑间隔。街宽 5.2–5.8 米。",
+  "attempts": [
+    {
+      "attempt": 1,
+      "ok": true,
+      "content": "{\n  \"version\": 4,\n  \"kit\": \"ff9-crafted-corner-v3\",\n  \"title\": \"青瓦静巷·归云居\",\n  \"subtitle\": \"王城深处的宁静住宅街，晨雾轻笼，石板微润\",\n  \"road\": {\n    \"width\": 5.6,\n    \"bend\": 0.3,\n    \"sway\": 0.15\n  },\n  \"buildings\": [\n    {\n      \"kind\": \"home\",\n      \"name\": \"云隐居\",\n      \"side\": \"left\",\n      \"z\": 21.0,\n      \"width\": 4.0,\n      \"depth\": 6.0,\n      \"setback\": 2.0,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.8,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"松风小舍\",\n      \"side\": \"left\",\n      \"z\": 15.0,\n      \"width\": 4.0,\n      \"depth\": 6.0,\n      \"setback\": 2.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.7,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"inn\",\n      \"name\": \"暮烟驿\",\n      \"side\": \"left\",\n      \"z\": 9.0,\n      \"width\": 4.0,\n      \"depth\": 6.0,\n      \"setback\": 3.0,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 0.9,\n        \"bay\": \"none\",\n        \"awning\": \"striped\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"竹影居\",\n      \"side\": \"right\",\n      \"z\": 18.5,\n      \"width\": 4.0,\n      \"depth\": 6.0,\n      \"setback\": 1.8,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.6,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"清溪堂\",\n      \"side\": \"right\",\n      \"z\": 12.5,\n      \"width\": 4.0,\n      \"depth\": 6.0,\n      \"setback\": 2.2,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.5,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"inn\",\n      \"name\": \"归途馆\",\n      \"side\": \"right\",\n      \"z\": 6.5,\n      \"width\": 4.0,\n      \"depth\": 6.0,\n      \"setback\": 3.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 1.0,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    }\n  ]\n}",
+      "finishReason": "stop",
+      "elapsedSeconds": 5.692,
+      "usage": {
+        "completion_tokens": 939,
+        "prompt_tokens": 412,
+        "total_tokens": 1351,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "model": "ff7-layout-4b",
+      "validatorError": "width must be 4.6..6.5"
+    },
+    {
+      "attempt": 2,
+      "ok": true,
+      "content": "{\n  \"version\": 4,\n  \"kit\": \"ff9-crafted-corner-v3\",\n  \"title\": \"青瓦静巷·归云居\",\n  \"subtitle\": \"王城深处的宁静住宅街，晨雾轻笼，石板微润\",\n  \"road\": {\n    \"width\": 5.6,\n    \"bend\": 0.3,\n    \"sway\": 0.15\n  },\n  \"buildings\": [\n    {\n      \"kind\": \"home\",\n      \"name\": \"云隐居\",\n      \"side\": \"left\",\n      \"z\": 21.0,\n      \"width\": 5.0,\n      \"depth\": 6.0,\n      \"setback\": 2.0,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.8,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"松风小舍\",\n      \"side\": \"left\",\n      \"z\": 15.0,\n      \"width\": 5.0,\n      \"depth\": 6.0,\n      \"setback\": 2.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.7,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"inn\",\n      \"name\": \"暮烟驿\",\n      \"side\": \"left\",\n      \"z\": 9.0,\n      \"width\": 5.0,\n      \"depth\": 6.0,\n      \"setback\": 3.0,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 0.9,\n        \"bay\": \"none\",\n        \"awning\": \"striped\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"竹影居\",\n      \"side\": \"right\",\n      \"z\": 18.5,\n      \"width\": 5.0,\n      \"depth\": 6.0,\n      \"setback\": 1.8,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.6,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"清溪堂\",\n      \"side\": \"right\",\n      \"z\": 12.5,\n      \"width\": 5.0,\n      \"depth\": 6.0,\n      \"setback\": 2.2,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.5,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"inn\",\n      \"name\": \"归途馆\",\n      \"side\": \"right\",\n      \"z\": 6.5,\n      \"width\": 5.0,\n      \"depth\": 6.0,\n      \"setback\": 3.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 1.0,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    }\n  ]\n}",
+      "finishReason": "stop",
+      "elapsedSeconds": 4.515,
+      "usage": {
+        "completion_tokens": 891,
+        "prompt_tokens": 1348,
+        "total_tokens": 2239,
+        "prompt_tokens_details": {
+          "cached_tokens": 422
+        }
+      },
+      "model": "ff7-layout-4b",
+      "validatorError": "depth must be 3.8..5.3"
+    },
+    {
+      "attempt": 3,
+      "ok": true,
+      "content": "{\n  \"version\": 4,\n  \"kit\": \"ff9-crafted-corner-v3\",\n  \"title\": \"青瓦静巷·归云居\",\n  \"subtitle\": \"王城深处的宁静住宅街，晨雾轻笼，石板微润\",\n  \"road\": {\n    \"width\": 5.6,\n    \"bend\": 0.3,\n    \"sway\": 0.15\n  },\n  \"buildings\": [\n    {\n      \"kind\": \"home\",\n      \"name\": \"云隐居\",\n      \"side\": \"left\",\n      \"z\": 21.0,\n      \"width\": 5.0,\n      \"depth\": 4.0,\n      \"setback\": 2.0,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.8,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"松风小舍\",\n      \"side\": \"left\",\n      \"z\": 15.0,\n      \"width\": 5.0,\n      \"depth\": 4.0,\n      \"setback\": 2.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.7,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"inn\",\n      \"name\": \"暮烟驿\",\n      \"side\": \"left\",\n      \"z\": 9.0,\n      \"width\": 5.0,\n      \"depth\": 4.0,\n      \"setback\": 3.0,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 0.9,\n        \"bay\": \"none\",\n        \"awning\": \"striped\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"竹影居\",\n      \"side\": \"right\",\n      \"z\": 18.5,\n      \"width\": 5.0,\n      \"depth\": 4.0,\n      \"setback\": 1.8,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.6,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"home\",\n      \"name\": \"清溪堂\",\n      \"side\": \"right\",\n      \"z\": 12.5,\n      \"width\": 5.0,\n      \"depth\": 4.0,\n      \"setback\": 2.2,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"clay\",\n        \"roofRise\": 0.5,\n        \"bay\": \"octagonal\",\n        \"awning\": \"none\",\n        \"balcony\": \"timber\",\n        \"chimney\": \"none\"\n      }\n    },\n    {\n      \"kind\": \"inn\",\n      \"name\": \"归途馆\",\n      \"side\": \"right\",\n      \"z\": 6.5,\n      \"width\": 5.0,\n      \"depth\": 4.0,\n      \"setback\": 3.5,\n      \"assembly\": {\n        \"stories\": 2,\n        \"roof\": \"teal\",\n        \"roofRise\": 1.0,\n        \"bay\": \"none\",\n        \"awning\": \"none\",\n        \"balcony\": \"none\",\n        \"chimney\": \"none\"\n      }\n    }\n  ]\n}",
+      "finishReason": "stop",
+      "elapsedSeconds": 5.954,
+      "usage": {
+        "completion_tokens": 891,
+        "prompt_tokens": 2284,
+        "total_tokens": 3175,
+        "prompt_tokens_details": {
+          "cached_tokens": 2238
+        }
+      },
+      "model": "ff7-layout-4b",
+      "validatorError": "setback must be 0..1.15"
+    }
+  ]
+}

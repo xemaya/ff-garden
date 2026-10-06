@@ -1,0 +1,41 @@
+{
+  "joints": 24,
+  "meshes": 33,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Chirp",
+    "Flap"
+  ],
+  "allWeightsNormalized": true,
+  "groundSamples": {
+    "Idle": {
+      "frames": 97,
+      "minimumToeZ": 0.00300002284348011,
+      "maximumLowestToeZ": 0.00300002284348011
+    },
+    "Walk": {
+      "frames": 24,
+      "minimumToeZ": 0.002999950898811221,
+      "maximumLowestToeZ": 0.003000045893713832
+    },
+    "Chirp": {
+      "frames": 73,
+      "minimumToeZ": 0.00300002284348011,
+      "maximumLowestToeZ": 0.00300002284348011
+    },
+    "Flap": {
+      "frames": 97,
+      "minimumToeZ": 0.00300002284348011,
+      "maximumLowestToeZ": 0.00300002284348011
+    }
+  },
+  "scale": 0.88,
+  "newImageCalls": 2,
+  "server4090Tasks": 0,
+  "training": "none",
+  "bodyBinding": "Blender heat weights on continuous sculpt",
+  "featherGeometry": "11 overlapping vanes per wing, nine tail vanes, seven crest vanes",
+  "toesPerFoot": 3,
+  "saddle": "back-curved blanket and seat with surface-projected girth"
+}

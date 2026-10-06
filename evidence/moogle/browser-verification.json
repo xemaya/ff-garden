@@ -1,0 +1,1433 @@
+{
+  "passed": true,
+  "checks": {
+    "fourRealClips": true,
+    "distinctBonePoses": true,
+    "freezePose": true,
+    "legacyComparison": true,
+    "orbitInspected": true,
+    "threeSameAssets": true,
+    "threeLocalDeliveries": true,
+    "approachMovement": true,
+    "colliderSync": true,
+    "worldGreeting": true,
+    "noConsoleErrors": true
+  },
+  "poses": {
+    "idle": {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+        "clip": "Idle",
+        "frozen": false,
+        "time": 3.052,
+        "history": [
+          "Idle"
+        ],
+        "bones": {
+          "Head": [
+            -0.01189,
+            -0.05525,
+            0.03437,
+            0.99781
+          ],
+          "Paw_R": [
+            0.06817,
+            0.75598,
+            -0.59239,
+            0.27002
+          ],
+          "Wing_L": [
+            -0.29136,
+            0.4376,
+            0.43782,
+            0.72933
+          ],
+          "Wing_R": [
+            -0.29259,
+            -0.43834,
+            -0.43709,
+            0.72883
+          ],
+          "Pom": [
+            -0.14628,
+            0.40613,
+            0.46734,
+            0.77153
+          ],
+          "Foot_L": [
+            -0.43389,
+            0.23271,
+            -0.01545,
+            0.87026
+          ],
+          "Foot_R": [
+            -0.43389,
+            -0.23271,
+            0.01545,
+            0.87026
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 1.25
+      },
+      "render": {
+        "calls": 146,
+        "triangles": 205768
+      }
+    },
+    "walk": {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+        "clip": "Walk",
+        "frozen": true,
+        "time": 0.35,
+        "history": [
+          "Idle",
+          "Walk"
+        ],
+        "bones": {
+          "Head": [
+            0,
+            0.00821,
+            0,
+            0.99997
+          ],
+          "Paw_R": [
+            0.06817,
+            0.75598,
+            -0.59239,
+            0.27002
+          ],
+          "Wing_L": [
+            -0.26065,
+            0.4506,
+            0.45593,
+            0.7219
+          ],
+          "Wing_R": [
+            -0.29533,
+            -0.47053,
+            -0.43667,
+            0.7076
+          ],
+          "Pom": [
+            -0.14382,
+            0.41665,
+            0.43754,
+            0.78376
+          ],
+          "Foot_L": [
+            -0.40339,
+            0.23204,
+            -0.02352,
+            0.8848
+          ],
+          "Foot_R": [
+            -0.46386,
+            -0.23311,
+            0.00735,
+            0.85466
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 1.25
+      },
+      "render": {
+        "calls": 146,
+        "triangles": 205768
+      }
+    },
+    "wave": {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+        "clip": "Wave",
+        "frozen": true,
+        "time": 1.278,
+        "history": [
+          "Idle",
+          "Wave"
+        ],
+        "bones": {
+          "Head": [
+            0.0024,
+            -0.05992,
+            -0.03992,
+            0.9974
+          ],
+          "Paw_R": [
+            0.09589,
+            0.76228,
+            -0.59482,
+            0.23647
+          ],
+          "Wing_L": [
+            -0.26961,
+            0.44688,
+            0.45089,
+            0.72409
+          ],
+          "Wing_R": [
+            -0.29452,
+            -0.46137,
+            -0.43675,
+            0.71389
+          ],
+          "Pom": [
+            -0.14677,
+            0.42164,
+            0.42541,
+            0.78721
+          ],
+          "Foot_L": [
+            -0.43389,
+            0.23271,
+            -0.01545,
+            0.87026
+          ],
+          "Foot_R": [
+            -0.43389,
+            -0.23271,
+            0.01545,
+            0.87026
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 1.25
+      },
+      "render": {
+        "calls": 146,
+        "triangles": 205768
+      }
+    },
+    "deliver": {
+      "ready": true,
+      "legacy": false,
+      "demo": false,
+      "actor": {
+        "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+        "clip": "Deliver",
+        "frozen": true,
+        "time": 1.488,
+        "history": [
+          "Idle",
+          "Walk",
+          "Wave",
+          "Deliver"
+        ],
+        "bones": {
+          "Head": [
+            0.05996,
+            0,
+            0,
+            0.9982
+          ],
+          "Paw_R": [
+            0.0601,
+            0.78658,
+            -0.55387,
+            0.26628
+          ],
+          "Wing_L": [
+            -0.25889,
+            0.45133,
+            0.45691,
+            0.72146
+          ],
+          "Wing_R": [
+            -0.29549,
+            -0.47232,
+            -0.43666,
+            0.70635
+          ],
+          "Pom": [
+            -0.14896,
+            0.41983,
+            0.4315,
+            0.78445
+          ],
+          "Foot_L": [
+            -0.43389,
+            0.23271,
+            -0.01545,
+            0.87026
+          ],
+          "Foot_R": [
+            -0.43389,
+            -0.23271,
+            0.01545,
+            0.87026
+          ]
+        },
+        "position": {
+          "x": 0,
+          "z": 0
+        },
+        "height": 1.25
+      },
+      "render": {
+        "calls": 146,
+        "triangles": 205768
+      }
+    }
+  },
+  "legacy": {
+    "ready": true,
+    "legacy": true,
+    "demo": false,
+    "actor": {
+      "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+      "clip": "Idle",
+      "frozen": false,
+      "time": 3.374,
+      "history": [
+        "Idle"
+      ],
+      "bones": {
+        "Head": [
+          -0.0101,
+          -0.04791,
+          0.02989,
+          0.99835
+        ],
+        "Paw_R": [
+          0.06817,
+          0.75598,
+          -0.59239,
+          0.27002
+        ],
+        "Wing_L": [
+          -0.26306,
+          0.44961,
+          0.4546,
+          0.72249
+        ],
+        "Wing_R": [
+          -0.29511,
+          -0.46809,
+          -0.43669,
+          0.7093
+        ],
+        "Pom": [
+          -0.15936,
+          0.41282,
+          0.45506,
+          0.77272
+        ],
+        "Foot_L": [
+          -0.43389,
+          0.23271,
+          -0.01545,
+          0.87026
+        ],
+        "Foot_R": [
+          -0.43389,
+          -0.23271,
+          0.01545,
+          0.87026
+        ]
+      },
+      "position": {
+        "x": 0,
+        "z": 0
+      },
+      "height": 1.25
+    },
+    "render": {
+      "calls": 38,
+      "triangles": 10840
+    }
+  },
+  "demoObserved": true,
+  "scenes": [
+    {
+      "id": "residential",
+      "before": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "residential",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 6,
+          "roadWidth": 5.6,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 3,
+          "bays": 0,
+          "balconies": 6,
+          "awnings": 1,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 5,
+          "maxPlacementShift": 3.719999999999999
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 1684,
+          "sculptedPavers": 99,
+          "recessedWindows": 88,
+          "heroBuildings": 6,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "moogles": [
+          {
+            "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+            "clip": "Walk",
+            "frozen": false,
+            "time": 0.678,
+            "history": [
+              "Idle",
+              "Walk"
+            ],
+            "bones": {
+              "Head": [
+                0,
+                -0.01214,
+                0,
+                0.99993
+              ],
+              "Paw_R": [
+                0.06817,
+                0.75598,
+                -0.59239,
+                0.27002
+              ],
+              "Wing_L": [
+                -0.27235,
+                0.44574,
+                0.44928,
+                0.72477
+              ],
+              "Wing_R": [
+                -0.29429,
+                -0.4585,
+                -0.43681,
+                0.7158
+              ],
+              "Pom": [
+                -0.15667,
+                0.41082,
+                0.45925,
+                0.77186
+              ],
+              "Foot_L": [
+                -0.47801,
+                0.2332,
+                -0.00348,
+                0.84683
+              ],
+              "Foot_R": [
+                -0.38863,
+                -0.23161,
+                0.02738,
+                0.89139
+              ]
+            },
+            "position": {
+              "x": -5.359121094009819,
+              "z": -27.6707505178252
+            },
+            "height": 1.25,
+            "state": "walk",
+            "approaching": true,
+            "label": "正向你走来",
+            "delivered": 0,
+            "waiting": false,
+            "collider": {
+              "x": -5.359121094009819,
+              "z": -27.6707505178252,
+              "r": 0.36
+            },
+            "anchor": {
+              "x": -5.4,
+              "z": -27.8
+            }
+          }
+        ],
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -4.720000000000001,
+          "y": 1.6799893782579283,
+          "z": -25.650000000000002,
+          "yaw": 0.30632400825504186,
+          "pitch": -0.34877495112280205
+        },
+        "location": "喷泉广场",
+        "progress": 0.8652260462233972,
+        "buildings": 6,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 7444,
+          "batches": 92
+        },
+        "render": {
+          "calls": 491,
+          "triangles": 1850063
+        },
+        "meanFrameMs": 10.394736842105264
+      },
+      "after": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "residential",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 6,
+          "roadWidth": 5.6,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 3,
+          "bays": 0,
+          "balconies": 6,
+          "awnings": 1,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 5,
+          "maxPlacementShift": 3.719999999999999
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 1684,
+          "sculptedPavers": 99,
+          "recessedWindows": 88,
+          "heroBuildings": 6,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "moogles": [
+          {
+            "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+            "clip": "Idle",
+            "frozen": false,
+            "time": 3.821,
+            "history": [
+              "Idle",
+              "Walk",
+              "Deliver",
+              "Idle"
+            ],
+            "bones": {
+              "Head": [
+                -0.00361,
+                -0.01869,
+                0.0118,
+                0.99975
+              ],
+              "Paw_R": [
+                0.06817,
+                0.75598,
+                -0.59239,
+                0.27002
+              ],
+              "Wing_L": [
+                -0.27087,
+                0.44635,
+                0.45017,
+                0.7244
+              ],
+              "Wing_R": [
+                -0.29441,
+                -0.46007,
+                -0.43677,
+                0.71477
+              ],
+              "Pom": [
+                -0.1285,
+                0.4096,
+                0.44861,
+                0.78388
+              ],
+              "Foot_L": [
+                -0.43389,
+                0.23271,
+                -0.01545,
+                0.87026
+              ],
+              "Foot_R": [
+                -0.43389,
+                -0.23271,
+                0.01545,
+                0.87026
+              ]
+            },
+            "position": {
+              "x": -5.269625359859643,
+              "z": -27.387786064262198
+            },
+            "height": 1.25,
+            "state": "idle",
+            "approaching": false,
+            "label": "在广场边等信",
+            "delivered": 1,
+            "waiting": false,
+            "collider": {
+              "x": -5.269625359859643,
+              "z": -27.387786064262198,
+              "r": 0.36
+            },
+            "anchor": {
+              "x": -5.4,
+              "z": -27.8
+            }
+          }
+        ],
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -4.720000000000001,
+          "y": 1.6799999999999993,
+          "z": -25.650000000000002,
+          "yaw": 0.30632400825504186,
+          "pitch": -0.34877495112280205
+        },
+        "location": "喷泉广场",
+        "progress": 0.8652260462233972,
+        "buildings": 6,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 7444,
+          "batches": 92
+        },
+        "render": {
+          "calls": 491,
+          "triangles": 1850063
+        },
+        "meanFrameMs": 8.381111110581292
+      }
+    },
+    {
+      "id": "market",
+      "before": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "market",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 10,
+          "roadWidth": 7.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 4,
+          "bays": 1,
+          "balconies": 1,
+          "awnings": 10,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 8,
+          "maxPlacementShift": 5.52
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 2752,
+          "sculptedPavers": 127,
+          "recessedWindows": 85,
+          "heroBuildings": 10,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "moogles": [
+          {
+            "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+            "clip": "Walk",
+            "frozen": false,
+            "time": 0.799,
+            "history": [
+              "Idle",
+              "Walk"
+            ],
+            "bones": {
+              "Head": [
+                0,
+                -0.00349,
+                0,
+                0.99999
+              ],
+              "Paw_R": [
+                0.06817,
+                0.75598,
+                -0.59239,
+                0.27002
+              ],
+              "Wing_L": [
+                -0.27528,
+                0.4445,
+                0.44755,
+                0.72549
+              ],
+              "Wing_R": [
+                -0.29403,
+                -0.45543,
+                -0.43685,
+                0.71783
+              ],
+              "Pom": [
+                -0.12348,
+                0.40861,
+                0.44843,
+                0.7853
+              ],
+              "Foot_L": [
+                -0.44669,
+                0.23292,
+                -0.01201,
+                0.86376
+              ],
+              "Foot_R": [
+                -0.421,
+                -0.23246,
+                0.01888,
+                0.87656
+              ]
+            },
+            "position": {
+              "x": -5.35181741221341,
+              "z": -27.647657994498307
+            },
+            "height": 1.25,
+            "state": "walk",
+            "approaching": true,
+            "label": "正向你走来",
+            "delivered": 0,
+            "waiting": false,
+            "collider": {
+              "x": -5.35181741221341,
+              "z": -27.647657994498307,
+              "r": 0.36
+            },
+            "anchor": {
+              "x": -5.4,
+              "z": -27.8
+            }
+          }
+        ],
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -4.720000000000001,
+          "y": 1.6799979840930175,
+          "z": -25.650000000000002,
+          "yaw": 0.30632400825504186,
+          "pitch": -0.34877495112280205
+        },
+        "location": "喷泉广场",
+        "progress": 0.8652260462233972,
+        "buildings": 10,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 11445,
+          "batches": 117
+        },
+        "render": {
+          "calls": 541,
+          "triangles": 2572287
+        },
+        "meanFrameMs": 10.795505617441757
+      },
+      "after": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "market",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 10,
+          "roadWidth": 7.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 4,
+          "bays": 1,
+          "balconies": 1,
+          "awnings": 10,
+          "chimneys": 0,
+          "stories3": 0,
+          "packedPlacements": 8,
+          "maxPlacementShift": 5.52
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 2752,
+          "sculptedPavers": 127,
+          "recessedWindows": 85,
+          "heroBuildings": 10,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "moogles": [
+          {
+            "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+            "clip": "Idle",
+            "frozen": false,
+            "time": 1.775,
+            "history": [
+              "Idle",
+              "Walk",
+              "Deliver",
+              "Idle"
+            ],
+            "bones": {
+              "Head": [
+                0.00374,
+                0.02229,
+                -0.01431,
+                0.99964
+              ],
+              "Paw_R": [
+                0.06817,
+                0.75598,
+                -0.59239,
+                0.27002
+              ],
+              "Wing_L": [
+                -0.26727,
+                0.44786,
+                0.45222,
+                0.72352
+              ],
+              "Wing_R": [
+                -0.29473,
+                -0.46378,
+                -0.43673,
+                0.71226
+              ],
+              "Pom": [
+                -0.13319,
+                0.41078,
+                0.44797,
+                0.78285
+              ],
+              "Foot_L": [
+                -0.43389,
+                0.23271,
+                -0.01545,
+                0.87026
+              ],
+              "Foot_R": [
+                -0.43389,
+                -0.23271,
+                0.01545,
+                0.87026
+              ]
+            },
+            "position": {
+              "x": -5.2744020039384285,
+              "z": -27.40288868892304
+            },
+            "height": 1.25,
+            "state": "idle",
+            "approaching": false,
+            "label": "在广场边等信",
+            "delivered": 1,
+            "waiting": false,
+            "collider": {
+              "x": -5.2744020039384285,
+              "z": -27.40288868892304,
+              "r": 0.36
+            },
+            "anchor": {
+              "x": -5.4,
+              "z": -27.8
+            }
+          }
+        ],
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -4.720000000000001,
+          "y": 1.6799999999999993,
+          "z": -25.650000000000002,
+          "yaw": 0.30632400825504186,
+          "pitch": -0.34877495112280205
+        },
+        "location": "喷泉广场",
+        "progress": 0.8652260462233972,
+        "buildings": 10,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 11445,
+          "batches": 117
+        },
+        "render": {
+          "calls": 541,
+          "triangles": 2572287
+        },
+        "meanFrameMs": 8.38388888835907
+      }
+    },
+    {
+      "id": "workshops",
+      "before": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "workshops",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 8,
+          "roadWidth": 6.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 7,
+          "bays": 4,
+          "balconies": 1,
+          "awnings": 2,
+          "chimneys": 6,
+          "stories3": 0,
+          "packedPlacements": 6,
+          "maxPlacementShift": 3.6336000000000013
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 2204,
+          "sculptedPavers": 110,
+          "recessedWindows": 78,
+          "heroBuildings": 8,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "moogles": [
+          {
+            "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+            "clip": "Walk",
+            "frozen": false,
+            "time": 0.672,
+            "history": [
+              "Idle",
+              "Walk"
+            ],
+            "bones": {
+              "Head": [
+                0,
+                -0.01238,
+                0,
+                0.99992
+              ],
+              "Paw_R": [
+                0.06817,
+                0.75598,
+                -0.59239,
+                0.27002
+              ],
+              "Wing_L": [
+                -0.27445,
+                0.44485,
+                0.44806,
+                0.72528
+              ],
+              "Wing_R": [
+                -0.2941,
+                -0.45632,
+                -0.43682,
+                0.71726
+              ],
+              "Pom": [
+                -0.15625,
+                0.41038,
+                0.46024,
+                0.77159
+              ],
+              "Foot_L": [
+                -0.47886,
+                0.2332,
+                -0.00324,
+                0.84634
+              ],
+              "Foot_R": [
+                -0.38773,
+                -0.23159,
+                0.02761,
+                0.89178
+              ]
+            },
+            "position": {
+              "x": -5.359470898749876,
+              "z": -27.671856518106257
+            },
+            "height": 1.25,
+            "state": "walk",
+            "approaching": true,
+            "label": "正向你走来",
+            "delivered": 0,
+            "waiting": false,
+            "collider": {
+              "x": -5.359470898749876,
+              "z": -27.671856518106257,
+              "r": 0.36
+            },
+            "anchor": {
+              "x": -5.4,
+              "z": -27.8
+            }
+          }
+        ],
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -4.720000000000001,
+          "y": 1.6799879298385547,
+          "z": -25.650000000000002,
+          "yaw": 0.30632400825504186,
+          "pitch": -0.34877495112280205
+        },
+        "location": "喷泉广场",
+        "progress": 0.8652260462233972,
+        "buildings": 8,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 8439,
+          "batches": 108
+        },
+        "render": {
+          "calls": 523,
+          "triangles": 1955135
+        },
+        "meanFrameMs": 11.425333334604899
+      },
+      "after": {
+        "ready": true,
+        "theme": "ff9-alexandria-crafted-corner",
+        "revision": 4,
+        "layoutId": "workshops",
+        "generated": true,
+        "assemblyMetrics": {
+          "buildings": 8,
+          "roadWidth": 6.2,
+          "roadBend": 0.8,
+          "roadSway": 0.3,
+          "pathLength": 64.22627802833485,
+          "combinations": 7,
+          "bays": 4,
+          "balconies": 1,
+          "awnings": 2,
+          "chimneys": 6,
+          "stories3": 0,
+          "packedPlacements": 6,
+          "maxPlacementShift": 3.6336000000000013
+        },
+        "newImageGenerationCalls": 0,
+        "artStudy": false,
+        "hero": {
+          "roofTiles": 2204,
+          "sculptedPavers": 110,
+          "recessedWindows": 78,
+          "heroBuildings": 8,
+          "generatedMaterials": [
+            "plaster",
+            "wood",
+            "pavers",
+            "roof-clay",
+            "roof-teal"
+          ]
+        },
+        "ambientOcclusion": true,
+        "landmarks": [
+          "blade-spire",
+          "theater-airship",
+          "layered-royal-city"
+        ],
+        "fantasyCitizens": [
+          "moogle",
+          "chocobo",
+          "mage"
+        ],
+        "authoredLayout": false,
+        "moogles": [
+          {
+            "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+            "clip": "Idle",
+            "frozen": false,
+            "time": 1.438,
+            "history": [
+              "Idle",
+              "Walk",
+              "Wave",
+              "Idle",
+              "Deliver",
+              "Idle"
+            ],
+            "bones": {
+              "Head": [
+                0.00684,
+                0.04437,
+                -0.02874,
+                0.99858
+              ],
+              "Paw_R": [
+                0.06817,
+                0.75598,
+                -0.59239,
+                0.27002
+              ],
+              "Wing_L": [
+                -0.26021,
+                0.45079,
+                0.45618,
+                0.72179
+              ],
+              "Wing_R": [
+                -0.29537,
+                -0.47099,
+                -0.43667,
+                0.70728
+              ],
+              "Pom": [
+                -0.1496,
+                0.42068,
+                0.42954,
+                0.78495
+              ],
+              "Foot_L": [
+                -0.43389,
+                0.23271,
+                -0.01545,
+                0.87026
+              ],
+              "Foot_R": [
+                -0.43389,
+                -0.23271,
+                0.01545,
+                0.87026
+              ]
+            },
+            "position": {
+              "x": -5.187029222713755,
+              "z": -27.126636512992086
+            },
+            "height": 1.25,
+            "state": "idle",
+            "approaching": false,
+            "label": "在广场边等信",
+            "delivered": 1,
+            "waiting": false,
+            "collider": {
+              "x": -5.187029222713755,
+              "z": -27.126636512992086,
+              "r": 0.36
+            },
+            "anchor": {
+              "x": -5.4,
+              "z": -27.8
+            }
+          }
+        ],
+        "mapMode": false,
+        "touring": false,
+        "tourFinished": false,
+        "afternoon": false,
+        "pose": {
+          "x": -4.720000000000001,
+          "y": 1.6799999999999993,
+          "z": -25.650000000000002,
+          "yaw": 0.30632400825504186,
+          "pitch": -0.34877495112280205
+        },
+        "location": "喷泉广场",
+        "progress": 0.8652260462233972,
+        "buildings": 8,
+        "pathLength": 64.22627802833485,
+        "batches": {
+          "parts": 8439,
+          "batches": 108
+        },
+        "render": {
+          "calls": 523,
+          "triangles": 1955135
+        },
+        "meanFrameMs": 8.336666667461396
+      }
+    }
+  ],
+  "workshopGreeting": {
+    "ready": true,
+    "theme": "ff9-alexandria-crafted-corner",
+    "revision": 4,
+    "layoutId": "workshops",
+    "generated": true,
+    "assemblyMetrics": {
+      "buildings": 8,
+      "roadWidth": 6.2,
+      "roadBend": 0.8,
+      "roadSway": 0.3,
+      "pathLength": 64.22627802833485,
+      "combinations": 7,
+      "bays": 4,
+      "balconies": 1,
+      "awnings": 2,
+      "chimneys": 6,
+      "stories3": 0,
+      "packedPlacements": 6,
+      "maxPlacementShift": 3.6336000000000013
+    },
+    "newImageGenerationCalls": 0,
+    "artStudy": false,
+    "hero": {
+      "roofTiles": 2204,
+      "sculptedPavers": 110,
+      "recessedWindows": 78,
+      "heroBuildings": 8,
+      "generatedMaterials": [
+        "plaster",
+        "wood",
+        "pavers",
+        "roof-clay",
+        "roof-teal"
+      ]
+    },
+    "ambientOcclusion": true,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "moogle",
+      "chocobo",
+      "mage"
+    ],
+    "authoredLayout": false,
+    "moogles": [
+      {
+        "asset": "/assets/characters/moogle/moogle-courier-v1.glb",
+        "clip": "Idle",
+        "frozen": false,
+        "time": 3.529,
+        "history": [
+          "Idle",
+          "Walk",
+          "Wave",
+          "Idle"
+        ],
+        "bones": {
+          "Head": [
+            -0.0082,
+            -0.0398,
+            0.02492,
+            0.99886
+          ],
+          "Paw_R": [
+            0.06817,
+            0.75598,
+            -0.59239,
+            0.27002
+          ],
+          "Wing_L": [
+            -0.25841,
+            0.45153,
+            0.45717,
+            0.72135
+          ],
+          "Wing_R": [
+            -0.29553,
+            -0.4728,
+            -0.43666,
+            0.70601
+          ],
+          "Pom": [
+            -0.15433,
+            0.41338,
+            0.45142,
+            0.77558
+          ],
+          "Foot_L": [
+            -0.43389,
+            0.23271,
+            -0.01545,
+            0.87026
+          ],
+          "Foot_R": [
+            -0.43389,
+            -0.23271,
+            0.01545,
+            0.87026
+          ]
+        },
+        "position": {
+          "x": -5.187029222713755,
+          "z": -27.126636512992086
+        },
+        "height": 1.25,
+        "state": "idle",
+        "approaching": false,
+        "label": "在广场边等信",
+        "delivered": 0,
+        "waiting": false,
+        "collider": {
+          "x": -5.187029222713755,
+          "z": -27.126636512992086,
+          "r": 0.36
+        },
+        "anchor": {
+          "x": -5.4,
+          "z": -27.8
+        }
+      }
+    ],
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -4.720000000000001,
+      "y": 1.6799999999999993,
+      "z": -25.650000000000002,
+      "yaw": 0.30632400825504186,
+      "pitch": -0.34877495112280205
+    },
+    "location": "喷泉广场",
+    "progress": 0.8652260462233972,
+    "buildings": 8,
+    "pathLength": 64.22627802833485,
+    "batches": {
+      "parts": 8439,
+      "batches": 108
+    },
+    "render": {
+      "calls": 521,
+      "triangles": 1954687
+    },
+    "meanFrameMs": 8.33388888835907
+  },
+  "errors": {
+    "studio": [],
+    "street": []
+  },
+  "visualAcceptance": "First refined sample; human character/style acceptance pending.",
+  "screenshots": [
+    "idle.jpg",
+    "walk.jpg",
+    "wave.jpg",
+    "deliver.jpg",
+    "legacy.jpg",
+    "side-view.jpg",
+    "final.jpg",
+    "street-residential.jpg",
+    "street-market.jpg",
+    "street-workshops.jpg"
+  ]
+}

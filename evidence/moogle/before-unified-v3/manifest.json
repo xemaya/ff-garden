@@ -1,0 +1,58 @@
+{
+  "id": "moogle-courier-v2",
+  "asset": "public/assets/characters/moogle/moogle-courier-v2.glb",
+  "source": "tools/build-moogle.py",
+  "sourceBlend": "public/assets/characters/moogle/moogle-courier-v2.blend",
+  "sha256": "457a64bfea3a065f74868b2bb8e5d28115394ce0772ffc32e1abe572ef725474",
+  "joints": 27,
+  "triangles": 63440,
+  "animations": [
+    "Deliver",
+    "Idle",
+    "Walk",
+    "Wave"
+  ],
+  "materialImages": [
+    "fur.png",
+    "leather.png"
+  ],
+  "newImageGenerationCallsForAssetProduction": 3,
+  "perStreetAssetGeneration": false,
+  "server4090TasksStarted": 0,
+  "reuse": "same GLB instantiated with independent skeletons and mixers in all streets",
+  "visualAcceptance": "pending human review",
+  "previousAsset": "public/assets/characters/moogle/moogle-courier-v1.glb",
+  "refinement": {
+    "cheeks": "removed overlapping lobes",
+    "arms": "slimmer independent smooth meshes with isolated joint weights",
+    "attachments": "satchel moved behind swing; envelope edge moved clear of face",
+    "newImageGenerationCalls": 0,
+    "checkedFrames": 275,
+    "checkedSurfaceIntersections": {
+      "Idle": {
+        "frames": 97,
+        "armHeadSurfacePairs": 0,
+        "armBagSurfacePairs": 0,
+        "letterHeadSurfacePairs": 0
+      },
+      "Walk": {
+        "frames": 20,
+        "armHeadSurfacePairs": 0,
+        "armBagSurfacePairs": 0,
+        "letterHeadSurfacePairs": 0
+      },
+      "Wave": {
+        "frames": 73,
+        "armHeadSurfacePairs": 0,
+        "armBagSurfacePairs": 0,
+        "letterHeadSurfacePairs": 0
+      },
+      "Deliver": {
+        "frames": 85,
+        "armHeadSurfacePairs": 0,
+        "armBagSurfacePairs": 0,
+        "letterHeadSurfacePairs": 0
+      }
+    }
+  }
+}

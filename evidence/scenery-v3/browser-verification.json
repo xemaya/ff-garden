@@ -1,0 +1,25 @@
+{
+  "scene": {
+    "revision": "branched-trees-royal-city-v3",
+    "trees": 2,
+    "leaves": 9570,
+    "branches": 84,
+    "arches": 16,
+    "windows": 111,
+    "newImageGenerationCalls": 0
+  },
+  "workshopsTour": {
+    "finished": true,
+    "progress": 1,
+    "pose": {
+      "x": 2.2000723198797894,
+      "y": 1.68,
+      "z": -32.49974688042074,
+      "yaw": 0.04292663377473995,
+      "pitch": 0.34
+    }
+  },
+  "newImageGenerationCalls": 0,
+  "acceptedModelsUnchanged": true,
+  "originalTexturePNGsUnchanged": true
+}

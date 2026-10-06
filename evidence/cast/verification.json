@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "modelsUnchanged": true,
+  "newImageGenerationCalls": 0,
+  "models": [
+    {
+      "id": "moogle-courier-v3",
+      "sha256": "ba71de3971fe3b773d231ca528b140aaef8065d0e13fb605f87ad0dde3a5403c",
+      "status": "accepted by user"
+    },
+    {
+      "id": "black-mage-v2",
+      "sha256": "a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22",
+      "status": "accepted by user"
+    },
+    {
+      "id": "chocobo-v1",
+      "sha256": "1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1",
+      "status": "approved for scene use by user"
+    }
+  ],
+  "records": [
+    {
+      "id": "residential",
+      "stage": "fountain-neighbors-v2",
+      "props": [
+        "postBox",
+        "flowerCart",
+        "bookTable",
+        "feedTrough",
+        "hitchRail"
+      ],
+      "roles": [
+        {
+          "species": "moogle",
+          "role": "postal",
+          "x": -4.45,
+          "z": -21.85,
+          "facing": 0.62
+        },
+        {
+          "species": "chocobo",
+          "role": "stable",
+          "x": 5.2,
+          "z": -23.2,
+          "facing": -0.62
+        },
+        {
+          "species": "mage",
+          "role": "reading",
+          "x": 0.75,
+          "z": -21.5,
+          "facing": -0.18
+        }
+      ],
+      "overviewClear": true,
+      "furnitureSeparatedFromFountain": true,
+      "viewpointsReachable": true,
+      "postalPatrolClear": true,
+      "pathLength": 64.22627802833485
+    },
+    {
+      "id": "market",
+      "stage": "fountain-neighbors-v2",
+      "props": [
+        "postBox",
+        "flowerCart",
+        "bookTable",
+        "feedTrough",
+        "hitchRail"
+      ],
+      "roles": [
+        {
+          "species": "moogle",
+          "role": "postal",
+          "x": -4.45,
+          "z": -21.85,
+          "facing": 0.62
+        },
+        {
+          "species": "chocobo",
+          "role": "stable",
+          "x": 5.2,
+          "z": -23.2,
+          "facing": -0.62
+        },
+        {
+          "species": "mage",
+          "role": "reading",
+          "x": 0.75,
+          "z": -21.5,
+          "facing": -0.18
+        }
+      ],
+      "overviewClear": true,
+      "furnitureSeparatedFromFountain": true,
+      "viewpointsReachable": true,
+      "postalPatrolClear": true,
+      "pathLength": 64.22627802833485
+    },
+    {
+      "id": "workshops",
+      "stage": "fountain-neighbors-v2",
+      "props": [
+        "postBox",
+        "flowerCart",
+        "bookTable",
+        "feedTrough",
+        "hitchRail"
+      ],
+      "roles": [
+        {
+          "species": "moogle",
+          "role": "postal",
+          "x": -4.45,
+          "z": -21.85,
+          "facing": 0.62
+        },
+        {
+          "species": "chocobo",
+          "role": "stable",
+          "x": 5.2,
+          "z": -23.2,
+          "facing": -0.62
+        },
+        {
+          "species": "mage",
+          "role": "reading",
+          "x": 0.75,
+          "z": -21.5,
+          "facing": -0.18
+        }
+      ],
+      "overviewClear": true,
+      "furnitureSeparatedFromFountain": true,
+      "viewpointsReachable": true,
+      "postalPatrolClear": true,
+      "pathLength": 64.22627802833485
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "provider": "built-in imagegen",
+  "target": "ff9-street-target-v1.png",
+  "textures": {
+    "plaster": "exec-84574976-4245-4871-b7c1-62195e9255f2.png",
+    "wood": "exec-958a67e8-5298-4b67-880b-68186c014722.png",
+    "pavers": "exec-acdd1ef2-0e48-4700-b930-3bdc6491b34a.png",
+    "roof-clay": "exec-2134ff71-f369-4d74-baa5-210f35ea78ae.png",
+    "roof-teal": "exec-23ca20cf-5d55-44d2-8576-6ee5c3657b23.png"
+  },
+  "training": "none",
+  "remote4090Inference": "none"
+}

@@ -1,0 +1,2 @@
+import {fileURLToPath} from 'node:url';
+export default {resolve:{dedupe:['three']},cacheDir:'.vite',build:{target:'es2022',rollupOptions:{input:{street:fileURLToPath(new URL('./index.html',import.meta.url)),moogle:fileURLToPath(new URL('./moogle.html',import.meta.url)),mage:fileURLToPath(new URL('./mage.html',import.meta.url)),chocobo:fileURLToPath(new URL('./chocobo.html',import.meta.url))}}},server:{strictPort:true}};

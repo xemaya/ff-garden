@@ -1,0 +1,20 @@
+[
+  {
+    "id": "residential",
+    "label": "住宅巷",
+    "seed": 431,
+    "brief": "生成一条安静的 FF9 风格王城住宅巷，恰好 6 栋建筑，至少 3 栋 home 或 inn，至少 3 栋有 timber 阳台，striped 雨棚不超过 2 栋。留出宽松建筑间隔。街宽 5.2–5.8 米。"
+  },
+  {
+    "id": "market",
+    "label": "集市街",
+    "seed": 617,
+    "brief": "生成一条热闹的 FF9 风格王城集市街，恰好 10 栋建筑，至少 7 栋为 bakery、florist、cafe、books、toys 或 apothecary，至少 7 栋有 striped 雨棚。两侧位置错开。街宽 6.6–7.2 米。"
+  },
+  {
+    "id": "workshops",
+    "label": "工坊街",
+    "seed": 823,
+    "brief": "生成一条 FF9 风格的书匠、药草与木玩具工坊街，恰好 8 栋建筑，至少 5 栋为 books、apothecary 或 toys，至少 3 栋有 octagonal 凸窗，至少 3 栋有 tall-stone 烟囱。街宽 5.9–6.4 米。"
+  }
+]

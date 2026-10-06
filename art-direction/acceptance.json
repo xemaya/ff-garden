@@ -1,0 +1,31 @@
+{
+  "revision": 3,
+  "target": "ff9-street-target-v1.png",
+  "focus": [
+    "two-entry-buildings",
+    "18m-cobbled-segment"
+  ],
+  "palette": [
+    "weathered-ochre",
+    "dark-walnut",
+    "russet-clay",
+    "oxidized-teal",
+    "cool-shadows"
+  ],
+  "runtimeImageAsBackdrop": false,
+  "fixedLayout": true,
+  "visualAcceptance": "pending-human-review",
+  "technicalAcceptance": [
+    "five-registered-textures",
+    "recessed-windows",
+    "curved-tile-geometry",
+    "collision-clear-route",
+    "study-view-without-title-or-characters"
+  ],
+  "knownGap": [
+    "simplified-far-city",
+    "six-remaining-modular-buildings",
+    "characters-unrefined",
+    "color-derived-bump-instead-of-sculpted-normal-map"
+  ]
+}

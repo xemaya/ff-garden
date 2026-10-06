@@ -1,0 +1,236 @@
+{
+  "version": 4,
+  "kit": "ff9-crafted-corner-v3",
+  "title": "书匠、药草与木玩具工坊街",
+  "subtitle": "一座蜿蜒的皇家市街，融合智慧与手作",
+  "road": {
+    "width": 6.2,
+    "bend": 0.8,
+    "sway": 0.3
+  },
+  "buildings": [
+    {
+      "kind": "books",
+      "name": "墨渊书舍",
+      "side": "left",
+      "z": 23.5,
+      "width": 5.6,
+      "depth": 4.8,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "timber",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "kind": "toys",
+      "name": "木灵工坊",
+      "side": "left",
+      "z": 18.5,
+      "width": 5.2,
+      "depth": 4.4,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "kind": "books",
+      "name": "青简阁",
+      "side": "left",
+      "z": 13.5,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 0.25,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "apothecary",
+      "name": "草木堂",
+      "side": "right",
+      "z": 10.5,
+      "width": 5.6,
+      "depth": 4.8,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "kind": "toys",
+      "name": "笑风铃坊",
+      "side": "right",
+      "z": 7.5,
+      "width": 5.2,
+      "depth": 4.4,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 4,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "books",
+      "name": "琅嬛书屋",
+      "side": "right",
+      "z": 3.5,
+      "width": 6.4,
+      "depth": 4.8,
+      "setback": 0.25,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.6,
+        "bay": "octagonal",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "kind": "apothecary",
+      "name": "药香居",
+      "side": "left",
+      "z": -1.5,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "kind": "toys",
+      "name": "稚趣园",
+      "side": "right",
+      "z": -5.5,
+      "width": 5.2,
+      "depth": 5.2,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    }
+  ],
+  "provenance": {
+    "source": "qwen3-4b-instruct-2507-q4_k_m",
+    "caseId": "workshops",
+    "seed": 823,
+    "attempt": 1,
+    "training": "none",
+    "newImageGenerationCalls": 0,
+    "kit": "ff9-crafted-corner-v3",
+    "placement": "model-preferences+isotonic-constraint-packing"
+  },
+  "realization": {
+    "placementAlgorithm": "least-squares-isotonic-roadside-packing",
+    "positions": [
+      {
+        "id": "building-0",
+        "side": "left",
+        "requestedZ": 23.5,
+        "realizedZ": 23.5,
+        "x": -3.6254951799970403,
+        "z": 23.261272190321208
+      },
+      {
+        "id": "building-1",
+        "side": "left",
+        "requestedZ": 18.5,
+        "realizedZ": 16.9464,
+        "x": -3.534769719877621,
+        "z": 16.756887315383622
+      },
+      {
+        "id": "building-2",
+        "side": "left",
+        "requestedZ": 13.5,
+        "realizedZ": 9.98,
+        "x": -2.808775636777083,
+        "z": 9.901673736900014
+      },
+      {
+        "id": "building-3",
+        "side": "right",
+        "requestedZ": 10.5,
+        "realizedZ": 14.133600000000001,
+        "x": 4.90079471255819,
+        "z": 14.276625427497
+      },
+      {
+        "id": "building-4",
+        "side": "right",
+        "requestedZ": 7.5,
+        "realizedZ": 7.580000000000001,
+        "x": 5.308850997385328,
+        "z": 7.629554387362787
+      },
+      {
+        "id": "building-5",
+        "side": "right",
+        "requestedZ": 3.5,
+        "realizedZ": 0.6264000000000003,
+        "x": 4.795974201852335,
+        "z": 0.5695895228979461
+      },
+      {
+        "id": "building-6",
+        "side": "left",
+        "requestedZ": -1.5,
+        "realizedZ": -1.5,
+        "x": -3.0725716805086756,
+        "z": -1.4088968148271934
+      },
+      {
+        "id": "building-7",
+        "side": "right",
+        "requestedZ": -5.5,
+        "realizedZ": -6.34,
+        "x": 5.106269973913308,
+        "z": -6.501431954632343
+      }
+    ]
+  }
+}

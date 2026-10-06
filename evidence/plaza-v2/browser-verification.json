@@ -1,0 +1,428 @@
+{
+  "streets": [
+    {
+      "street": "workshops",
+      "plaza": {
+        "revision": "royal-plaza-v2",
+        "pavers": 1116,
+        "curbStones": 112,
+        "grassBlades": 6852,
+        "flowers": 141,
+        "fountainCoping": 40,
+        "newImageGenerationCalls": 0
+      },
+      "pose": {
+        "x": -0.6,
+        "y": 2.05,
+        "z": -14.8,
+        "yaw": -0.02993117835380839,
+        "pitch": -0.13445263538553953
+      },
+      "castStage": {
+        "id": "fountain-neighbors-v2",
+        "camera": {
+          "x": -0.6,
+          "y": 2.05,
+          "z": -14.8,
+          "target": {
+            "x": -0.35,
+            "y": 0.92,
+            "z": -23.15
+          }
+        },
+        "people": [
+          {
+            "x": -4.45,
+            "z": -21.85,
+            "species": "moogle",
+            "facing": 0.62,
+            "r": 0.36,
+            "role": "postal",
+            "label": "花车旁的邮差"
+          },
+          {
+            "x": 5.2,
+            "z": -23.2,
+            "species": "chocobo",
+            "facing": -0.62,
+            "r": 0.65,
+            "role": "stable",
+            "label": "树荫边的陆行鸟"
+          },
+          {
+            "x": 0.75,
+            "z": -21.5,
+            "species": "mage",
+            "facing": -0.18,
+            "r": 0.38,
+            "role": "reading",
+            "label": "书桌旁的魔导士",
+            "view": {
+              "x": 0.75,
+              "y": 1.42,
+              "z": -18.8
+            }
+          }
+        ],
+        "benches": [
+          {
+            "x": -7.8,
+            "z": -25.3,
+            "rotation": 1.38
+          },
+          {
+            "x": 4.5,
+            "z": -25.8,
+            "rotation": -1.25
+          }
+        ],
+        "props": [
+          {
+            "id": "cast-postbox",
+            "kind": "postBox",
+            "x": -5.8,
+            "z": -22.4,
+            "r": 0.45,
+            "rotation": 0.48,
+            "seed": 713
+          },
+          {
+            "id": "cast-flowercart",
+            "kind": "flowerCart",
+            "x": -6.8,
+            "z": -23.4,
+            "r": 0.69,
+            "rotation": 0.3,
+            "seed": 719
+          },
+          {
+            "id": "cast-booktable",
+            "kind": "bookTable",
+            "x": 1.55,
+            "z": -22,
+            "r": 0.38,
+            "rotation": -0.2,
+            "seed": 727
+          },
+          {
+            "id": "cast-trough",
+            "kind": "feedTrough",
+            "x": 5.85,
+            "z": -22.1,
+            "r": 0.6,
+            "rotation": 0.25,
+            "seed": 733
+          },
+          {
+            "id": "cast-rail",
+            "kind": "hitchRail",
+            "x": 6.45,
+            "z": -23.3,
+            "w": 1.6,
+            "d": 0.28,
+            "rotation": 1.5707963267948966,
+            "seed": 739
+          }
+        ]
+      },
+      "models": [
+        "/assets/characters/moogle/moogle-courier-v3.glb",
+        "/assets/characters/mage/black-mage-v2.glb",
+        "/assets/characters/chocobo/chocobo-v1.glb"
+      ],
+      "render": {
+        "calls": 832,
+        "triangles": 3765137
+      },
+      "meanFrameMs": 8.684444444709355
+    },
+    {
+      "street": "residential",
+      "plaza": {
+        "revision": "royal-plaza-v2",
+        "pavers": 1116,
+        "curbStones": 112,
+        "grassBlades": 6852,
+        "flowers": 141,
+        "fountainCoping": 40,
+        "newImageGenerationCalls": 0
+      },
+      "pose": {
+        "x": -0.6,
+        "y": 2.05,
+        "z": -14.8,
+        "yaw": -0.02993117835380839,
+        "pitch": -0.13445263538553953
+      },
+      "castStage": {
+        "id": "fountain-neighbors-v2",
+        "camera": {
+          "x": -0.6,
+          "y": 2.05,
+          "z": -14.8,
+          "target": {
+            "x": -0.35,
+            "y": 0.92,
+            "z": -23.15
+          }
+        },
+        "people": [
+          {
+            "x": -4.45,
+            "z": -21.85,
+            "species": "moogle",
+            "facing": 0.62,
+            "r": 0.36,
+            "role": "postal",
+            "label": "花车旁的邮差"
+          },
+          {
+            "x": 5.2,
+            "z": -23.2,
+            "species": "chocobo",
+            "facing": -0.62,
+            "r": 0.65,
+            "role": "stable",
+            "label": "树荫边的陆行鸟"
+          },
+          {
+            "x": 0.75,
+            "z": -21.5,
+            "species": "mage",
+            "facing": -0.18,
+            "r": 0.38,
+            "role": "reading",
+            "label": "书桌旁的魔导士",
+            "view": {
+              "x": 0.75,
+              "y": 1.42,
+              "z": -18.8
+            }
+          }
+        ],
+        "benches": [
+          {
+            "x": -7.8,
+            "z": -25.3,
+            "rotation": 1.38
+          },
+          {
+            "x": 4.5,
+            "z": -25.8,
+            "rotation": -1.25
+          }
+        ],
+        "props": [
+          {
+            "id": "cast-postbox",
+            "kind": "postBox",
+            "x": -5.8,
+            "z": -22.4,
+            "r": 0.45,
+            "rotation": 0.48,
+            "seed": 713
+          },
+          {
+            "id": "cast-flowercart",
+            "kind": "flowerCart",
+            "x": -6.8,
+            "z": -23.4,
+            "r": 0.69,
+            "rotation": 0.3,
+            "seed": 719
+          },
+          {
+            "id": "cast-booktable",
+            "kind": "bookTable",
+            "x": 1.55,
+            "z": -22,
+            "r": 0.38,
+            "rotation": -0.2,
+            "seed": 727
+          },
+          {
+            "id": "cast-trough",
+            "kind": "feedTrough",
+            "x": 5.85,
+            "z": -22.1,
+            "r": 0.6,
+            "rotation": 0.25,
+            "seed": 733
+          },
+          {
+            "id": "cast-rail",
+            "kind": "hitchRail",
+            "x": 6.45,
+            "z": -23.3,
+            "w": 1.6,
+            "d": 0.28,
+            "rotation": 1.5707963267948966,
+            "seed": 739
+          }
+        ]
+      },
+      "models": [
+        "/assets/characters/moogle/moogle-courier-v3.glb",
+        "/assets/characters/mage/black-mage-v2.glb",
+        "/assets/characters/chocobo/chocobo-v1.glb"
+      ],
+      "render": {
+        "calls": 800,
+        "triangles": 3635777
+      },
+      "meanFrameMs": 14.134999999403954
+    },
+    {
+      "street": "market",
+      "plaza": {
+        "revision": "royal-plaza-v2",
+        "pavers": 1116,
+        "curbStones": 112,
+        "grassBlades": 6852,
+        "flowers": 141,
+        "fountainCoping": 40,
+        "newImageGenerationCalls": 0
+      },
+      "pose": {
+        "x": -0.6,
+        "y": 2.05,
+        "z": -14.8,
+        "yaw": -0.02993117835380839,
+        "pitch": -0.13445263538553953
+      },
+      "castStage": {
+        "id": "fountain-neighbors-v2",
+        "camera": {
+          "x": -0.6,
+          "y": 2.05,
+          "z": -14.8,
+          "target": {
+            "x": -0.35,
+            "y": 0.92,
+            "z": -23.15
+          }
+        },
+        "people": [
+          {
+            "x": -4.45,
+            "z": -21.85,
+            "species": "moogle",
+            "facing": 0.62,
+            "r": 0.36,
+            "role": "postal",
+            "label": "花车旁的邮差"
+          },
+          {
+            "x": 5.2,
+            "z": -23.2,
+            "species": "chocobo",
+            "facing": -0.62,
+            "r": 0.65,
+            "role": "stable",
+            "label": "树荫边的陆行鸟"
+          },
+          {
+            "x": 0.75,
+            "z": -21.5,
+            "species": "mage",
+            "facing": -0.18,
+            "r": 0.38,
+            "role": "reading",
+            "label": "书桌旁的魔导士",
+            "view": {
+              "x": 0.75,
+              "y": 1.42,
+              "z": -18.8
+            }
+          }
+        ],
+        "benches": [
+          {
+            "x": -7.8,
+            "z": -25.3,
+            "rotation": 1.38
+          },
+          {
+            "x": 4.5,
+            "z": -25.8,
+            "rotation": -1.25
+          }
+        ],
+        "props": [
+          {
+            "id": "cast-postbox",
+            "kind": "postBox",
+            "x": -5.8,
+            "z": -22.4,
+            "r": 0.45,
+            "rotation": 0.48,
+            "seed": 713
+          },
+          {
+            "id": "cast-flowercart",
+            "kind": "flowerCart",
+            "x": -6.8,
+            "z": -23.4,
+            "r": 0.69,
+            "rotation": 0.3,
+            "seed": 719
+          },
+          {
+            "id": "cast-booktable",
+            "kind": "bookTable",
+            "x": 1.55,
+            "z": -22,
+            "r": 0.38,
+            "rotation": -0.2,
+            "seed": 727
+          },
+          {
+            "id": "cast-trough",
+            "kind": "feedTrough",
+            "x": 5.85,
+            "z": -22.1,
+            "r": 0.6,
+            "rotation": 0.25,
+            "seed": 733
+          },
+          {
+            "id": "cast-rail",
+            "kind": "hitchRail",
+            "x": 6.45,
+            "z": -23.3,
+            "w": 1.6,
+            "d": 0.28,
+            "rotation": 1.5707963267948966,
+            "seed": 739
+          }
+        ]
+      },
+      "models": [
+        "/assets/characters/moogle/moogle-courier-v3.glb",
+        "/assets/characters/mage/black-mage-v2.glb",
+        "/assets/characters/chocobo/chocobo-v1.glb"
+      ],
+      "render": {
+        "calls": 850,
+        "triangles": 4368177
+      },
+      "meanFrameMs": 13.887323943661972
+    }
+  ],
+  "workshopsTour": {
+    "finished": true,
+    "progress": 1,
+    "pathLength": 64.22627802833485,
+    "end": {
+      "x": 2.2,
+      "y": 1.68,
+      "z": -32.5,
+      "yaw": 0.04292663377473995,
+      "pitch": 0.34
+    }
+  },
+  "modelAssetsUnchanged": true,
+  "buildingRecipesUnchanged": true,
+  "textureFilesUnchanged": true,
+  "newImageGenerationCalls": 0
+}

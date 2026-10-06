@@ -1,0 +1,34 @@
+{
+  "boneCount": 27,
+  "meshCount": 35,
+  "bodyVertices": 18002,
+  "polygons": 38930,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Wave",
+    "Deliver"
+  ],
+  "allWeightsNormalized": true,
+  "sampledGroundContacts": {
+    "Idle": {
+      "minimumBodyZ": 0.003000004915520549,
+      "maximumBodyZ": 0.003000004915520549
+    },
+    "Walk": {
+      "minimumBodyZ": 0.002999985357746482,
+      "maximumBodyZ": 0.0030000153928995132
+    },
+    "Wave": {
+      "minimumBodyZ": 0.003000004915520549,
+      "maximumBodyZ": 0.003000004915520549
+    },
+    "Deliver": {
+      "minimumBodyZ": 0.003000004915520549,
+      "maximumBodyZ": 0.003000004915520549
+    }
+  },
+  "scale": 0.85,
+  "source": "authored Blender sculpt/rig with generated material references",
+  "training": "none"
+}

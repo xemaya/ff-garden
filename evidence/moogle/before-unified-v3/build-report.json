@@ -1,0 +1,61 @@
+{
+  "boneCount": 27,
+  "meshCount": 37,
+  "bodyVertices": 18002,
+  "polygons": 49711,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Wave",
+    "Deliver"
+  ],
+  "allWeightsNormalized": true,
+  "sampledGroundContacts": {
+    "Idle": {
+      "minimumBodyZ": 0.003000002121552825,
+      "maximumBodyZ": 0.003000002121552825
+    },
+    "Walk": {
+      "minimumBodyZ": 0.0029999774415045977,
+      "maximumBodyZ": 0.003000016324222088
+    },
+    "Wave": {
+      "minimumBodyZ": 0.003000002121552825,
+      "maximumBodyZ": 0.003000002121552825
+    },
+    "Deliver": {
+      "minimumBodyZ": 0.003000002121552825,
+      "maximumBodyZ": 0.003000002121552825
+    }
+  },
+  "sampledSurfaceIntersections": {
+    "Idle": {
+      "frames": 97,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    },
+    "Walk": {
+      "frames": 20,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    },
+    "Wave": {
+      "frames": 73,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    },
+    "Deliver": {
+      "frames": 85,
+      "armHeadSurfacePairs": 0,
+      "armBagSurfacePairs": 0,
+      "letterHeadSurfacePairs": 0
+    }
+  },
+  "revision": "v2 slim silhouette and isolated arm weights",
+  "scale": 0.85,
+  "source": "authored Blender sculpt/rig with generated material references",
+  "training": "none"
+}

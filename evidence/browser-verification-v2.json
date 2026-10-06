@@ -1,0 +1,238 @@
+{
+  "passed": true,
+  "revision": 2,
+  "checks": {
+    "ready": true,
+    "revision": true,
+    "allFourFantasySpecies": true,
+    "fullRoute": true,
+    "manualMovement": true,
+    "dragView": true,
+    "mapView": true,
+    "afternoon": true,
+    "reset": true,
+    "consoleClean": true
+  },
+  "entry": {
+    "ready": true,
+    "theme": "ff9-alexandria-theater",
+    "revision": 2,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "mage",
+      "moogle",
+      "ratfolk",
+      "chocobo",
+      "moogle",
+      "mage"
+    ],
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -0.43115300706727455,
+      "y": 1.68,
+      "z": 30,
+      "yaw": -0.04,
+      "pitch": 0.13
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 5684,
+      "batches": 171
+    },
+    "render": {
+      "calls": 557,
+      "triangles": 1199837
+    },
+    "meanFrameMs": 8.335555556085374
+  },
+  "routeEnd": {
+    "ready": true,
+    "theme": "ff9-alexandria-theater",
+    "revision": 2,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "mage",
+      "moogle",
+      "ratfolk",
+      "chocobo",
+      "moogle",
+      "mage"
+    ],
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": true,
+    "afternoon": false,
+    "pose": {
+      "x": 2.2,
+      "y": 1.68,
+      "z": -32.5,
+      "yaw": 0.04292663377473995,
+      "pitch": 0.34
+    },
+    "location": "望向城堡",
+    "progress": 1,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 5684,
+      "batches": 171
+    },
+    "render": {
+      "calls": 309,
+      "triangles": 984717
+    },
+    "meanFrameMs": 8.332777778307596
+  },
+  "manual": {
+    "ready": true,
+    "theme": "ff9-alexandria-theater",
+    "revision": 2,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "mage",
+      "moogle",
+      "ratfolk",
+      "chocobo",
+      "moogle",
+      "mage"
+    ],
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -0.4300972886504679,
+      "y": 1.6800000000000008,
+      "z": 29.973621117327088,
+      "yaw": 0.056,
+      "pitch": 0.09800000000000002
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 5684,
+      "batches": 171
+    },
+    "render": {
+      "calls": 552,
+      "triangles": 1198666
+    },
+    "meanFrameMs": 8.333333333333334
+  },
+  "map": {
+    "ready": true,
+    "theme": "ff9-alexandria-theater",
+    "revision": 2,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "mage",
+      "moogle",
+      "ratfolk",
+      "chocobo",
+      "moogle",
+      "mage"
+    ],
+    "authoredLayout": true,
+    "mapMode": true,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": true,
+    "pose": {
+      "x": 19,
+      "y": 46,
+      "z": 25,
+      "yaw": 0.6202494859828214,
+      "pitch": -0.9285583109335144
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 5684,
+      "batches": 171
+    },
+    "render": {
+      "calls": 541,
+      "triangles": 1197980
+    },
+    "meanFrameMs": 8.33611111111111
+  },
+  "reset": {
+    "ready": true,
+    "theme": "ff9-alexandria-theater",
+    "revision": 2,
+    "landmarks": [
+      "blade-spire",
+      "theater-airship",
+      "layered-royal-city"
+    ],
+    "fantasyCitizens": [
+      "mage",
+      "moogle",
+      "ratfolk",
+      "chocobo",
+      "moogle",
+      "mage"
+    ],
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -0.43115300706727455,
+      "y": 1.68,
+      "z": 30,
+      "yaw": -0.04,
+      "pitch": 0.13
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 5684,
+      "batches": 171
+    },
+    "render": {
+      "calls": 557,
+      "triangles": 1199837
+    },
+    "meanFrameMs": 8.333333333333334
+  },
+  "console": [],
+  "visualAcceptance": "Screenshots inspected; FF9 resemblance remains a human art-direction judgment.",
+  "screenshots": [
+    "street-entry-v2.jpg",
+    "castle-view-v2.jpg",
+    "town-map-v2.jpg"
+  ]
+}

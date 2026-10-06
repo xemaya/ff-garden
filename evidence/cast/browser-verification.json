@@ -1,0 +1,1229 @@
+{
+  "streets": [
+    {
+      "ready": true,
+      "theme": "ff9-alexandria-crafted-corner",
+      "revision": 4,
+      "layoutId": "workshops",
+      "generated": true,
+      "assemblyMetrics": {
+        "buildings": 8,
+        "roadWidth": 6.2,
+        "roadBend": 0.8,
+        "roadSway": 0.3,
+        "pathLength": 64.22627802833485,
+        "combinations": 7,
+        "bays": 4,
+        "balconies": 1,
+        "awnings": 2,
+        "chimneys": 6,
+        "stories3": 0,
+        "packedPlacements": 6,
+        "maxPlacementShift": 3.6336000000000013
+      },
+      "newImageGenerationCalls": 0,
+      "artStudy": false,
+      "castView": true,
+      "castStage": {
+        "id": "fountain-neighbors-v1",
+        "camera": {
+          "x": -0.6,
+          "y": 2.05,
+          "z": -14.8,
+          "target": {
+            "x": -0.35,
+            "y": 0.92,
+            "z": -23.15
+          }
+        },
+        "people": [
+          {
+            "x": -4.45,
+            "z": -21.85,
+            "species": "moogle",
+            "facing": 0.62,
+            "r": 0.36,
+            "role": "postal",
+            "label": "花车旁的邮差"
+          },
+          {
+            "x": 5.2,
+            "z": -23.2,
+            "species": "chocobo",
+            "facing": -0.62,
+            "r": 0.65,
+            "role": "stable",
+            "label": "树荫边的陆行鸟"
+          },
+          {
+            "x": 0.75,
+            "z": -21.5,
+            "species": "mage",
+            "facing": -0.18,
+            "r": 0.38,
+            "role": "reading",
+            "label": "书桌旁的魔导士",
+            "view": {
+              "x": 0.75,
+              "y": 1.42,
+              "z": -18.8
+            }
+          }
+        ],
+        "benches": [
+          {
+            "x": -7.8,
+            "z": -22,
+            "rotation": 1.5707963267948966
+          },
+          {
+            "x": -0.2,
+            "z": -20.2,
+            "rotation": 1.5707963267948966
+          }
+        ],
+        "props": [
+          {
+            "id": "cast-postbox",
+            "kind": "postBox",
+            "x": -5.8,
+            "z": -22.4,
+            "r": 0.45,
+            "rotation": 0.48,
+            "seed": 713
+          },
+          {
+            "id": "cast-flowercart",
+            "kind": "flowerCart",
+            "x": -6.8,
+            "z": -23.4,
+            "r": 0.69,
+            "rotation": 0.3,
+            "seed": 719
+          },
+          {
+            "id": "cast-booktable",
+            "kind": "bookTable",
+            "x": 1,
+            "z": -20.45,
+            "r": 0.38,
+            "rotation": -0.2,
+            "seed": 727
+          },
+          {
+            "id": "cast-trough",
+            "kind": "feedTrough",
+            "x": 5.85,
+            "z": -22.1,
+            "r": 0.6,
+            "rotation": 0.25,
+            "seed": 733
+          },
+          {
+            "id": "cast-rail",
+            "kind": "hitchRail",
+            "x": 6.45,
+            "z": -23.3,
+            "w": 1.6,
+            "d": 0.28,
+            "rotation": 1.5707963267948966,
+            "seed": 739
+          }
+        ]
+      },
+      "hero": {
+        "roofTiles": 2204,
+        "sculptedPavers": 110,
+        "recessedWindows": 78,
+        "heroBuildings": 8,
+        "generatedMaterials": [
+          "plaster",
+          "wood",
+          "pavers",
+          "roof-clay",
+          "roof-teal"
+        ]
+      },
+      "ambientOcclusion": true,
+      "landmarks": [
+        "blade-spire",
+        "theater-airship",
+        "layered-royal-city"
+      ],
+      "fantasyCitizens": [
+        "moogle",
+        "chocobo",
+        "mage"
+      ],
+      "authoredLayout": false,
+      "moogles": [
+        {
+          "asset": "/assets/characters/moogle/moogle-courier-v3.glb",
+          "clip": "Walk",
+          "frozen": false,
+          "time": 0.269,
+          "history": [
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk",
+            "Idle",
+            "Walk"
+          ],
+          "bones": {
+            "Head": [
+              0,
+              0.01248,
+              0,
+              0.99992
+            ],
+            "Paw_R": [
+              0.06817,
+              0.75598,
+              -0.59239,
+              0.27002
+            ],
+            "Wing_L": [
+              -0.27814,
+              0.44329,
+              0.44584,
+              0.7262
+            ],
+            "Wing_R": [
+              -0.29379,
+              -0.45242,
+              -0.43691,
+              0.7198
+            ],
+            "Pom": [
+              -0.14091,
+              0.42045,
+              0.42537,
+              0.78894
+            ],
+            "Foot_L": [
+              -0.38736,
+              0.23157,
+              -0.02771,
+              0.89194
+            ],
+            "Foot_R": [
+              -0.47921,
+              -0.2332,
+              0.00314,
+              0.84615
+            ]
+          },
+          "position": {
+            "x": -4.449999999999995,
+            "z": -21.17922562355148
+          },
+          "height": 1.25,
+          "state": "walk",
+          "approaching": false,
+          "label": "沿街散步",
+          "delivered": 1,
+          "waiting": false,
+          "collider": {
+            "x": -4.449999999999995,
+            "z": -21.17922562355148,
+            "r": 0.36
+          },
+          "anchor": {
+            "x": -4.45,
+            "z": -21.85
+          }
+        }
+      ],
+      "mages": [
+        {
+          "asset": "/assets/characters/mage/black-mage-v2.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 2.202,
+          "history": [
+            "Idle",
+            "Greet",
+            "Idle",
+            "Greet",
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              -0.00224,
+              -0.00001,
+              0.0056,
+              0.99998
+            ],
+            "HatTip": [
+              -0.31785,
+              -0.45572,
+              -0.45033,
+              0.69893
+            ],
+            "Hand_L": [
+              -0.09443,
+              0.24685,
+              -0.1766,
+              0.94813
+            ],
+            "Hand_R": [
+              -0.09443,
+              -0.24685,
+              0.1766,
+              0.94813
+            ],
+            "Coat_L": [
+              -0.95076,
+              0.21637,
+              0.21637,
+              0.04924
+            ],
+            "Coat_R": [
+              -0.95076,
+              -0.21637,
+              -0.21637,
+              0.04924
+            ],
+            "Foot_L": [
+              -0.45316,
+              0.02931,
+              -0.00729,
+              0.89091
+            ],
+            "Foot_R": [
+              -0.45316,
+              -0.02931,
+              0.00729,
+              0.89091
+            ]
+          },
+          "position": {
+            "x": 0.75,
+            "z": -21.5
+          },
+          "height": 1.55
+        }
+      ],
+      "chocobos": [
+        {
+          "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.973,
+          "history": [
+            "Idle",
+            "Chirp",
+            "Idle",
+            "Chirp",
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              -0.00517,
+              0.03116,
+              -0.00848,
+              0.99947
+            ],
+            "Neck": [
+              -0.01357,
+              0,
+              0,
+              0.99991
+            ],
+            "Crest": [
+              -0.67781,
+              0.00694,
+              -0.01319,
+              0.73508
+            ],
+            "Wing_L": [
+              -0.90855,
+              0.13316,
+              0.11713,
+              0.37826
+            ],
+            "Wing_R": [
+              -0.90855,
+              -0.13316,
+              -0.11713,
+              0.37826
+            ],
+            "Tail": [
+              -0.63662,
+              0,
+              0,
+              0.77118
+            ],
+            "Foot_L": [
+              -0.51254,
+              -0.0163,
+              0.00203,
+              0.85851
+            ],
+            "Foot_R": [
+              -0.51254,
+              0.0163,
+              -0.00203,
+              0.85851
+            ]
+          },
+          "position": {
+            "x": 5.2,
+            "z": -23.2
+          },
+          "height": 2.22
+        }
+      ],
+      "mapMode": false,
+      "touring": false,
+      "tourFinished": true,
+      "afternoon": false,
+      "pose": {
+        "x": -0.6,
+        "y": 2.05,
+        "z": -14.8,
+        "yaw": -0.02993117835380839,
+        "pitch": -0.13445263538553953
+      },
+      "location": "喷泉边的街坊",
+      "progress": 0.6977493246198218,
+      "buildings": 8,
+      "pathLength": 64.22627802833485,
+      "batches": {
+        "parts": 8740,
+        "batches": 125
+      },
+      "render": {
+        "calls": 822,
+        "triangles": 3318833
+      },
+      "meanFrameMs": 8.39888888862398
+    },
+    {
+      "ready": true,
+      "theme": "ff9-alexandria-crafted-corner",
+      "revision": 4,
+      "layoutId": "residential",
+      "generated": true,
+      "assemblyMetrics": {
+        "buildings": 6,
+        "roadWidth": 5.6,
+        "roadBend": 0.8,
+        "roadSway": 0.3,
+        "pathLength": 64.22627802833485,
+        "combinations": 3,
+        "bays": 0,
+        "balconies": 6,
+        "awnings": 1,
+        "chimneys": 0,
+        "stories3": 0,
+        "packedPlacements": 5,
+        "maxPlacementShift": 3.719999999999999
+      },
+      "newImageGenerationCalls": 0,
+      "artStudy": false,
+      "castView": true,
+      "castStage": {
+        "id": "fountain-neighbors-v1",
+        "camera": {
+          "x": -0.6,
+          "y": 2.05,
+          "z": -14.8,
+          "target": {
+            "x": -0.35,
+            "y": 0.92,
+            "z": -23.15
+          }
+        },
+        "people": [
+          {
+            "x": -4.45,
+            "z": -21.85,
+            "species": "moogle",
+            "facing": 0.62,
+            "r": 0.36,
+            "role": "postal",
+            "label": "花车旁的邮差"
+          },
+          {
+            "x": 5.2,
+            "z": -23.2,
+            "species": "chocobo",
+            "facing": -0.62,
+            "r": 0.65,
+            "role": "stable",
+            "label": "树荫边的陆行鸟"
+          },
+          {
+            "x": 0.75,
+            "z": -21.5,
+            "species": "mage",
+            "facing": -0.18,
+            "r": 0.38,
+            "role": "reading",
+            "label": "书桌旁的魔导士",
+            "view": {
+              "x": 0.75,
+              "y": 1.42,
+              "z": -18.8
+            }
+          }
+        ],
+        "benches": [
+          {
+            "x": -7.8,
+            "z": -22,
+            "rotation": 1.5707963267948966
+          },
+          {
+            "x": -0.2,
+            "z": -20.2,
+            "rotation": 1.5707963267948966
+          }
+        ],
+        "props": [
+          {
+            "id": "cast-postbox",
+            "kind": "postBox",
+            "x": -5.8,
+            "z": -22.4,
+            "r": 0.45,
+            "rotation": 0.48,
+            "seed": 713
+          },
+          {
+            "id": "cast-flowercart",
+            "kind": "flowerCart",
+            "x": -6.8,
+            "z": -23.4,
+            "r": 0.69,
+            "rotation": 0.3,
+            "seed": 719
+          },
+          {
+            "id": "cast-booktable",
+            "kind": "bookTable",
+            "x": 1,
+            "z": -20.45,
+            "r": 0.38,
+            "rotation": -0.2,
+            "seed": 727
+          },
+          {
+            "id": "cast-trough",
+            "kind": "feedTrough",
+            "x": 5.85,
+            "z": -22.1,
+            "r": 0.6,
+            "rotation": 0.25,
+            "seed": 733
+          },
+          {
+            "id": "cast-rail",
+            "kind": "hitchRail",
+            "x": 6.45,
+            "z": -23.3,
+            "w": 1.6,
+            "d": 0.28,
+            "rotation": 1.5707963267948966,
+            "seed": 739
+          }
+        ]
+      },
+      "hero": {
+        "roofTiles": 1684,
+        "sculptedPavers": 99,
+        "recessedWindows": 88,
+        "heroBuildings": 6,
+        "generatedMaterials": [
+          "plaster",
+          "wood",
+          "pavers",
+          "roof-clay",
+          "roof-teal"
+        ]
+      },
+      "ambientOcclusion": true,
+      "landmarks": [
+        "blade-spire",
+        "theater-airship",
+        "layered-royal-city"
+      ],
+      "fantasyCitizens": [
+        "moogle",
+        "chocobo",
+        "mage"
+      ],
+      "authoredLayout": false,
+      "moogles": [
+        {
+          "asset": "/assets/characters/moogle/moogle-courier-v3.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.795,
+          "history": [
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              0.00759,
+              0.05055,
+              -0.03281,
+              0.99815
+            ],
+            "Paw_R": [
+              0.06817,
+              0.75598,
+              -0.59239,
+              0.27002
+            ],
+            "Wing_L": [
+              -0.31565,
+              0.42681,
+              0.42178,
+              0.73505
+            ],
+            "Wing_R": [
+              -0.29049,
+              -0.41126,
+              -0.43771,
+              0.74491
+            ],
+            "Pom": [
+              -0.10638,
+              0.41051,
+              0.43142,
+              0.79627
+            ],
+            "Foot_L": [
+              -0.43389,
+              0.23271,
+              -0.01545,
+              0.87026
+            ],
+            "Foot_R": [
+              -0.43389,
+              -0.23271,
+              0.01545,
+              0.87026
+            ]
+          },
+          "position": {
+            "x": -4.45,
+            "z": -21.85
+          },
+          "height": 1.25,
+          "state": "idle",
+          "approaching": false,
+          "label": "在广场边等信",
+          "delivered": 0,
+          "waiting": false,
+          "collider": {
+            "x": -4.45,
+            "z": -21.85,
+            "r": 0.36
+          },
+          "anchor": {
+            "x": -4.45,
+            "z": -21.85
+          }
+        }
+      ],
+      "mages": [
+        {
+          "asset": "/assets/characters/mage/black-mage-v2.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.795,
+          "history": [
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              0.00833,
+              -0.00017,
+              -0.02082,
+              0.99975
+            ],
+            "HatTip": [
+              -0.33251,
+              -0.44091,
+              -0.46077,
+              0.69478
+            ],
+            "Hand_L": [
+              -0.09443,
+              0.24685,
+              -0.1766,
+              0.94813
+            ],
+            "Hand_R": [
+              -0.09443,
+              -0.24685,
+              0.1766,
+              0.94813
+            ],
+            "Coat_L": [
+              -0.95076,
+              0.21637,
+              0.21637,
+              0.04924
+            ],
+            "Coat_R": [
+              -0.95076,
+              -0.21637,
+              -0.21637,
+              0.04924
+            ],
+            "Foot_L": [
+              -0.45316,
+              0.02931,
+              -0.00729,
+              0.89091
+            ],
+            "Foot_R": [
+              -0.45316,
+              -0.02931,
+              0.00729,
+              0.89091
+            ]
+          },
+          "position": {
+            "x": 0.75,
+            "z": -21.5
+          },
+          "height": 1.55
+        }
+      ],
+      "chocobos": [
+        {
+          "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.795,
+          "history": [
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              -0.00517,
+              0.02902,
+              -0.0079,
+              0.99953
+            ],
+            "Neck": [
+              -0.01418,
+              0,
+              0,
+              0.9999
+            ],
+            "Crest": [
+              -0.67832,
+              0.00647,
+              -0.01228,
+              0.73463
+            ],
+            "Wing_L": [
+              -0.90845,
+              0.13405,
+              0.11637,
+              0.37844
+            ],
+            "Wing_R": [
+              -0.90845,
+              -0.13405,
+              -0.11637,
+              0.37844
+            ],
+            "Tail": [
+              -0.63754,
+              0,
+              0,
+              0.77042
+            ],
+            "Foot_L": [
+              -0.51254,
+              -0.0163,
+              0.00203,
+              0.85851
+            ],
+            "Foot_R": [
+              -0.51254,
+              0.0163,
+              -0.00203,
+              0.85851
+            ]
+          },
+          "position": {
+            "x": 5.2,
+            "z": -23.2
+          },
+          "height": 2.22
+        }
+      ],
+      "mapMode": false,
+      "touring": false,
+      "tourFinished": false,
+      "afternoon": false,
+      "pose": {
+        "x": -0.6,
+        "y": 2.05,
+        "z": -14.8,
+        "yaw": -0.02993117835380839,
+        "pitch": -0.13445263538553953
+      },
+      "location": "喷泉边的街坊",
+      "progress": 0.6977493246198218,
+      "buildings": 6,
+      "pathLength": 64.22627802833485,
+      "batches": {
+        "parts": 7745,
+        "batches": 109
+      },
+      "render": {
+        "calls": 790,
+        "triangles": 3189473
+      },
+      "meanFrameMs": 10.811363634738056
+    },
+    {
+      "ready": true,
+      "theme": "ff9-alexandria-crafted-corner",
+      "revision": 4,
+      "layoutId": "market",
+      "generated": true,
+      "assemblyMetrics": {
+        "buildings": 10,
+        "roadWidth": 7.2,
+        "roadBend": 0.8,
+        "roadSway": 0.3,
+        "pathLength": 64.22627802833485,
+        "combinations": 4,
+        "bays": 1,
+        "balconies": 1,
+        "awnings": 10,
+        "chimneys": 0,
+        "stories3": 0,
+        "packedPlacements": 8,
+        "maxPlacementShift": 5.52
+      },
+      "newImageGenerationCalls": 0,
+      "artStudy": false,
+      "castView": true,
+      "castStage": {
+        "id": "fountain-neighbors-v1",
+        "camera": {
+          "x": -0.6,
+          "y": 2.05,
+          "z": -14.8,
+          "target": {
+            "x": -0.35,
+            "y": 0.92,
+            "z": -23.15
+          }
+        },
+        "people": [
+          {
+            "x": -4.45,
+            "z": -21.85,
+            "species": "moogle",
+            "facing": 0.62,
+            "r": 0.36,
+            "role": "postal",
+            "label": "花车旁的邮差"
+          },
+          {
+            "x": 5.2,
+            "z": -23.2,
+            "species": "chocobo",
+            "facing": -0.62,
+            "r": 0.65,
+            "role": "stable",
+            "label": "树荫边的陆行鸟"
+          },
+          {
+            "x": 0.75,
+            "z": -21.5,
+            "species": "mage",
+            "facing": -0.18,
+            "r": 0.38,
+            "role": "reading",
+            "label": "书桌旁的魔导士",
+            "view": {
+              "x": 0.75,
+              "y": 1.42,
+              "z": -18.8
+            }
+          }
+        ],
+        "benches": [
+          {
+            "x": -7.8,
+            "z": -22,
+            "rotation": 1.5707963267948966
+          },
+          {
+            "x": -0.2,
+            "z": -20.2,
+            "rotation": 1.5707963267948966
+          }
+        ],
+        "props": [
+          {
+            "id": "cast-postbox",
+            "kind": "postBox",
+            "x": -5.8,
+            "z": -22.4,
+            "r": 0.45,
+            "rotation": 0.48,
+            "seed": 713
+          },
+          {
+            "id": "cast-flowercart",
+            "kind": "flowerCart",
+            "x": -6.8,
+            "z": -23.4,
+            "r": 0.69,
+            "rotation": 0.3,
+            "seed": 719
+          },
+          {
+            "id": "cast-booktable",
+            "kind": "bookTable",
+            "x": 1,
+            "z": -20.45,
+            "r": 0.38,
+            "rotation": -0.2,
+            "seed": 727
+          },
+          {
+            "id": "cast-trough",
+            "kind": "feedTrough",
+            "x": 5.85,
+            "z": -22.1,
+            "r": 0.6,
+            "rotation": 0.25,
+            "seed": 733
+          },
+          {
+            "id": "cast-rail",
+            "kind": "hitchRail",
+            "x": 6.45,
+            "z": -23.3,
+            "w": 1.6,
+            "d": 0.28,
+            "rotation": 1.5707963267948966,
+            "seed": 739
+          }
+        ]
+      },
+      "hero": {
+        "roofTiles": 2752,
+        "sculptedPavers": 127,
+        "recessedWindows": 85,
+        "heroBuildings": 10,
+        "generatedMaterials": [
+          "plaster",
+          "wood",
+          "pavers",
+          "roof-clay",
+          "roof-teal"
+        ]
+      },
+      "ambientOcclusion": true,
+      "landmarks": [
+        "blade-spire",
+        "theater-airship",
+        "layered-royal-city"
+      ],
+      "fantasyCitizens": [
+        "moogle",
+        "chocobo",
+        "mage"
+      ],
+      "authoredLayout": false,
+      "moogles": [
+        {
+          "asset": "/assets/characters/moogle/moogle-courier-v3.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.796,
+          "history": [
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              0.0076,
+              0.0506,
+              -0.03284,
+              0.99815
+            ],
+            "Paw_R": [
+              0.06817,
+              0.75598,
+              -0.59239,
+              0.27002
+            ],
+            "Wing_L": [
+              -0.31553,
+              0.42686,
+              0.42186,
+              0.73502
+            ],
+            "Wing_R": [
+              -0.2905,
+              -0.41139,
+              -0.4377,
+              0.74484
+            ],
+            "Pom": [
+              -0.10652,
+              0.41056,
+              0.43137,
+              0.79625
+            ],
+            "Foot_L": [
+              -0.43389,
+              0.23271,
+              -0.01545,
+              0.87026
+            ],
+            "Foot_R": [
+              -0.43389,
+              -0.23271,
+              0.01545,
+              0.87026
+            ]
+          },
+          "position": {
+            "x": -4.45,
+            "z": -21.85
+          },
+          "height": 1.25,
+          "state": "idle",
+          "approaching": false,
+          "label": "在广场边等信",
+          "delivered": 0,
+          "waiting": false,
+          "collider": {
+            "x": -4.45,
+            "z": -21.85,
+            "r": 0.36
+          },
+          "anchor": {
+            "x": -4.45,
+            "z": -21.85
+          }
+        }
+      ],
+      "mages": [
+        {
+          "asset": "/assets/characters/mage/black-mage-v2.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.796,
+          "history": [
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              0.00834,
+              -0.00017,
+              -0.02084,
+              0.99975
+            ],
+            "HatTip": [
+              -0.33252,
+              -0.4409,
+              -0.46078,
+              0.69478
+            ],
+            "Hand_L": [
+              -0.09443,
+              0.24685,
+              -0.1766,
+              0.94813
+            ],
+            "Hand_R": [
+              -0.09443,
+              -0.24685,
+              0.1766,
+              0.94813
+            ],
+            "Coat_L": [
+              -0.95076,
+              0.21637,
+              0.21637,
+              0.04924
+            ],
+            "Coat_R": [
+              -0.95076,
+              -0.21637,
+              -0.21637,
+              0.04924
+            ],
+            "Foot_L": [
+              -0.45316,
+              0.02931,
+              -0.00729,
+              0.89091
+            ],
+            "Foot_R": [
+              -0.45316,
+              -0.02931,
+              0.00729,
+              0.89091
+            ]
+          },
+          "position": {
+            "x": 0.75,
+            "z": -21.5
+          },
+          "height": 1.55
+        }
+      ],
+      "chocobos": [
+        {
+          "asset": "/assets/characters/chocobo/chocobo-v1.glb",
+          "clip": "Idle",
+          "frozen": false,
+          "time": 0.796,
+          "history": [
+            "Idle"
+          ],
+          "bones": {
+            "Head": [
+              -0.00517,
+              0.02904,
+              -0.00791,
+              0.99953
+            ],
+            "Neck": [
+              -0.01417,
+              0,
+              0,
+              0.9999
+            ],
+            "Crest": [
+              -0.67832,
+              0.00648,
+              -0.01229,
+              0.73464
+            ],
+            "Wing_L": [
+              -0.90845,
+              0.13404,
+              0.11637,
+              0.37844
+            ],
+            "Wing_R": [
+              -0.90845,
+              -0.13404,
+              -0.11637,
+              0.37844
+            ],
+            "Tail": [
+              -0.63753,
+              0,
+              0,
+              0.77043
+            ],
+            "Foot_L": [
+              -0.51254,
+              -0.0163,
+              0.00203,
+              0.85851
+            ],
+            "Foot_R": [
+              -0.51254,
+              0.0163,
+              -0.00203,
+              0.85851
+            ]
+          },
+          "position": {
+            "x": 5.2,
+            "z": -23.2
+          },
+          "height": 2.22
+        }
+      ],
+      "mapMode": false,
+      "touring": false,
+      "tourFinished": false,
+      "afternoon": false,
+      "pose": {
+        "x": -0.6,
+        "y": 2.05,
+        "z": -14.8,
+        "yaw": -0.02993117835380839,
+        "pitch": -0.13445263538553953
+      },
+      "location": "喷泉边的街坊",
+      "progress": 0.6977493246198218,
+      "buildings": 10,
+      "pathLength": 64.22627802833485,
+      "batches": {
+        "parts": 11746,
+        "batches": 134
+      },
+      "render": {
+        "calls": 840,
+        "triangles": 3921873
+      },
+      "meanFrameMs": 10.844943818081632
+    }
+  ],
+  "focusViews": {
+    "mage": {
+      "x": 0.75,
+      "y": 1.6770360772979316,
+      "z": -18.8,
+      "yaw": 0,
+      "pitch": -0.19739555984988078
+    },
+    "chocobo": {
+      "x": 5.75,
+      "y": 1.678852369129759,
+      "z": -20.3,
+      "yaw": 0.18742911244367375,
+      "pitch": -0.16780134167652103
+    }
+  },
+  "letterDelivered": 1,
+  "tour": {
+    "street": "workshops",
+    "fromEntry": true,
+    "finished": true,
+    "progress": 1,
+    "pathLength": 64.22627802833485,
+    "end": {
+      "x": 2.2,
+      "y": 1.68,
+      "z": -32.5,
+      "yaw": 0.04292663377473995,
+      "pitch": 0.34
+    }
+  },
+  "modelsUnchanged": true,
+  "newImageGenerationCalls": 0
+}

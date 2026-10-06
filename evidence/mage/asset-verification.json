@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "assetSha256": "a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22",
+  "bytes": 10146576,
+  "joints": 23,
+  "meshes": 20,
+  "vertices": 60123,
+  "triangles": 115776,
+  "images": 2,
+  "clips": [
+    {
+      "name": "Greet",
+      "seconds": 3.0416667461395264,
+      "animatedChannels": 6,
+      "loopSeam": 0.012582927942276001
+    },
+    {
+      "name": "Idle",
+      "seconds": 4.041666507720947,
+      "animatedChannels": 3,
+      "loopSeam": 5.51091050576101e-18
+    },
+    {
+      "name": "Magic",
+      "seconds": 4.041666507720947,
+      "animatedChannels": 10,
+      "loopSeam": 9.797174737963282e-19
+    },
+    {
+      "name": "Walk",
+      "seconds": 0.9583333134651184,
+      "animatedChannels": 14,
+      "loopSeam": 2.449293581093244e-18
+    }
+  ],
+  "groundSamples": {
+    "Idle": {
+      "minimumSoleZ": 0.0030000072438269854,
+      "frames": 97
+    },
+    "Walk": {
+      "minimumSoleZ": 0.002999958349391818,
+      "frames": 23
+    },
+    "Greet": {
+      "minimumSoleZ": 0.0030000072438269854,
+      "frames": 73
+    },
+    "Magic": {
+      "minimumSoleZ": 0.0030000072438269854,
+      "frames": 97
+    }
+  },
+  "surfaceIntersections": {
+    "Idle": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    },
+    "Walk": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    },
+    "Greet": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    },
+    "Magic": {
+      "gloveHeadSurfacePairs": 0,
+      "gloveHatSurfacePairs": 0
+    }
+  },
+  "streets": [
+    "residential",
+    "market",
+    "workshops"
+  ],
+  "sharedAsset": true
+}

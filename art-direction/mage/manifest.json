@@ -1,0 +1,31 @@
+{
+  "id": "black-mage-v2",
+  "asset": "public/assets/characters/mage/black-mage-v2.glb",
+  "sourceBlend": "public/assets/characters/mage/black-mage-v2.blend",
+  "source": "tools/build-mage.py",
+  "sha256": "a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22",
+  "joints": 23,
+  "triangles": 115776,
+  "reference": "art-direction/mage/target-v1.png",
+  "prompts": "art-direction/mage/prompts.json",
+  "imageGenerationMode": "built-in imagegen",
+  "newImageGenerationCalls": 2,
+  "textureAtlas": "public/assets/characters/mage/cloth-atlas.png",
+  "reusedLeather": "public/assets/characters/moogle/leather.png",
+  "sameAssetInThreeStreets": true,
+  "server4090TasksStarted": 0,
+  "visualAcceptance": "accepted by user",
+  "previousAsset": "public/assets/characters/mage/black-mage-v1.glb",
+  "refinement": {
+    "date": "2026-10-06",
+    "request": "肩膀太宽了，人家是有个收窄的",
+    "changes": "narrowed upper torso, shoulder sleeve roots and arm bone pivots; retained wide cuffs",
+    "newImageGenerationCalls": 0
+  },
+  "visualAcceptanceRecord": {
+    "date": "2026-10-06",
+    "feedback": "验收通过",
+    "assetId": "black-mage-v2",
+    "sha256": "a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22"
+  }
+}

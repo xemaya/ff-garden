@@ -1,0 +1,18 @@
+{
+  "id": "black-mage-v1",
+  "asset": "public/assets/characters/mage/black-mage-v1.glb",
+  "sourceBlend": "public/assets/characters/mage/black-mage-v1.blend",
+  "source": "tools/build-mage.py",
+  "sha256": "473cacdf10806fdd9a4310569f51a710da2e6792d2ec8b3972759ccea2c9f4bc",
+  "joints": 23,
+  "triangles": 116276,
+  "reference": "art-direction/mage/target-v1.png",
+  "prompts": "art-direction/mage/prompts.json",
+  "imageGenerationMode": "built-in imagegen",
+  "newImageGenerationCalls": 2,
+  "textureAtlas": "public/assets/characters/mage/cloth-atlas.png",
+  "reusedLeather": "public/assets/characters/moogle/leather.png",
+  "sameAssetInThreeStreets": true,
+  "server4090TasksStarted": 0,
+  "visualAcceptance": "pending human review"
+}

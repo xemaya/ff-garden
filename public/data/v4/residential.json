@@ -1,0 +1,184 @@
+{
+  "version": 4,
+  "kit": "ff9-crafted-corner-v3",
+  "title": "青瓦巷·静居坊",
+  "subtitle": "王城深处的安宁住宅街",
+  "road": {
+    "width": 5.6,
+    "bend": 0.8,
+    "sway": 0.3
+  },
+  "buildings": [
+    {
+      "kind": "home",
+      "name": "听风居",
+      "side": "left",
+      "z": 23.5,
+      "width": 5.2,
+      "depth": 4.8,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "inn",
+      "name": "夜泊亭",
+      "side": "left",
+      "z": 18.5,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "home",
+      "name": "青竹院",
+      "side": "left",
+      "z": 13.5,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "home",
+      "name": "归云阁",
+      "side": "right",
+      "z": 10.5,
+      "width": 5.2,
+      "depth": 4.8,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "inn",
+      "name": "星河宿",
+      "side": "right",
+      "z": 5.5,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "home",
+      "name": "静水居",
+      "side": "right",
+      "z": 0.5,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    }
+  ],
+  "provenance": {
+    "source": "qwen3-4b-instruct-2507-q4_k_m",
+    "caseId": "residential",
+    "seed": 431,
+    "attempt": 1,
+    "training": "none",
+    "newImageGenerationCalls": 0,
+    "kit": "ff9-crafted-corner-v3",
+    "placement": "model-preferences+isotonic-constraint-packing"
+  },
+  "realization": {
+    "placementAlgorithm": "least-squares-isotonic-roadside-packing",
+    "positions": [
+      {
+        "id": "building-0",
+        "side": "left",
+        "requestedZ": 23.5,
+        "realizedZ": 23.5,
+        "x": -3.575582550113528,
+        "z": 23.26422674242119
+      },
+      {
+        "id": "building-1",
+        "side": "left",
+        "requestedZ": 18.5,
+        "realizedZ": 16.9464,
+        "x": -2.9853066363282457,
+        "z": 16.781183813411364
+      },
+      {
+        "id": "building-2",
+        "side": "left",
+        "requestedZ": 13.5,
+        "realizedZ": 9.780000000000001,
+        "x": -3.254684472858424,
+        "z": 9.695544523971277
+      },
+      {
+        "id": "building-3",
+        "side": "right",
+        "requestedZ": 10.5,
+        "realizedZ": 12.257866666666667,
+        "x": 4.912114858356011,
+        "z": 12.373427219084506
+      },
+      {
+        "id": "building-4",
+        "side": "right",
+        "requestedZ": 5.5,
+        "realizedZ": 5.704266666666666,
+        "x": 4.773976977024038,
+        "z": 5.720349145078818
+      },
+      {
+        "id": "building-5",
+        "side": "right",
+        "requestedZ": 0.5,
+        "realizedZ": -1.4621333333333322,
+        "x": 5.206186892986865,
+        "z": -1.5571931301009356
+      }
+    ]
+  }
+}

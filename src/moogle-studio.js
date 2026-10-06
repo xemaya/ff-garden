@@ -1,0 +1,38 @@
+import './moogle-studio.css';
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
+import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
+import {SSAOPass} from 'three/addons/postprocessing/SSAOPass.js';
+import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
+import {loadMoogleAsset,createMoogle} from './moogle.js';
+import {initMaterials} from './materials.js';
+import {buildFantasyCitizen} from './fantasy.js';
+const $=s=>document.querySelector(s),canvas=$('#portrait');
+try{
+ await loadMoogleAsset();initMaterials();
+ const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.info.autoReset=false;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+ const scene=new THREE.Scene();scene.background=new THREE.Color(0xe7e0d3);const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),env=pmrem.fromScene(room,.025);scene.environment=env.texture;scene.environmentIntensity=.5;room.dispose();pmrem.dispose();
+ scene.add(new THREE.HemisphereLight(0xe9f0f3,0xb8a480,1.3));const sun=new THREE.DirectionalLight(0xffe5c4,3.0);sun.position.set(-2.4,4.5,3);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-2,right:2,top:2,bottom:-2,near:.1,far:12});sun.shadow.normalBias=.008;sun.shadow.bias=-.00008;scene.add(sun);
+ const fill=new THREE.DirectionalLight(0xb8c8db,.6);fill.position.set(2,2,-1);scene.add(fill);
+ const floor=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardMaterial({color:0xe2d8c3,roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.004;floor.receiveShadow=true;scene.add(floor);
+ const avatar=createMoogle(),old=buildFantasyCitizen({species:'moogle',legacy:true,x:0,z:0,facing:0},0,{people:[]});old.visible=false;scene.add(avatar,old);const actor=avatar.userData.moogle;
+ const camera=new THREE.PerspectiveCamera(40,1,.03,30);camera.position.set(1.05,.84,2.35);const controls=new OrbitControls(camera,canvas);controls.target.set(0,.61,0);controls.minDistance=1.35;controls.maxDistance=5;controls.enableDamping=true;controls.maxPolarAngle=Math.PI*.53;
+ const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ao=new SSAOPass(scene,camera,innerWidth,innerHeight,16);ao.kernelRadius=.15;ao.minDistance=.00008;ao.maxDistance=.04;composer.addPass(ao);composer.addPass(new OutputPass());
+ function fit(){const mobile=innerWidth<=760;camera.position.set(mobile?1.35:1.05,old.visible?(mobile?1.15:1.1):(mobile?.95:.84),old.visible?(mobile?4.1:3.0):(mobile?3.1:2.35));controls.target.set(0,old.visible?.85:.61,0);}
+ let wasMobile=null;
+ function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);composer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();camera.setViewOffset(w,h,innerWidth>760?112:0,innerWidth>760?0:65,w,h);const mobile=w<=760;if(wasMobile!==mobile){fit();wasMobile=mobile;}}addEventListener('resize',resize);resize();
+ const notes={Idle:'呼吸、眨眼，绒球随身体轻轻摆动。',Walk:'手脚交替，邮包随着脚步轻轻晃动。',Wave:'抬起小手，向路过的人打招呼。',Deliver:'从邮包带来一封信，伸手递给你。'};let legacy=false,demo=false,demoClock=0,lastHud=0;
+ function select(clip){actor.play(clip);$('#pose-frame').value='42';$('#freeze').setAttribute('aria-pressed','false');document.querySelectorAll('[data-clip]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.clip===clip)));$('#action-note').textContent=notes[clip];}
+ document.querySelectorAll('[data-clip]').forEach(b=>b.addEventListener('click',()=>{demo=false;$('#demo').setAttribute('aria-pressed','false');select(b.dataset.clip);}));
+ $('#freeze').addEventListener('click',()=>{demo=false;$('#demo').setAttribute('aria-pressed','false');actor.freeze(!actor.snapshot().frozen);if(actor.snapshot().frozen)$('#pose-frame').value='42';$('#freeze').setAttribute('aria-pressed',String(actor.snapshot().frozen));});
+ $('#pose-frame').addEventListener('input',()=>{demo=false;$('#demo').setAttribute('aria-pressed','false');actor.seek(Number($('#pose-frame').value)/100);$('#freeze').setAttribute('aria-pressed','true');});
+ $('#demo').addEventListener('click',()=>{demo=!demo;demoClock=0;$('#demo').setAttribute('aria-pressed',String(demo));if(demo)select('Idle');});
+ $('#legacy').addEventListener('click',()=>{legacy=!legacy;avatar.visible=!legacy;old.visible=legacy;demo=false;$('#demo').setAttribute('aria-pressed','false');$('#legacy').setAttribute('aria-pressed',String(legacy));$('#mode').textContent=legacy?'原来的几何原型':'精修莫古利';document.querySelectorAll('[data-clip],#demo,#freeze,#pose-frame').forEach(b=>b.disabled=legacy);fit();if(!legacy)select('Idle');});
+ select('Idle');const clock=new THREE.Clock();
+ function animate(){requestAnimationFrame(animate);const dt=Math.min(clock.getDelta(),.05),time=clock.elapsedTime;actor.update(dt);controls.update();
+  if(demo){demoClock+=dt;const cycle=demoClock%12,clip=cycle<2.5?'Idle':cycle<5?'Walk':cycle<8?'Wave':'Deliver';if(actor.snapshot().clip!==clip)select(clip);}
+  old.rotation.z=Math.sin(time*.9)*.012;renderer.info.reset();composer.render();if(time-lastHud>.1){canvas.dataset.state=JSON.stringify({ready:true,legacy,demo,actor:actor.snapshot(),render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles}});lastHud=time;}}
+ animate();$('#loading').hidden=true;
+}catch(e){console.error(e);$('#loading').textContent='角色暂未准备好：'+e.message;}

@@ -1,0 +1,197 @@
+{
+  "passed": true,
+  "checks": {
+    "sceneReady": true,
+    "fullRouteCompleted": true,
+    "manualMovement": true,
+    "dragView": true,
+    "mapView": true,
+    "gardenStop": true,
+    "afternoonLight": true,
+    "audioControlOn": true,
+    "audioControlOff": true,
+    "returnToEntry": true,
+    "consoleClean": true
+  },
+  "entryState": {
+    "ready": true,
+    "theme": "ff9-storybook-daylight",
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -0.43115300706727455,
+      "y": 1.68,
+      "z": 30,
+      "yaw": -0.20518449478292639,
+      "pitch": 0.07
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 4930,
+      "batches": 149
+    },
+    "render": {
+      "calls": 515,
+      "triangles": 1097752
+    },
+    "meanFrameMs": 8.446111110846202
+  },
+  "manualState": {
+    "ready": true,
+    "theme": "ff9-storybook-daylight",
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -0.42491832472278773,
+      "y": 1.6800000000000008,
+      "z": 29.970041883490143,
+      "yaw": 0.01881550521707364,
+      "pitch": 0.038
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 4930,
+      "batches": 149
+    },
+    "render": {
+      "calls": 513,
+      "triangles": 1097456
+    },
+    "meanFrameMs": 8.584999999735091
+  },
+  "mapState": {
+    "ready": true,
+    "theme": "ff9-storybook-daylight",
+    "authoredLayout": true,
+    "mapMode": true,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": 19,
+      "y": 46,
+      "z": 25,
+      "yaw": 0.6202494859828214,
+      "pitch": -0.9285583109335144
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 4930,
+      "batches": 149
+    },
+    "render": {
+      "calls": 498,
+      "triangles": 1094570
+    },
+    "meanFrameMs": 8.44499999947018
+  },
+  "gardenState": {
+    "ready": true,
+    "theme": "ff9-storybook-daylight",
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": true,
+    "pose": {
+      "x": 2.0079483574072885,
+      "y": 1.68,
+      "z": 5.09999999999995,
+      "yaw": 0.16783387870072375,
+      "pitch": 0.07999999998516406
+    },
+    "location": "树荫小花园",
+    "progress": 0.39360157665137235,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 4930,
+      "batches": 149
+    },
+    "render": {
+      "calls": 411,
+      "triangles": 1057478
+    },
+    "meanFrameMs": 8.469999999470181
+  },
+  "routeEnd": {
+    "ready": true,
+    "theme": "ff9-storybook-daylight",
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": true,
+    "afternoon": false,
+    "pose": {
+      "x": 2.2,
+      "y": 1.68,
+      "z": -32.5,
+      "yaw": 0.07178654491471899,
+      "pitch": 0.34
+    },
+    "location": "望向城堡",
+    "progress": 1,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 4930,
+      "batches": 149
+    },
+    "render": {
+      "calls": 265,
+      "triangles": 914606
+    },
+    "meanFrameMs": 8.387222222487132
+  },
+  "resetState": {
+    "ready": true,
+    "theme": "ff9-storybook-daylight",
+    "authoredLayout": true,
+    "mapMode": false,
+    "touring": false,
+    "tourFinished": false,
+    "afternoon": false,
+    "pose": {
+      "x": -0.43115300706727455,
+      "y": 1.68,
+      "z": 30,
+      "yaw": -0.20518449478292639,
+      "pitch": 0.07
+    },
+    "location": "花香与面包",
+    "progress": 0,
+    "buildings": 8,
+    "pathLength": 63.906842787616625,
+    "batches": {
+      "parts": 4930,
+      "batches": 149
+    },
+    "render": {
+      "calls": 507,
+      "triangles": 1096678
+    },
+    "meanFrameMs": 8.717222221692403
+  },
+  "console": [],
+  "audioNote": "UI state and console verified; acoustic quality not judged.",
+  "screenshots": [
+    "street-entry.jpg",
+    "town-map.jpg",
+    "castle-view.jpg"
+  ]
+}
