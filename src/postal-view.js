@@ -4,7 +4,7 @@ export function postalView(snapshot,target,interaction,mode){
   const chapter=chapters[snapshot.chapter],confirming=snapshot.resetPending||snapshot.recoveryPending;
   const stage={available:'接取委托',carrying:'送往收件人',reply:'记下回应',completed:snapshot.ending?'邮路完成':'这一封已送达'}[snapshot.state];
   let body=snapshot.state==='available'?chapter.invitation:snapshot.state==='carrying'?chapter.letter:snapshot.state==='reply'?chapter.received+' '+chapter.replyPrompt:chapter.received+' '+chapter.next;
-  if(snapshot.ending)body+=' '+ending.text;
+  if(snapshot.ending)body=chapter.received+' '+ending.text;
   let hint;
   if(confirming)hint=snapshot.recoveryPending?'正在确认是否恢复备份；取消会保留现在的旅程。':'正在确认是否重新开始；取消会保留整段旅程。';
   else if(snapshot.state==='completed')hint=snapshot.ending?'一日邮差手记已完成。你可以继续散步。':'点击“接下一段委托”，看看这封信带来的下一步。';

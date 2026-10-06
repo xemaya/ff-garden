@@ -3,7 +3,7 @@ import {rng,center,roadside} from './layout.js';
 import {plain,mat} from './materials.js';
 import {createHeroMaterialLoader} from './hero-textures.js';
 
-let materials={};const materialLoader=createHeroMaterialLoader();let metrics={roofTiles:0,sculptedPavers:0,recessedWindows:0,heroBuildings:0};
+let materials={};const materialLoader=createHeroMaterialLoader();let metrics={roofTiles:0,sculptedPavers:0,recessedWindows:0,heroBuildings:0,nameplates:0};
 export async function loadHeroMaterials(){
   materials=await materialLoader.load();
   return materials;
@@ -71,7 +71,16 @@ function turret(p,x,y,z,r,h){const bay=new THREE.Group();bay.position.set(x,y,z)
   for(let i=0;i<11;i++){const u=i/11,rr=r*1.35*(1-u)**1.6+.01*u;const band=mesh(bay,new THREE.TorusGeometry(rr,.022,5,40),plain(0x60736e),0,h+rh*u,0);band.rotation.x=Math.PI/2;}
   sphere(bay,.085,plain(0x8e7548,.6,.25),0,h+rh+.02,0);beam(bay,[0,h+rh,0],[0,h+rh+.60,0],.02,.02,plain(0x7c6540));
 }
-export function buildHeroHouse(b){metrics.heroBuildings++;const p=new THREE.Group(),w=b.width,h=b.height,d=b.depth,flower=b.kind==='florist',domestic=['home','inn'].includes(b.kind),wood=materials.wood,a=b.assembly||{stories:2,roof:flower?'teal':'clay',roofRise:flower?3.6:3.2,bay:flower?'octagonal':'none',awning:'striped',balcony:'none',chimney:flower?'none':'tall-stone'};
+export function buildShopNameplate(name,wood){
+  const group=new THREE.Group(),canvas=document.createElement('canvas');canvas.width=512;canvas.height=128;
+  const context=canvas.getContext('2d');context.fillStyle='#eee0be';context.fillRect(0,0,512,128);context.strokeStyle='#a58b55';context.lineWidth=4;context.strokeRect(12,12,488,104);
+  context.fillStyle='#405647';context.textAlign='center';context.textBaseline='middle';context.font="66px 'Songti SC',serif";context.fillText(name,256,64,460);
+  const map=new THREE.CanvasTexture(canvas);map.colorSpace=THREE.SRGBColorSpace;map.anisotropy=4;
+  const frame=new THREE.Mesh(new THREE.BoxGeometry(2.45,.50,.10),wood);frame.castShadow=true;frame.receiveShadow=true;group.add(frame);
+  const face=new THREE.Mesh(new THREE.PlaneGeometry(2.31,.40),new THREE.MeshStandardMaterial({map,roughness:.92}));face.position.z=.056;face.receiveShadow=true;face.material.userData.shared=true;group.add(face);
+  group.position.set(0,3.67,.47);group.userData.shopName=name;return group;
+}
+export function buildHeroHouse(b,{nameplate=false}={}){metrics.heroBuildings++;const p=new THREE.Group(),w=b.width,h=b.height,d=b.depth,flower=b.kind==='florist',domestic=['home','inn'].includes(b.kind),wood=materials.wood,a=b.assembly||{stories:2,roof:flower?'teal':'clay',roofRise:flower?3.6:3.2,bay:flower?'octagonal':'none',awning:'striped',balcony:'none',chimney:flower?'none':'tall-stone'};
   const door={x:w*.28,y:.12,w:1.15,h:2.45},shop={x:-w*.19,y:.75,w:w*.40,h:1.75},upper=[{x:-w*.27,y:4.18,w:.96,h:1.7},{x:w*.27,y:4.34,w:.96,h:1.65}];if(a.stories===3)upper.push({x:-w*.24,y:6.48,w:.85,h:1.35},{x:w*.24,y:6.48,w:.85,h:1.35});
   for(const side of[-1,1]){
     const face=new THREE.Group();face.position.set(side*w/2,0,-d/2);face.rotation.y=side*Math.PI/2;p.add(face);
@@ -113,6 +122,7 @@ export function buildHeroHouse(b){metrics.heroBuildings++;const p=new THREE.Grou
   else if(b.kind==='bakery'){for(let i=0;i<2;i++)planter(p,w*.36,0,.6+i*.42,13+i,.78);}
   if(a.chimney==='tall-stone'){const x=w*.32;for(let row=0;row<17;row++)for(let k=0;k<2;k++)stoneBlock(p,.37,.30,.72,x+(k-.5)*.37,h-1.4+row*.30,-d*.70,60+row+k);stoneBlock(p,.94,.18,.90,x,h+3.62,-d*.70,72);}
   wroughtSign(p,flower?w*.34:-w*.39,4.16,b.kind);if(!flower)vine(p,w*.44,.43,.35,3.3,8);
+  if(nameplate){p.add(buildShopNameplate(b.name,wood));metrics.nameplates++;}
   for(const lx of[-w*.40,w*.42]){tube(p,[[lx,2.43,.08],[lx,2.62,.24],[lx,2.43,.43]],.025,plain(0x403b30));box(p,.18,.29,.16,plain(0xbcaa74,.42),lx,2.22,.43);for(const xx of[-.09,.09])beam(p,[lx+xx,2.07,.50],[lx+xx,2.36,.50],.016,.016,plain(0x454033));mesh(p,new THREE.ConeGeometry(.18,.17,4),plain(0x403b30),lx,2.44,.43).rotation.y=Math.PI/4;}
   p.position.set(b.x,0,b.z);p.rotation.y=b.rotation;p.userData.building=b.id;p.userData.heroAsset=true;return p;
 }

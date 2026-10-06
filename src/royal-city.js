@@ -64,7 +64,7 @@ export function buildRoyalDistrict(plan){
   // Overhead members never create a ground-level invisible barrier.
   gateArch(10,5.8,3.4,1,1.7,42);box(11,.38,2,roof,0,10.35,42);
   sign('听 风 王 城',0,9.55,42.93);
-  gateArch(10.4,4.4,2,.5,1.3,-37);sign('风铃外庭',0,6.93,-36.25);
+  gateArch(10.4,4.4,2,.5,1.3,-37);sign('王宫外庭',0,6.93,-36.25);
   arch(4.2,6.55,.16,stone,0,.05,-58.82);arch(3.7,6.2,.16,plain(0x5c4d3c),0,.1,-58.6);
   box(.055,4.8,.05,gold,0,2.8,-58.42);
   for(const x of[-.45,.45])mesh(new THREE.TorusGeometry(.105,.025,5,12),gold,x,1.75,-58.39);

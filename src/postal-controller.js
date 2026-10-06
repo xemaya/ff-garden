@@ -77,6 +77,7 @@ export function createPostalController({document,events,journey,world,toast,open
     $('postal-tab-'+name).addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.code))return;event.preventDefault();const next=event.code==='Home'?'letters':event.code==='End'?'observations':name==='letters'?'observations':'letters';selectTab(next);$('postal-tab-'+next).focus();});
   }
   $('postal-observe').addEventListener('click',()=>{
+    if(open)return;
     const observation=getObservation();if(!observation||(!observation.recorded&&!observation.canObserve)||world.view().mode!=='street')return;
     if(!observation.recorded&&!journey.discover({id:observation.entry.id,near:observation.near,streetMode:true}))return;
     feedback='';tab='observations';open=true;clearInput();update();$('postal-observation-title').focus();if(!observation.recorded)toast(observation.entry.keepsake);

@@ -102,3 +102,8 @@ test('notebook immediately hides nearby NPC controls and Escape restores them wi
  assert(ui.controller.handleEscape());assert(!ui.controller.isOpen());assert(!ui.$('moogle-panel').hidden);assert.equal(ui.document.activeElement.id,'letter-quest-open');
  ui.$('letter-quest-open').click();assert(ui.$('moogle-panel').hidden);ui.$('letter-quest-close').click();assert(!ui.$('moogle-panel').hidden);assert.equal(ui.document.activeElement.id,'letter-quest-open');
 });
+
+test('an observation card cannot act while the notebook already owns the interaction',()=>{
+ const s=setup();s.observation={entry:discoveries[0],recorded:false,near:true,canObserve:true};const ui=mount(s);ui.controller.show();
+ ui.$('postal-observe').emit('click');assert.deepEqual(s.journey.snapshot().discoveries,[]);ui.$('letter-quest-close').click();ui.$('postal-observe').click();assert.deepEqual(s.journey.snapshot().discoveries,[discoveries[0].id]);
+});
