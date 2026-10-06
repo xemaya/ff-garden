@@ -1,0 +1,218 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_fl2va_pruned_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "lora_name": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "3": {
+    "class_type": "CLIPLoaderGGUFMiniMaxH3",
+    "inputs": {
+      "clip_name": "qwen3-vl-32b-ultra-heretic-minimax-h3-q6_k.gguf",
+      "vision_name": "qwen3vl_32b_minimax_h3_visual_bf16.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-video-ab-20261007/B-first.png"
+    }
+  },
+  "7": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "prompt": "For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\n\nintegrated_multimodal_description: [Shot 1] One continuous five-second shot in a warm, whimsical old royal-town theater square, a refined Japanese fantasy adventure film with the charming late-1990s pre-rendered storybook mood of Final Fantasy IX. Preserve the supplied image's exact little white moogle courier identity, red floating pom-pom, pointed pink-lined ears, small purple bat wings, brown leather satchel, body proportions, ticket booth, theater poster and their relative placement. The moogle stays in the same place, looks warmly toward the camera, slowly raises one small paw and gives one gentle greeting wave, then lowers the paw. Its red pom-pom bobs slightly and its tiny wings remain relaxed. The camera performs a very subtle smooth push-in, no more than five percent closer, with no cut, no pan, no orbit and no new viewpoint. The background remains stationary; only the dark crimson curtain stirs almost imperceptibly in a light breeze. Preserve the original visual style and color palette of the first frame. Do not redesign the character, do not turn it into a human or a rabbit, do not add people, objects or new scenery, do not introduce readable new text, and do not exaggerate the waving motion. The shot remains clear, calm and coherent from start to finish.\noverall_soundscape: Very quiet courtyard ambience and a faint soft breeze, no speech, no vocals and no music.",
+      "width": 864,
+      "height": 480,
+      "length": 124,
+      "first_frame": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "MiniMaxH3MotionContext",
+    "inputs": {
+      "conditioning": [
+        "7",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "latent": [
+        "7",
+        1
+      ],
+      "context_length": "22",
+      "audio_context_length": 24
+    }
+  },
+  "9": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "conditioning": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 8,
+      "denoise": 1.0
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 14027
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "13": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "9",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "10",
+        0
+      ],
+      "latent_image": [
+        "7",
+        1
+      ]
+    }
+  },
+  "14": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "13",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "13",
+        0
+      ],
+      "vae": [
+        "5",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "MiniMaxH3MotionContextTrim",
+    "inputs": {
+      "images": [
+        "14",
+        0
+      ],
+      "trim_frames": [
+        "8",
+        1
+      ],
+      "audio": [
+        "15",
+        0
+      ],
+      "fps": 24.0,
+      "match_tail": true
+    }
+  },
+  "17": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "16",
+        0
+      ],
+      "fps": 24.0,
+      "audio": [
+        "16",
+        1
+      ]
+    }
+  },
+  "18": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "17",
+        0
+      ],
+      "filename_prefix": "batches/ff9-video-ab-20261007/B-video",
+      "format": "auto",
+      "format.codec": "auto"
+    }
+  }
+}

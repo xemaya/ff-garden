@@ -1,0 +1,110 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "qwen_image_2.1_bf16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "QwenImage21Cache",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "device": "auto",
+      "dtype": "default"
+    }
+  },
+  "3": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_8b_bf16.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-video-ab-20261007/A-first.png"
+    }
+  },
+  "6": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "prompt": "<image1> is the fixed composition and character reference. Create a carefully art-directed, painterly version of this exact frame for a Final Fantasy IX-inspired storybook fantasy film. Preserve the camera angle, field of view, perspective, framing, subject scale and placement. Keep the same white moogle courier, red pom-pom, pink-lined pointed ears, small purple bat wings, facial expression, proportions and brown leather satchel; do not redesign its face or anatomy and keep both paws and feet visible. Keep the same theater ticket booth, dark crimson curtains, teal-green pitched roof, brass trim, wooden counter and the standing illustrated poster at the same positions and sizes. Enrich surface craftsmanship and lighting: hand-painted weathered timber with fine carved details, soft cloth folds, subtly textured ivory fur, aged brass, delicately irregular stone paving, warm morning sunlight, soft ambient contact shadows, atmospheric perspective, restrained cinematic color grading. A lovingly painted late-1990s Japanese fantasy pre-rendered-background aesthetic, sophisticated and charming, not photorealistic and not generic plastic 3D. The original set must remain recognizable. Do not move or add buildings, do not add any people or creatures, do not add new props, and do not alter the shape or number of limbs. Keep the poster design and its paper border, with no new lettering. No user interface, no subtitles, no logos, no watermark. Output one clean 16:9 cinematic frame.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "vae": [
+        "4",
+        0
+      ],
+      "images.image_1": [
+        "5",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "6",
+        1
+      ],
+      "latent_image": [
+        "6",
+        2
+      ],
+      "seed": 14027,
+      "steps": 25,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0
+    }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "7",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ],
+      "filename_prefix": "batches/ff9-video-ab-20261007/B-polish-corrected"
+    }
+  }
+}

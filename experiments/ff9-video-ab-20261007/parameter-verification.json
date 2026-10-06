@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "videoGraphEqualExceptFirstFrameAndOutputPrefix": true,
+  "differences": [
+    {
+      "node": "6",
+      "class": "LoadImage",
+      "A": {
+        "image": "ff9-video-ab-20261007/A-first.png"
+      },
+      "B": {
+        "image": "ff9-video-ab-20261007/B-first.png"
+      }
+    },
+    {
+      "node": "18",
+      "class": "SaveVideo",
+      "A": {
+        "video": [
+          "17",
+          0
+        ],
+        "filename_prefix": "batches/ff9-video-ab-20261007/A-video",
+        "format": "auto",
+        "format.codec": "auto"
+      },
+      "B": {
+        "video": [
+          "17",
+          0
+        ],
+        "filename_prefix": "batches/ff9-video-ab-20261007/B-video",
+        "format": "auto",
+        "format.codec": "auto"
+      }
+    }
+  ]
+}
