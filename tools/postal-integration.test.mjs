@@ -4,7 +4,7 @@ import {createPostalWorld} from '../src/postal-world.js';
 import {createPostalController} from '../src/postal-controller.js';
 import {createMoogleBehavior} from '../src/moogle-behavior.js';
 import {postalView} from '../src/postal-view.js';
-import {discoveries} from '../src/postal-content.js';
+import {chapters,discoveries} from '../src/postal-content.js';
 
 function setup(){
  const data=new Map(),storage={getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)};
@@ -53,7 +53,7 @@ test('complete UI-event slice: separate handoffs, wrong/correct reply, final kee
  for(let chapter=0;chapter<3;chapter++){
   ui.$('letter-quest-action').click();assert.equal(s.journey.snapshot().state,'carrying');ui.$('letter-quest-action').click(2);assert.equal(s.journey.snapshot().state,'carrying');
   ui.$('letter-quest-action').click();
-  if(chapter===1){assert.equal(s.journey.snapshot().state,'reply');const options=ui.$('postal-replies').children;options.find(b=>b.dataset.reply==='three-short').click();assert.equal(s.journey.snapshot().state,'reply');assert(ui.$('postal-feedback').textContent.includes('摇摇头'));options.find(b=>b.dataset.reply==='short-short-long').click();assert.equal(s.journey.snapshot().state,'completed');}
+  if(chapter===1){assert.equal(s.journey.snapshot().state,'reply');const options=ui.$('postal-replies').children;options.find(b=>b.dataset.reply==='three-short').click();assert.equal(s.journey.snapshot().state,'reply');assert.equal(ui.$('postal-feedback').textContent,chapters[1].wrongAnswer);options.find(b=>b.dataset.reply==='short-short-long').click();assert.equal(s.journey.snapshot().state,'completed');}
   if(chapter<2)ui.$('postal-continue').click();
  }
  assert(s.journey.snapshot().ending);assert(!ui.$('postal-ending').hidden);assert(ui.$('letter-quest-action').hidden);assert(ui.$('letter-quest-guide').hidden);assert(ui.$('postal-remembrance').textContent.includes('两短一长'));
@@ -76,4 +76,8 @@ test('recovery UI defaults to cancel, preserves progress on Escape, and exposes 
  ui.$('postal-recover-legacy').click();assert.equal(ui.document.activeElement.id,'postal-recovery-cancel');assert(!ui.$('postal-recovery-confirmation').hidden);assert(ui.controller.handleEscape());assert.equal(s.journey.snapshot().chapter,1);assert.equal(ui.document.activeElement.id,'postal-recover-legacy');
  ui.$('letter-quest-reset').click();ui.$('letter-quest-reset-confirm').click();assert.equal(s.journey.snapshot().chapter,0);assert(!ui.$('postal-recover-journey').hidden);ui.$('postal-recover-journey').click();assert(ui.$('postal-recovery-title').textContent.includes('携信途中'));ui.$('postal-recovery-confirm').click();assert.equal(s.journey.snapshot().chapter,1);assert.equal(s.journey.snapshot().state,'carrying');
  ui.$('postal-recover-legacy').click();s.storage.setItem=()=>{throw Error('quota');};ui.$('postal-recovery-confirm').click();assert.equal(s.journey.snapshot().chapter,1);assert(!ui.$('postal-recovery-error').hidden);assert(ui.$('postal-recovery-error').textContent.includes('没有替换进度'));
+});
+
+test('backup storage events refresh recovery choices without discarding an unsaved carrying session',()=>{
+ const s=setup(),ui=mount(s);s.storage.setItem=()=>{throw Error('quota');};ui.$('letter-quest-open').click();ui.$('letter-quest-action').click();assert.equal(s.journey.snapshot().state,'carrying');assert.equal(s.journey.snapshot().saved,false);ui.events.emit('storage',{key:'ff-garden.postal-journey.previous.v1'});assert.equal(s.journey.snapshot().state,'carrying');assert.equal(s.journey.snapshot().saved,false);
 });

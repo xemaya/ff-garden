@@ -35,6 +35,7 @@ export function createPostalController({document,events,journey,world,toast,open
   function update(){
     const snapshot=journey.snapshot(),target=world.currentTarget(snapshot),chapter=chapters[snapshot.chapter];
     const context=world.interaction(snapshot.state==='available'?chapter.sender:chapter.recipient),model=postalView(snapshot,target,context,world.view().mode);
+    if(snapshot.syncNotice)feedback='';$('postal-sync-notice').hidden=!snapshot.syncNotice;
     $('letter-quest-panel').hidden=!open;$('letter-quest-open').setAttribute('aria-expanded',String(open));
     setText('postal-title',tab==='letters'?model.title:'邮差手记 · 见闻');setText('letter-quest-step',model.step);setText('letter-quest-text',model.body);
     $('postal-letter-page').hidden=tab!=='letters';$('postal-observations-page').hidden=tab!=='observations';
@@ -101,7 +102,7 @@ export function createPostalController({document,events,journey,world,toast,open
   $('postal-recovery-cancel').addEventListener('click',()=>{const source=journey.snapshot().recoverySource;cancelConfirmations();update();$('postal-recover-'+source).focus();});
   $('postal-recovery-confirm').addEventListener('click',()=>{const ok=journey.confirmRecovery();update();if(!ok)return;feedback='';tab='letters';update();$('postal-title').focus();toast('旅程已恢复；恢复前的旅程保留在备份里。');});
   $('postal-save-tools').addEventListener('toggle',()=>{if(!$('postal-save-tools').open){cancelConfirmations();update();}});
-  events.addEventListener('storage',event=>{if([JOURNEY_KEY,PREVIOUS_JOURNEYS_KEY,LEGACY_BACKUP_KEY,null].includes(event.key)){journey.restore();feedback='';update();}});
+  events.addEventListener('storage',event=>{if(event.key===JOURNEY_KEY||event.key===null){if(event.key===null)journey.restore();else journey.syncStoredJourney();feedback='';update();}else if([PREVIOUS_JOURNEYS_KEY,LEGACY_BACKUP_KEY].includes(event.key)){journey.refreshBackups();update();}});
   update();
   return {update,show,cancelConfirmations,isOpen:()=>open,
     handleEscape(){if(!journey.snapshot().resetPending&&!journey.snapshot().recoveryPending)return false;cancelReset();clearInput();return true;}

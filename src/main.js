@@ -7,6 +7,7 @@ import {compileRoyalLayout,royalLocation,mapProjection} from './royal-layout.js'
 import {buildRoyalDistrict,buildRoyalLandscape} from './royal-city.js';
 import {observationSites,attachObservationSites,observationView} from './postal-observations.js';
 import {buildObservationMarkers} from './observation-markers.js';
+import {captureStreetPose} from './view-transitions.js';
 import {renderProfiles,readPreference,writePreference} from './preferences.js';
 import * as THREE from 'three';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
@@ -31,6 +32,8 @@ import {loadCharacterAssets} from './asset-loading.js';
 import {loadHeroMaterials,buildHeroHouse,buildHeroStreet,heroMetrics} from './hero.js';
 
 const $=s=>document.querySelector(s),canvas=$('#world');
+// Repeated Enter/Space must not activate the next button after focus moves.
+document.addEventListener('keydown',event=>{if(event.repeat&&event.target.tagName==='BUTTON'&&['Enter','Space'].includes(event.code))event.preventDefault();},{capture:true});
 let storage=null;try{storage=window.localStorage;}catch{}
 const startedAt=performance.now();let readyAt=null;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -103,17 +106,17 @@ try{
   function setMap(value){
     if(artStudy)setStudy(false);if(mapMode===value)return;postal?.cancelConfirmations();castView=false;mapMode=value;document.body.classList.toggle('map-mode',value);touring=false;$('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';clearInput();$('#map').setAttribute('aria-pressed',String(value));$('#map-panel').hidden=!value;$('#nearby').hidden=true;$('#map span').textContent=value?'回到街道':'游览地图';
     const start={...pose};let target;
-    if(value){oldPose={...pose};camera.position.set(royal?0:19,royal?104:46,royal?10:25);camera.lookAt(royal?0:-1,0,royal?-12:-3);target={x:camera.position.x,y:camera.position.y,z:camera.position.z,yaw:camera.rotation.y,pitch:camera.rotation.x};}else target={...oldPose};
-    transition={start,target,startTime:performance.now(),duration:reduced?1:800};scene.fog.density=value?.001:.0042;apply();drawMap();
+    if(value){oldPose=captureStreetPose(pose,transition);camera.position.set(royal?0:19,royal?104:46,royal?10:25);camera.lookAt(royal?0:-1,0,royal?-12:-3);target={x:camera.position.x,y:camera.position.y,z:camera.position.z,yaw:camera.rotation.y,pitch:camera.rotation.x};}else target={...oldPose};
+    transition={start,target,returningToStreet:!value,startTime:performance.now(),duration:reduced?1:800};scene.fog.density=value?.001:.0042;apply();drawMap();
   }
   function setStudy(value){
     if(artStudy===value)return;postal?.cancelConfirmations();
-    if(value){castView=false;if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;studyPose={...pose};Object.assign(pose,royal?{x:0,y:2.7,z:49,yaw:0,pitch:.17}:{x:-.20,y:3.15,z:33.9,yaw:-.055,pitch:.09});}
+    if(value){castView=false;if(mapMode){setMap(false);Object.assign(pose,oldPose);}else if(transition?.returningToStreet)Object.assign(pose,transition.target);transition=null;touring=false;studyPose={...pose};Object.assign(pose,royal?{x:0,y:2.7,z:49,yaw:0,pitch:.17}:{x:-.20,y:3.15,z:33.9,yaw:-.055,pitch:.09});}
     else if(studyPose)Object.assign(pose,studyPose);
     $('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';artStudy=value;document.body.classList.toggle('art-study',value);$('#study').setAttribute('aria-pressed',String(value));
     animated.people.forEach(p=>p.visible=!value);animated.airship.visible=!value;clearInput();apply();
   }
-  function focusCourier(distance=2.15){castView=false;
+  function focusCourier(distance=reduced?1.65:2.15){castView=false;
     if(!couriers.length)return;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;clearInput();
     const c=couriers.reduce((a,b)=>Math.hypot(a.actor.root.position.x-pose.x,a.actor.root.position.z-pose.z)<Math.hypot(b.actor.root.position.x-pose.x,b.actor.root.position.z-pose.z)?a:b),p=c.actor.root.position;
     const target={x:p.x+.68,z:p.z+distance};if(!canOccupy(plan,target.x,target.z))return;
@@ -154,7 +157,7 @@ try{
       // Honour an initial character link only while the visitor is still at
       // the entry; background loading and retries never interrupt exploration.
       if(deferredFocus.delete(name)&&result.status==='fulfilled'&&!mapMode&&!artStudy&&!castView&&!touring&&pose.x===plan.spawn.x&&pose.z===plan.spawn.z){
-        if(name==='moogle')focusCourier(query.get('moogle')==='patrol'?4.6:2.15);else if(name==='mage')focusMage();else focusBird();
+        if(name==='moogle')focusCourier(query.get('moogle')==='patrol'?4.6:reduced?1.65:2.15);else if(name==='mage')focusMage();else focusBird();
       }
     }catch(error){console.error(error);failedCharacters.add(name);}
     showCharacterStatus();
@@ -170,7 +173,7 @@ try{
   });
   $('#study').addEventListener('click',()=>setStudy(!artStudy));$('#study-exit').addEventListener('click',()=>setStudy(false));
   function beginTour(targetIndex=plan.path.length-1){castView=false;
-    if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);transition=null;}
+    if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);transition=null;}else if(transition?.returningToStreet){Object.assign(pose,transition.target);transition=null;}
     const route=routeTo(plan,{x:pose.x,z:pose.z},targetIndex);
     if(!route){toast('先走回石板路上，再跟着风铃声慢慢逛。');return;}
     tourPath=route;cursor=1;tourTarget=targetIndex;touring=true;tourFinished=false;clearInput();$('#stroll').innerHTML='在这里停一停 <span>Ⅱ</span>';toast('跟着石板路慢慢走 · WASD 随时接管');
@@ -240,5 +243,5 @@ try{
       const currentQuestTarget=postal.update();canvas.dataset.state=JSON.stringify({postalJourney:journey.snapshot(),letterQuest:journey.snapshot(),questTarget:currentQuestTarget&&{name:currentQuestTarget.name,species:currentQuestTarget.species,loaded:currentQuestTarget.loaded},questOpen:postal.isOpen(),ready:true,readyMs:readyAt-startedAt,renderProfile:profile,pixelRatio:renderer.getPixelRatio(),shadowSize:sun.shadow.mapSize.x,inputPointers:movement.pointerCount,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],royalCity:royalMetrics,theme:royal?'listening-wind-royal-city':'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:royal?'royal':generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:royal?plan.landmarks.map(l=>l.name):['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:royal||!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
     }
   }
-  if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:2.15);apply();drawMap();readyAt=performance.now();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
+  if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:reduced?1.65:2.15);apply();drawMap();readyAt=performance.now();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
 }catch(error){console.error(error);$('#loading').textContent='街角还没准备好：'+error.message;}

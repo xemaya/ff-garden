@@ -27,6 +27,7 @@ function decodeLegacy(raw){
 export function createPostalJourney(storage){
   let progress=blank(),saved=true,resetPending=false,recoveryPending=false,legacyRaw=null,storageIssue=null,protectedData=false;
   let previous=[],backupIssue=false,legacyIssue=false,recoveryError=null,recoverySource=null,recoveryId=null;
+  let lastRaw=null,syncNotice=false;
   const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
   const summary=p=>p?{chapter:p.chapter,state:p.state,discoveries:p.discoveries.length}:null;
   function readPrevious(){
@@ -46,6 +47,7 @@ export function createPostalJourney(storage){
     }catch{backupIssue=true;recoveryError='backup-unavailable';return false;}
   }
   function replaceProgress(next){
+    if(!syncStoredJourney()){recoveryError='changed-elsewhere';return false;}
     if(protectedData){recoveryError='protected';return false;}
     // Recheck immediately before a destructive write; another tab may have
     // supplied a future-version save while the confirmation was open.
@@ -59,7 +61,7 @@ export function createPostalJourney(storage){
     if(!backUpCurrent())return false;
     try{storage.setItem(JOURNEY_KEY,JSON.stringify(next));}
     catch{recoveryError='save-failed';return false;}
-    progress=next;saved=true;storageIssue=null;recoveryError=null;return true;
+    progress=next;lastRaw=JSON.stringify(next);saved=true;storageIssue=null;recoveryError=null;syncNotice=false;return true;
   }
   function readLegacy(){
     legacyRaw=null;legacyIssue=false;
@@ -67,22 +69,41 @@ export function createPostalJourney(storage){
       try{const raw=storage.getItem(key);if(raw!==null){decodeLegacy(raw);legacyRaw=raw;legacyIssue=false;return;}}catch{legacyIssue=true;}
     }
   }
+  function protectUnreadable(raw){
+    saved=false;protectedData=true;storageIssue='unreadable';
+    try{if(storage.getItem(UNREADABLE_BACKUP_KEY)===null)storage.setItem(UNREADABLE_BACKUP_KEY,raw);}catch{}
+  }
+  function syncStoredJourney(){
+    if(protectedData)return true;
+    let raw;
+    try{raw=storage.getItem(JOURNEY_KEY);}catch{saved=false;protectedData=true;storageIssue='unavailable';return true;}
+    if(raw===lastRaw)return true;
+    if(raw!==null){
+      let current;try{current=decodeJourney(raw);}catch{protectUnreadable(raw);return true;}
+      if(same(current,progress)){lastRaw=raw;return true;}
+    }
+    restore();syncNotice=true;return false;
+  }
   function persist(){
-    if(protectedData){saved=false;return false;}
-    try{storage.setItem(JOURNEY_KEY,JSON.stringify(progress));saved=true;storageIssue=null;return true;}
-    catch{saved=false;storageIssue='unavailable';return false;}
+    if(!syncStoredJourney())return 'superseded';
+    if(protectedData){saved=false;return 'protected';}
+    try{const nextRaw=JSON.stringify(progress);storage.setItem(JOURNEY_KEY,nextRaw);lastRaw=nextRaw;saved=true;storageIssue=null;return 'saved';}
+    catch{saved=false;storageIssue='unavailable';return 'unavailable';}
+  }
+  function advance(next){
+    if(!syncStoredJourney())return false;
+    progress=next;syncNotice=false;return persist()!=='superseded';
   }
   function restore(){
-    progress=blank();saved=true;resetPending=false;recoveryPending=false;protectedData=false;storageIssue=null;legacyRaw=null;recoveryError=null;recoverySource=null;recoveryId=null;
+    progress=blank();saved=true;resetPending=false;recoveryPending=false;protectedData=false;storageIssue=null;legacyRaw=null;recoveryError=null;recoverySource=null;recoveryId=null;lastRaw=null;syncNotice=false;
     try{previous=readPrevious();backupIssue=false;}catch{previous=[];backupIssue=true;}
     let raw;
-    try{raw=storage.getItem(JOURNEY_KEY);}catch{saved=false;protectedData=true;storageIssue='unavailable';return;}
+    try{raw=storage.getItem(JOURNEY_KEY);lastRaw=raw;}catch{saved=false;protectedData=true;storageIssue='unavailable';return;}
     if(raw!==null){
       try{progress=decodeJourney(raw);}catch{
-        saved=false;protectedData=true;storageIssue='unreadable';
+        protectUnreadable(raw);
         // Retain the original key, including future versions. Never silently
         // overwrite an unreadable save when a session action occurs.
-        try{if(storage.getItem(UNREADABLE_BACKUP_KEY)===null)storage.setItem(UNREADABLE_BACKUP_KEY,raw);}catch{}
       }
       readLegacy();return;
     }
@@ -102,27 +123,27 @@ export function createPostalJourney(storage){
   const nearby=(context,species)=>context?.actorReady&&context.species===species&&context.near&&context.streetMode&&!context.busy;
   restore();
   return {
-    snapshot:()=>({...progress,discoveries:[...progress.discoveries],saved,resetPending,recoveryPending,recoverySource,recoveryError,protectedData,backupIssue,legacyIssue,hasLegacyBackup:legacyRaw!==null,hasJourneyBackup:!!previous.length&&!same(previous.at(-1).progress,progress),recoverySummary:recoveryId?summary(previous.find(entry=>entry.id===recoveryId)?.progress):null,legacySummary:legacyRaw===null?null:decodeLegacy(legacyRaw).state,previousSummary:summary(previous.at(-1)?.progress),storageIssue,ending:progress.chapter===chapters.length-1&&progress.state==='completed'}),
+    snapshot:()=>({...progress,discoveries:[...progress.discoveries],saved,resetPending,recoveryPending,recoverySource,recoveryError,syncNotice,protectedData,backupIssue,legacyIssue,hasLegacyBackup:legacyRaw!==null,hasJourneyBackup:!!previous.length&&!same(previous.at(-1).progress,progress),recoverySummary:recoveryId?summary(previous.find(entry=>entry.id===recoveryId)?.progress):null,legacySummary:legacyRaw===null?null:decodeLegacy(legacyRaw).state,previousSummary:summary(previous.at(-1)?.progress),storageIssue,ending:progress.chapter===chapters.length-1&&progress.state==='completed'}),
     accept(context){
       if(blocked()||progress.state!=='available'||!nearby(context,chapters[progress.chapter].sender))return false;
-      progress.state='carrying';persist();return true;
+      return advance({...progress,state:'carrying'});
     },
     deliver(context){
       if(blocked()||progress.state!=='carrying'||!nearby(context,chapters[progress.chapter].recipient))return false;
-      progress.state=chapters[progress.chapter].correctAnswer?'reply':'completed';persist();return true;
+      return advance({...progress,state:chapters[progress.chapter].correctAnswer?'reply':'completed'});
     },
     answer(id,context){
       if(blocked()||progress.state!=='reply'||!nearby(context,chapters[progress.chapter].recipient))return {ok:false,reason:'not-ready'};
       if(id!==chapters[progress.chapter].correctAnswer)return {ok:false,reason:'wrong-answer'};
-      progress.state='completed';persist();return {ok:true};
+      return advance({...progress,state:'completed'})?{ok:true}:{ok:false,reason:'changed-elsewhere'};
     },
     continue(){
       if(blocked()||progress.state!=='completed'||progress.chapter===chapters.length-1)return false;
-      progress.chapter++;progress.state='available';persist();return true;
+      return advance({...progress,chapter:progress.chapter+1,state:'available'});
     },
     discover({id,near=false,streetMode=false}={}){
       if(blocked()||!discoveryIds.has(id)||!near||!streetMode||progress.discoveries.includes(id))return false;
-      progress.discoveries.push(id);persist();return true;
+      return advance({...progress,discoveries:[...progress.discoveries,id]});
     },
     requestReset(){recoveryPending=false;recoveryError=null;resetPending=true;},
     cancelReset(){resetPending=false;recoveryError=null;},
@@ -151,6 +172,7 @@ export function createPostalJourney(storage){
       if(!replaceProgress(next))return false;
       recoveryPending=false;recoverySource=null;recoveryId=null;return true;
     },
-    restore
+    restore,syncStoredJourney,
+    refreshBackups(){try{previous=readPrevious();backupIssue=false;}catch{previous=[];backupIssue=true;}readLegacy();resetPending=false;recoveryPending=false;recoverySource=null;recoveryId=null;recoveryError=null;}
   };
 }
