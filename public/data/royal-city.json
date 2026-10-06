@@ -10,7 +10,7 @@
   },
   "buildings": [
     {
-      "kind": "home",
+      "kind": "inn",
       "name": "回声旅舍",
       "side": "left",
       "z": 23.5,
@@ -25,10 +25,11 @@
         "awning": "none",
         "balcony": "timber",
         "chimney": "none"
-      }
+      },
+      "description": "旅舍为沿路来的旅人留一盏灯，窗边的风铃每天傍晚响起。"
     },
     {
-      "kind": "inn",
+      "kind": "home",
       "name": "青瓦邮局",
       "side": "left",
       "z": 18.5,
@@ -43,10 +44,11 @@
         "awning": "striped",
         "balcony": "timber",
         "chimney": "none"
-      }
+      },
+      "description": "这是邮差整理问候的小屋。今天的三封信，从广场的邮包出发。"
     },
     {
-      "kind": "home",
+      "kind": "toys",
       "name": "钟匠小屋",
       "side": "left",
       "z": 13.5,
@@ -61,10 +63,11 @@
         "awning": "none",
         "balcony": "timber",
         "chimney": "none"
-      }
+      },
+      "description": "小木钟不催人赶路，只提醒街坊留一点时间听风。"
     },
     {
-      "kind": "home",
+      "kind": "bakery",
       "name": "晨光面包房",
       "side": "right",
       "z": 10.5,
@@ -76,13 +79,14 @@
         "roof": "clay",
         "roofRise": 3.2,
         "bay": "none",
-        "awning": "none",
+        "awning": "striped",
         "balcony": "timber",
         "chimney": "none"
-      }
+      },
+      "description": "面包香从窗边飘到城门。店主把第一炉留给起早走路的人。"
     },
     {
-      "kind": "inn",
+      "kind": "books",
       "name": "纸页书坊",
       "side": "right",
       "z": 5.5,
@@ -97,10 +101,11 @@
         "awning": "none",
         "balcony": "timber",
         "chimney": "none"
-      }
+      },
+      "description": "书坊抄录旧曲，也给没有写完的回信留一页空白。"
     },
     {
-      "kind": "home",
+      "kind": "cafe",
       "name": "旅人茶屋",
       "side": "right",
       "z": 0.5,
@@ -112,10 +117,11 @@
         "roof": "clay",
         "roofRise": 2.8,
         "bay": "none",
-        "awning": "none",
+        "awning": "striped",
         "balcony": "timber",
         "chimney": "none"
-      }
+      },
+      "description": "茶屋朝向主街摆一张小桌。问候不急，喝完这杯再走。"
     }
   ],
   "provenance": {

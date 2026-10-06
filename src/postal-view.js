@@ -6,7 +6,7 @@ export function postalView(snapshot,target,interaction,mode){
   let body=snapshot.state==='available'?chapter.invitation:snapshot.state==='carrying'?chapter.letter:snapshot.state==='reply'?chapter.received+' '+chapter.replyPrompt:chapter.received+' '+chapter.next;
   if(snapshot.ending)body+=' '+ending.text;
   let hint;
-  if(confirming)hint='正在确认是否重新开始；取消会保留整段旅程。';
+  if(confirming)hint=snapshot.recoveryPending?'正在确认是否恢复备份；取消会保留现在的旅程。':'正在确认是否重新开始；取消会保留整段旅程。';
   else if(snapshot.state==='completed')hint=snapshot.ending?'一日邮差手记已完成。你可以继续散步。':'点击“接下一段委托”，看看这封信带来的下一步。';
   else if(!target?.exists)hint='当前街区没有对应人物，请换到三条街道之一。';
   else if(!target.loaded)hint=target.failed?target.name+'暂时加载失败。重试角色前，可以先在地图查看位置。':target.name+'正在加载。请先看看信的内容，加载完成后才能交接。';

@@ -30,7 +30,7 @@ test('pending reset/recovery prevents unrelated progress; cancel leaves exact st
  const storage=memory();storage.setItem(QUEST_KEY,JSON.stringify({version:1,state:'carrying'}));const j=createPostalJourney(storage),before=storage.getItem(JOURNEY_KEY);
  j.requestReset();assert(!j.deliver(at('mage')));assert(!j.discover({id:discoveries[0].id,near:true,streetMode:true}));j.cancelReset();assert.equal(storage.getItem(JOURNEY_KEY),before);assert(j.requestRecovery());assert(!j.deliver(at('mage')));j.cancelRecovery();assert.equal(storage.getItem(JOURNEY_KEY),before);assert(j.deliver(at('mage')));
 });
-test('three unique observations are optional, nearby and player-initiated',()=>{
+test('defined observations are optional, nearby and player-initiated',()=>{
  const storage=memory(),j=createPostalJourney(storage);
  assert(!j.discover({id:'unknown',near:true,streetMode:true}));for(const entry of discoveries){assert(!j.discover({id:entry.id,near:false,streetMode:true}));assert(!j.discover({id:entry.id,near:true,streetMode:false}));assert(j.discover({id:entry.id,near:true,streetMode:true}));assert(!j.discover({id:entry.id,near:true,streetMode:true}));}
  assert.equal(j.snapshot().state,'available');assert.equal(createPostalJourney(storage).snapshot().discoveries.length,discoveries.length);

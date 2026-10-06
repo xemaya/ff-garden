@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {compileRoyalLayout,mapProjection,royalLocation} from '../src/royal-layout.js';
+import {compileRoyalLayout,mapProjection,royalLocation,royalScenerySpec} from '../src/royal-layout.js';
 import {canOccupy,routeTo,nearestPathIndex} from '../src/layout.js';
 import {createPostalWorld} from '../src/postal-world.js';
 const raw=JSON.parse(readFileSync(new URL('../public/data/royal-city.json',import.meta.url)));
@@ -15,7 +15,7 @@ test('actual royal route passes through gate, street, plaza and courtyard withou
   assert.deepEqual([48,8,-24,-55].map(royalLocation),['听风城门','青瓦主街','风铃喷泉广场','王宫外庭']);
 });
 test('every ground architecture solid blocks the player while both real gateways remain open',()=>{
-  const p=plan();assert.equal(p.structures.length,21);
+  const p=plan();assert.equal(p.structures.length,27);
   for(const s of p.structures){assert.ok(p.colliders.includes(s));assert.equal(canOccupy(p,s.x,s.z),false,s.id);}
   assert.ok(clearSegment(p,{x:0,z:48},{x:0,z:34}));assert.ok(clearSegment(p,{x:0,z:-34},{x:0,z:-55}));
   for(const point of[{x:23,z:0},{x:0,z:-60},{x:0,z:51},{x:6,z:48}])assert.equal(canOccupy(p,point.x,point.z),false);
@@ -32,4 +32,8 @@ test('map fits actual walls, route, palace and all role targets within its paddi
   const p=plan(),m=mapProjection(p.bounds);assert.equal(m.xScale,m.zScale);
   for(const point of[...p.path,...p.people,...p.structures,...p.landmarks]){const x=m.ox+point.x*m.xScale,y=m.oy+point.z*m.zScale;assert.ok(x>=22&&x<=218);assert.ok(y>=22&&y<=298);}
   assert.equal(p.portal.href,'/?street=residential');assert.ok(canOccupy(p,p.portal.x,p.portal.z));
+});
+
+test('complete hill footprints stay outside royal bounds with space between scenery and playable ground',()=>{
+ const p=plan();for(const h of royalScenerySpec(p.bounds)){const minX=h.x-h.r*h.sx,maxX=h.x+h.r*h.sx,minZ=h.z-h.r*h.sz,maxZ=h.z+h.r*h.sz;assert.ok(maxX<p.bounds.minX-8||minX>p.bounds.maxX+8||maxZ<p.bounds.minZ-8||minZ>p.bounds.maxZ+8,'hill must be fully outside city, not just its center');}
 });

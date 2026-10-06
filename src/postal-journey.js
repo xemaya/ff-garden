@@ -28,6 +28,7 @@ export function createPostalJourney(storage){
   let progress=blank(),saved=true,resetPending=false,recoveryPending=false,legacyRaw=null,storageIssue=null,protectedData=false;
   let previous=[],backupIssue=false,legacyIssue=false,recoveryError=null,recoverySource=null,recoveryId=null;
   const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  const summary=p=>p?{chapter:p.chapter,state:p.state,discoveries:p.discoveries.length}:null;
   function readPrevious(){
     const raw=storage.getItem(PREVIOUS_JOURNEYS_KEY);if(raw===null)return [];
     const value=JSON.parse(raw);
@@ -101,7 +102,7 @@ export function createPostalJourney(storage){
   const nearby=(context,species)=>context?.actorReady&&context.species===species&&context.near&&context.streetMode&&!context.busy;
   restore();
   return {
-    snapshot:()=>({...progress,discoveries:[...progress.discoveries],saved,resetPending,recoveryPending,recoverySource,recoveryError,protectedData,backupIssue,legacyIssue,hasLegacyBackup:legacyRaw!==null,hasJourneyBackup:!!previous.length&&!same(previous.at(-1).progress,progress),recoverySummary:recoveryId?previous.find(entry=>entry.id===recoveryId)?.progress:null,legacySummary:legacyRaw===null?null:decodeLegacy(legacyRaw).state,previousSummary:previous.length?{chapter:previous.at(-1).progress.chapter,state:previous.at(-1).progress.state,discoveries:previous.at(-1).progress.discoveries.length}:null,storageIssue,ending:progress.chapter===chapters.length-1&&progress.state==='completed'}),
+    snapshot:()=>({...progress,discoveries:[...progress.discoveries],saved,resetPending,recoveryPending,recoverySource,recoveryError,protectedData,backupIssue,legacyIssue,hasLegacyBackup:legacyRaw!==null,hasJourneyBackup:!!previous.length&&!same(previous.at(-1).progress,progress),recoverySummary:recoveryId?summary(previous.find(entry=>entry.id===recoveryId)?.progress):null,legacySummary:legacyRaw===null?null:decodeLegacy(legacyRaw).state,previousSummary:summary(previous.at(-1)?.progress),storageIssue,ending:progress.chapter===chapters.length-1&&progress.state==='completed'}),
     accept(context){
       if(blocked()||progress.state!=='available'||!nearby(context,chapters[progress.chapter].sender))return false;
       progress.state='carrying';persist();return true;

@@ -16,14 +16,22 @@ export function compileRoyalLayout(raw){
     block('court-pillar-'+side,side*5.8,-37,1.2,1.4,6.8);
     block('court-side-'+side,side*17,-47,1,19,3.8);
     block('court-bed-'+side,side*10,-47,4,8,.48,'garden');
+    block('street-bed-'+side,side*14,26,4.5,9,.35,'garden');
+    block('street-bed-south-'+side,side*15,-4,4.5,7,.35,'garden');
     block('palace-wing-'+side,side*14,-65,10,12,11,'palace');
     tower('palace-tower-'+side,side*22,-65,3.2,22);
+    block('porch-column-'+side,side*2.95,-57,.7,.7,6.1,'column');
   }
   block('palace-hall',0,-65,18,12,16,'palace');
   // The old street's decorative gateway is replaced by the actual city entrance.
   plan.colliders=plan.colliders.filter(c=>!c.id.startsWith('royal-gate-'));
   plan.colliders.push(...solids);
   plan.structures=solids;plan.bounds={...raw.royal.bounds};
+  plan.trees.push({x:-14,z:26,scale:1.1},{x:15,z:-4,scale:1});
+  for(const side of[-1,1])plan.benches.push({x:side*4.8,z:-10.5,rotation:-side*Math.PI/2});
+  // Matching navigation records accompany the reused trees and benches.
+  plan.trees.slice(-2).forEach((p,i)=>plan.colliders.push({id:'royal-tree-'+i,type:'circle',x:p.x,z:p.z,r:.27*p.scale}));
+  plan.benches.slice(-2).forEach((p,i)=>plan.colliders.push({id:'royal-bench-'+i,type:'box',x:p.x,z:p.z,w:1.8,d:.62,rotation:p.rotation}));
   plan.onGround=(x,z,r=.27)=>(z>=-59+r&&z<=41.5&&Math.abs(x)<22.4-r)||(z>41.5&&z<=50-r&&Math.abs(x)<5-r);
   plan.path=[];
   const waypoint=[{x:0,z:48},{x:0,z:33},{x:plan.center(30),z:30},{x:plan.center(-13),z:-13},{x:1.5,z:-19},{x:3.2,z:-24},{x:3.2,z:-32},{x:0,z:-40},{x:0,z:-55}];
@@ -47,4 +55,12 @@ export function royalLocation(z){return z>35?'听风城门':z>-14?'青瓦主街'
 export function mapProjection(bounds,width=240,height=320){
   const padding=22,scale=Math.min((width-padding*2)/(bounds.maxX-bounds.minX),(height-padding*2)/(bounds.maxZ-bounds.minZ));
   return{xScale:scale,zScale:scale,ox:(width-(bounds.maxX+bounds.minX)*scale)/2,oy:(height-(bounds.maxZ+bounds.minZ)*scale)/2};
+}
+
+// Hills are specified with their complete horizontal footprint outside city bounds.
+export function royalScenerySpec(bounds){
+  const hills=[];
+  for(const side of[-1,1])for(const z of[24,-28,-84])hills.push({x:side*(Math.max(Math.abs(bounds.minX),bounds.maxX)+41),z,r:16,sx:1.5,sy:.35,sz:1.1,y:-5.5});
+  for(const x of[-36,0,36])hills.push({x,z:bounds.minZ-40,r:18,sx:1.25,sy:.38,sz:1.1,y:-6});
+  return hills;
 }
