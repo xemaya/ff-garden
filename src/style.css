@@ -53,3 +53,5 @@
 @media(max-height:600px) and (min-width:601px){#letter-quest-panel{top:65px;max-height:calc(100dvh - 145px)}}
 
 #letter-quest-step{font-weight:500;color:#735937}#map-quest-target{font-size:11px;line-height:1.7;margin:10px 0;color:#735937}
+
+#theater-panel{position:fixed;right:28px;bottom:140px;width:252px;padding:18px 20px;background:#f5efdce8;border:1px solid #a18b5a2b;box-shadow:0 8px 24px #786a4312;z-index:6;color:#665c47}#theater-panel[hidden]{display:none}#theater-panel strong{font-size:14px;font-weight:500;letter-spacing:1px}#theater-panel p{font-size:12px;line-height:1.8;color:#8a7a5d}#theater-panel a{font-size:11px;color:#875747;text-decoration:none;border-bottom:1px solid #87574755;padding-bottom:3px}@media(max-width:760px){#theater-panel{right:14px;bottom:175px;width:220px;padding:14px 16px}}

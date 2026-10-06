@@ -1,0 +1,27 @@
+{
+  "id": "tantalus-theater-v1",
+  "production": "procedural Three.js and authored SVG",
+  "reference": "FF9 Tantalus theater atmosphere; original motifs authored for this scene",
+  "geometry": "src/theater.js",
+  "placement": "src/theater-plan.js",
+  "assets": [
+    {
+      "path": "public/assets/theater/poster.svg",
+      "sha256": "341dc6f63d3555162566fff8ff48d5d6e234f7f6bb3663cc71c9fbfda047cd1c",
+      "bytes": 3325
+    },
+    {
+      "path": "public/assets/theater/ticket.svg",
+      "sha256": "848c2e2308e59d0b7437b96a6f0621a9caa38052080ef4c119cb363aae8a8dff",
+      "bytes": 1137
+    }
+  ],
+  "reusedTextures": [
+    "wood.png",
+    "plaster.png",
+    "roof-teal.png"
+  ],
+  "newImageGenerationCalls": 0,
+  "gpuTasksStarted": 0,
+  "humanVisualAcceptance": "pending"
+}
