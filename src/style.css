@@ -72,3 +72,5 @@
 #basic-materials{padding:12px 18px;min-height:44px;background:#fff9e9;border:1px solid #7e947b;border-radius:4px;font-size:13px}
 #map-legend{font-size:10px;line-height:1.5;color:#627359;margin:5px 0 8px}
 #royal-greeting{margin-top:12px;border-top:1px solid #b79f6d44;padding-top:4px}#royal-greeting summary{min-height:44px;padding:12px 0;font-size:11px;cursor:pointer}#royal-greeting summary:focus-visible{outline:2px solid #477968;outline-offset:3px}#royal-greeting-options{display:grid;gap:6px}#royal-greeting-options button{min-height:44px;padding:8px 10px;font-size:11px;text-align:left;border:1px solid #ad95625c;background:#efe2c3;border-radius:3px}#royal-greeting-options button:disabled{opacity:.6}#royal-greeting-feedback{white-space:pre-line;border-left:2px solid #ab8959;padding-left:8px}
+
+#street-guidance{display:block;white-space:pre-line;letter-spacing:0;font-size:10px;line-height:14px;height:28px;overflow:hidden;overflow-wrap:anywhere;pointer-events:none}.map-mode #street-guidance,.art-study #street-guidance{white-space:normal}
