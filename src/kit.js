@@ -1,3 +1,4 @@
+import {makeTheaterStage,theaterColliders} from './theater-plan.js';
 import {makeCastStage} from './cast-stage.js';
 // One style kit shared by every generated street. No texture or mesh file generation.
 export const KIT_VERSION='ff9-crafted-corner-v3';
@@ -63,9 +64,10 @@ export function compileStreet(spec,canOccupy){
  for(const p of props)colliders.push(p.w?{id:p.id,type:'box',x:p.x,z:p.z,w:p.w,d:p.d,rotation:p.rotation}:{id:p.id,type:'circle',x:p.x,z:p.z,r:p.r});
  const people=castStage.people;people.forEach((p,i)=>colliders.push({id:'person-'+i,type:'circle',x:p.x,z:p.z,r:p.r}));
  for(const x of[-5.35,5.35])colliders.push({id:'royal-gate-'+x,type:'box',x,z:-15.4,w:1.2,d:1.6});
+ const theaterStage=makeTheaterStage();colliders.push(...theaterColliders(theaterStage));
  const path=[];for(let z=30;z>=-13;z-=.3)path.push({x:curve(z),z});path.push({x:-1,z:-14},{x:1.5,z:-19},{x:2.8,z:-24},{x:3.2,z:-29},{x:2.2,z:-32.5});
  const stops=[{id:'entry',title:'街道入口',z:28},{id:'garden',title:'街道中段',z:5},{id:'square',title:'喷泉广场',z:-21},{id:'castle',title:'王城观景',z:-32}],ground=(x,z,r=.27)=>(z>=-15&&z<=33&&Math.abs(x-curve(z))<width/2+1.8-r)||Math.hypot(x+1,z+24)<12-r;
- const plan={...spec,buildings,colliders,trees,benches,people,path,stops,props,spawn:{x:curve(30),z:30},destination:path.at(-1),center:curve,roadside,roadWidth:width,onGround:ground,castStage};
+ const plan={...spec,buildings,colliders,trees,benches,people,path,stops,props,spawn:{x:curve(30),z:30},destination:path.at(-1),center:curve,roadside,roadWidth:width,onGround:ground,castStage,theaterStage};
  let length=0;for(let i=1;i<path.length;i++){const a=path[i-1],b=path[i];length+=Math.hypot(a.x-b.x,a.z-b.z);for(let u=0;u<=1;u+=.02)check(canOccupy(plan,a.x+(b.x-a.x)*u,a.z+(b.z-a.z)*u,.30),`walking route blocked in segment ${i}; move buildings or attachments away from center`);}plan.length=length;return plan;
 }
 export function streetMetrics(spec,plan){return{buildings:spec.buildings.length,roadWidth:spec.road.width,roadBend:spec.road.bend,roadSway:spec.road.sway,pathLength:plan.length,combinations:new Set(spec.buildings.map(styleFingerprint)).size,bays:spec.buildings.filter(b=>b.assembly.bay==='octagonal').length,balconies:spec.buildings.filter(b=>b.assembly.balcony==='timber').length,awnings:spec.buildings.filter(b=>b.assembly.awning==='striped').length,chimneys:spec.buildings.filter(b=>b.assembly.chimney==='tall-stone').length,stories3:spec.buildings.filter(b=>b.assembly.stories===3).length,packedPlacements:plan.buildings.filter(b=>Math.abs(b.requestedZ-b.routeZ)>.01).length,maxPlacementShift:Math.max(...plan.buildings.map(b=>Math.abs(b.requestedZ-b.routeZ)))};}

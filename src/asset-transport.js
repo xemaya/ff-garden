@@ -11,10 +11,11 @@ async function download(url,bodyType,context,fetcher){
 
 // Retain TextureLoader's image orientation/color behavior. Only transport moves
 // to fetch; the object URL survives until its uncancellable decoder settles.
-export async function loadSurfaceTexture(name,context,{fetcher=fetch,decode=url=>new THREE.TextureLoader().loadAsync(url),createUrl=blob=>URL.createObjectURL(blob),revokeUrl=url=>URL.revokeObjectURL(url)}={}){
-  const blob=await download(`/assets/v3/${name}.png`,'blob',context,fetcher),url=createUrl(blob);
+export async function loadTextureUrl(path,context,{fetcher=fetch,decode=url=>new THREE.TextureLoader().loadAsync(url),createUrl=blob=>URL.createObjectURL(blob),revokeUrl=url=>URL.revokeObjectURL(url)}={}){
+  const blob=await download(path,'blob',context,fetcher),url=createUrl(blob);
   try{return await decode(url);}finally{revokeUrl(url);}
 }
+export const loadSurfaceTexture=(name,context,options)=>loadTextureUrl(`/assets/v3/${name}.png`,context,options);
 async function parseGltf(data,path){
   const urls=new Set();let finished=false;
   const manager=new THREE.LoadingManager().setURLModifier(url=>{

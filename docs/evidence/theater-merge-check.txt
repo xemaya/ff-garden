@@ -1,0 +1,684 @@
+
+> ff-garden@0.1.0 check
+> npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run test:journey && npm run test:royal && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run test:theater && npm run verify:theater
+
+
+> ff-garden@0.1.0 test:assets
+> node --test tools/asset-loading.test.mjs tools/hero-textures.test.mjs tools/asset-deadlines.test.mjs tools/asset-transport.test.mjs tools/startup-loading.test.mjs
+
+✔ hung download aborts, late success is disposed and cannot replace a newer successful request (1.607792ms)
+✔ late old rejection does not clear a newer shared request (0.18575ms)
+✔ complete data near the network deadline gets a fresh decode grace window (0.11ms)
+✔ decode timeout retries share surviving work and only an explicit current waiter commits (0.176375ms)
+✔ cancelled native decode completes with disposal and does not populate success cache (0.779833ms)
+✔ validation failures release decoded assets and retain retryability without timers (0.252792ms)
+✔ cancel before dispatch prevents a download and an empty rejection never becomes a cached success (0.32375ms)
+✔ concurrent callers share one load and reuse a successful asset (0.711458ms)
+✔ a failed asset can be retried, including a synchronous validation error (0.310958ms)
+✔ characters start concurrently and one failure preserves the other results (0.722458ms)
+✔ synchronous failure and complete failure never reject the optional batch (0.35725ms)
+✔ each result is reported before the slowest character completes (0.32875ms)
+✔ retrying the failed subset does not fetch successful characters again (0.300709ms)
+✔ each real character loader retries network and clip-validation failures (20.890334ms)
+✔ surface transport is abortable, starts decode after the entire blob and always revokes its URL (1.5385ms)
+✔ late body completion after cancellation never starts image decoding or allocates an object URL (0.143875ms)
+✔ GLB HTTP failure and body errors stay retryable; complete buffers use parse with their asset base path (0.235375ms)
+✔ discarded GLB disposal visits shared resources once, including shared image bitmaps (0.587959ms)
+✔ expired real character pipeline cannot assign a late template over its replacement (1.161209ms)
+✔ missing animation validation releases unaccepted geometry and never assigns its template (0.442667ms)
+✔ GLTF decode failure revokes owned blob URLs, including dependencies requested after rejection (0.213708ms)
+✔ all five requests start before any settles and concurrent callers share the batch (2.600542ms)
+✔ one rejected texture keeps successful assets and retry restores existing clones without rebuilding (0.78975ms)
+✔ complete failure remains usable and repeated failed retries retain the same fallback material (0.308708ms)
+✔ real tiny canvas fallbacks remain compatible with plaza and scenery material cloning (0.573166ms)
+✔ timed out textures enter with fallbacks while successful maps survive and only failed requests retry (0.402083ms)
+✔ choosing basic materials cancels shared waits, preserves ready maps and reuses an uncancellable decode on retry (0.300125ms)
+✔ all hung texture downloads have bounded waiting and repeated fallback choices do not create materials (0.225792ms)
+✔ hung JSON headers are aborted on the existing network budget and late response cannot replace a successful retry (1.636541ms)
+✔ a hung response body retains the deadline and cancelling it cannot commit its late JSON (0.176792ms)
+✔ HTTP and malformed JSON fail explicitly and remain retryable rather than supplying an empty layout (0.197541ms)
+✔ startup waiting removes its cancel and pagehide listeners after both cancellation and success (0.776375ms)
+✔ pagehide cancels a pending request instead of retaining an abandoned startup waiter (0.150041ms)
+✔ failure recovery uses clear text, reloads only the current page once and leaves saved progress untouched (0.28275ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.258833
+
+> ff-garden@0.1.0 test:input
+> node --test tools/input-state.test.mjs tools/view-transitions.test.mjs
+
+✔ two fingers and keyboard retain independent ownership until cancelled (0.590666ms)
+✔ look ignores other fingers and cancellations never select a character (0.610083ms)
+✔ blocked storage is optional and quality remains unchanged by default (0.069375ms)
+✔ losing focus or resizing clears held fingers and look, and pauses the unattended tour (0.214541ms)
+✔ reopening the map during return keeps the original street pose, not the flying camera (1.04025ms)
+✔ a completed return or ordinary street position becomes the next anchor without an old target (0.057209ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.80225
+
+> ff-garden@0.1.0 test:quest
+> node --test tools/letter-quest.test.mjs
+
+✔ complete letter workflow survives refresh and rejects repeated actions (0.606166ms)
+✔ missing assets, distance and map/study transitions cannot advance progress (0.0615ms)
+✔ reset deletes only task progress and permits a new run (0.060958ms)
+✔ malformed/version-mismatched progress never produces a completed task (0.562208ms)
+✔ denied reads, quota errors and denied resets retain usable session progress with a warning (0.092666ms)
+✔ reset requires explicit confirmation, cancellation and refresh preserve progress (0.091334ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60.902
+
+> ff-garden@0.1.0 test:guidance
+> node --test tools/quest-guidance.test.mjs tools/street-guidance.test.mjs
+
+✔ next step names sender/recipient and ready action matches quest stage (1.176167ms)
+✔ loading and failure can locate planned target without permitting completion (0.100459ms)
+✔ distance, busy courier, transition and reset never claim that action is ready (0.084167ms)
+✔ completed state has no target, action or locator even after refresh (0.069416ms)
+✔ recipient names reflect actual sample and street layouts instead of assuming a book table (24.927542ms)
+✔ eight directions use camera yaw, not world north, and wrap correctly (0.6385ms)
+✔ distant guidance labels a straight estimate and cannot claim a walkable route (0.145625ms)
+✔ nearby, busy, reply, approaching and incomplete chapters replace directional text (0.087ms)
+✔ planned unloaded or failed people do not claim interaction readiness or a live distance (0.0965ms)
+✔ caption stays within two short lines and relinquishes maps, notebooks, study and constrained viewports (0.17875ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88.157541
+
+> ff-garden@0.1.0 test:journey
+> node --test tools/postal-journey.test.mjs tools/postal-integration.test.mjs tools/postal-recovery.test.mjs tools/postal-observations.test.mjs tools/postal-sync.test.mjs tools/postal-entry-sound.test.mjs tools/postal-dialogue.test.mjs
+
+✔ three residents react to every valid story phase with optional city-history echoes (0.765417ms)
+✔ memorial remains bounded, switches visible keepsakes without rebuilding, and reuses merged materials (6.429292ms)
+✔ permanent support-table collision agrees with the physical scene and does not block any city route (11.500417ms)
+✔ first entry and unknown districts use royalty while explicit old links retain their destinations (1.182542ms)
+✔ ending respects off, missing and blocked audio and does not resume or toggle it (0.1675ms)
+✔ enabled ending schedules exactly two short notes and one longer note at the existing volume (0.79875ms)
+✔ switching sound off cancels pending completion notes so re-enabling does not replay them (0.099666ms)
+✔ all authored character preview return links retain workshops and their role query (1.064292ms)
+✔ scene bridge and view agree with each chapter without moving the player (2.133209ms)
+✔ planned fallback can be located but cannot act; camera mode and distance block handoffs (0.102083ms)
+✔ returning a letter uses a greeting rather than handing another letter out (0.215709ms)
+✔ complete UI-event slice: separate handoffs, wrong/correct reply, final keepsake (1.706333ms)
+✔ controller locator, refresh and reset cancellation do not advance or lose a journey (0.803292ms)
+✔ observation event records a nearby story once and switches to a readable notebook page (0.298958ms)
+✔ recovery UI defaults to cancel, preserves progress on Escape, and exposes undo after reset (1.843375ms)
+✔ backup storage events refresh recovery choices without discarding an unsaved carrying session (0.663083ms)
+✔ the ending callback only follows an active final handoff, not renders, refresh or restore (1.406ms)
+✔ nearby conversation changes with the letter and optional observation without granting progress (0.633ms)
+✔ notebook immediately hides nearby NPC controls and Escape restores them with safe focus (0.29475ms)
+✔ an observation card cannot act while the notebook already owns the interaction (0.181375ms)
+✔ optional royal greeting responds once per expression without writing or advancing a journey (0.372458ms)
+✔ optional greeting rejects notebook, wrong resident, distance, busy, unloaded and old-street interactions (0.350542ms)
+✔ all notebook entrances clear a held movement and map handoff does not leave a hidden open notebook (0.196042ms)
+✔ reset or restore while the notebook hides the courier clears the session greeting before rereading the gate (0.352084ms)
+✔ without character models the notebook and physical observations remain usable without granting an unavailable handoff (0.200583ms)
+✔ three linked commissions require manual handoffs and end once without collecting (1.086334ms)
+✔ rhythm reply stays at recipient until a correct text response (0.690375ms)
+✔ every handoff rejects wrong actor, loading, distance, view and busy actors (0.116291ms)
+✔ pending reset/recovery prevents unrelated progress; cancel leaves exact state (0.122666ms)
+✔ defined observations are optional, nearby and player-initiated (0.126667ms)
+✔ all legacy states migrate with raw backup before new save, leaving v1 untouched (0.55375ms)
+✔ new version takes precedence and refresh never repeatedly imports old progress (0.067042ms)
+✔ each meaningful phase and optional observations survive fresh module restoration (0.098042ms)
+✔ decode rejects future versions, invalid combinations and undefined/duplicate observations (0.169667ms)
+✔ unreadable/future saves are preserved while a clearly unsaved session remains playable (0.135042ms)
+✔ quota failures never erase legacy progress and do not prevent in-memory play (0.080209ms)
+✔ denied reads cannot accidentally replace an unknown existing save (0.053709ms)
+✔ reset is confirmed and saves a blank v2 rather than re-importing completed v1 (0.159541ms)
+✔ legacy recovery is explicit, cancelable and never auto-replayed on refresh (0.0805ms)
+✔ snapshot copies cannot mutate saved discoveries or mission state (0.035167ms)
+✔ three physical royal plaques leave the authored route and their viewing points open (15.039667ms)
+✔ observation requires proximity, a street view and looking toward the physical plaque (8.716958ms)
+✔ observed stories persist once, leave commissions untouched, and remain optional at ending (8.211875ms)
+✔ legacy recovery backs up current journey first and undo restores both chapter and observations (2.445083ms)
+✔ reset backups support explicit undo; cancel and repeated confirms never replace data (0.346542ms)
+✔ backup write failures block destructive recovery and reset while keeping current source untouched (0.299084ms)
+✔ a failed replacement keeps current state and retry does not evict selected recovery target (0.302083ms)
+✔ future v2 saves and future backup journals are preserved even during a pending confirmation (0.177042ms)
+✔ missing backup sources and another tab updating the journey never cause silent replacement (0.861ms)
+✔ journal stays bounded across repeated restore/reset without touching legacy or preferences (0.59025ms)
+✔ every ordinary story or observation write preserves a newly arrived future-version save (1.07075ms)
+✔ a stale tab adopts newer progress and rejects its outdated action before replacing the save (0.098167ms)
+✔ quota failures keep the unsaved session and later saving does not discard its intervening chapters (0.086583ms)
+✔ backup-list refresh leaves an unsaved session alone and cancels a stale confirmation (0.079375ms)
+✔ external removal is recognized instead of letting an old carrying tab recreate stale progress (0.058042ms)
+✔ an unsaved tab cannot overwrite another tab during reset merely because its own saved flag is false (0.103083ms)
+✔ a storage event protecting future progress leaves the current in-memory chapter readable (0.059208ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 57
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.144209
+
+> ff-garden@0.1.0 test:royal
+> node --test tools/royal-layout.test.mjs tools/royal-wayfinding.test.mjs tools/royal-greetings.test.mjs tools/royal-story-displays.test.mjs
+
+✔ one existing gate discovery opens three expressions without requiring the other plaques or a story phase (0.6855ms)
+✔ responses use actual street landmarks and acknowledge optional plaques already read (0.241542ms)
+✔ actual royal route passes through gate, street, plaza and courtyard without collision (18.121917ms)
+✔ every ground architecture solid blocks the player while both real gateways remain open (9.114584ms)
+✔ all postal role approaches remain reachable from the royal entrance (237.451667ms)
+✔ map fits actual walls, route, palace and all role targets within its padding (6.842583ms)
+✔ complete hill footprints stay outside royal bounds with space between scenery and playable ground (6.475833ms)
+✔ shop frontages, optional plaques and the keepsake table can reconnect to the entrance with final props present (266.124667ms)
+✔ royal clock and tea replacements fit existing elevated window shelves with at most forty static parts (4.386834ms)
+✔ royal table marker is bounded and always visible while keepsakes still follow completion without rebuilding (6.562ms)
+✔ arrival describes the first task, saved continuation or completed visit without changing progress (0.659ms)
+✔ royal shop nameplates use bounded local canvases and stay above walking height (2.993042ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 613.609875
+
+> ff-garden@0.1.0 verify
+> node tools/verify.mjs
+
+{
+  passed: true,
+  theme: 'ff9-alexandria-crafted-corner',
+  revision: 3,
+  authoredLayout: true,
+  buildings: 8,
+  uniqueShopKinds: 8,
+  pathLength: 63.906842787616625,
+  curvedRoute: true,
+  sweptNavigation: true,
+  buildingAndPropCollision: true,
+  fountainCollision: true,
+  boundaryProtection: true,
+  allStopsReachable: true
+}
+
+> ff-garden@0.1.0 verify:v4
+> node tools/verify-v4.mjs
+
+{
+  passed: true,
+  kit: 'ff9-crafted-corner-v3',
+  newImageGenerationCalls: 0,
+  textureHashesUnchanged: true,
+  distinctStreets: 3,
+  distinctAssemblyCombinations: 14,
+  records: [
+    {
+      id: 'residential',
+      buildings: 6,
+      roadWidth: 5.6,
+      roadBend: 0.8,
+      roadSway: 0.3,
+      pathLength: 64.22627802833485,
+      combinations: 3,
+      bays: 0,
+      balconies: 6,
+      awnings: 1,
+      chimneys: 0,
+      stories3: 0,
+      packedPlacements: 5,
+      maxPlacementShift: 3.719999999999999,
+      sweptRoute: true,
+      allStopsReachable: true,
+      modelOutputPreserved: true
+    },
+    {
+      id: 'market',
+      buildings: 10,
+      roadWidth: 7.2,
+      roadBend: 0.8,
+      roadSway: 0.3,
+      pathLength: 64.22627802833485,
+      combinations: 4,
+      bays: 1,
+      balconies: 1,
+      awnings: 10,
+      chimneys: 0,
+      stories3: 0,
+      packedPlacements: 8,
+      maxPlacementShift: 5.52,
+      sweptRoute: true,
+      allStopsReachable: true,
+      modelOutputPreserved: true
+    },
+    {
+      id: 'workshops',
+      buildings: 8,
+      roadWidth: 6.2,
+      roadBend: 0.8,
+      roadSway: 0.3,
+      pathLength: 64.22627802833485,
+      combinations: 7,
+      bays: 4,
+      balconies: 1,
+      awnings: 2,
+      chimneys: 6,
+      stories3: 0,
+      packedPlacements: 6,
+      maxPlacementShift: 3.6336000000000013,
+      sweptRoute: true,
+      allStopsReachable: true,
+      modelOutputPreserved: true
+    }
+  ],
+  resourceStopped: true,
+  sharedProcessesPreserved: true,
+  placement: 'model requests plus deterministic constraint packing',
+  humanStyleAcceptance: 'pending comparison'
+}
+
+> ff-garden@0.1.0 verify:cast
+> node tools/verify-cast.mjs
+
+{
+  passed: true,
+  modelsUnchanged: true,
+  newImageGenerationCalls: 0,
+  models: [
+    {
+      id: 'moogle-courier-v3',
+      sha256: 'ba71de3971fe3b773d231ca528b140aaef8065d0e13fb605f87ad0dde3a5403c',
+      status: 'accepted by user'
+    },
+    {
+      id: 'black-mage-v2',
+      sha256: 'a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22',
+      status: 'accepted by user'
+    },
+    {
+      id: 'chocobo-v1',
+      sha256: '1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1',
+      status: 'approved for scene use by user'
+    }
+  ],
+  records: [
+    {
+      id: 'residential',
+      stage: 'fountain-neighbors-v2',
+      props: [Array],
+      roles: [Array],
+      overviewClear: true,
+      furnitureSeparatedFromFountain: true,
+      viewpointsReachable: true,
+      postalPatrolClear: true,
+      pathLength: 64.22627802833485
+    },
+    {
+      id: 'market',
+      stage: 'fountain-neighbors-v2',
+      props: [Array],
+      roles: [Array],
+      overviewClear: true,
+      furnitureSeparatedFromFountain: true,
+      viewpointsReachable: true,
+      postalPatrolClear: true,
+      pathLength: 64.22627802833485
+    },
+    {
+      id: 'workshops',
+      stage: 'fountain-neighbors-v2',
+      props: [Array],
+      roles: [Array],
+      overviewClear: true,
+      furnitureSeparatedFromFountain: true,
+      viewpointsReachable: true,
+      postalPatrolClear: true,
+      pathLength: 64.22627802833485
+    }
+  ]
+}
+
+> ff-garden@0.1.0 verify:moogle
+> node tools/verify-moogle.mjs
+
+{
+  passed: true,
+  assetSha256: 'ba71de3971fe3b773d231ca528b140aaef8065d0e13fb605f87ad0dde3a5403c',
+  bytes: 8727040,
+  skinCount: 1,
+  joints: 27,
+  meshes: 32,
+  vertices: 51797,
+  triangles: 90700,
+  embeddedImages: 2,
+  clips: [
+    {
+      name: 'Deliver',
+      seconds: 3.5416667461395264,
+      animatedChannels: 17,
+      loopSeam: 0.056166645139455795
+    },
+    {
+      name: 'Idle',
+      seconds: 4.041666507720947,
+      animatedChannels: 12,
+      loopSeam: 1.3471114385820111e-17
+    },
+    {
+      name: 'Walk',
+      seconds: 0.8333333134651184,
+      animatedChannels: 19,
+      loopSeam: 3.1840818415368548e-18
+    },
+    {
+      name: 'Wave',
+      seconds: 3.0416667461395264,
+      animatedChannels: 15,
+      loopSeam: 0.051360782235860825
+    }
+  ],
+  allWeightsNormalized: true,
+  bodyConnectedComponents: 1,
+  bodyNonmanifoldEdges: 0,
+  jointStrain: {
+    Idle: {
+      maxStretch: 1.1769092426726464,
+      p99Stretch: 1.026282409161195,
+      p01Compression: 0.9765862207725093
+    },
+    Walk: {
+      maxStretch: 2.830367330288755,
+      p99Stretch: 1.2819157152172018,
+      p01Compression: 0.8044900144324892
+    },
+    Wave: {
+      maxStretch: 8.23474244422503,
+      p99Stretch: 1.825890616327477,
+      p01Compression: 0.5234080310487399
+    },
+    Deliver: {
+      maxStretch: 6.379593137481312,
+      p99Stretch: 1.673317333110739,
+      p01Compression: 0.6642667266574204
+    }
+  },
+  groundSamples: {
+    Idle: {
+      minimumBodyZ: 0.003000002820044756,
+      maximumBodyZ: 0.003000002820044756
+    },
+    Walk: {
+      minimumBodyZ: 0.0029999949038028717,
+      maximumBodyZ: 0.00547579862177372
+    },
+    Wave: {
+      minimumBodyZ: 0.003000002820044756,
+      maximumBodyZ: 0.003000002820044756
+    },
+    Deliver: {
+      minimumBodyZ: 0.003000002820044756,
+      maximumBodyZ: 0.003000002820044756
+    }
+  },
+  surfaceIntersections: {
+    Idle: {
+      frames: 97,
+      armHeadSurfacePairs: 0,
+      armBagSurfacePairs: 0,
+      letterHeadSurfacePairs: 0
+    },
+    Walk: {
+      frames: 20,
+      armHeadSurfacePairs: 0,
+      armBagSurfacePairs: 0,
+      letterHeadSurfacePairs: 0
+    },
+    Wave: {
+      frames: 73,
+      armHeadSurfacePairs: 0,
+      armBagSurfacePairs: 0,
+      letterHeadSurfacePairs: 0
+    },
+    Deliver: {
+      frames: 85,
+      armHeadSurfacePairs: 0,
+      armBagSurfacePairs: 0,
+      letterHeadSurfacePairs: 0
+    }
+  },
+  behaviorRecords: [
+    {
+      id: 'residential',
+      walking: true,
+      approachesPlayer: true,
+      colliderSynchronized: true,
+      nearGreeting: true,
+      localDelivery: true
+    },
+    {
+      id: 'market',
+      walking: true,
+      approachesPlayer: true,
+      colliderSynchronized: true,
+      nearGreeting: true,
+      localDelivery: true
+    },
+    {
+      id: 'workshops',
+      walking: true,
+      approachesPlayer: true,
+      colliderSynchronized: true,
+      nearGreeting: true,
+      localDelivery: true
+    }
+  ],
+  sharedAssetInThreeStreets: true
+}
+
+> ff-garden@0.1.0 verify:mage
+> node tools/verify-mage.mjs
+
+{
+  passed: true,
+  assetSha256: 'a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22',
+  bytes: 10146576,
+  joints: 23,
+  meshes: 20,
+  vertices: 60123,
+  triangles: 115776,
+  images: 2,
+  clips: [
+    {
+      name: 'Greet',
+      seconds: 3.0416667461395264,
+      animatedChannels: 6,
+      loopSeam: 0.012582927942276001
+    },
+    {
+      name: 'Idle',
+      seconds: 4.041666507720947,
+      animatedChannels: 3,
+      loopSeam: 5.51091050576101e-18
+    },
+    {
+      name: 'Magic',
+      seconds: 4.041666507720947,
+      animatedChannels: 10,
+      loopSeam: 9.797174737963282e-19
+    },
+    {
+      name: 'Walk',
+      seconds: 0.9583333134651184,
+      animatedChannels: 14,
+      loopSeam: 2.449293581093244e-18
+    }
+  ],
+  groundSamples: {
+    Idle: { minimumSoleZ: 0.0030000072438269854, frames: 97 },
+    Walk: { minimumSoleZ: 0.002999958349391818, frames: 23 },
+    Greet: { minimumSoleZ: 0.0030000072438269854, frames: 73 },
+    Magic: { minimumSoleZ: 0.0030000072438269854, frames: 97 }
+  },
+  surfaceIntersections: {
+    Idle: { gloveHeadSurfacePairs: 0, gloveHatSurfacePairs: 0 },
+    Walk: { gloveHeadSurfacePairs: 0, gloveHatSurfacePairs: 0 },
+    Greet: { gloveHeadSurfacePairs: 0, gloveHatSurfacePairs: 0 },
+    Magic: { gloveHeadSurfacePairs: 0, gloveHatSurfacePairs: 0 }
+  },
+  streets: [ 'residential', 'market', 'workshops' ],
+  sharedAsset: true
+}
+
+> ff-garden@0.1.0 verify:chocobo
+> node tools/verify-chocobo.mjs
+
+{
+  passed: true,
+  assetSha256: '1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1',
+  bytes: 9973720,
+  joints: 24,
+  meshes: 33,
+  vertices: 78952,
+  triangles: 135776,
+  images: 2,
+  clips: [
+    {
+      name: 'Chirp',
+      seconds: 3.0416667461395264,
+      animatedChannels: 9,
+      loopSeam: 0.03270573541522026
+    },
+    {
+      name: 'Flap',
+      seconds: 4.041666507720947,
+      animatedChannels: 10,
+      loopSeam: 7.680715267509071e-18
+    },
+    {
+      name: 'Idle',
+      seconds: 4.041666507720947,
+      animatedChannels: 8,
+      loopSeam: 7.680715267509071e-18
+    },
+    {
+      name: 'Walk',
+      seconds: 1,
+      animatedChannels: 15,
+      loopSeam: 3.3086161575033976e-18
+    }
+  ],
+  groundSamples: {
+    Idle: {
+      frames: 97,
+      minimumToeZ: 0.00300002284348011,
+      maximumLowestToeZ: 0.00300002284348011
+    },
+    Walk: {
+      frames: 24,
+      minimumToeZ: 0.002999950898811221,
+      maximumLowestToeZ: 0.003000045893713832
+    },
+    Chirp: {
+      frames: 73,
+      minimumToeZ: 0.00300002284348011,
+      maximumLowestToeZ: 0.00300002284348011
+    },
+    Flap: {
+      frames: 97,
+      minimumToeZ: 0.00300002284348011,
+      maximumLowestToeZ: 0.00300002284348011
+    }
+  },
+  toesPerFoot: 3,
+  streets: [ 'residential', 'market', 'workshops' ],
+  sharedAsset: true
+}
+
+> ff-garden@0.1.0 test:theater
+> node --test tools/theater-integration.test.mjs tools/theater-papers.test.mjs
+
+✔ default royal and legacy theater links retain both scenes and do not alter saved progress (54.705458ms)
+✔ theater panel yields to notebook, NPC, map and study; leaves focus when player walks away (0.091ms)
+✔ paper fallbacks exist before parallel downloads settle; successes retain material identity and cache (3.0505ms)
+✔ one failed paper preserves the street and retries only that paper (0.330875ms)
+✔ network deadline preserves fallback and late images cannot replace it (0.690333ms)
+✔ decode timeout and retry share the active decoder instead of starting duplicates (0.5875ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.856041
+
+> ff-garden@0.1.0 verify:theater
+> node tools/verify-theater.mjs
+
+{
+  passed: true,
+  newImageGenerationCalls: 0,
+  records: [
+    {
+      id: 'residential',
+      routeClear: true,
+      overviewReachable: true,
+      counterReachable: true,
+      booth: [Object],
+      poster: [Object]
+    },
+    {
+      id: 'market',
+      routeClear: true,
+      overviewReachable: true,
+      counterReachable: true,
+      booth: [Object],
+      poster: [Object]
+    },
+    {
+      id: 'workshops',
+      routeClear: true,
+      overviewReachable: true,
+      counterReachable: true,
+      booth: [Object],
+      poster: [Object]
+    },
+    {
+      id: 'royal',
+      routeClear: true,
+      overviewReachable: true,
+      counterReachable: true,
+      booth: [Object],
+      poster: [Object]
+    }
+  ],
+  assets: [
+    {
+      name: 'poster.svg',
+      bytes: 3325,
+      sha256: '341dc6f63d3555162566fff8ff48d5d6e234f7f6bb3663cc71c9fbfda047cd1c'
+    },
+    {
+      name: 'ticket.svg',
+      bytes: 1137,
+      sha256: '848c2e2308e59d0b7437b96a6f0621a9caa38052080ef4c119cb363aae8a8dff'
+    }
+  ]
+}

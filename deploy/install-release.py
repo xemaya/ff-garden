@@ -77,7 +77,7 @@ with (BASE/'deploy.lock').open('a') as lock:
   subprocess.run(NGINX+['-t'],check=True)
   subprocess.run(NGINX+['-s','reload'],check=True)
   # Validate trusted HTTPS against the real local nginx with correct SNI.
-  for path in ['/', '/moogle.html', '/mage.html', '/chocobo.html', '/data/v4/manifest.json']:
+  for path in ['/', '/moogle.html', '/mage.html', '/chocobo.html', '/theater.html', '/data/v4/manifest.json']:
    subprocess.run(['curl','--fail','--silent','--show-error','--retry','4','--retry-all-errors','--retry-delay','1','--max-time','15','--resolve','ff.buplayground.cn:443:127.0.0.1','https://ff.buplayground.cn'+path,'-o','/dev/null'],check=True)
  except Exception:
   CONFIG.write_bytes(before)

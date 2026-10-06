@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360">
+<rect width="800" height="360" rx="14" fill="#e6d5ae"/><path d="M20 40h760v280H20zM30 50h740v260H30z" fill="none" stroke="#8c6248" stroke-width="2"/>
+<path d="M636 20v320" stroke="#947954" stroke-width="2" stroke-dasharray="6 8"/>
+<g fill="#614237" font-family="Georgia, 'Noto Serif SC', serif" text-anchor="middle"><text x="321" y="93" font-size="22" letter-spacing="5">TANTALUS · PRIMA VISTA</text><text x="321" y="165" font-size="39">我想成为你的金丝雀</text><text x="321" y="211" font-size="19" letter-spacing="2">THEATRE IN THE SKY</text><text x="321" y="281" font-size="24" letter-spacing="6">王城广场 · 单人入场</text><text x="703" y="167" font-size="37">IX</text><text x="703" y="228" font-size="16" letter-spacing="2">0019</text></g>
+<g fill="none" stroke="#a17d4b" stroke-width="2"><path d="M47 66q-12 45 18 49q23-3 10-27m491-22q12 45-18 49q-23-3-10-27M47 292q-12-45 18-49q23 3 10 27m491 22q12-45-18-49q-23 3-10 27"/><circle cx="703" cy="178" r="57"/><circle cx="703" cy="178" r="64" stroke-dasharray="2 5"/></g>
+</svg>

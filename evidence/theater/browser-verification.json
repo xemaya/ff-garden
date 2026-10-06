@@ -1,0 +1,31 @@
+{
+  "preview": {
+    "ready": true,
+    "mode": "ship",
+    "motionPaused": true,
+    "metrics": {
+      "revision": "tantalus-theater-v1",
+      "booths": 1,
+      "posterBoards": 1,
+      "tickets": 4,
+      "hullPanels": 1056,
+      "rotors": 4,
+      "newImageGenerationCalls": 0
+    },
+    "render": {
+      "calls": 190,
+      "triangles": 177644
+    }
+  },
+  "ticketDialogOpened": true,
+  "posterDialogOpened": true,
+  "dialogsCloseCorrectly": true,
+  "orbitAndResetChecked": true,
+  "street": {
+    "ready": true,
+    "fullTourFinished": true,
+    "progress": 1,
+    "pathLength": 64.22627802833485
+  },
+  "newImageGenerationCalls": 0
+}

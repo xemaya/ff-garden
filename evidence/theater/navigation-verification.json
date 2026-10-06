@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "newImageGenerationCalls": 0,
+  "records": [
+    {
+      "id": "residential",
+      "routeClear": true,
+      "overviewReachable": true,
+      "counterReachable": true,
+      "booth": {
+        "x": -10,
+        "z": -24,
+        "rotation": 0.55
+      },
+      "poster": {
+        "x": -10.2,
+        "z": -26.5,
+        "rotation": 0.3
+      }
+    },
+    {
+      "id": "market",
+      "routeClear": true,
+      "overviewReachable": true,
+      "counterReachable": true,
+      "booth": {
+        "x": -10,
+        "z": -24,
+        "rotation": 0.55
+      },
+      "poster": {
+        "x": -10.2,
+        "z": -26.5,
+        "rotation": 0.3
+      }
+    },
+    {
+      "id": "workshops",
+      "routeClear": true,
+      "overviewReachable": true,
+      "counterReachable": true,
+      "booth": {
+        "x": -10,
+        "z": -24,
+        "rotation": 0.55
+      },
+      "poster": {
+        "x": -10.2,
+        "z": -26.5,
+        "rotation": 0.3
+      }
+    },
+    {
+      "id": "royal",
+      "routeClear": true,
+      "overviewReachable": true,
+      "counterReachable": true,
+      "booth": {
+        "x": -10,
+        "z": -24,
+        "rotation": 0.55
+      },
+      "poster": {
+        "x": -10.2,
+        "z": -26.5,
+        "rotation": 0.3
+      }
+    }
+  ],
+  "assets": [
+    {
+      "name": "poster.svg",
+      "bytes": 3325,
+      "sha256": "341dc6f63d3555162566fff8ff48d5d6e234f7f6bb3663cc71c9fbfda047cd1c"
+    },
+    {
+      "name": "ticket.svg",
+      "bytes": 1137,
+      "sha256": "848c2e2308e59d0b7437b96a6f0621a9caa38052080ef4c119cb363aae8a8dff"
+    }
+  ]
+}
