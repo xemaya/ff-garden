@@ -18,7 +18,7 @@ test('royal shop nameplates use bounded local canvases and stay above walking he
  globalThis.document={createElement(){const canvas={getContext(){return {fillRect(){},strokeRect(){},fillText(text){texts.push(text);}};}};canvases.push(canvas);return canvas;}};
  try{
   const raw=JSON.parse(readFileSync(new URL('../public/data/royal-city.json',import.meta.url))),wood=new THREE.MeshStandardMaterial();
-  for(const building of raw.buildings){const sign=buildShopNameplate(building.name,wood),bounds=new THREE.Box3().setFromObject(sign);assert(bounds.min.y>3);assert.equal(sign.children.length,2);assert.equal(sign.children[0].material,wood);}
+  for(const building of raw.buildings){const sign=buildShopNameplate(building.name,wood),bounds=new THREE.Box3().setFromObject(sign);assert(bounds.min.y>3);assert.equal(sign.children.length,4);assert.equal(sign.children[0].material,wood);const faceBounds=new THREE.Box3().setFromObject(sign.children[1]);assert(faceBounds.min.z>1.7);}
   assert.deepEqual(texts,raw.buildings.map(building=>building.name));assert.equal(canvases.length,6);for(const canvas of canvases){assert.equal(canvas.width,512);assert.equal(canvas.height,128);}
  }finally{if(previous===undefined)delete globalThis.document;else globalThis.document=previous;}
 });

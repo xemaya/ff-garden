@@ -61,6 +61,7 @@
 .postal-tabs{display:flex;gap:6px;margin:12px 0}.postal-tabs button{flex:1;border:1px solid #ab94584d;background:#fff8e7;padding:9px;font-size:12px;border-radius:3px}.postal-tabs button[aria-selected=true]{background:#e9dcba;color:#624c2c}.postal-observation{padding:12px 0;border-bottom:1px solid #b79f6d44}.postal-observation strong{font-size:13px}.postal-observation p:last-child{color:#8a7857;font-size:11px}#postal-observe{min-height:44px;margin-top:8px;padding:8px 10px;border:1px solid #ad95625c;border-radius:3px;background:#efe2c3;font-size:12px}#postal-observe:disabled{opacity:.6}#postal-save-tools{margin-top:16px;border-top:1px solid #b79f6d44;padding-top:10px}#postal-save-tools summary{font-size:12px;cursor:pointer;padding:8px 0;min-height:44px}#postal-save-tools summary:focus-visible{outline:2px solid #477968;outline-offset:3px}#postal-recovery-error{color:#905c38}#postal-recovery-confirmation{border-left:2px solid #ab8959;padding-left:10px}
 
 @media(max-width:600px){body.observation-near #nearby:not([hidden]){display:flex!important;max-width:calc(100vw - 175px);max-height:calc(100dvh - 340px);overflow:auto}}
+@media(max-width:600px){body.portal-near #nearby:not([hidden]){display:flex!important;width:225px;max-width:calc(100vw - 175px);max-height:calc(100dvh - 340px);overflow:auto}body.portal-near #district-link{display:block;min-height:44px;padding:12px 0}}
 
 @media(min-height:601px) and (min-width:601px){#minimap{height:clamp(160px,calc(100dvh - 580px),280px);width:auto;max-width:100%;margin-inline:auto}}
 
@@ -70,3 +71,4 @@
 #texture-retry{display:block;margin-top:8px;background:#eddfba80;border:1px solid #ac946354;border-radius:3px;padding:10px 12px;min-height:44px;font-size:11px}#texture-retry:disabled{opacity:.6;cursor:default}
 #basic-materials{padding:12px 18px;min-height:44px;background:#fff9e9;border:1px solid #7e947b;border-radius:4px;font-size:13px}
 #map-legend{font-size:10px;line-height:1.5;color:#627359;margin:5px 0 8px}
+#royal-greeting{margin-top:12px;border-top:1px solid #b79f6d44;padding-top:4px}#royal-greeting summary{min-height:44px;padding:12px 0;font-size:11px;cursor:pointer}#royal-greeting summary:focus-visible{outline:2px solid #477968;outline-offset:3px}#royal-greeting-options{display:grid;gap:6px}#royal-greeting-options button{min-height:44px;padding:8px 10px;font-size:11px;text-align:left;border:1px solid #ad95625c;background:#efe2c3;border-radius:3px}#royal-greeting-options button:disabled{opacity:.6}#royal-greeting-feedback{white-space:pre-line;border-left:2px solid #ab8959;padding-left:8px}

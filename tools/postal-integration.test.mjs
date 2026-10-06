@@ -14,7 +14,7 @@ function setup(){
  const actors=Object.fromEntries(people.map((p,personIndex)=>[p.species,[{personIndex,root:{position:{x:0,z:0}},play:clip=>clips.push(clip)}]]));
  const couriers=[{actor:actors.moogle[0],snapshot:()=>({state:'idle',waiting:false}),deliver(){counts.deliver++;return true;},receive(){counts.receive++;return true;}}];
  const world=createPostalWorld({plan:{people},getActors:()=>actors,getCouriers:()=>couriers,getView:()=>view,getFailed:()=>new Set()});
- return {data,storage,world,view,actors,counts,clips,journey:createPostalJourney(storage)};
+ return {data,storage,world,view,actors,couriers,counts,clips,journey:createPostalJourney(storage)};
 }
 
 test('scene bridge and view agree with each chapter without moving the player',()=>{
@@ -106,4 +106,23 @@ test('notebook immediately hides nearby NPC controls and Escape restores them wi
 test('an observation card cannot act while the notebook already owns the interaction',()=>{
  const s=setup();s.observation={entry:discoveries[0],recorded:false,near:true,canObserve:true};const ui=mount(s);ui.controller.show();
  ui.$('postal-observe').emit('click');assert.deepEqual(s.journey.snapshot().discoveries,[]);ui.$('letter-quest-close').click();ui.$('postal-observe').click();assert.deepEqual(s.journey.snapshot().discoveries,[discoveries[0].id]);
+});
+
+test('optional royal greeting responds once per expression without writing or advancing a journey',()=>{
+ const s=setup(),ui=mount(s),conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,royal:true,isNotebookOpen:ui.controller.isOpen,clearInput(){},openNotebook:ui.controller.show});conversation.update();
+ const choices=ui.$('royal-greeting-options').children;assert(ui.$('royal-greeting').hidden);choices[0].emit('click');assert.equal(s.counts.receive,0);
+ s.journey.discover({id:'royal-gate-message',near:true,streetMode:true});conversation.update();assert(!ui.$('royal-greeting').hidden);
+ const before=JSON.stringify(s.journey.snapshot()),saved=[...s.data.entries()];choices[0].click();assert.match(ui.$('royal-greeting-feedback').textContent,/青瓦邮局/);assert.equal(s.counts.receive,1);
+ choices[0].click();for(let i=0;i<15;i++)conversation.update();assert.equal(s.counts.receive,1);choices[1].click();assert.equal(s.counts.receive,2);assert.match(ui.$('royal-greeting-feedback').textContent,/钟匠小屋/);
+ assert.equal(JSON.stringify(s.journey.snapshot()),before);assert.deepEqual([...s.data.entries()],saved);
+ s.journey.requestReset();s.journey.confirmReset();conversation.update();assert(ui.$('royal-greeting').hidden);assert(ui.$('royal-greeting-feedback').hidden);
+});
+test('optional greeting rejects notebook, wrong resident, distance, busy, unloaded and old-street interactions',()=>{
+ const s=setup(),ui=mount(s);s.journey.discover({id:'royal-gate-message',near:true,streetMode:true});
+ const conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,royal:true,isNotebookOpen:ui.controller.isOpen,clearInput(){},openNotebook:ui.controller.show});const choice=ui.$('royal-greeting-options').children[0];conversation.update();
+ ui.controller.show();conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);assert(ui.$('royal-greeting').hidden);ui.$('letter-quest-close').click();
+ s.couriers[0].snapshot=()=>({state:'deliver',waiting:false});conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);assert(choice.disabled);s.couriers[0].snapshot=()=>({state:'idle',waiting:false});
+ s.actors.moogle[0].root.position.x=5;conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);assert(ui.$('royal-greeting').hidden);s.actors.moogle[0].root.position.x=0;
+ s.view.mode='map';conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);s.view.mode='street';s.actors.moogle.length=0;conversation.update();choice.emit('click');assert.equal(s.counts.receive,0);
+ const old=setup(),oldUi=mount(old);old.journey.discover({id:'royal-gate-message',near:true,streetMode:true});const oldConversation=createNpcConversation({document:oldUi.document,world:old.world,journey:old.journey,royal:false,clearInput(){},openNotebook:oldUi.controller.show});oldConversation.update();oldUi.$('royal-greeting-options').children[0].emit('click');assert(oldUi.$('royal-greeting').hidden);assert.equal(old.counts.receive,0);
 });

@@ -40,6 +40,7 @@ FF_GENERATION_HOST=shouyun-4090 npm run generate:streets
 - `postal-observations.js` 与 `observation-markers.js`：实体石牌位置、朝向/距离门槛、世界造型和手记回顾。
 - `street-selection.js`：默认王城、显式旧街与样板、未知district安全回退；不按未知参数构造资源路径。
 - `postal-dialogue.js` 与 `npc-conversation.js`：三个街坊的阶段台词、可选城市旧事、近处主动回应；不改变主线状态。
+- `royal-greetings.js`：城门留言后的三种来客问候及街坊回应；由已有见闻决定可用性，仅本页对话，不新增任务状态或存档。
 - `postal-chime.js`：用既有程序音色播放两短一长，仅响应已启用声音下的主动最终交接。
 - `postal-memorial.js`：恒在的小铃桌与结局纪念物；24个部件，纪念部分合为4个材质网格，显示切换不重建。
 - `view-transitions.js`：保留地图往返时的街道锚点，防止中断动画时保存飞行中的相机位置。

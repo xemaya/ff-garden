@@ -78,7 +78,9 @@ export function buildShopNameplate(name,wood){
   const map=new THREE.CanvasTexture(canvas);map.colorSpace=THREE.SRGBColorSpace;map.anisotropy=4;
   const frame=new THREE.Mesh(new THREE.BoxGeometry(2.45,.50,.10),wood);frame.castShadow=true;frame.receiveShadow=true;group.add(frame);
   const face=new THREE.Mesh(new THREE.PlaneGeometry(2.31,.40),new THREE.MeshStandardMaterial({map,roughness:.92}));face.position.z=.056;face.receiveShadow=true;face.material.userData.shared=true;group.add(face);
-  group.position.set(0,3.67,.47);group.userData.shopName=name;return group;
+  // Project beyond facade beams and the hanging pictorial sign so the text has a clear frontage.
+  for(const x of[-.95,.95]){const bracket=new THREE.Mesh(new THREE.BoxGeometry(.08,.08,1.52),wood);bracket.position.set(x,0,-.80);bracket.castShadow=true;group.add(bracket);}
+  group.position.set(0,3.67,1.72);group.userData.shopName=name;return group;
 }
 export function buildHeroHouse(b,{nameplate=false}={}){metrics.heroBuildings++;const p=new THREE.Group(),w=b.width,h=b.height,d=b.depth,flower=b.kind==='florist',domestic=['home','inn'].includes(b.kind),wood=materials.wood,a=b.assembly||{stories:2,roof:flower?'teal':'clay',roofRise:flower?3.6:3.2,bay:flower?'octagonal':'none',awning:'striped',balcony:'none',chimney:flower?'none':'tall-stone'};
   const door={x:w*.28,y:.12,w:1.15,h:2.45},shop={x:-w*.19,y:.75,w:w*.40,h:1.75},upper=[{x:-w*.27,y:4.18,w:.96,h:1.7},{x:w*.27,y:4.34,w:.96,h:1.65}];if(a.stories===3)upper.push({x:-w*.24,y:6.48,w:.85,h:1.35},{x:w*.24,y:6.48,w:.85,h:1.35});
