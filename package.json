@@ -13,7 +13,8 @@
     "verify:mage": "node tools/verify-mage.mjs",
     "verify:chocobo": "node tools/verify-chocobo.mjs",
     "verify:cast": "node tools/verify-cast.mjs",
-    "check": "npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo",
+    "test:assets": "node --test tools/asset-loading.test.mjs",
+    "check": "npm run test:assets && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo",
     "deploy": "python3 deploy/publish.py"
   },
   "dependencies": {
