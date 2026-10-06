@@ -51,3 +51,5 @@
 @media(max-width:600px){#letter-quest-open{padding:8px;min-width:44px}#letter-quest-open span{display:none}footer{gap:6px}#letter-quest-panel{right:16px;left:16px;width:auto;top:214px;max-height:calc(100dvh - 310px)}}
 @media(max-width:374px){#letter-quest-panel{top:264px;max-height:calc(100dvh - 360px)}}
 @media(max-height:600px) and (min-width:601px){#letter-quest-panel{top:65px;max-height:calc(100dvh - 145px)}}
+
+#letter-quest-step{font-weight:500;color:#735937}#map-quest-target{font-size:11px;line-height:1.7;margin:10px 0;color:#735937}
