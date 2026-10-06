@@ -9,6 +9,7 @@ export async function loadHeroMaterials(){
   return materials;
 }
 export const failedHeroTextures=()=>materialLoader.failed();
+export const useBasicHeroMaterials=()=>materialLoader.useFallbacks();
 export const refreshHeroTextureClones=root=>materialLoader.refreshClones(root);
 export function heroMetrics(){return{...metrics,generatedMaterials:Object.keys(materials),failedTextures:failedHeroTextures(),heroBuildings:metrics.heroBuildings};}
 function mesh(p,geo,m,x=0,y=0,z=0){const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;p.add(o);return o;}

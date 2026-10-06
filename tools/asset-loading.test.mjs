@@ -98,7 +98,7 @@ test('retrying the failed subset does not fetch successful characters again', as
 test('each real character loader retries network and clip-validation failures', async () => {
   const THREE = await import('three');
   const {GLTFLoader} = await import('three/addons/loaders/GLTFLoader.js');
-  const original = GLTFLoader.prototype.loadAsync;
+  const original = GLTFLoader.prototype.parseAsync,originalFetch=globalThis.fetch;
   const roles = [
     ['moogle', ['Idle', 'Walk', 'Wave', 'Deliver']],
     ['mage', ['Idle', 'Walk', 'Greet', 'Magic']],
@@ -108,9 +108,12 @@ test('each real character loader retries network and clip-validation failures', 
     for (const [name, clips] of roles) {
       let calls = 0;
       const valid = {scene: new THREE.Group(), animations: clips.map(clip => new THREE.AnimationClip(clip, 1, []))};
-      GLTFLoader.prototype.loadAsync = async () => {
+      globalThis.fetch = async () => {
         calls++;
         if (calls === 1) throw new Error('network unavailable');
+        return {ok:true,arrayBuffer:async()=>new ArrayBuffer(0)};
+      };
+      GLTFLoader.prototype.parseAsync = async () => {
         if (calls === 2) return {...valid, animations: []};
         return valid;
       };
@@ -128,6 +131,6 @@ test('each real character loader retries network and clip-validation failures', 
       assert.equal(calls, 3);
     }
   } finally {
-    GLTFLoader.prototype.loadAsync = original;
+    GLTFLoader.prototype.parseAsync = original;globalThis.fetch=originalFetch;
   }
 });

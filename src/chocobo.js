@@ -1,15 +1,10 @@
 import * as THREE from 'three';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone} from 'three/addons/utils/SkeletonUtils.js';
-import {createAssetLoader} from './asset-loading.js';
+import {createCharacterAssetLoader} from './asset-transport.js';
 
 export const CHOCOBO_URL='/assets/characters/chocobo/chocobo-v1.glb';
 let template=null;
-export const loadChocoboAsset=createAssetLoader(()=>new GLTFLoader().loadAsync(CHOCOBO_URL).then(gltf=>{
-    const names=gltf.animations.map(c=>c.name);for(const name of['Idle','Walk','Chirp','Flap'])if(!names.includes(name))throw new Error('陆行鸟动作缺失：'+name);
-    gltf.scene.updateMatrixWorld(true);gltf.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;if(o.material.map)o.material.map.anisotropy=8;}if(o.isSkinnedMesh)o.skeleton.update();});
-    template=gltf;return gltf;
-  }));
+export const loadChocoboAsset=createCharacterAssetLoader(CHOCOBO_URL,['Idle', 'Walk', 'Chirp', 'Flap'],'陆行鸟',gltf=>{template=gltf;});
 export function createChocobo(p={x:0,z:0},animated=null){
   if(!template)throw new Error('陆行鸟资产尚未加载');
   const root=new THREE.Group(),model=clone(template.scene);root.name='RefinedChocobo';root.userData.dynamic=true;root.userData.refinedChocobo=true;root.add(model);root.position.set(p.x||0,animated?(p.z<-14?.04:.055):0,p.z||0);root.rotation.y=p.facing||0;

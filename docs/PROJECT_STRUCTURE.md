@@ -43,5 +43,7 @@ FF_GENERATION_HOST=shouyun-4090 npm run generate:streets
 - `postal-chime.js`：用既有程序音色播放两短一长，仅响应已启用声音下的主动最终交接。
 - `postal-memorial.js`：恒在的小铃桌与结局纪念物；24个部件，纪念部分合为4个材质网格，显示切换不重建。
 - `view-transitions.js`：保留地图往返时的街道锚点，防止中断动画时保存飞行中的相机位置。
+- `asset-loading.js` 与 `asset-transport.js`：成功缓存、共享等待、网络/解码预算、可取消下载、晚到结果提交与释放；角色验证只在有效提交点写模板。
+- `hero-textures.js`：并行PNG、小尺寸降级材质、保留成功项、手动简化入口与失败项重试；恢复Source及既有克隆，不重建城体。
 
 [玩家指南](POSTAL_PLAYER_GUIDE.md)与[本轮设计及验收](postal-journey-design.md)保留运行方式、存档边界和逐切片QA范围。本轮未重新运行模型生成、Blender资产生成或生产部署。

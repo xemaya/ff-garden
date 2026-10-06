@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import {createAssetLoader} from './asset-loading.js';
+import {createAssetLoader,ASSET_NETWORK_TIMEOUT_MS,ASSET_DECODE_TIMEOUT_MS} from './asset-loading.js';
+import {loadSurfaceTexture,disposeTexture} from './asset-transport.js';
 
 export const HERO_TEXTURE_NAMES=['plaster','wood','pavers','roof-clay','roof-teal'];
 const fallbackColors={plaster:'#c7bca7',wood:'#8d7257',pavers:'#b3aa95','roof-clay':'#a77360','roof-teal':'#638181'};
@@ -16,8 +17,8 @@ function configure(map,name){
 
 // Every request starts together. Successful textures are cached, failures alone
 // remain retryable, and fallback materials stay usable by all scene builders.
-export function createHeroMaterialLoader({loadTexture=name=>new THREE.TextureLoader().loadAsync(`/assets/v3/${name}.png`),createFallback=fallbackTexture}={}){
-  const materials={},failed=new Set(),loaders=Object.fromEntries(HERO_TEXTURE_NAMES.map(name=>[name,createAssetLoader(()=>loadTexture(name))]));
+export function createHeroMaterialLoader({loadTexture=loadSurfaceTexture,createFallback=fallbackTexture,timeoutMs=ASSET_NETWORK_TIMEOUT_MS,decodeTimeoutMs=ASSET_DECODE_TIMEOUT_MS,setTimer=setTimeout,clearTimer=clearTimeout}={}){
+  const materials={},failed=new Set(),loaders=Object.fromEntries(HERO_TEXTURE_NAMES.map(name=>[name,createAssetLoader(context=>loadTexture(name,context),{timeoutMs,decodeTimeoutMs,setTimer,clearTimer,dispose:disposeTexture})]));
   let pending=null;
   async function loadBatch(){
     const names=HERO_TEXTURE_NAMES.filter(name=>!materials[name]||failed.has(name));
@@ -38,6 +39,7 @@ export function createHeroMaterialLoader({loadTexture=name=>new THREE.TextureLoa
   }
   return {
     load(){if(!pending)pending=loadBatch().finally(()=>{pending=null;});return pending;},
+    useFallbacks(){for(const load of Object.values(loaders))load.cancel();},
     failed:()=>HERO_TEXTURE_NAMES.filter(name=>failed.has(name)),
     refreshClones(root){
       const sources=new Set(Object.values(materials).map(material=>material.map.source));

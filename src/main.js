@@ -33,7 +33,7 @@ import {loadMageAsset} from './mage.js';
 import {loadChocoboAsset} from './chocobo.js';
 import {createMoogleBehavior} from './moogle-behavior.js';
 import {loadCharacterAssets} from './asset-loading.js';
-import {loadHeroMaterials,failedHeroTextures,refreshHeroTextureClones,buildHeroHouse,buildHeroStreet,heroMetrics} from './hero.js';
+import {loadHeroMaterials,failedHeroTextures,useBasicHeroMaterials,refreshHeroTextureClones,buildHeroHouse,buildHeroStreet,heroMetrics} from './hero.js';
 
 const $=s=>document.querySelector(s),canvas=$('#world');
 // Repeated Enter/Space must not activate the next button after focus moves.
@@ -72,7 +72,11 @@ try{
   // scene construction is complete, then restore each role as it arrives.
   const characterResults={},pendingCharacters=new Set(Object.keys(characterLoaders));let refreshCharacter=null;
   void loadCharacterAssets(characterLoaders,(name,result)=>{characterResults[name]=result;pendingCharacters.delete(name);refreshCharacter?.(name,result);});
-  initMaterials();const heroMaterials=await loadHeroMaterials();if(generated){initPlazaMaterials(heroMaterials);initSceneryMaterials(heroMaterials);}
+  initMaterials();const basicButton=$('#basic-materials');let choseBasic=false;
+  const enterWithBasic=()=>{choseBasic=true;basicButton.disabled=true;useBasicHeroMaterials();};
+  basicButton.hidden=false;basicButton.addEventListener('click',enterWithBasic);
+  let heroMaterials;try{heroMaterials=await loadHeroMaterials();}finally{basicButton.hidden=true;basicButton.removeEventListener('click',enterWithBasic);}
+  if(generated){initPlazaMaterials(heroMaterials);initSceneryMaterials(heroMaterials);}
   const failedCharacters=new Set(Object.keys(characterResults).filter(name=>characterResults[name].status==='rejected'));
   const deferredFocus=new Set([...pendingCharacters].filter(name=>query.has(name)));
   // Once the visitor interacts, late assets must not change their viewpoint.
@@ -252,5 +256,5 @@ try{
       const currentQuestTarget=postal.update();canvas.dataset.state=JSON.stringify({postalJourney:journey.snapshot(),letterQuest:journey.snapshot(),questTarget:currentQuestTarget&&{name:currentQuestTarget.name,species:currentQuestTarget.species,loaded:currentQuestTarget.loaded},questOpen:postal.isOpen(),ready:true,readyMs:readyAt-startedAt,renderProfile:profile,pixelRatio:renderer.getPixelRatio(),shadowSize:sun.shadow.mapSize.x,inputPointers:movement.pointerCount,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],postalAudio:{enabled:!!audio?.on,state:audio?.ac.state||'not-created',completionChimesPlayed:audio?.completionChimesPlayed||0},postalMemorial:memorial.snapshot(),royalCity:royalMetrics,theme:royal?'listening-wind-royal-city':'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:royal?'royal':generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:royal?plan.landmarks.map(l=>l.name):['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:royal||!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
     }
   }
-  if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:reduced?1.65:2.15);apply();drawMap();readyAt=performance.now();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
+  if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:reduced?1.65:2.15);apply();drawMap();readyAt=performance.now();animate();if(choseBasic){canvas.setAttribute('tabindex','-1');canvas.focus();}$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
 }catch(error){console.error(error);$('#loading').textContent='街角还没准备好：'+error.message;}

@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import {createHeroMaterialLoader,HERO_TEXTURE_NAMES} from '../src/hero-textures.js';
 import {initPlazaMaterials} from '../src/plaza.js';
 import {initSceneryMaterials} from '../src/scenery.js';
+import {clock,deferred,flush} from './asset-test-support.mjs';
 
 const texture=name=>new THREE.Texture({name,width:16,height:16});
 test('all five requests start before any settles and concurrent callers share the batch',async()=>{
@@ -41,4 +42,34 @@ test('real tiny canvas fallbacks remain compatible with plaza and scenery materi
     assert.equal(canvases.length,5);for(const material of Object.values(materials)){assert(material.map.isCanvasTexture);assert.equal(material.map.image.width,16);assert.equal(material.map.image.height,16);}
     assert.doesNotThrow(()=>initPlazaMaterials(materials));assert.doesNotThrow(()=>initSceneryMaterials(materials));
   }finally{if(previous===undefined)delete globalThis.document;else globalThis.document=previous;}
+});
+test('timed out textures enter with fallbacks while successful maps survive and only failed requests retry',async()=>{
+ const time=clock(),works=new Map(),calls=new Map();
+ const loader=createHeroMaterialLoader({timeoutMs:100,decodeTimeoutMs:40,...time,createFallback:texture,loadTexture:name=>{
+  calls.set(name,(calls.get(name)||0)+1);if(name!=='plaster')return texture(name);const work=deferred();works.set(calls.get(name),work);return work.promise;
+ }});
+ const first=loader.load();await flush();time.advance(100);const materials=await first,wood=materials.wood.map,fallback=materials.plaster.map;
+ assert.deepEqual(loader.failed(),['plaster']);assert.equal(time.count(),0);
+ const retry=loader.load();assert.equal(retry,loader.load());await flush();works.get(2).resolve(texture('restored'));await retry;
+ const late=texture('late');let disposed=0;late.addEventListener('dispose',()=>disposed++);works.get(1).resolve(late);await flush();
+ assert.equal(materials.plaster.map,fallback);assert.equal(fallback.image.name,'restored');assert.equal(disposed,1);assert.equal(materials.wood.map,wood);
+ for(const name of HERO_TEXTURE_NAMES)assert.equal(calls.get(name),name==='plaster'?2:1);assert.deepEqual(loader.failed(),[]);assert.equal(time.count(),0);
+});
+test('choosing basic materials cancels shared waits, preserves ready maps and reuses an uncancellable decode on retry',async()=>{
+ const time=clock(),decode=deferred(),signals=[],calls=new Map();
+ const loader=createHeroMaterialLoader({timeoutMs:100,decodeTimeoutMs:40,...time,createFallback:name=>texture('basic-'+name),loadTexture:(name,context)=>{
+  calls.set(name,(calls.get(name)||0)+1);signals.push(context.signal);
+  if(name==='wood')return texture('wood');if(name==='plaster'){context.downloaded();return decode.promise;}return new Promise(()=>{});
+ }});
+ const first=loader.load();await flush();loader.useFallbacks();const materials=await first;
+ assert.equal(materials.wood.map.image.name,'wood');assert.equal(loader.failed().length,4);assert.equal(signals.filter(signal=>signal.aborted).length,3);assert.equal(time.count(),0);
+ const retry=loader.load();await flush();assert.equal(calls.get('plaster'),1);decode.resolve(texture('decoded'));await flush();time.advance(100);await retry;
+ assert.equal(materials.plaster.map.image.name,'decoded');assert(!loader.failed().includes('plaster'));assert.equal(calls.get('wood'),1);assert.equal(time.count(),0);
+});
+test('all hung texture downloads have bounded waiting and repeated fallback choices do not create materials',async()=>{
+ const time=clock();let fallbacks=0;
+ const loader=createHeroMaterialLoader({timeoutMs:100,...time,loadTexture:()=>new Promise(()=>{}),createFallback:name=>{fallbacks++;return texture(name);}});
+ const first=loader.load();await flush();time.advance(100);const materials=await first;
+ assert.equal(Object.keys(materials).length,5);assert.equal(fallbacks,5);assert.equal(time.count(),0);
+ const retry=loader.load();await flush();loader.useFallbacks();loader.useFallbacks();assert.equal(await retry,materials);assert.equal(fallbacks,5);assert.equal(time.count(),0);
 });

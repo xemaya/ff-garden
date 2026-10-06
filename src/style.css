@@ -68,3 +68,4 @@
 
 #npc-talk{min-height:44px;padding:8px 10px;margin:4px 5px 4px 0;border:1px solid #ad95625c;background:#efe2c3;border-radius:3px;font-size:11px}#npc-talk:disabled{opacity:.6}#npc-response{border-left:2px solid #ab8959;padding-left:8px}#moogle-panel{max-height:calc(100dvh - 350px);overflow:auto}#moogle-status{font-size:10px;opacity:.8}
 #texture-retry{display:block;margin-top:8px;background:#eddfba80;border:1px solid #ac946354;border-radius:3px;padding:10px 12px;min-height:44px;font-size:11px}#texture-retry:disabled{opacity:.6;cursor:default}
+#basic-materials{padding:12px 18px;min-height:44px;background:#fff9e9;border:1px solid #7e947b;border-radius:4px;font-size:13px}
