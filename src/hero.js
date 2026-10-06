@@ -1,20 +1,16 @@
 import * as THREE from 'three';
 import {rng,center,roadside} from './layout.js';
 import {plain,mat} from './materials.js';
+import {createHeroMaterialLoader} from './hero-textures.js';
 
-const materials={};let metrics={roofTiles:0,sculptedPavers:0,recessedWindows:0,heroBuildings:0};
+let materials={};const materialLoader=createHeroMaterialLoader();let metrics={roofTiles:0,sculptedPavers:0,recessedWindows:0,heroBuildings:0};
 export async function loadHeroMaterials(){
-  const loader=new THREE.TextureLoader();
-  for(const name of ['plaster','wood','pavers','roof-clay','roof-teal']){
-    const map=await loader.loadAsync(`/assets/v3/${name}.png`);map.colorSpace=THREE.SRGBColorSpace;map.wrapS=map.wrapT=THREE.RepeatWrapping;map.anisotropy=8;
-    if(name==='plaster')map.repeat.set(.24,.24);
-    if(name==='wood')map.repeat.set(.24,1.6);
-    const bump=name==='pavers'?null:map;
-    const material=new THREE.MeshStandardMaterial({map,bumpMap:bump,bumpScale:name==='wood'?.032:name==='plaster'?.018:.021,roughness:.95});material.userData.shared=true;materials[name]=material;
-  }
+  materials=await materialLoader.load();
   return materials;
 }
-export function heroMetrics(){return{...metrics,generatedMaterials:Object.keys(materials),heroBuildings:metrics.heroBuildings};}
+export const failedHeroTextures=()=>materialLoader.failed();
+export const refreshHeroTextureClones=root=>materialLoader.refreshClones(root);
+export function heroMetrics(){return{...metrics,generatedMaterials:Object.keys(materials),failedTextures:failedHeroTextures(),heroBuildings:metrics.heroBuildings};}
 function mesh(p,geo,m,x=0,y=0,z=0){const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;p.add(o);return o;}
 function box(p,w,h,d,m,x=0,y=0,z=0){return mesh(p,new THREE.BoxGeometry(w,h,d),m,x,y,z);}
 function sphere(p,r,m,x,y,z,sx=1,sy=1,sz=1){const o=mesh(p,new THREE.SphereGeometry(r,12,8),m,x,y,z);o.scale.set(sx,sy,sz);return o;}

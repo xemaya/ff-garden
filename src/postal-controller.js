@@ -4,9 +4,10 @@ import {postalView} from './postal-view.js';
 import {observationSummary} from './postal-observations.js';
 
 // Own the notebook UI; world rendering, navigation and storage rules stay outside.
-export function createPostalController({document,events,journey,world,toast,openMap,returnToStreet,clearInput,getObservation=()=>null,onEnding=()=>{}}){
+export function createPostalController({document,events,journey,world,toast,openMap,returnToStreet,clearInput,getObservation=()=>null,onEnding=()=>{},onVisibilityChange=()=>{}}){
   const $=id=>document.getElementById(id),setText=(id,text)=>{if($(id).textContent!==text)$(id).textContent=text;};
   let open=journey.snapshot().state!=='available'||journey.snapshot().chapter>0,feedback='',tab='letters';
+  let previousOpen=null;
   const observationCards=new Map();
   for(const entry of discoveries){
     const card=document.createElement('section'),title=document.createElement('strong'),text=document.createElement('p'),keepsake=document.createElement('p');
@@ -37,6 +38,7 @@ export function createPostalController({document,events,journey,world,toast,open
     const context=world.interaction(snapshot.state==='available'?chapter.sender:chapter.recipient),model=postalView(snapshot,target,context,world.view().mode);
     if(snapshot.syncNotice)feedback='';$('postal-sync-notice').hidden=!snapshot.syncNotice;
     $('letter-quest-panel').hidden=!open;$('letter-quest-open').setAttribute('aria-expanded',String(open));
+    if(previousOpen!==open){previousOpen=open;onVisibilityChange(open);}
     setText('postal-title',tab==='letters'?model.title:'邮差手记 · 见闻');setText('letter-quest-step',model.step);setText('letter-quest-text',model.body);
     $('postal-letter-page').hidden=tab!=='letters';$('postal-observations-page').hidden=tab!=='observations';
     for(const name of ['letters','observations']){$('postal-tab-'+name).setAttribute('aria-selected',String(tab===name));$('postal-tab-'+name).setAttribute('tabindex',tab===name?'0':'-1');}
@@ -67,7 +69,8 @@ export function createPostalController({document,events,journey,world,toast,open
   }
   function cancelConfirmations(){journey.cancelReset();journey.cancelRecovery();}
   function cancelReset(){const source=journey.snapshot().recoverySource;cancelConfirmations();update();if(open&&world.view().mode==='street')$(source?'postal-recover-'+source:'letter-quest-reset').focus();}
-  function show(){returnToStreet();tab='letters';open=true;update();}
+  function show(){returnToStreet();tab='letters';open=true;update();$('postal-tab-letters').focus();}
+  function close(){cancelConfirmations();open=false;update();$('letter-quest-open').focus();}
   function selectTab(name){tab=name;update();}
   for(const name of ['letters','observations']){
     $('postal-tab-'+name).addEventListener('click',()=>selectTab(name));
@@ -78,8 +81,8 @@ export function createPostalController({document,events,journey,world,toast,open
     if(!observation.recorded&&!journey.discover({id:observation.entry.id,near:observation.near,streetMode:true}))return;
     feedback='';tab='observations';open=true;clearInput();update();$('postal-observation-title').focus();if(!observation.recorded)toast(observation.entry.keepsake);
   });
-  $('letter-quest-open').addEventListener('click',()=>{const fromMap=world.view().mode!=='street';returnToStreet();open=fromMap?true:!open;if(!open)cancelConfirmations();update();});
-  $('letter-quest-close').addEventListener('click',()=>{cancelConfirmations();open=false;update();$('letter-quest-open').focus();});
+  $('letter-quest-open').addEventListener('click',()=>{const fromMap=world.view().mode!=='street';returnToStreet();if(open&&!fromMap){close();return;}open=true;update();$('postal-tab-'+tab).focus();});
+  $('letter-quest-close').addEventListener('click',close);
   $('letter-quest-guide').addEventListener('click',()=>{const snapshot=journey.snapshot(),target=world.currentTarget(snapshot);if(!target?.exists||snapshot.resetPending||snapshot.recoveryPending)return;openMap();update();});
   $('letter-quest-action').addEventListener('keydown',event=>{if(event.repeat&&['Enter','Space'].includes(event.code))event.preventDefault();});
   $('letter-quest-action').addEventListener('click',event=>{
@@ -105,6 +108,6 @@ export function createPostalController({document,events,journey,world,toast,open
   events.addEventListener('storage',event=>{if(event.key===JOURNEY_KEY||event.key===null){if(event.key===null)journey.restore();else journey.syncStoredJourney();feedback='';update();}else if([PREVIOUS_JOURNEYS_KEY,LEGACY_BACKUP_KEY].includes(event.key)){journey.refreshBackups();update();}});
   update();
   return {update,show,cancelConfirmations,isOpen:()=>open,
-    handleEscape(){if(!journey.snapshot().resetPending&&!journey.snapshot().recoveryPending)return false;cancelReset();clearInput();return true;}
+    handleEscape(){if(journey.snapshot().resetPending||journey.snapshot().recoveryPending){cancelReset();clearInput();return true;}if(!open)return false;close();clearInput();return true;}
   };
 }

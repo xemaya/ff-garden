@@ -1,10 +1,11 @@
 import {postalDialogue} from './postal-dialogue.js';
 
-export function createNpcConversation({document,world,journey,clearInput,openNotebook}){
+export function createNpcConversation({document,world,journey,clearInput,openNotebook,isNotebookOpen=()=>false}){
   const $=id=>document.getElementById(id),setText=(id,text)=>{if($(id).textContent!==text)$(id).textContent=text;};
   const names={moogle:'邮差莫古利',mage:'书桌旁的魔导士',chocobo:'树荫边的陆行鸟'};
   let active=null,responseKey=null;
   function update(){
+    if(isNotebookOpen()){active=null;$('moogle-panel').hidden=true;return null;}
     active=world.nearbyPerson();$('moogle-panel').hidden=!active;
     if(!active){responseKey=null;return null;}
     const snapshot=journey.snapshot(),dialogue=postalDialogue(active.species,snapshot),context=world.interaction(active.species);
@@ -16,6 +17,7 @@ export function createNpcConversation({document,world,journey,clearInput,openNot
     return active;
   }
   $('npc-talk').addEventListener('click',()=>{
+    if(isNotebookOpen())return;
     const person=world.nearbyPerson();if(!person||!world.replay(person.species))return;
     responseKey=postalDialogue(person.species,journey.snapshot()).key;clearInput();update();
   });

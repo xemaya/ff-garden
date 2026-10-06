@@ -47,7 +47,7 @@ class Element{
  append(...children){this.children.push(...children);}focus(){this.document.activeElement=this;}setAttribute(key,value){this[key]=value;}scrollIntoView(){}
 }
 function dom(){const document={activeElement:null,nodes:new Map(),getElementById(id){assert(this.nodes.has(id),'missing '+id);return this.nodes.get(id);},createElement(){return new Element(this);}};const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');for(const [,id] of html.matchAll(/id="([^"]+)"/g))document.nodes.set(id,new Element(document,id));return document;}
-function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){},getObservation:()=>s.observation||null,onEnding:()=>{s.endings=(s.endings||0)+1;}});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
+function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){},getObservation:()=>s.observation||null,onVisibilityChange:open=>s.onVisibilityChange?.(open),onEnding:()=>{s.endings=(s.endings||0)+1;}});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
 
 test('complete UI-event slice: separate handoffs, wrong/correct reply, final keepsake',()=>{
  const s=setup(),ui=mount(s);ui.$('letter-quest-open').click();assert(!ui.$('letter-quest-panel').hidden);
@@ -61,7 +61,7 @@ test('complete UI-event slice: separate handoffs, wrong/correct reply, final kee
 });
 test('controller locator, refresh and reset cancellation do not advance or lose a journey',()=>{
  const s=setup(),ui=mount(s),before={...s.view.player};ui.$('letter-quest-open').click();ui.$('letter-quest-guide').click();assert.equal(s.view.mode,'map');assert.equal(s.journey.snapshot().state,'available');assert.deepEqual(s.view.player,before);ui.$('letter-quest-open').click();assert.equal(s.view.mode,'street');
- ui.$('letter-quest-action').click();assert.equal(s.journey.snapshot().state,'carrying');ui.$('letter-quest-reset').click();assert.equal(ui.document.activeElement.id,'letter-quest-reset-cancel');assert(ui.controller.handleEscape());assert.equal(s.journey.snapshot().state,'carrying');assert(!ui.controller.handleEscape());
+ ui.$('letter-quest-action').click();assert.equal(s.journey.snapshot().state,'carrying');ui.$('letter-quest-reset').click();assert.equal(ui.document.activeElement.id,'letter-quest-reset-cancel');assert(ui.controller.handleEscape());assert.equal(s.journey.snapshot().state,'carrying');assert(ui.controller.handleEscape());assert(!ui.controller.isOpen());assert.equal(ui.document.activeElement.id,'letter-quest-open');assert(!ui.controller.handleEscape());ui.controller.show();
  const refreshed=createPostalJourney(s.storage);assert.equal(refreshed.snapshot().state,'carrying');assert.equal(refreshed.snapshot().resetPending,false);
  ui.$('letter-quest-reset').click();ui.$('letter-quest-reset-confirm').click();assert.equal(createPostalJourney(s.storage).snapshot().state,'available');assert(s.data.has(JOURNEY_KEY));
 });
@@ -91,4 +91,14 @@ test('nearby conversation changes with the letter and optional observation witho
  const s=setup(),ui=mount(s),conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,clearInput(){},openNotebook:ui.controller.show});conversation.update();const before=ui.$('npc-response').textContent;
  ui.$('npc-talk').click();assert.equal(s.journey.snapshot().state,'available');assert.equal(s.data.get(JOURNEY_KEY),undefined);assert.equal(s.counts.receive,1);s.journey.accept(s.world.interaction('moogle'));conversation.update();assert.notEqual(ui.$('npc-response').textContent,before);
  s.journey.discover({id:'royal-gate-message',near:true,streetMode:true});conversation.update();ui.$('npc-talk').click();assert.match(ui.$('npc-response').textContent,/守门人/);assert.equal(s.journey.snapshot().state,'carrying');s.view.mode='map';conversation.update();assert(ui.$('moogle-panel').hidden);
+});
+
+test('notebook immediately hides nearby NPC controls and Escape restores them with safe focus',()=>{
+ const s=setup(),ui=mount(s),conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,isNotebookOpen:ui.controller.isOpen,clearInput(){},openNotebook:ui.controller.show});
+ s.onVisibilityChange=()=>conversation.update();conversation.update();assert(!ui.$('moogle-panel').hidden);
+ ui.$('moogle-letter').click();assert(ui.controller.isOpen());assert(ui.$('moogle-panel').hidden);assert.equal(ui.document.activeElement.id,'postal-tab-letters');
+ const before=s.counts.receive;ui.$('npc-talk').emit('click');assert.equal(s.counts.receive,before);assert.equal(s.journey.snapshot().state,'available');
+ ui.$('letter-quest-reset').click();assert(ui.controller.handleEscape());assert(ui.controller.isOpen());assert(ui.$('moogle-panel').hidden);assert.equal(ui.document.activeElement.id,'letter-quest-reset');
+ assert(ui.controller.handleEscape());assert(!ui.controller.isOpen());assert(!ui.$('moogle-panel').hidden);assert.equal(ui.document.activeElement.id,'letter-quest-open');
+ ui.$('letter-quest-open').click();assert(ui.$('moogle-panel').hidden);ui.$('letter-quest-close').click();assert(!ui.$('moogle-panel').hidden);assert.equal(ui.document.activeElement.id,'letter-quest-open');
 });

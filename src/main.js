@@ -33,7 +33,7 @@ import {loadMageAsset} from './mage.js';
 import {loadChocoboAsset} from './chocobo.js';
 import {createMoogleBehavior} from './moogle-behavior.js';
 import {loadCharacterAssets} from './asset-loading.js';
-import {loadHeroMaterials,buildHeroHouse,buildHeroStreet,heroMetrics} from './hero.js';
+import {loadHeroMaterials,failedHeroTextures,refreshHeroTextureClones,buildHeroHouse,buildHeroStreet,heroMetrics} from './hero.js';
 
 const $=s=>document.querySelector(s),canvas=$('#world');
 // Repeated Enter/Space must not activate the next button after focus moves.
@@ -132,18 +132,20 @@ try{
     getFailed:()=>failedCharacters,
     getView:()=>({player:mapMode?oldPose:pose,mode:mapMode?'map':artStudy?'study':transition?'transition':'street'})
   });
+  let conversation=null;
   postal=createPostalController({
-    document,events:window,journey,world:postalWorld,toast,clearInput,onEnding:()=>playPostalChime(audio),getObservation:()=>observationView(observations,postalWorld.view().player,postalWorld.view().mode,journey.snapshot().discoveries),openMap:()=>setMap(true),
+    document,events:window,journey,world:postalWorld,toast,clearInput,onVisibilityChange:()=>conversation?.update(),onEnding:()=>playPostalChime(audio),getObservation:()=>observationView(observations,postalWorld.view().player,postalWorld.view().mode,journey.snapshot().discoveries),openMap:()=>setMap(true),
     returnToStreet(){if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);transition=null;apply();}else if(transition){Object.assign(pose,transition.target);transition=null;apply();}}
   });
-  const conversation=createNpcConversation({document,world:postalWorld,journey,openNotebook:()=>postal.show(),clearInput:()=>{touring=false;clearInput();}});
-  const characterLabels={moogle:'莫古利',mage:'魔导士',chocobo:'陆行鸟'};let retrying=false;
+  conversation=createNpcConversation({document,world:postalWorld,journey,isNotebookOpen:()=>postal.isOpen(),openNotebook:()=>postal.show(),clearInput:()=>{touring=false;clearInput();}});
+  const characterLabels={moogle:'莫古利',mage:'魔导士',chocobo:'陆行鸟'};let retrying=false,textureRetrying=false;
   function showCharacterStatus(){
     const loading=[...pendingCharacters],failed=[...failedCharacters].filter(name=>!pendingCharacters.has(name));
-    $('#character-warning').hidden=!loading.length&&!failed.length;
+    const textures=failedHeroTextures();$('#character-warning').hidden=!loading.length&&!failed.length&&!textures.length;
     const labels=names=>names.map(name=>characterLabels[name]).join('、');
-    $('#character-warning-text').textContent=[loading.length?labels(loading)+'正在加载，先用简化造型陪你逛街。':'',failed.length?labels(failed)+'暂时无法加载，可稍后重试。':''].filter(Boolean).join(' ');
+    $('#character-warning-text').textContent=[loading.length?labels(loading)+'正在加载，先用简化造型陪你逛街。':'',failed.length?labels(failed)+'暂时无法加载，可稍后重试。':'',textures.length?'部分表面纹理未加载，暂用简化材质，仍可继续游览。':''].filter(Boolean).join(' ');
     $('#character-retry').hidden=!failedCharacters.size;$('#character-retry').disabled=retrying;
+    $('#texture-retry').hidden=!textures.length;$('#texture-retry').disabled=textureRetrying;
   }
   function restoreCharacters(name){
     for(const [index,fallback] of fallbackCharacters){
@@ -168,6 +170,11 @@ try{
     showCharacterStatus();
   };
   showCharacterStatus();
+  $('#texture-retry').addEventListener('click',async()=>{
+    if(textureRetrying)return;textureRetrying=true;showCharacterStatus();$('#texture-retry').textContent='正在重试纹理…';
+    try{await loadHeroMaterials();refreshHeroTextureClones(town);toast(failedHeroTextures().length?'部分纹理仍未加载，简化材质保留。':'表面纹理已恢复。');}
+    finally{textureRetrying=false;$('#texture-retry').textContent='重试纹理';showCharacterStatus();}
+  });
   $('#character-retry').addEventListener('click',async()=>{
     if(retrying)return;
     const names=[...failedCharacters],button=$('#character-retry');retrying=true;button.textContent='正在重试…';names.forEach(name=>pendingCharacters.add(name));showCharacterStatus();
