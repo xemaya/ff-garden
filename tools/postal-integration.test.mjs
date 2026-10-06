@@ -4,6 +4,7 @@ import {createPostalWorld} from '../src/postal-world.js';
 import {createPostalController} from '../src/postal-controller.js';
 import {createMoogleBehavior} from '../src/moogle-behavior.js';
 import {postalView} from '../src/postal-view.js';
+import {discoveries} from '../src/postal-content.js';
 
 function setup(){
  const data=new Map(),storage={getItem:key=>data.get(key)??null,setItem:(key,value)=>data.set(key,value)};
@@ -42,10 +43,10 @@ class Element{
  addEventListener(type,fn){if(!this.events.has(type))this.events.set(type,[]);this.events.get(type).push(fn);}
  emit(type,event={}){for(const fn of this.events.get(type)||[])fn({detail:1,...event});}
  click(detail=1){if(!this.hidden&&!this.disabled)this.emit('click',{detail});}
- append(child){this.children.push(child);}focus(){this.document.activeElement=this;}setAttribute(key,value){this[key]=value;}scrollIntoView(){}
+ append(...children){this.children.push(...children);}focus(){this.document.activeElement=this;}setAttribute(key,value){this[key]=value;}scrollIntoView(){}
 }
 function dom(){const document={activeElement:null,nodes:new Map(),getElementById(id){assert(this.nodes.has(id),'missing '+id);return this.nodes.get(id);},createElement(){return new Element(this);}};const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');for(const [,id] of html.matchAll(/id="([^"]+)"/g))document.nodes.set(id,new Element(document,id));return document;}
-function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){}});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
+function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){},getObservation:()=>s.observation||null});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
 
 test('complete UI-event slice: separate handoffs, wrong/correct reply, final keepsake',()=>{
  const s=setup(),ui=mount(s);ui.$('letter-quest-open').click();assert(!ui.$('letter-quest-panel').hidden);
@@ -62,4 +63,17 @@ test('controller locator, refresh and reset cancellation do not advance or lose 
  ui.$('letter-quest-action').click();assert.equal(s.journey.snapshot().state,'carrying');ui.$('letter-quest-reset').click();assert.equal(ui.document.activeElement.id,'letter-quest-reset-cancel');assert(ui.controller.handleEscape());assert.equal(s.journey.snapshot().state,'carrying');assert(!ui.controller.handleEscape());
  const refreshed=createPostalJourney(s.storage);assert.equal(refreshed.snapshot().state,'carrying');assert.equal(refreshed.snapshot().resetPending,false);
  ui.$('letter-quest-reset').click();ui.$('letter-quest-reset-confirm').click();assert.equal(createPostalJourney(s.storage).snapshot().state,'available');assert(s.data.has(JOURNEY_KEY));
+});
+
+test('observation event records a nearby story once and switches to a readable notebook page',()=>{
+ const s=setup(),ui=mount(s),entry=discoveries.find(e=>e.district==='royal');s.observation={entry,near:true,canObserve:false,recorded:false};ui.$('postal-observe').click();assert.equal(s.journey.snapshot().discoveries.length,0);
+ s.observation.canObserve=true;ui.$('postal-observe').click();assert.deepEqual(s.journey.snapshot().discoveries,[entry.id]);assert(!ui.$('postal-observations-page').hidden);assert(ui.$('postal-letter-page').hidden);assert.equal(ui.document.activeElement.id,'postal-observation-title');assert.equal(s.journey.snapshot().state,'available');
+ s.observation.recorded=true;s.observation.canObserve=false;const rewards=ui.toast.length;ui.$('postal-observe').click();assert.equal(ui.toast.length,rewards);assert.equal(s.journey.snapshot().discoveries.length,1);
+ ui.$('postal-tab-letters').click();assert(!ui.$('postal-letter-page').hidden);assert.equal(ui.$('postal-tab-letters')['aria-selected'],'true');
+});
+test('recovery UI defaults to cancel, preserves progress on Escape, and exposes undo after reset',()=>{
+ const s=setup();s.storage.setItem('ff-garden.letter-quest.v1',JSON.stringify({version:1,state:'completed'}));s.journey=createPostalJourney(s.storage);s.journey.continue();s.journey.accept(s.world.interaction('mage'));const ui=mount(s);
+ ui.$('postal-recover-legacy').click();assert.equal(ui.document.activeElement.id,'postal-recovery-cancel');assert(!ui.$('postal-recovery-confirmation').hidden);assert(ui.controller.handleEscape());assert.equal(s.journey.snapshot().chapter,1);assert.equal(ui.document.activeElement.id,'postal-recover-legacy');
+ ui.$('letter-quest-reset').click();ui.$('letter-quest-reset-confirm').click();assert.equal(s.journey.snapshot().chapter,0);assert(!ui.$('postal-recover-journey').hidden);ui.$('postal-recover-journey').click();assert(ui.$('postal-recovery-title').textContent.includes('携信途中'));ui.$('postal-recovery-confirm').click();assert.equal(s.journey.snapshot().chapter,1);assert.equal(s.journey.snapshot().state,'carrying');
+ ui.$('postal-recover-legacy').click();s.storage.setItem=()=>{throw Error('quota');};ui.$('postal-recovery-confirm').click();assert.equal(s.journey.snapshot().chapter,1);assert(!ui.$('postal-recovery-error').hidden);assert(ui.$('postal-recovery-error').textContent.includes('没有替换进度'));
 });

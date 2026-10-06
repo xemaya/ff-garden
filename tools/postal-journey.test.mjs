@@ -33,7 +33,7 @@ test('pending reset/recovery prevents unrelated progress; cancel leaves exact st
 test('three unique observations are optional, nearby and player-initiated',()=>{
  const storage=memory(),j=createPostalJourney(storage);
  assert(!j.discover({id:'unknown',near:true,streetMode:true}));for(const entry of discoveries){assert(!j.discover({id:entry.id,near:false,streetMode:true}));assert(!j.discover({id:entry.id,near:true,streetMode:false}));assert(j.discover({id:entry.id,near:true,streetMode:true}));assert(!j.discover({id:entry.id,near:true,streetMode:true}));}
- assert.equal(j.snapshot().state,'available');assert.equal(createPostalJourney(storage).snapshot().discoveries.length,3);
+ assert.equal(j.snapshot().state,'available');assert.equal(createPostalJourney(storage).snapshot().discoveries.length,discoveries.length);
 });
 test('all legacy states migrate with raw backup before new save, leaving v1 untouched',()=>{
  for(const state of ['available','carrying','completed']){const storage=memory(),raw=JSON.stringify({version:1,state});storage.setItem(QUEST_KEY,raw);storage.writes.length=0;const j=createPostalJourney(storage);assert.equal(j.snapshot().chapter,0);assert.equal(j.snapshot().state,state);assert.equal(storage.getItem(QUEST_KEY),raw);assert.equal(storage.getItem(LEGACY_BACKUP_KEY),raw);assert.deepEqual(storage.writes,[LEGACY_BACKUP_KEY,JOURNEY_KEY]);assert(j.snapshot().hasLegacyBackup);}
