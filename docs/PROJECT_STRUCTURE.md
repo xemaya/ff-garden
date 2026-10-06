@@ -52,3 +52,6 @@ FF_GENERATION_HOST=shouyun-4090 npm run generate:streets
 - `src/street-guidance.js`：只读的当前委托方位/直线距离/近处行动短句；由main既有HUD节奏更新底栏原地点小字。八方向相对玩家yaw，加载、面板、完成和尺寸边界由纯模型测试覆盖。
 
 - `src/royal-shop-displays.js`：王城钟匠/茶屋橱窗的静态陈列替换，复用现有立面位置与材料；由hero的storyDetails开关启用，旧场景默认关闭。王城纪念桌的marker开关只加常驻名称，完成态仍由原snapshot控制。
+
+- `src/startup-loading.js`：必需目录/布局JSON复用有限加载器，等待期间停止/pagehide取消及临时监听清理；角色展示沿用它的等待按钮，不改角色加载器。
+- `src/startup-feedback.js` / `startup-feedback.css`：主入口与三展示的简短失败恢复页，原URL重新载入或返回入口，不操作本地进度。

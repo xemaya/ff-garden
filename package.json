@@ -13,7 +13,7 @@
     "verify:mage": "node tools/verify-mage.mjs",
     "verify:chocobo": "node tools/verify-chocobo.mjs",
     "verify:cast": "node tools/verify-cast.mjs",
-    "test:assets": "node --test tools/asset-loading.test.mjs tools/hero-textures.test.mjs tools/asset-deadlines.test.mjs tools/asset-transport.test.mjs",
+    "test:assets": "node --test tools/asset-loading.test.mjs tools/hero-textures.test.mjs tools/asset-deadlines.test.mjs tools/asset-transport.test.mjs tools/startup-loading.test.mjs",
     "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run test:journey && npm run test:royal && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo",
     "deploy": "python3 deploy/publish.py",
     "test:input": "node --test tools/input-state.test.mjs tools/view-transitions.test.mjs",

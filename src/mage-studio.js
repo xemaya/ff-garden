@@ -1,3 +1,6 @@
+import './startup-feedback.css';
+import {waitForStartup} from './startup-loading.js';
+import {showStartupFailure} from './startup-feedback.js';
 import './moogle-studio.css';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -11,7 +14,7 @@ import {initMaterials} from './materials.js';
 import {buildFantasyCitizen} from './fantasy.js';
 const $=s=>document.querySelector(s),canvas=$('#portrait');
 try{
- await loadMageAsset();initMaterials();
+ await waitForStartup(loadMageAsset,{document,events:window,root:$('#loading')});initMaterials();
  const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.info.autoReset=false;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
  const scene=new THREE.Scene();scene.background=new THREE.Color(0xe7e0d3);const pmrem=new THREE.PMREMGenerator(renderer),room=new RoomEnvironment(),env=pmrem.fromScene(room,.025);scene.environment=env.texture;scene.environmentIntensity=.5;room.dispose();pmrem.dispose();
  scene.add(new THREE.HemisphereLight(0xe9f0f3,0xb8a480,1.3));const sun=new THREE.DirectionalLight(0xffe5c4,3.0);sun.position.set(-2.4,4.5,3);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-2,right:2,top:2,bottom:-2,near:.1,far:12});sun.shadow.normalBias=.008;sun.shadow.bias=-.00008;scene.add(sun);
@@ -35,4 +38,4 @@ try{
   if(demo){demoClock+=dt;const cycle=demoClock%12,clip=cycle<2.5?'Idle':cycle<5?'Walk':cycle<8?'Greet':'Magic';if(actor.snapshot().clip!==clip)select(clip);}
   old.rotation.z=Math.sin(time*.9)*.012;renderer.info.reset();composer.render();if(time-lastHud>.1){canvas.dataset.state=JSON.stringify({ready:true,legacy,demo,actor:actor.snapshot(),render:{calls:renderer.info.render.calls,triangles:renderer.info.render.triangles}});lastHud=time;}}
  animate();$('#loading').hidden=true;
-}catch(e){console.error(e);$('#loading').textContent='角色暂未准备好：'+e.message;}
+}catch(e){console.error(e);showStartupFailure({document,root:$('#loading'),error:e,label:'角色'});}

@@ -1,3 +1,6 @@
+import './startup-feedback.css';
+import {createStartupJsonLoader,waitForStartup} from './startup-loading.js';
+import {showStartupFailure} from './startup-feedback.js';
 import './style.css';
 import {createMovementInput,createLookInput,bindInputLifecycle} from './input-state.js';
 import {createPostalJourney} from './postal-journey.js';
@@ -47,10 +50,13 @@ let toastTimer;function toast(text){$('#toast').textContent=text;$('#toast').cla
 const descriptions={bakery:'看看窗台上刚出炉的面包。旁边的小推车里还有甜甜的麦穗饼。',florist:'挑一束喜欢的花，或者只是闻一闻。每个窗台都留了一点花的位置。',inn:'蓝色屋顶下面有一间温暖的客房，旅人可以在这里歇一晚。',toys:'小小的木头飞空艇、星星积木，还有一些说不出名字的宝贝。',cafe:'一杯热茶，一张朝向街道的小桌。今天可以慢一点。',books:'给旅程带一本书，也可以在路边读完一个短故事。',home:'有人把花摆在窗外，也把这个晴天留在了窗里。',apothecary:'森林里的药草与透明小瓶，店主总有许多植物的故事。'};
 try{
   const query=new URLSearchParams(location.search);
-  const manifestResponse=await fetch('/data/v4/manifest.json');if(!manifestResponse.ok)throw new Error('三条街道目录尚未准备好');const manifest=await manifestResponse.json();
+  const wait=load=>waitForStartup(load,{document,events:window,root:$('#loading')});
+  $('#loading p').textContent='正在读取街道目录…';
+  const manifest=await wait(createStartupJsonLoader('/data/v4/manifest.json'));
   const {sample,royal,street}=selectStreet(query,manifest);
-  const response=await fetch(sample?'/data/town.json':'/'+street.path);if(!response.ok)throw new Error('街区资料加载失败');
-  const raw=await response.json(),plan=royal?compileRoyalLayout(raw):compileTown(raw),generated=raw.version===4;
+  $('#loading p').textContent='正在读取街区资料…';
+  const raw=await wait(createStartupJsonLoader(sample?'/data/town.json':'/'+street.path)),plan=royal?compileRoyalLayout(raw):compileTown(raw),generated=raw.version===4;
+  $('#loading p').textContent='正在准备街角材质…';
   const observations=observationSites(plan,royal?'royal':null);attachObservationSites(plan,observations);attachPostalMemorial(plan);
   $('h1').textContent=generated?street.label:raw.title;$('h1').title=raw.title;document.title=raw.title+' · 王城街区';$('header p').textContent=raw.subtitle;
   for(const a of document.querySelectorAll('[data-street]'))if(a.dataset.street===(sample?'sample':street.id))a.setAttribute('aria-current','page');
@@ -260,4 +266,4 @@ try{
     }
   }
   if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:reduced?1.65:2.15);apply();drawMap();readyAt=performance.now();animate();if(choseBasic){canvas.setAttribute('tabindex','-1');canvas.focus();}$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
-}catch(error){console.error(error);$('#loading').textContent='街角还没准备好：'+error.message;}
+}catch(error){console.error(error);showStartupFailure({document,root:$('#loading'),error,label:'街区'});}
