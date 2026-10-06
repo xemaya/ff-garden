@@ -6,7 +6,7 @@ export const MEMORIAL_POSITION=Object.freeze({x:-6.7,z:-18.5});
 export function attachPostalMemorial(plan){
   plan.colliders.push({id:'postal-memorial',type:'circle',...MEMORIAL_POSITION,r:.58});
 }
-export function createPostalMemorial(materials={}){
+export function createPostalMemorial(materials={},{marker=false}={}){
   const root=new THREE.Group(),keepsake=new THREE.Group(),wood=materials.wood||mat('wood',0x9c7955),gold=plain(0xb89855,.5,.3),paper=plain(0xf0e0b7),green=plain(0x6b8157),petal=plain(0xc5a2b5);let parts=0;
   root.position.set(MEMORIAL_POSITION.x,0,MEMORIAL_POSITION.z);root.add(keepsake);keepsake.userData.dynamic=true;keepsake.visible=false;
   function mesh(group,geometry,material,x,y,z){const m=new THREE.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;group.add(m);parts++;return m;}
@@ -14,6 +14,14 @@ export function createPostalMemorial(materials={}){
   // The support table is always present, so its collider is never invisible.
   box(root,.95,.11,.72,wood,0,.78,0);
   for(const x of[-.33,.33])for(const z of[-.24,.24])box(root,.09,.74,.09,wood,x,.37,z);
+  if(marker){
+    for(const x of[-.43,.43])box(root,.05,1.4,.05,wood,x,1.38,-.25);
+    box(root,1.02,.28,.06,wood,0,2.05,-.25);
+    const canvas=document.createElement('canvas');canvas.width=256;canvas.height=64;const context=canvas.getContext('2d');
+    context.fillStyle='#eee0be';context.fillRect(0,0,256,64);context.fillStyle='#405647';context.font="36px 'Songti SC',serif";context.textAlign='center';context.textBaseline='middle';context.fillText('回信小铃桌',128,32,236);
+    const map=new THREE.CanvasTexture(canvas);map.colorSpace=THREE.SRGBColorSpace;const label=new THREE.MeshStandardMaterial({map,roughness:.92});label.userData.shared=true;
+    mesh(root,new THREE.PlaneGeometry(.94,.22),label,0,2.05,-.216);
+  }
   box(keepsake,.4,.025,.27,paper,-.16,.85,.08);box(keepsake,.34,.012,.018,gold,-.16,.87,.1);
   for(const side of[-1,1])box(keepsake,.045,.89,.045,gold,side*.35,1.28,-.19);
   box(keepsake,.78,.045,.045,gold,0,1.74,-.19);
@@ -25,5 +33,5 @@ export function createPostalMemorial(materials={}){
   mesh(keepsake,new THREE.SphereGeometry(.033,8,5),gold,-.16,.91,.06);
   const shape=new THREE.Shape();shape.moveTo(0,-.17);shape.quadraticCurveTo(-.11,-.02,0,.18);shape.quadraticCurveTo(.1,.05,0,-.17);const feather=mesh(keepsake,new THREE.ShapeGeometry(shape,12),paper,.18,.875,.09);feather.rotation.x=-Math.PI/2;feather.rotation.z=.45;box(keepsake,.012,.018,.3,gold,.18,.883,.09);
   const batches=batchStatic(keepsake);let completed=false;
-  return {root,setCompleted(value){if(completed===value)return;completed=value;keepsake.visible=value;},snapshot(){return {completed,position:{...MEMORIAL_POSITION},parts,keepsakeBatches:batches.batches};}};
+  return {root,setCompleted(value){if(completed===value)return;completed=value;keepsake.visible=value;},snapshot(){return {completed,position:{...MEMORIAL_POSITION},marker,parts,keepsakeBatches:batches.batches};}};
 }

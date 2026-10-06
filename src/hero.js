@@ -1,9 +1,10 @@
+import {buildRoyalShopDisplay} from './royal-shop-displays.js';
 import * as THREE from 'three';
 import {rng,center,roadside} from './layout.js';
 import {plain,mat} from './materials.js';
 import {createHeroMaterialLoader} from './hero-textures.js';
 
-let materials={};const materialLoader=createHeroMaterialLoader();let metrics={roofTiles:0,sculptedPavers:0,recessedWindows:0,heroBuildings:0,nameplates:0};
+let materials={};const materialLoader=createHeroMaterialLoader();let metrics={roofTiles:0,sculptedPavers:0,recessedWindows:0,heroBuildings:0,nameplates:0,storyDisplays:0};
 export async function loadHeroMaterials(){
   materials=await materialLoader.load();
   return materials;
@@ -82,7 +83,7 @@ export function buildShopNameplate(name,wood){
   for(const x of[-.95,.95]){const bracket=new THREE.Mesh(new THREE.BoxGeometry(.08,.08,1.52),wood);bracket.position.set(x,0,-.80);bracket.castShadow=true;group.add(bracket);}
   group.position.set(0,3.67,1.72);group.userData.shopName=name;return group;
 }
-export function buildHeroHouse(b,{nameplate=false}={}){metrics.heroBuildings++;const p=new THREE.Group(),w=b.width,h=b.height,d=b.depth,flower=b.kind==='florist',domestic=['home','inn'].includes(b.kind),wood=materials.wood,a=b.assembly||{stories:2,roof:flower?'teal':'clay',roofRise:flower?3.6:3.2,bay:flower?'octagonal':'none',awning:'striped',balcony:'none',chimney:flower?'none':'tall-stone'};
+export function buildHeroHouse(b,{nameplate=false,storyDetails=false}={}){metrics.heroBuildings++;const p=new THREE.Group(),w=b.width,h=b.height,d=b.depth,flower=b.kind==='florist',domestic=['home','inn'].includes(b.kind),wood=materials.wood,a=b.assembly||{stories:2,roof:flower?'teal':'clay',roofRise:flower?3.6:3.2,bay:flower?'octagonal':'none',awning:'striped',balcony:'none',chimney:flower?'none':'tall-stone'};
   const door={x:w*.28,y:.12,w:1.15,h:2.45},shop={x:-w*.19,y:.75,w:w*.40,h:1.75},upper=[{x:-w*.27,y:4.18,w:.96,h:1.7},{x:w*.27,y:4.34,w:.96,h:1.65}];if(a.stories===3)upper.push({x:-w*.24,y:6.48,w:.85,h:1.35},{x:w*.24,y:6.48,w:.85,h:1.35});
   for(const side of[-1,1]){
     const face=new THREE.Group();face.position.set(side*w/2,0,-d/2);face.rotation.y=side*Math.PI/2;p.add(face);
@@ -103,7 +104,9 @@ export function buildHeroHouse(b,{nameplate=false}={}){metrics.heroBuildings++;c
   else{
     trim(p,shop.x,shop.y,shop.w,shop.h,.13,.15);box(p,shop.w+.16,.14,.67,wood,shop.x,shop.y-.11,.27);
     box(p,shop.w-.12,.075,.55,wood,shop.x,1.20,-.13);box(p,shop.w-.12,.075,.48,wood,shop.x,1.73,-.19);
-    if(b.kind==='florist'){for(let i=0;i<4;i++)planter(p,shop.x-shop.w*.30+i*.48,.80,.16,20+i,.64);}
+    const storyDisplay=storyDetails?buildRoyalShopDisplay(b.kind,shop.w,wood):null;
+    if(storyDisplay){storyDisplay.position.x=shop.x;p.add(storyDisplay);metrics.storyDisplays++;}
+    else if(b.kind==='florist'){for(let i=0;i<4;i++)planter(p,shop.x-shop.w*.30+i*.48,.80,.16,20+i,.64);}
     else if(b.kind==='books'){for(let level=0;level<2;level++)for(let i=0;i<9;i++){const m=plain([0x765743,0x667555,0x516f7b,0xb39462][i%4]);box(p,.13,.33+(i%3)*.05,.20,m,shop.x-shop.w*.36+i*shop.w*.09,1.42+level*.49,-.03);}}
     else if(b.kind==='apothecary'){for(let i=0;i<7;i++){cyl(p,.065,.085,.26,plain([0x819387,0xaa947a,0x597976][i%3],.35),shop.x-shop.w*.36+i*shop.w*.12,1.35,-.05);cyl(p,.03,.03,.07,plain(0xbaa27b),shop.x-shop.w*.36+i*shop.w*.12,1.515,-.05);}}
     else if(b.kind==='toys'){for(let i=0;i<5;i++){box(p,.20,.22,.22,plain([0xa86c4a,0x627976,0xb99b65][i%3]),shop.x-shop.w*.3+i*.34,1.39,-.02);mesh(p,new THREE.ConeGeometry(.14,.16,4),plain(0xbfa16a),shop.x-shop.w*.3+i*.34,1.58,-.02);}}

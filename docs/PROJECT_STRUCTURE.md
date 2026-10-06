@@ -50,3 +50,5 @@ FF_GENERATION_HOST=shouyun-4090 npm run generate:streets
 [玩家指南](POSTAL_PLAYER_GUIDE.md)与[本轮设计及验收](postal-journey-design.md)保留运行方式、存档边界和逐切片QA范围。本轮未重新运行模型生成、Blender资产生成或生产部署。
 
 - `src/street-guidance.js`：只读的当前委托方位/直线距离/近处行动短句；由main既有HUD节奏更新底栏原地点小字。八方向相对玩家yaw，加载、面板、完成和尺寸边界由纯模型测试覆盖。
+
+- `src/royal-shop-displays.js`：王城钟匠/茶屋橱窗的静态陈列替换，复用现有立面位置与材料；由hero的storyDetails开关启用，旧场景默认关闭。王城纪念桌的marker开关只加常驻名称，完成态仍由原snapshot控制。
