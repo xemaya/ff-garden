@@ -72,3 +72,17 @@ qa-moogle.jpg：早期等待画面；qa-mage.jpg、qa-chocobo.jpg：正常展示
 ### 遇到的有限工具问题
 
 canvas的Playwright locator.press超时，改用工具明确支持的标签pressKey执行真实按键并由画面/pose验证。未重试挂起动作、未通过脚本修改游戏状态。所有产品文件来自冻结git archive，除证据文件和node_modules软链接外没有编辑。
+
+## 最终纪念续验（正常游戏交互）
+
+沿用冻结快照、独立5217测试存档；新标签[临时标识省略]，服务会话[临时标识省略]。完成后标签已关闭，服务已Ctrl-C停止。旧5209/原QA标签未操作，无产品或远端修改。
+
+正常通过人物定位按钮和手记交接：莫古利问候→魔导士→接节拍纸条→陆行鸟→两短一长→接羽毛回信→交回莫古利。只为到达最终画面，没有重复历史负面流程；没有脚本写入游戏状态或存档。
+
+结果：最终手记显示“委托3/3 · 邮路完成”。只读场景状态postalJourney.chapter=2、state=completed、ending=true、saved=true，questTarget=null，postalMemorial.completed=true。收起手记后底栏方向提示结束，回到“此刻，走到这里”；回城门后仍相同，标题副文案“邮路已收工，继续慢慢逛”。qa-ending-notebook.jpg和qa-final-memorial-evidence.json保存实际证据。
+
+final-memorial-close.jpg为实际步行到桌子南侧、拖拽调整视角后的完整1200×782页面截图：桌牌“回信小铃桌”可读；下方三根风铃的两短一长、小花与信纸/羽毛纪念可辨；桌牌在纪念上方，不互相遮挡，无可见穿出。完成纪念与新桌牌同屏的原未测项现已关闭。仅确认该实际近景，非所有角度无遮挡承诺。
+
+final-royal-panorama.jpg由正常“看城门”欣赏模式拍摄，展示城门拱框、青瓦主街、两侧店屋和远处王宫/喷泉；没有开发路径、浏览器地址栏或内部工具内容。final-memorial-close.jpg也不含这些内部内容，保留实际产品UI方便确认完成状态。
+
+本轮捕获warn/error为空。600px、真实失焦/窗口尺寸变化、JSON故障/角色取消恢复仍保持未测，不受本项视觉通过替代。
