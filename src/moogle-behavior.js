@@ -23,5 +23,6 @@ export function createMoogleBehavior(actor,plan,personIndex,{reduced=false,onDel
   if(state==='walk')move(dt,player);
  }
  function deliver(player){if(Math.hypot(player.x-root.position.x,player.z-root.position.z)>1.85||state==='deliver'||wait>0)return false;lastGreeting=time;nearSeen=true;choose('deliver');return true;}
- return{actor,update,deliver,snapshot(){return{...actor.snapshot(),state,approaching,label:approaching?'正向你走来':labels[state],delivered,waiting:wait>0,collider:own?{x:own.x,z:own.z,r:own.r}:null,anchor};}};
+ function receive(player){if(Math.hypot(player.x-root.position.x,player.z-root.position.z)>1.85||state==='deliver'||wait>0)return false;lastGreeting=time;nearSeen=true;choose('wave');return true;}
+ return{actor,update,deliver,receive,snapshot(){return{...actor.snapshot(),state,approaching,label:approaching?'正向你走来':labels[state],delivered,waiting:wait>0,collider:own?{x:own.x,z:own.z,r:own.r}:null,anchor};}};
 }

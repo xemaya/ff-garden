@@ -1,7 +1,8 @@
 import './style.css';
 import {createMovementInput,createLookInput} from './input-state.js';
-import {questGuidance,questTargetName} from './quest-guidance.js';
-import {createLetterQuest,QUEST_KEY} from './letter-quest.js';
+import {createPostalJourney} from './postal-journey.js';
+import {createPostalWorld} from './postal-world.js';
+import {createPostalController} from './postal-controller.js';
 import {renderProfiles,readPreference,writePreference} from './preferences.js';
 import * as THREE from 'three';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
@@ -76,8 +77,8 @@ try{
   function clearInput(){movement.clear();pendingKeys.clear();look.clear();canvas.classList.remove('dragging');}
   addEventListener('resize',clearInput);
   $('#render-profile').value=profile;$('#render-profile').addEventListener('change',()=>{profile=$('#render-profile').value;const settings=renderProfiles[profile];ao.enabled=settings.ao;sun.shadow.mapSize.set(settings.shadowSize,settings.shadowSize);sun.shadow.map?.dispose();sun.shadow.map=null;resize();const saved=writePreference(storage,'ff-garden.render-profile',profile);toast((profile==='quality'?'画质优先：完整阴影与环境遮蔽。':'流畅优先：降低分辨率与阴影，关闭环境遮蔽。')+(saved?'':' 本次选择未能保存。'));});
-  const quest=createLetterQuest(storage);let questOpen=quest.snapshot().state!=='available';
-  function onCourierDelivered(){const state=quest.snapshot().state;if(state==='available')toast('收到一封小信：愿你今天的旅程轻快。库啵！');else if(state==='carrying')toast('信已交到你手里，请按任务卡提示找到魔导士。');}
+  const journey=createPostalJourney(storage);let postal=null;
+  function onCourierDelivered(){if(journey.snapshot().chapter===0&&journey.snapshot().state==='carrying')toast('问候信已交到你手里，手记会标出收件人。');}
   const couriers=(animated.moogles||[]).map(a=>createMoogleBehavior(a,plan,a.personIndex,{reduced,onDelivered:onCourierDelivered}));let nearestCourier=null;
   const magi=animated.mages||(animated.mages=[]),mageSeen=new WeakMap();
   $('#cast').disabled=!plan.castStage;$('#cast').addEventListener('click',()=>focusCast());
@@ -89,18 +90,18 @@ try{
   $('#mage').disabled=!magi.length;
   $('#mage').addEventListener('click',()=>focusMage());
   function focusMage(){if(!magi.length)return;castView=false;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;clearInput();const m=magi[0],p=m.root.position;const target=plan.people[m.personIndex].view||{x:p.x-.48,z:p.z+2.30};if(!canOccupy(plan,target.x,target.z))return;Object.assign(pose,{x:target.x,z:target.z,y:target.y||1.25});camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,.88,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;m.root.rotation.y=Math.atan2(pose.x-p.x,pose.z-p.z);apply();}
-  $('#moogle').disabled=!couriers.length;$('#moogle-letter').addEventListener('click',()=>{if(nearestCourier?.deliver(pose))toast('莫古利从邮包里取出一封信…');});
+  $('#moogle').disabled=!couriers.length;$('#moogle-letter').addEventListener('click',()=>postal?.show());
   const pathLengths=[0];for(let i=1;i<plan.path.length;i++)pathLengths.push(pathLengths.at(-1)+Math.hypot(plan.path[i].x-plan.path[i-1].x,plan.path[i].z-plan.path[i-1].z));
   function apply(){camera.position.set(pose.x,pose.y,pose.z);camera.rotation.set(pose.pitch,pose.yaw,0);}
   function reset(){castView=false;Object.assign(pose,{x:plan.spawn.x,y:1.68,z:plan.spawn.z,yaw:initialYaw,pitch:.13});touring=false;tourFinished=false;clearInput();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';apply();}
   function setMap(value){
-    if(artStudy)setStudy(false);if(mapMode===value)return;quest.cancelReset();castView=false;mapMode=value;document.body.classList.toggle('map-mode',value);touring=false;$('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';clearInput();$('#map').setAttribute('aria-pressed',String(value));$('#map-panel').hidden=!value;$('#nearby').hidden=true;$('#map span').textContent=value?'回到街道':'游览地图';
+    if(artStudy)setStudy(false);if(mapMode===value)return;postal?.cancelConfirmations();castView=false;mapMode=value;document.body.classList.toggle('map-mode',value);touring=false;$('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';clearInput();$('#map').setAttribute('aria-pressed',String(value));$('#map-panel').hidden=!value;$('#nearby').hidden=true;$('#map span').textContent=value?'回到街道':'游览地图';
     const start={...pose};let target;
     if(value){oldPose={...pose};camera.position.set(19,46,25);camera.lookAt(-1,0,-3);target={x:19,y:46,z:25,yaw:camera.rotation.y,pitch:camera.rotation.x};}else target={...oldPose};
     transition={start,target,startTime:performance.now(),duration:reduced?1:800};scene.fog.density=value?.001:.0042;apply();drawMap();
   }
   function setStudy(value){
-    if(artStudy===value)return;quest.cancelReset();
+    if(artStudy===value)return;postal?.cancelConfirmations();
     if(value){castView=false;if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;studyPose={...pose};Object.assign(pose,{x:-.20,y:3.15,z:33.9,yaw:-.055,pitch:.09});}
     else if(studyPose)Object.assign(pose,studyPose);
     $('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';artStudy=value;document.body.classList.toggle('art-study',value);$('#study').setAttribute('aria-pressed',String(value));
@@ -113,56 +114,15 @@ try{
     pose.x=target.x;pose.z=target.z;pose.y=1.48;camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,.66,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;apply();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';toast('库啵！广场边的莫古利向你招手。');
   }
   $('#moogle').addEventListener('click',()=>focusCourier());
-  function questContext(){
-    const player=mapMode?oldPose:pose;
-    const courier=couriers.length?couriers.reduce((a,b)=>Math.hypot(a.actor.root.position.x-player.x,a.actor.root.position.z-player.z)<Math.hypot(b.actor.root.position.x-player.x,b.actor.root.position.z-player.z)?a:b):null;
-    const recipient=magi[0],streetMode=!mapMode&&!artStudy&&!transition;
-    return {courier,recipient,streetMode,courierNear:!!courier&&Math.hypot(courier.actor.root.position.x-player.x,courier.actor.root.position.z-player.z)<=1.85,recipientNear:!!recipient&&Math.hypot(recipient.root.position.x-player.x,recipient.root.position.z-player.z)<=3.2};
-  }
-  function questTarget(context=questContext()){
-    const state=quest.snapshot().state;if(state==='completed')return null;
-    const species=state==='available'?'moogle':'mage',actor=species==='moogle'?context.courier?.actor:context.recipient,player=mapMode?oldPose:pose;
-    const planned=plan.people.map((p,index)=>({...p,index})).filter(p=>p.species===species);
-    const person=actor?plan.people[actor.personIndex]:species==='moogle'?planned.sort((a,b)=>Math.hypot(a.x-player.x,a.z-player.z)-Math.hypot(b.x-player.x,b.z-player.z))[0]:planned[0];
-    const position=actor?.root.position||person;
-    return {species,name:questTargetName(species,person),position,exists:!!position,loaded:!!actor,failed:failedCharacters.has(species)};
-  }
-  function guidance(context=questContext(),target=questTarget(context)){
-    const snapshot=quest.snapshot(),accepting=snapshot.state==='available';
-    return questGuidance({...snapshot,targetName:target?.name||(accepting?'邮差莫古利':'魔导士'),targetExists:!!target?.exists,loaded:!!target?.loaded,failed:!!target?.failed,near:accepting?context.courierNear:context.recipientNear,busy:!!context.courier&&(context.courier.snapshot().state==='deliver'||context.courier.snapshot().waiting),mode:mapMode?'map':artStudy?'study':transition?'transition':'street'});
-  }
-  function setQuestText(element,text){if(element.textContent!==text)element.textContent=text;}
-  function updateQuest(){
-    const {state,saved,resetPending}=quest.snapshot(),context=questContext(),target=questTarget(context),instructions=guidance(context,target),action=$('#letter-quest-action'),guide=$('#letter-quest-guide');
-    $('#letter-quest-reset').hidden=resetPending;$('#letter-quest-reset-confirmation').hidden=!resetPending;
-    $('#letter-quest-panel').hidden=!questOpen;$('#letter-quest-open').setAttribute('aria-expanded',String(questOpen));
-    setQuestText($('#letter-quest-step'),instructions.step);
-    setQuestText($('#letter-quest-text'),state==='completed'?'送达完成！魔导士收到了问候：“谢谢你，也愿你的旅程一路晴朗。”':(state==='carrying'?'信在你的邮包里。':'莫古利委托你把一封问候信送给魔导士。')+instructions.next);
-    $('#letter-quest-save').hidden=saved;setQuestText($('#letter-quest-save'),'本地存储不可用或旧进度损坏；本次仍可玩，刷新后可能无法恢复。');
-    setQuestText(action,state==='available'?'接取送信委托':'交出问候信');action.hidden=resetPending||state==='completed';
-    action.disabled=!instructions.canAct;
-    setQuestText(guide,state==='available'?'地图定位邮差':'地图定位收件人');guide.hidden=resetPending||state==='completed';guide.disabled=!instructions.canLocate;
-    setQuestText($('#letter-quest-hint'),instructions.hint);
-    setQuestText($('#map-quest-target'),instructions.mapLabel+(target&&!target.loaded?'（位置参考，角色尚未加载）':''));
-    return target;
-  }
-  $('#letter-quest-open').addEventListener('click',()=>{const leavingMap=mapMode;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);transition=null;apply();}questOpen=leavingMap?true:!questOpen;if(!questOpen)quest.cancelReset();updateQuest();});
-  $('#letter-quest-close').addEventListener('click',()=>{quest.cancelReset();questOpen=false;updateQuest();$('#letter-quest-open').focus();});
-  $('#letter-quest-guide').addEventListener('click',()=>{if(!guidance().canLocate)return;setMap(true);updateQuest();toast('地图上“'+(quest.snapshot().state==='available'?'信':'收')+'”标记是当前目标；返回街道后自行走近。');});
-  $('#letter-quest-action').addEventListener('click',()=>{
-    const context=questContext();let changed=false;
-    if(quest.snapshot().state==='available'){
-      if(context.streetMode&&context.courierNear&&context.courier?.deliver(pose))changed=quest.accept({courierReady:true,near:true,streetMode:true});
-      if(changed)toast('委托已接取：打开任务卡，按地图标记找到收件人。');
-    }else{changed=quest.deliver({recipientReady:!!context.recipient,near:context.recipientNear,streetMode:context.streetMode});if(changed){context.recipient.play('Greet');toast('送信完成！魔导士收到了问候，库啵！');}}
-    updateQuest();
+  const postalWorld=createPostalWorld({
+    plan,getActors:()=>({moogle:couriers.map(c=>c.actor),mage:magi,chocobo:birds}),getCouriers:()=>couriers,
+    getFailed:()=>failedCharacters,
+    getView:()=>({player:mapMode?oldPose:pose,mode:mapMode?'map':artStudy?'study':transition?'transition':'street'})
   });
-  function cancelQuestReset(){quest.cancelReset();updateQuest();if(questOpen&&!mapMode&&!artStudy)$('#letter-quest-reset').focus();}
-  $('#letter-quest-reset').addEventListener('click',()=>{quest.requestReset();clearInput();updateQuest();$('#letter-quest-reset-cancel').focus();});
-  $('#letter-quest-reset-cancel').addEventListener('click',cancelQuestReset);
-  $('#letter-quest-reset-confirm').addEventListener('click',()=>{if(!quest.confirmReset())return;updateQuest();$('#letter-quest-reset').focus();toast(quest.snapshot().saved?'送信进度已重置，可以重新接取委托。':'本次任务已重置；未能清除存储的旧进度。');});
-  addEventListener('storage',event=>{if(event.key===QUEST_KEY||event.key===null){quest.restore();updateQuest();}});
-  updateQuest();
+  postal=createPostalController({
+    document,events:window,journey,world:postalWorld,toast,clearInput,openMap:()=>setMap(true),
+    returnToStreet(){if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);transition=null;apply();}else if(transition){Object.assign(pose,transition.target);transition=null;apply();}}
+  });
   const characterLabels={moogle:'莫古利',mage:'魔导士',chocobo:'陆行鸟'};let retrying=false;
   function showCharacterStatus(){
     const loading=[...pendingCharacters],failed=[...failedCharacters].filter(name=>!pendingCharacters.has(name));
@@ -214,7 +174,7 @@ try{
   for(const button of document.querySelectorAll('[data-stop]'))button.addEventListener('click',()=>{const stop=plan.stops.find(s=>s.id===button.dataset.stop);beginTour(nearestPathIndex(plan.path,{x:(plan.center||center)(stop.z),z:stop.z}));});
   $('#light').addEventListener('click',()=>{afternoon=!afternoon;$('#light').setAttribute('aria-pressed',String(afternoon));$('#light span').textContent=afternoon?'晴天上午':'午后时光';sun.position.set(afternoon?-32:-24,afternoon?28:42,afternoon?3:24);sun.color.set(afternoon?0xffdba5:0xffe5b6);sun.intensity=afternoon?2.4:2.7;renderer.toneMappingExposure=afternoon?1.00:.96;toast(afternoon?'阳光落在屋檐和花瓣上。':'又是一个清亮的晴天。');});
   const keyMap={KeyW:'w',ArrowUp:'w',KeyS:'s',ArrowDown:'s',KeyA:'a',ArrowLeft:'a',KeyD:'d',ArrowRight:'d',ShiftLeft:'shift',ShiftRight:'shift'};
-  addEventListener('keydown',e=>{if(e.code==='Escape'&&quest.snapshot().resetPending){e.preventDefault();cancelQuestReset();clearInput();return;}if(keyMap[e.code]){if(artStudy)setStudy(false);e.preventDefault();keys.add(keyMap[e.code]);pendingKeys.add(keyMap[e.code]);touring=false;tourFinished=false;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}if(e.code==='Home'){if(artStudy)setStudy(false);if(mapMode)setMap(false);transition=null;reset();}if(e.code==='KeyM'&&!e.repeat)setMap(!mapMode);if(e.code==='Escape'){if(artStudy)setStudy(false);touring=false;clearInput();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}});
+  addEventListener('keydown',e=>{if(e.code==='Escape'&&postal.handleEscape()){e.preventDefault();return;}if(keyMap[e.code]){if(artStudy)setStudy(false);e.preventDefault();keys.add(keyMap[e.code]);pendingKeys.add(keyMap[e.code]);touring=false;tourFinished=false;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}if(e.code==='Home'){if(artStudy)setStudy(false);if(mapMode)setMap(false);transition=null;reset();}if(e.code==='KeyM'&&!e.repeat)setMap(!mapMode);if(e.code==='Escape'){if(artStudy)setStudy(false);touring=false;clearInput();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}});
   addEventListener('keyup',e=>{if(keyMap[e.code])keys.delete(keyMap[e.code]);});addEventListener('blur',clearInput);document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInput();});
   function takeControl(){if(artStudy)setStudy(false);touring=false;tourFinished=false;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}
   const raycaster=new THREE.Raycaster(),tapPoint=new THREE.Vector2();
@@ -238,7 +198,7 @@ try{
     for(const b of plan.buildings){ctx.fillStyle={coral:'#b47767',sage:'#8ca487',blue:'#869dad',lavender:'#a294ac'}[b.roof];ctx.beginPath();const co=Math.cos(b.rotation),si=Math.sin(b.rotation);[[-b.width/2,0],[b.width/2,0],[b.width/2,-b.depth],[-b.width/2,-b.depth]].forEach(([x,z],i)=>{const px=ox+(b.x+co*x+si*z)*xScale,py=oy+(b.z-si*x+co*z)*zScale;i?ctx.lineTo(px,py):ctx.moveTo(px,py);});ctx.closePath();ctx.fill();}
     ctx.fillStyle='#90bdc1';ctx.beginPath();ctx.arc(ox-6,oy-24*zScale,11,0,Math.PI*2);ctx.fill();
     const p=mapMode?oldPose:pose;ctx.fillStyle='#7b8656';ctx.beginPath();ctx.arc(ox+p.x*xScale,oy+p.z*zScale,4,0,Math.PI*2);ctx.fill();
-    const target=questTarget();if(target?.exists){const x=ox+target.position.x*xScale,y=oy+target.position.z*zScale;ctx.fillStyle='#fff9e9';ctx.strokeStyle='#8d6544';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#64482f';ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText(target.species==='moogle'?'信':'收',x,y+3);}
+    const target=postalWorld.currentTarget(journey.snapshot());if(target?.exists){const x=ox+target.position.x*xScale,y=oy+target.position.z*zScale;ctx.fillStyle='#fff9e9';ctx.strokeStyle='#8d6544';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#64482f';ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText(journey.snapshot().state==='available'?'信':'收',x,y+3);}
     ctx.fillStyle='#8c9a76';ctx.font="10px 'Noto Serif SC',serif";ctx.textAlign='center';ctx.fillText('城堡与远山',120,12);ctx.fillText('街道入口',120,292);
   }
   let audio=null;
@@ -268,9 +228,9 @@ try{
     if(time-lastHud>.12){const p=mapMode?oldPose:pose,index=nearestPathIndex(plan.path,p),progress=pathLengths[index]/plan.length;$('#progress').style.width=`${progress*100}%`;$('#location').textContent=castView?'喷泉边的街坊':generated?(p.z>17?street.label+'入口':p.z>0?street.label+'中段':p.z>-17?'街道在转弯':p.z>-29?'喷泉广场':'望向城堡'):(p.z>17?'花香与面包':p.z>0?'树荫小花园':p.z>-17?'街道在转弯':p.z>-29?'喷泉广场':'望向城堡');
       nearestCourier=couriers.length?couriers.reduce((a,b)=>Math.hypot(a.actor.root.position.x-p.x,a.actor.root.position.z-p.z)<Math.hypot(b.actor.root.position.x-p.x,b.actor.root.position.z-p.z)?a:b):null;
       const courierNear=nearestCourier&&Math.hypot(nearestCourier.actor.root.position.x-p.x,nearestCourier.actor.root.position.z-p.z)<3.2&&!mapMode&&!artStudy;
-      $('#moogle-panel').hidden=!courierNear;if(courierNear){const s=nearestCourier.snapshot();$('#moogle-status').textContent=s.label;$('#moogle-letter').disabled=s.state==='deliver'||s.waiting||Math.hypot(nearestCourier.actor.root.position.x-p.x,nearestCourier.actor.root.position.z-p.z)>1.85;$('#moogle-letter').textContent=s.delivered?'再接一封信':'接一封信';}
+      $('#moogle-panel').hidden=!courierNear;if(courierNear){const s=nearestCourier.snapshot();$('#moogle-status').textContent=s.label;$('#moogle-letter').disabled=false;$('#moogle-letter').textContent='打开邮差手记';}
       const near=plan.buildings.map(b=>({b,d:Math.hypot(b.x-p.x,b.z-p.z)})).sort((a,b)=>a.d-b.d)[0];$('#nearby').hidden=mapMode||artStudy||courierNear||near.d>5.7;if(!$('#nearby').hidden){$('#nearby-name').textContent=near.b.name;$('#nearby-text').textContent=descriptions[near.b.kind];}if(mapMode)drawMap();
-      const currentQuestTarget=updateQuest();canvas.dataset.state=JSON.stringify({letterQuest:quest.snapshot(),questTarget:currentQuestTarget&&{name:currentQuestTarget.name,species:currentQuestTarget.species,loaded:currentQuestTarget.loaded},questOpen,ready:true,readyMs:readyAt-startedAt,renderProfile:profile,pixelRatio:renderer.getPixelRatio(),shadowSize:sun.shadow.mapSize.x,inputPointers:movement.pointerCount,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],theme:'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
+      const currentQuestTarget=postal.update();canvas.dataset.state=JSON.stringify({postalJourney:journey.snapshot(),letterQuest:journey.snapshot(),questTarget:currentQuestTarget&&{name:currentQuestTarget.name,species:currentQuestTarget.species,loaded:currentQuestTarget.loaded},questOpen:postal.isOpen(),ready:true,readyMs:readyAt-startedAt,renderProfile:profile,pixelRatio:renderer.getPixelRatio(),shadowSize:sun.shadow.mapSize.x,inputPointers:movement.pointerCount,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],theme:'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
     }
   }
   if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:2.15);apply();drawMap();readyAt=performance.now();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);

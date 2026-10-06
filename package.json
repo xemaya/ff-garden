@@ -19,7 +19,7 @@
     "test:input": "node --test tools/input-state.test.mjs",
     "test:quest": "node --test tools/letter-quest.test.mjs",
     "test:guidance": "node --test tools/quest-guidance.test.mjs",
-    "test:journey": "node --test tools/postal-journey.test.mjs"
+    "test:journey": "node --test tools/postal-journey.test.mjs tools/postal-integration.test.mjs"
   },
   "dependencies": {
     "three": "0.170.0"

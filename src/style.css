@@ -53,3 +53,5 @@
 @media(max-height:600px) and (min-width:601px){#letter-quest-panel{top:65px;max-height:calc(100dvh - 145px)}}
 
 #letter-quest-step{font-weight:500;color:#735937}#map-quest-target{font-size:11px;line-height:1.7;margin:10px 0;color:#735937}
+
+#postal-objective{font-weight:500;color:#735937}#postal-feedback{border-left:2px solid #ab8959;padding-left:10px;color:#684f32}#postal-replay,#postal-continue{min-height:44px;border:1px solid #ac946354;background:#eddfba80;padding:8px 12px;border-radius:3px;font-size:12px;margin-top:10px}#postal-replay:disabled{opacity:.55}#postal-ending{padding:12px;border:1px solid #b79f6d55;border-radius:4px;background:#f3e8cc88;margin-top:12px}.map-mode #toast{display:none}
