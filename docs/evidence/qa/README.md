@@ -10,3 +10,5 @@
 - [0d0fbd5正常资源/三展示与故障未测边界](loader-qa-0d0fbd5.md)
 - [4a0e8e1首次体验/地图与历史迎客、门牌问题](experience-qa-4a0e8e1.md)
 - [1bca670迎客、门牌和可选留言修复复验](revision-qa-1bca670.md)
+
+- [冻结e0fc7e6原生视口部分验收](frozen-e0fc7e6-partial.md)：阅读/地图/主动继续与正常四入口；未测600px/真失焦/恢复故障，不是最终全通过。
