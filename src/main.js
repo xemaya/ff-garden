@@ -47,14 +47,21 @@ try{
   const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ao=new SSAOPass(scene,camera,innerWidth,innerHeight,16);ao.kernelRadius=.65;ao.minDistance=.00015;ao.maxDistance=.009;composer.addPass(ao);composer.addPass(new OutputPass());const aa=new ShaderPass(FXAAShader);composer.addPass(aa);
   function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);composer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();aa.material.uniforms.resolution.value.set(1/(w*renderer.getPixelRatio()),1/(h*renderer.getPixelRatio()));}addEventListener('resize',resize);resize();
   const characterLoaders={moogle:loadMoogleAsset,mage:loadMageAsset,chocobo:loadChocoboAsset};
-  // Start all optional GLBs before waiting on the shared scenery textures.
-  const characterLoading=loadCharacterAssets(characterLoaders);
+  // The street can open before optional GLBs finish. Keep early results until
+  // scene construction is complete, then restore each role as it arrives.
+  const characterResults={},pendingCharacters=new Set(Object.keys(characterLoaders));let refreshCharacter=null;
+  void loadCharacterAssets(characterLoaders,(name,result)=>{characterResults[name]=result;pendingCharacters.delete(name);refreshCharacter?.(name,result);});
   initMaterials();const heroMaterials=await loadHeroMaterials();if(generated){initPlazaMaterials(heroMaterials);initSceneryMaterials(heroMaterials);}
-  const characterResults=await characterLoading,failedCharacters=new Set(Object.keys(characterResults).filter(name=>characterResults[name].status==='rejected'));
+  const failedCharacters=new Set(Object.keys(characterResults).filter(name=>characterResults[name].status==='rejected'));
+  const deferredFocus=new Set([...pendingCharacters].filter(name=>query.has(name)));
+  // Once the visitor interacts, late assets must not change their viewpoint.
+  document.addEventListener('pointerdown',()=>deferredFocus.clear(),{once:true});
+  document.addEventListener('keydown',()=>deferredFocus.clear(),{once:true});
   const fallbackCharacters=new Map();
-  const useLegacy=p=>(query.has('legacyMoogle')&&p.species==='moogle')||failedCharacters.has(p.species);
+  const missingAsset=p=>p.species in characterLoaders&&characterResults[p.species]?.status!=='fulfilled';
+  const useLegacy=p=>(query.has('legacyMoogle')&&p.species==='moogle')||missingAsset(p);
   const animated={flags:[],people:[],water:null,drops:null,crystal:null,airship:null};
-  const town=new THREE.Group();town.add(buildGround(plan,animated));town.add(buildHeroStreet(plan));plan.buildings.forEach(b=>{const hero=generated||['bakery','florist'].includes(b.kind),house=hero?buildHeroHouse(b):buildHouse(b,animated);if(!hero)enrichHouse(house,b);town.add(house);});plan.props.forEach(p=>town.add(buildProp(p)));plan.trees.forEach(t=>town.add(generated?buildGardenTree(t):buildTree(t)));plan.benches.forEach(b=>town.add(generated?buildGardenBench(b):bench(b)));plan.people.forEach((p,i)=>{const actor=p.species?buildFantasyCitizen({...p,legacy:useLegacy(p)},i,animated):person(p,i,animated);town.add(actor);if(failedCharacters.has(p.species)&&!(query.has('legacyMoogle')&&p.species==='moogle'))fallbackCharacters.set(i,actor);});town.add(generated?buildRoyalFountain(animated):buildFountain(animated));town.add(generated?buildRoyalBackdrop():buildRoyalCity());town.add(buildStreetGate());town.add(buildLandscape(generated));town.add(buildTheaterShip(animated));
+  const town=new THREE.Group();town.add(buildGround(plan,animated));town.add(buildHeroStreet(plan));plan.buildings.forEach(b=>{const hero=generated||['bakery','florist'].includes(b.kind),house=hero?buildHeroHouse(b):buildHouse(b,animated);if(!hero)enrichHouse(house,b);town.add(house);});plan.props.forEach(p=>town.add(buildProp(p)));plan.trees.forEach(t=>town.add(generated?buildGardenTree(t):buildTree(t)));plan.benches.forEach(b=>town.add(generated?buildGardenBench(b):bench(b)));plan.people.forEach((p,i)=>{const actor=p.species?buildFantasyCitizen({...p,legacy:useLegacy(p)},i,animated):person(p,i,animated);town.add(actor);if(missingAsset(p)&&!(query.has('legacyMoogle')&&p.species==='moogle'))fallbackCharacters.set(i,actor);});town.add(generated?buildRoyalFountain(animated):buildFountain(animated));town.add(generated?buildRoyalBackdrop():buildRoyalCity());town.add(buildStreetGate());town.add(buildLandscape(generated));town.add(buildTheaterShip(animated));
   const batches=batchStatic(town);scene.add(town);
   const pose={x:plan.spawn.x,y:1.68,z:plan.spawn.z,yaw:0,pitch:.13},initialYaw=-.04;pose.yaw=initialYaw;
   let castView=false,artStudy=false,studyPose=null,mapMode=false,oldPose={...pose},transition=null,touring=false,tourFinished=false,tourPath=[],cursor=0,tourTarget=0,afternoon=false;
@@ -94,32 +101,44 @@ try{
     pose.x=target.x;pose.z=target.z;pose.y=1.48;camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,.66,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;apply();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';toast('库啵！广场边的莫古利向你招手。');
   }
   $('#moogle').addEventListener('click',()=>focusCourier());
-  const characterLabels={moogle:'莫古利',mage:'魔导士',chocobo:'陆行鸟'};
-  function showCharacterFailures(){
-    $('#character-warning').hidden=!failedCharacters.size;
-    $('#character-warning-text').textContent=[...failedCharacters].map(name=>characterLabels[name]).join('、')+'暂时显示简化造型，街道仍可游览。';
+  const characterLabels={moogle:'莫古利',mage:'魔导士',chocobo:'陆行鸟'};let retrying=false;
+  function showCharacterStatus(){
+    const loading=[...pendingCharacters],failed=[...failedCharacters].filter(name=>!pendingCharacters.has(name));
+    $('#character-warning').hidden=!loading.length&&!failed.length;
+    const labels=names=>names.map(name=>characterLabels[name]).join('、');
+    $('#character-warning-text').textContent=[loading.length?labels(loading)+'正在加载，先用简化造型陪你逛街。':'',failed.length?labels(failed)+'暂时无法加载，可稍后重试。':''].filter(Boolean).join(' ');
+    $('#character-retry').hidden=!failedCharacters.size;$('#character-retry').disabled=retrying;
   }
-  showCharacterFailures();
-  $('#character-retry').addEventListener('click',async()=>{
-    const button=$('#character-retry');button.disabled=true;button.textContent='正在重试…';
+  function restoreCharacters(name){
+    for(const [index,fallback] of fallbackCharacters){
+      const p=plan.people[index];if(p.species!==name)continue;
+      const actor=buildFantasyCitizen(p,index,animated);actor.visible=!artStudy;town.add(actor);
+      fallback.removeFromParent();animated.people.splice(animated.people.indexOf(fallback),1);fallbackCharacters.delete(index);
+      // Fallback geometry is unique; materials are shared with the art kit.
+      fallback.traverse(o=>{if(o.isMesh)o.geometry.dispose();});
+      if(name==='moogle')couriers.push(createMoogleBehavior(actor.userData.moogle,plan,index,{reduced,onDelivered:()=>toast('收到一封小信：愿你今天的旅程轻快。库啵！')}));
+    }
+  }
+  refreshCharacter=(name,result)=>{
     try{
-      const results=await loadCharacterAssets(Object.fromEntries([...failedCharacters].map(name=>[name,characterLoaders[name]])));
-      for(const [name,result] of Object.entries(results)){
-        if(result.status!=='fulfilled')continue;
-        for(const [index,fallback] of fallbackCharacters){
-          const p=plan.people[index];if(p.species!==name)continue;
-          const actor=buildFantasyCitizen(p,index,animated);actor.visible=!artStudy;town.add(actor);
-          fallback.removeFromParent();animated.people.splice(animated.people.indexOf(fallback),1);fallbackCharacters.delete(index);
-          // Fallback geometry is unique; materials are shared with the art kit.
-          fallback.traverse(o=>{if(o.isMesh)o.geometry.dispose();});
-          if(name==='moogle')couriers.push(createMoogleBehavior(actor.userData.moogle,plan,index,{reduced,onDelivered:()=>toast('收到一封小信：愿你今天的旅程轻快。库啵！')}));
-        }
-        failedCharacters.delete(name);
-      }
+      if(result.status==='fulfilled'){restoreCharacters(name);failedCharacters.delete(name);}else failedCharacters.add(name);
       $('#moogle').disabled=!couriers.length;$('#mage').disabled=!magi.length;$('#chocobo').disabled=!birds.length;
-      showCharacterFailures();toast(failedCharacters.size?'部分角色仍未加载，请稍后再试。':'角色已加载，可以继续逛街。');
-    }catch(error){console.error(error);toast('角色暂时无法恢复，街道仍可游览。');}
-    finally{button.disabled=false;button.textContent='重试角色';}
+      // Honour an initial character link only while the visitor is still at
+      // the entry; background loading and retries never interrupt exploration.
+      if(deferredFocus.delete(name)&&result.status==='fulfilled'&&!mapMode&&!artStudy&&!castView&&!touring&&pose.x===plan.spawn.x&&pose.z===plan.spawn.z){
+        if(name==='moogle')focusCourier(query.get('moogle')==='patrol'?4.6:2.15);else if(name==='mage')focusMage();else focusBird();
+      }
+    }catch(error){console.error(error);failedCharacters.add(name);}
+    showCharacterStatus();
+  };
+  showCharacterStatus();
+  $('#character-retry').addEventListener('click',async()=>{
+    if(retrying)return;
+    const names=[...failedCharacters],button=$('#character-retry');retrying=true;button.textContent='正在重试…';names.forEach(name=>pendingCharacters.add(name));showCharacterStatus();
+    try{
+      await loadCharacterAssets(Object.fromEntries(names.map(name=>[name,characterLoaders[name]])),(name,result)=>{characterResults[name]=result;pendingCharacters.delete(name);refreshCharacter(name,result);});
+      toast(failedCharacters.size?'部分角色仍未加载，请稍后再试。':'角色已加载，可以继续逛街。');
+    }finally{retrying=false;button.textContent='重试角色';showCharacterStatus();}
   });
   $('#study').addEventListener('click',()=>setStudy(!artStudy));$('#study-exit').addEventListener('click',()=>setStudy(false));
   function beginTour(targetIndex=plan.path.length-1){castView=false;
@@ -175,7 +194,7 @@ try{
       const courierNear=nearestCourier&&Math.hypot(nearestCourier.actor.root.position.x-p.x,nearestCourier.actor.root.position.z-p.z)<3.2&&!mapMode&&!artStudy;
       $('#moogle-panel').hidden=!courierNear;if(courierNear){const s=nearestCourier.snapshot();$('#moogle-status').textContent=s.label;$('#moogle-letter').disabled=s.state==='deliver'||s.waiting||Math.hypot(nearestCourier.actor.root.position.x-p.x,nearestCourier.actor.root.position.z-p.z)>1.85;$('#moogle-letter').textContent=s.delivered?'再接一封信':'接一封信';}
       const near=plan.buildings.map(b=>({b,d:Math.hypot(b.x-p.x,b.z-p.z)})).sort((a,b)=>a.d-b.d)[0];$('#nearby').hidden=mapMode||artStudy||courierNear||near.d>5.7;if(!$('#nearby').hidden){$('#nearby-name').textContent=near.b.name;$('#nearby-text').textContent=descriptions[near.b.kind];}if(mapMode)drawMap();
-      canvas.dataset.state=JSON.stringify({ready:true,failedCharacters:[...failedCharacters],theme:'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
+      canvas.dataset.state=JSON.stringify({ready:true,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],theme:'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
     }
   }
   if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:2.15);apply();drawMap();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);

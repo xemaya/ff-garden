@@ -13,8 +13,11 @@ export function createAssetLoader(load) {
 }
 
 // Optional characters must not turn a working street into a loading error.
-export async function loadCharacterAssets(loaders) {
+export async function loadCharacterAssets(loaders, onSettled = () => {}) {
   const entries = Object.entries(loaders);
-  const results = await Promise.allSettled(entries.map(([, load]) => Promise.resolve().then(load)));
+  const results = await Promise.allSettled(entries.map(([name, load]) => Promise.resolve().then(load).then(
+    value => { onSettled(name, {status: 'fulfilled', value}); return value; },
+    reason => { onSettled(name, {status: 'rejected', reason}); throw reason; },
+  )));
   return Object.fromEntries(entries.map(([name], index) => [name, results[index]]));
 }

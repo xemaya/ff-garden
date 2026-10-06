@@ -60,6 +60,27 @@ test('synchronous failure and complete failure never reject the optional batch',
   assert.deepEqual(await loadCharacterAssets({}), {});
 });
 
+test('each result is reported before the slowest character completes', async () => {
+  let releaseSlow;
+  const slow = new Promise(resolve => { releaseSlow = resolve; });
+  let reportFirst;
+  const reports = [], firstReport = new Promise(resolve => { reportFirst = resolve; });
+  const loading = loadCharacterAssets({
+    moogle: () => 'ready',
+    mage: () => slow,
+    chocobo: () => Promise.reject(new Error('404')),
+  }, (name, result) => { reports.push({name, status: result.status}); reportFirst(); });
+  await firstReport;
+  assert.equal(reports[0].name, 'moogle');
+  assert.equal(reports[0].status, 'fulfilled');
+  assert.ok(!reports.some(report => report.name === 'mage'));
+  releaseSlow('late asset');
+  const result = await loading;
+  assert.equal(result.mage.value, 'late asset');
+  assert.equal(reports.length, 3);
+  assert.equal(reports.find(report => report.name === 'chocobo').status, 'rejected');
+});
+
 test('retrying the failed subset does not fetch successful characters again', async () => {
   const calls = {moogle: 0, mage: 0, chocobo: 0};
   const loaders = Object.fromEntries(Object.keys(calls).map(name => [name, createAssetLoader(() => {
