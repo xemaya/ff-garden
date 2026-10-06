@@ -10,3 +10,33 @@
 #moogle-panel{position:absolute;right:35px;bottom:128px;width:244px;padding:18px;background:#fff9e9e8;backdrop-filter:blur(9px);border:1px solid #ffffffb0;border-radius:4px;box-shadow:0 6px 20px #47663c11}#moogle-panel strong{font-size:15px;font-weight:500}#moogle-panel p{font-size:11px;color:#788065;margin:10px 0 14px}#moogle-letter{font-size:12px;background:#eddfba80;border:1px solid #ac946354;border-radius:3px;padding:8px 14px}#moogle-letter:disabled{opacity:.55;cursor:default}#moogle-panel a{font-size:10px;color:#87724f;text-decoration:none;margin-left:12px}.art-study #moogle-panel{display:none!important}@media(max-width:900px){#moogle-panel{right:22px;bottom:122px}}@media(max-width:600px){#moogle-panel{right:18px;bottom:115px;width:222px;padding:15px}}
 
 #character-warning{position:absolute;left:38px;top:225px;max-width:340px;padding:10px 12px;background:#fff9e9e8;border:1px solid #ffffffb0;border-radius:4px;font-size:11px;z-index:3}#character-retry{display:block;margin-top:8px;background:#eddfba80;border:1px solid #ac946354;border-radius:3px;padding:6px 10px;font-size:11px}#character-retry:disabled{opacity:.6;cursor:default}.art-study #character-warning,.map-mode #character-warning{display:none}@media(max-width:900px){#character-warning{left:24px;top:222px;max-width:300px}}@media(max-width:600px){#character-warning{left:20px;top:220px;max-width:calc(100vw - 40px)}}
+
+/* Touch layouts keep navigation and controls in separate rows. */
+.render-choice{font-size:11px;background:#fff9e9c9;padding:5px 8px;border-radius:3px;white-space:nowrap}.render-choice select{font:inherit;color:var(--ink);background:transparent;border:0;min-height:34px}.touch small{display:block;font:10px 'PingFang SC',sans-serif;margin-bottom:6px;background:#fff9e9b8;padding:5px;border-radius:3px}.touch button{width:48px;height:48px;user-select:none;-webkit-user-select:none}.map-mode .touch{display:none}
+@media(max-width:1180px){
+ header{top:16px;left:20px}h1{font-size:30px;margin:4px 0}header p{font-size:11px}.eyebrow small,.eyebrow i{display:none}
+ .top-actions{top:116px;left:20px;right:20px;gap:6px;flex-wrap:wrap}.top-actions button{min-height:44px;padding:8px 10px}.top-actions button>span{display:inline;font-size:11px}
+ .render-choice{position:absolute;right:0;top:-100px}
+ .street-switch{top:176px;left:20px;max-width:calc(100vw - 40px)}.street-switch a{min-height:36px;display:flex;align-items:center}
+ #character-warning{top:222px;left:20px;max-width:calc(100vw - 40px)}#map-panel{top:176px;right:20px;max-height:calc(100dvh - 270px)}
+ .help{display:none}footer{left:20px;right:20px;bottom:max(16px,env(safe-area-inset-bottom));gap:12px}.chapter{width:150px}
+}
+@media(pointer:coarse),(max-width:600px){
+ .touch{display:block;bottom:calc(100px + env(safe-area-inset-bottom));left:max(16px,env(safe-area-inset-left))}
+ button,select{min-height:44px}#nearby,#moogle-panel{bottom:calc(115px + env(safe-area-inset-bottom));right:16px;max-width:calc(100vw - 210px)}
+ #toast{bottom:calc(255px + env(safe-area-inset-bottom))}#study-exit{bottom:max(18px,env(safe-area-inset-bottom))}
+}
+@media(max-width:600px){
+ .top-actions button>span{display:none}.top-actions{top:116px}.street-switch{top:170px}#map-panel{top:214px;max-height:calc(100dvh - 310px)}#character-warning{top:214px}
+ footer .chapter{width:105px}#stroll{padding:10px}#sound span{display:none}
+ #nearby{display:none!important}#moogle-panel{width:190px;max-width:calc(100vw - 190px);padding:10px}#moogle-panel a{display:block;margin:8px 0 0}
+}
+@media(max-height:600px) and (min-width:601px){
+ header p,.eyebrow{display:none}header{top:12px}h1{font-size:24px}
+ .top-actions{top:10px;left:230px;right:12px;flex-wrap:nowrap}.top-actions button>span{display:none}.render-choice{position:static}
+ .street-switch{top:65px}#character-warning{top:108px}#map-panel{top:65px;max-height:calc(100dvh - 145px)}#minimap{height:130px;width:110px;margin:auto}
+ .touch small{display:none}.touch{bottom:90px}#toast{bottom:210px}
+}
+
+@media(max-width:600px){.top-actions{gap:4px;flex-wrap:nowrap}.top-actions button{min-width:44px;padding:8px}}
+@media(max-width:374px){.top-actions{flex-wrap:wrap}.street-switch{top:220px}#character-warning{top:264px}#map-panel{top:264px}}

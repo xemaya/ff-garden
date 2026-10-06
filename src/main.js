@@ -1,4 +1,6 @@
 import './style.css';
+import {createMovementInput,createLookInput} from './input-state.js';
+import {renderProfiles,readPreference,writePreference} from './preferences.js';
 import * as THREE from 'three';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
@@ -22,6 +24,8 @@ import {loadCharacterAssets} from './asset-loading.js';
 import {loadHeroMaterials,buildHeroHouse,buildHeroStreet,heroMetrics} from './hero.js';
 
 const $=s=>document.querySelector(s),canvas=$('#world');
+let storage=null;try{storage=window.localStorage;}catch{}
+const startedAt=performance.now();let readyAt=null;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let toastTimer;function toast(text){$('#toast').textContent=text;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('#toast').classList.remove('visible');$('#toast').textContent='';},3500);}
 const descriptions={bakery:'看看窗台上刚出炉的面包。旁边的小推车里还有甜甜的麦穗饼。',florist:'挑一束喜欢的花，或者只是闻一闻。每个窗台都留了一点花的位置。',inn:'蓝色屋顶下面有一间温暖的客房，旅人可以在这里歇一晚。',toys:'小小的木头飞空艇、星星积木，还有一些说不出名字的宝贝。',cafe:'一杯热茶，一张朝向街道的小桌。今天可以慢一点。',books:'给旅程带一本书，也可以在路边读完一个短故事。',home:'有人把花摆在窗外，也把这个晴天留在了窗里。',apothecary:'森林里的药草与透明小瓶，店主总有许多植物的故事。'};
@@ -37,15 +41,16 @@ try{
   $('#layout-record').title=generated?'查看小模型输出的模块组合和布局':'查看入口样板固定布局';
   if(generated)document.querySelectorAll('[data-stop]').forEach((button,i)=>{const stop=plan.stops.find(s=>s.id===button.dataset.stop);button.textContent=String(i+1).padStart(2,'0')+' '+stop.title;});
 
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.96;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.info.autoReset=false;
+  let profile=readPreference(storage,'ff-garden.render-profile','quality');if(!renderProfiles[profile])profile='quality';
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,renderProfiles[profile].pixelRatio));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.96;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.info.autoReset=false;
   const scene=new THREE.Scene(),sky=skyTexture();sky.mapping=THREE.EquirectangularReflectionMapping;scene.background=sky;scene.fog=new THREE.FogExp2(0xd4e8df,.0042);
   const pmrem=new THREE.PMREMGenerator(renderer),environment=pmrem.fromEquirectangular(sky);scene.environment=environment.texture;scene.environmentIntensity=.24;pmrem.dispose();
   const hemi=new THREE.HemisphereLight(0xd3efff,0xb3ab80,.58);scene.add(hemi);
-  const sun=new THREE.DirectionalLight(0xffe5b6,2.7);sun.position.set(-24,42,24);sun.target.position.set(0,0,-4);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-32,right:32,top:49,bottom:-45,near:1,far:135});sun.shadow.normalBias=.045;sun.shadow.bias=-.00015;scene.add(sun,sun.target);
+  const sun=new THREE.DirectionalLight(0xffe5b6,2.7);sun.position.set(-24,42,24);sun.target.position.set(0,0,-4);sun.castShadow=true;sun.shadow.mapSize.set(renderProfiles[profile].shadowSize,renderProfiles[profile].shadowSize);Object.assign(sun.shadow.camera,{left:-32,right:32,top:49,bottom:-45,near:1,far:135});sun.shadow.normalBias=.045;sun.shadow.bias=-.00015;scene.add(sun,sun.target);
   const fill=new THREE.DirectionalLight(0x879bbc,.32);fill.position.set(18,12,-30);scene.add(fill);
   const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.07,330);camera.rotation.order='YXZ';
-  const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ao=new SSAOPass(scene,camera,innerWidth,innerHeight,16);ao.kernelRadius=.65;ao.minDistance=.00015;ao.maxDistance=.009;composer.addPass(ao);composer.addPass(new OutputPass());const aa=new ShaderPass(FXAAShader);composer.addPass(aa);
-  function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);composer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();aa.material.uniforms.resolution.value.set(1/(w*renderer.getPixelRatio()),1/(h*renderer.getPixelRatio()));}addEventListener('resize',resize);resize();
+  const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ao=new SSAOPass(scene,camera,innerWidth,innerHeight,16);ao.kernelRadius=.65;ao.minDistance=.00015;ao.maxDistance=.009;ao.enabled=renderProfiles[profile].ao;composer.addPass(ao);composer.addPass(new OutputPass());const aa=new ShaderPass(FXAAShader);composer.addPass(aa);
+  function resize(){const w=innerWidth,h=innerHeight;renderer.setPixelRatio(Math.min(devicePixelRatio,renderProfiles[profile].pixelRatio));composer.setPixelRatio(renderer.getPixelRatio());renderer.setSize(w,h,false);composer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();aa.material.uniforms.resolution.value.set(1/(w*renderer.getPixelRatio()),1/(h*renderer.getPixelRatio()));}addEventListener('resize',resize);resize();
   const characterLoaders={moogle:loadMoogleAsset,mage:loadMageAsset,chocobo:loadChocoboAsset};
   // The street can open before optional GLBs finish. Keep early results until
   // scene construction is complete, then restore each role as it arrives.
@@ -65,24 +70,27 @@ try{
   const batches=batchStatic(town);scene.add(town);
   const pose={x:plan.spawn.x,y:1.68,z:plan.spawn.z,yaw:0,pitch:.13},initialYaw=-.04;pose.yaw=initialYaw;
   let castView=false,artStudy=false,studyPose=null,mapMode=false,oldPose={...pose},transition=null,touring=false,tourFinished=false,tourPath=[],cursor=0,tourTarget=0,afternoon=false;
-  const keys=new Set(),pendingKeys=new Set();let drag=null,stepClock=0;
+  const movement=createMovementInput(),keys=movement.keyboard,pendingKeys=new Set(),look=createLookInput();let stepClock=0;
+  function clearInput(){movement.clear();pendingKeys.clear();look.clear();canvas.classList.remove('dragging');}
+  addEventListener('resize',clearInput);
+  $('#render-profile').value=profile;$('#render-profile').addEventListener('change',()=>{profile=$('#render-profile').value;const settings=renderProfiles[profile];ao.enabled=settings.ao;sun.shadow.mapSize.set(settings.shadowSize,settings.shadowSize);sun.shadow.map?.dispose();sun.shadow.map=null;resize();const saved=writePreference(storage,'ff-garden.render-profile',profile);toast((profile==='quality'?'画质优先：完整阴影与环境遮蔽。':'流畅优先：降低分辨率与阴影，关闭环境遮蔽。')+(saved?'':' 本次选择未能保存。'));});
   const couriers=(animated.moogles||[]).map(a=>createMoogleBehavior(a,plan,a.personIndex,{reduced,onDelivered:()=>toast('收到一封小信：愿你今天的旅程轻快。库啵！')}));let nearestCourier=null;
   const magi=animated.mages||(animated.mages=[]),mageSeen=new WeakMap();
   $('#cast').disabled=!plan.castStage;$('#cast').addEventListener('click',()=>focusCast());
-  function focusCast(){if(!plan.castStage)return;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;keys.clear();pendingKeys.clear();castView=true;const c=plan.castStage.camera;Object.assign(pose,{x:c.x,y:c.y,z:c.z});camera.position.set(c.x,c.y,c.z);camera.lookAt(c.target.x,c.target.y,c.target.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;for(const actor of [...magi,...(animated.chocobos||[])])actor.root.rotation.y=plan.people[actor.personIndex].facing;apply();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}
+  function focusCast(){if(!plan.castStage)return;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;clearInput();castView=true;const c=plan.castStage.camera;Object.assign(pose,{x:c.x,y:c.y,z:c.z});camera.position.set(c.x,c.y,c.z);camera.lookAt(c.target.x,c.target.y,c.target.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;for(const actor of [...magi,...(animated.chocobos||[])])actor.root.rotation.y=plan.people[actor.personIndex].facing;apply();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}
 
   const birds=animated.chocobos||(animated.chocobos=[]),birdSeen=new WeakMap();
   $('#chocobo').disabled=!birds.length;$('#chocobo').addEventListener('click',()=>focusBird());
-  function focusBird(){if(!birds.length)return;castView=false;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;const b=birds[0],p=b.root.position,target={x:p.x+.55,z:p.z+2.9};if(!canOccupy(plan,target.x,target.z))return;Object.assign(pose,{x:target.x,z:target.z,y:1.55});camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,1.05,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;b.root.rotation.y=Math.atan2(pose.x-p.x,pose.z-p.z);apply();}
+  function focusBird(){if(!birds.length)return;castView=false;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;clearInput();const b=birds[0],p=b.root.position,target={x:p.x+.55,z:p.z+2.9};if(!canOccupy(plan,target.x,target.z))return;Object.assign(pose,{x:target.x,z:target.z,y:1.55});camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,1.05,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;b.root.rotation.y=Math.atan2(pose.x-p.x,pose.z-p.z);apply();}
   $('#mage').disabled=!magi.length;
   $('#mage').addEventListener('click',()=>focusMage());
-  function focusMage(){if(!magi.length)return;castView=false;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;const m=magi[0],p=m.root.position;const target=plan.people[m.personIndex].view||{x:p.x-.48,z:p.z+2.30};if(!canOccupy(plan,target.x,target.z))return;Object.assign(pose,{x:target.x,z:target.z,y:target.y||1.25});camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,.88,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;m.root.rotation.y=Math.atan2(pose.x-p.x,pose.z-p.z);apply();}
+  function focusMage(){if(!magi.length)return;castView=false;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;clearInput();const m=magi[0],p=m.root.position;const target=plan.people[m.personIndex].view||{x:p.x-.48,z:p.z+2.30};if(!canOccupy(plan,target.x,target.z))return;Object.assign(pose,{x:target.x,z:target.z,y:target.y||1.25});camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,.88,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;m.root.rotation.y=Math.atan2(pose.x-p.x,pose.z-p.z);apply();}
   $('#moogle').disabled=!couriers.length;$('#moogle-letter').addEventListener('click',()=>{if(nearestCourier?.deliver(pose))toast('莫古利从邮包里取出一封信…');});
   const pathLengths=[0];for(let i=1;i<plan.path.length;i++)pathLengths.push(pathLengths.at(-1)+Math.hypot(plan.path[i].x-plan.path[i-1].x,plan.path[i].z-plan.path[i-1].z));
   function apply(){camera.position.set(pose.x,pose.y,pose.z);camera.rotation.set(pose.pitch,pose.yaw,0);}
-  function reset(){castView=false;Object.assign(pose,{x:plan.spawn.x,y:1.68,z:plan.spawn.z,yaw:initialYaw,pitch:.13});touring=false;tourFinished=false;keys.clear();pendingKeys.clear();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';apply();}
+  function reset(){castView=false;Object.assign(pose,{x:plan.spawn.x,y:1.68,z:plan.spawn.z,yaw:initialYaw,pitch:.13});touring=false;tourFinished=false;clearInput();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';apply();}
   function setMap(value){
-    if(artStudy)setStudy(false);if(mapMode===value)return;castView=false;mapMode=value;document.body.classList.toggle('map-mode',value);touring=false;$('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';keys.clear();pendingKeys.clear();drag=null;canvas.classList.remove('dragging');$('#map').setAttribute('aria-pressed',String(value));$('#map-panel').hidden=!value;$('#nearby').hidden=true;$('#map span').textContent=value?'回到街道':'游览地图';
+    if(artStudy)setStudy(false);if(mapMode===value)return;castView=false;mapMode=value;document.body.classList.toggle('map-mode',value);touring=false;$('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';clearInput();$('#map').setAttribute('aria-pressed',String(value));$('#map-panel').hidden=!value;$('#nearby').hidden=true;$('#map span').textContent=value?'回到街道':'游览地图';
     const start={...pose};let target;
     if(value){oldPose={...pose};camera.position.set(19,46,25);camera.lookAt(-1,0,-3);target={x:19,y:46,z:25,yaw:camera.rotation.y,pitch:camera.rotation.x};}else target={...oldPose};
     transition={start,target,startTime:performance.now(),duration:reduced?1:800};scene.fog.density=value?.001:.0042;apply();drawMap();
@@ -92,10 +100,10 @@ try{
     if(value){castView=false;if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;studyPose={...pose};Object.assign(pose,{x:-.20,y:3.15,z:33.9,yaw:-.055,pitch:.09});}
     else if(studyPose)Object.assign(pose,studyPose);
     $('#stroll').innerHTML=tourFinished?'回到街角 <span>↶</span>':'慢慢逛一圈 <span>↗</span>';artStudy=value;document.body.classList.toggle('art-study',value);$('#study').setAttribute('aria-pressed',String(value));
-    animated.people.forEach(p=>p.visible=!value);animated.airship.visible=!value;keys.clear();pendingKeys.clear();apply();
+    animated.people.forEach(p=>p.visible=!value);animated.airship.visible=!value;clearInput();apply();
   }
   function focusCourier(distance=2.15){castView=false;
-    if(!couriers.length)return;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;keys.clear();pendingKeys.clear();
+    if(!couriers.length)return;if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);}transition=null;touring=false;clearInput();
     const c=couriers.reduce((a,b)=>Math.hypot(a.actor.root.position.x-pose.x,a.actor.root.position.z-pose.z)<Math.hypot(b.actor.root.position.x-pose.x,b.actor.root.position.z-pose.z)?a:b),p=c.actor.root.position;
     const target={x:p.x+.68,z:p.z+distance};if(!canOccupy(plan,target.x,target.z))return;
     pose.x=target.x;pose.z=target.z;pose.y=1.48;camera.position.set(pose.x,pose.y,pose.z);camera.lookAt(p.x,.66,p.z);pose.yaw=camera.rotation.y;pose.pitch=camera.rotation.x;apply();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';toast('库啵！广场边的莫古利向你招手。');
@@ -145,17 +153,30 @@ try{
     if(artStudy)setStudy(false);if(mapMode){setMap(false);Object.assign(pose,oldPose);transition=null;}
     const route=routeTo(plan,{x:pose.x,z:pose.z},targetIndex);
     if(!route){toast('先走回石板路上，再跟着风铃声慢慢逛。');return;}
-    tourPath=route;cursor=1;tourTarget=targetIndex;touring=true;tourFinished=false;keys.clear();pendingKeys.clear();$('#stroll').innerHTML='在这里停一停 <span>Ⅱ</span>';toast('跟着石板路慢慢走 · WASD 随时接管');
+    tourPath=route;cursor=1;tourTarget=targetIndex;touring=true;tourFinished=false;clearInput();$('#stroll').innerHTML='在这里停一停 <span>Ⅱ</span>';toast('跟着石板路慢慢走 · WASD 随时接管');
   }
   $('#stroll').addEventListener('click',()=>{if(touring){touring=false;$('#stroll').innerHTML='继续慢慢逛 <span>↗</span>';}else if(tourFinished){reset();toast('又回到了花香与面包之间。');}else beginTour();});
   $('#map').addEventListener('click',()=>setMap(!mapMode));
   for(const button of document.querySelectorAll('[data-stop]'))button.addEventListener('click',()=>{const stop=plan.stops.find(s=>s.id===button.dataset.stop);beginTour(nearestPathIndex(plan.path,{x:(plan.center||center)(stop.z),z:stop.z}));});
   $('#light').addEventListener('click',()=>{afternoon=!afternoon;$('#light').setAttribute('aria-pressed',String(afternoon));$('#light span').textContent=afternoon?'晴天上午':'午后时光';sun.position.set(afternoon?-32:-24,afternoon?28:42,afternoon?3:24);sun.color.set(afternoon?0xffdba5:0xffe5b6);sun.intensity=afternoon?2.4:2.7;renderer.toneMappingExposure=afternoon?1.00:.96;toast(afternoon?'阳光落在屋檐和花瓣上。':'又是一个清亮的晴天。');});
   const keyMap={KeyW:'w',ArrowUp:'w',KeyS:'s',ArrowDown:'s',KeyA:'a',ArrowLeft:'a',KeyD:'d',ArrowRight:'d',ShiftLeft:'shift',ShiftRight:'shift'};
-  addEventListener('keydown',e=>{if(keyMap[e.code]){if(artStudy)setStudy(false);e.preventDefault();keys.add(keyMap[e.code]);pendingKeys.add(keyMap[e.code]);touring=false;tourFinished=false;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}if(e.code==='Home'){if(artStudy)setStudy(false);if(mapMode)setMap(false);transition=null;reset();}if(e.code==='KeyM'&&!e.repeat)setMap(!mapMode);if(e.code==='Escape'){if(artStudy)setStudy(false);touring=false;keys.clear();pendingKeys.clear();drag=null;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}});
-  addEventListener('keyup',e=>{if(keyMap[e.code])keys.delete(keyMap[e.code]);});addEventListener('blur',()=>{keys.clear();pendingKeys.clear();drag=null;canvas.classList.remove('dragging');});document.addEventListener('visibilitychange',()=>{if(document.hidden){keys.clear();pendingKeys.clear();}});
-  canvas.addEventListener('pointerdown',e=>{if(mapMode)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');});canvas.addEventListener('pointermove',e=>{if(!drag||transition)return;pose.yaw-=(e.clientX-drag.x)*.0032;pose.pitch=THREE.MathUtils.clamp(pose.pitch-(e.clientY-drag.y)*.0032,-.85,1.2);drag.x=e.clientX;drag.y=e.clientY;});const end=()=>{drag=null;canvas.classList.remove('dragging');};for(const ev of['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(ev,end);
-  for(const button of document.querySelectorAll('[data-key]')){button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys.add(button.dataset.key);pendingKeys.add(button.dataset.key);touring=false;tourFinished=false;});for(const ev of['pointerup','pointercancel','lostpointercapture'])button.addEventListener(ev,()=>keys.delete(button.dataset.key));}
+  addEventListener('keydown',e=>{if(keyMap[e.code]){if(artStudy)setStudy(false);e.preventDefault();keys.add(keyMap[e.code]);pendingKeys.add(keyMap[e.code]);touring=false;tourFinished=false;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}if(e.code==='Home'){if(artStudy)setStudy(false);if(mapMode)setMap(false);transition=null;reset();}if(e.code==='KeyM'&&!e.repeat)setMap(!mapMode);if(e.code==='Escape'){if(artStudy)setStudy(false);touring=false;clearInput();$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}});
+  addEventListener('keyup',e=>{if(keyMap[e.code])keys.delete(keyMap[e.code]);});addEventListener('blur',clearInput);document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInput();});
+  function takeControl(){if(artStudy)setStudy(false);touring=false;tourFinished=false;$('#stroll').innerHTML='慢慢逛一圈 <span>↗</span>';}
+  const raycaster=new THREE.Raycaster(),tapPoint=new THREE.Vector2();
+  function selectCharacter(x,y){
+    const rect=canvas.getBoundingClientRect();tapPoint.set((x-rect.left)/rect.width*2-1,1-(y-rect.top)/rect.height*2);raycaster.setFromCamera(tapPoint,camera);
+    const hit=raycaster.intersectObjects(town.children,true)[0];if(!hit)return;
+    for(let o=hit.object;o&&o!==town;o=o.parent){if(o.userData.refinedMoogle){focusCourier(1.65);return;}if(o.userData.refinedMage){focusMage();return;}if(o.userData.refinedChocobo){focusBird();return;}}
+  }
+  canvas.addEventListener('pointerdown',e=>{if(mapMode||transition||e.button!==0)return;if(artStudy)setStudy(false);if(look.start(e.pointerId,e.clientX,e.clientY)){takeControl();canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');}});
+  canvas.addEventListener('pointermove',e=>{if(transition)return;const delta=look.move(e.pointerId,e.clientX,e.clientY);if(!delta)return;pose.yaw-=delta.x*.0032;pose.pitch=THREE.MathUtils.clamp(pose.pitch-delta.y*.0032,-.85,1.2);});
+  for(const ev of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(ev,e=>{const result=look.end(e.pointerId,ev!=='pointerup');if(!result)return;canvas.classList.remove('dragging');if(result.tap&&!mapMode&&!artStudy)selectCharacter(result.x,result.y);});
+  for(const button of document.querySelectorAll('[data-key]')){
+    button.addEventListener('pointerdown',e=>{if(mapMode||transition||e.button!==0)return;e.preventDefault();takeControl();button.setPointerCapture(e.pointerId);movement.press(e.pointerId,button.dataset.key);pendingKeys.add(button.dataset.key);});
+    for(const ev of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(ev,e=>{movement.release(e.pointerId);if(!movement.has(button.dataset.key))pendingKeys.delete(button.dataset.key);});
+    button.addEventListener('click',e=>{if(e.detail===0&&!mapMode&&!transition){takeControl();pendingKeys.add(button.dataset.key);}});
+  }
   function drawMap(){
     const c=$('#minimap'),ctx=c.getContext('2d'),xScale=6,zScale=3.8,ox=115,oy=153;ctx.clearRect(0,0,c.width,c.height);
     ctx.fillStyle='#e1e5c9';ctx.beginPath();ctx.arc(ox-6,oy-24*zScale,12*xScale,0,Math.PI*2);ctx.fill();
@@ -175,7 +196,7 @@ try{
         const next=tourPath[Math.min(cursor+8,tourPath.length-1)]||plan.destination;let yaw=Math.atan2(-(next.x-pose.x),-(next.z-pose.z));let diff=THREE.MathUtils.euclideanModulo(yaw-pose.yaw+Math.PI,Math.PI*2)-Math.PI;pose.yaw+=diff*Math.min(1,dt*2);pose.pitch=THREE.MathUtils.lerp(pose.pitch,.08,dt*2);
         if(cursor>=tourPath.length){touring=false;tourFinished=tourTarget===plan.path.length-1;if(tourFinished){pose.yaw=Math.atan2(3.2,74.5);pose.pitch=.34;$('#stroll').innerHTML='回到街角 <span>↶</span>';toast('到广场了。看看城堡，也可以再逛回去。');}else{$('#stroll').innerHTML='继续慢慢逛 <span>↗</span>';if(tourTarget<15)pose.yaw=initialYaw;toast('在这里停一停，看看街边的小店。');}}
       }
-      const has=k=>keys.has(k)||pendingKeys.has(k);let f=(has('w')?1:0)-(has('s')?1:0),r=(has('d')?1:0)-(has('a')?1:0);if(f||r){castView=false;const n=Math.hypot(f,r);f/=n;r/=n;const sp=(keys.has('shift')?4.7:3.0)*dt,dx=(-Math.sin(pose.yaw)*f+Math.cos(pose.yaw)*r)*sp,dz=(-Math.cos(pose.yaw)*f-Math.sin(pose.yaw)*r)*sp;if(canOccupy(plan,pose.x+dx,pose.z))pose.x+=dx;if(canOccupy(plan,pose.x,pose.z+dz))pose.z+=dz;stepClock+=dt;pose.y=1.68+(reduced?0:Math.sin(stepClock*10)*.01);}else if(!castView)pose.y=THREE.MathUtils.lerp(pose.y,1.68,.12);
+      const has=k=>movement.has(k)||pendingKeys.has(k);let f=(has('w')?1:0)-(has('s')?1:0),r=(has('d')?1:0)-(has('a')?1:0);if(f||r){castView=false;const n=Math.hypot(f,r);f/=n;r/=n;const sp=(keys.has('shift')?4.7:3.0)*dt,dx=(-Math.sin(pose.yaw)*f+Math.cos(pose.yaw)*r)*sp,dz=(-Math.cos(pose.yaw)*f-Math.sin(pose.yaw)*r)*sp;if(canOccupy(plan,pose.x+dx,pose.z))pose.x+=dx;if(canOccupy(plan,pose.x,pose.z+dz))pose.z+=dz;stepClock+=dt;pose.y=1.68+(reduced?0:Math.sin(stepClock*10)*.01);}else if(!castView)pose.y=THREE.MathUtils.lerp(pose.y,1.68,.12);
     }
     pendingKeys.clear();apply();
     if(!reduced){
@@ -194,8 +215,8 @@ try{
       const courierNear=nearestCourier&&Math.hypot(nearestCourier.actor.root.position.x-p.x,nearestCourier.actor.root.position.z-p.z)<3.2&&!mapMode&&!artStudy;
       $('#moogle-panel').hidden=!courierNear;if(courierNear){const s=nearestCourier.snapshot();$('#moogle-status').textContent=s.label;$('#moogle-letter').disabled=s.state==='deliver'||s.waiting||Math.hypot(nearestCourier.actor.root.position.x-p.x,nearestCourier.actor.root.position.z-p.z)>1.85;$('#moogle-letter').textContent=s.delivered?'再接一封信':'接一封信';}
       const near=plan.buildings.map(b=>({b,d:Math.hypot(b.x-p.x,b.z-p.z)})).sort((a,b)=>a.d-b.d)[0];$('#nearby').hidden=mapMode||artStudy||courierNear||near.d>5.7;if(!$('#nearby').hidden){$('#nearby-name').textContent=near.b.name;$('#nearby-text').textContent=descriptions[near.b.kind];}if(mapMode)drawMap();
-      canvas.dataset.state=JSON.stringify({ready:true,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],theme:'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
+      canvas.dataset.state=JSON.stringify({ready:true,readyMs:readyAt-startedAt,renderProfile:profile,pixelRatio:renderer.getPixelRatio(),shadowSize:sun.shadow.mapSize.x,inputPointers:movement.pointerCount,pendingCharacters:[...pendingCharacters],failedCharacters:[...failedCharacters],theme:'ff9-alexandria-crafted-corner',revision:generated?4:3,layoutId:generated?raw.provenance.caseId:'sample',generated,assemblyMetrics:generated?streetMetrics(raw,plan):null,newImageGenerationCalls:generated?0:null,artStudy,castView,castStage:plan.castStage||null,plaza:generated?plazaMetrics():null,scenery:generated?sceneryMetrics():null,hero:heroMetrics(),ambientOcclusion:ao.enabled,landmarks:['blade-spire','theater-airship','layered-royal-city'],fantasyCitizens:plan.people.filter(p=>p.species).map(p=>p.species),authoredLayout:!generated,moogles:couriers.map(c=>c.snapshot()),mages:magi.map(m=>m.snapshot()),chocobos:birds.map(b=>b.snapshot()),mapMode,touring,tourFinished,afternoon,pose:{...pose},location:$('#location').textContent,progress,buildings:plan.buildings.length,pathLength:plan.length,batches,render:lastRender,meanFrameMs:frames.reduce((a,b)=>a+b,0)/frames.length});lastHud=time;
     }
   }
-  if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:2.15);apply();drawMap();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
+  if(new URLSearchParams(location.search).has('study'))setStudy(true);if(query.has('cast'))focusCast();if(query.has('chocobo'))focusBird();if(query.has('mage'))focusMage();if(query.has('moogle'))focusCourier(query.get('moogle')==='patrol'?4.6:2.15);apply();drawMap();readyAt=performance.now();animate();$('#loading').classList.add('done');setTimeout(()=>{$('#loading').hidden=true;},550);
 }catch(error){console.error(error);$('#loading').textContent='街角还没准备好：'+error.message;}
