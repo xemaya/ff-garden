@@ -11,8 +11,9 @@ export function postalView(snapshot,target,interaction,mode){
   else if(!target?.exists)hint='当前街区没有对应人物，请换到三条街道之一。';
   else if(!target.loaded)hint=target.failed?target.name+'暂时加载失败。重试角色前，可以先在地图查看位置。':target.name+'正在加载。请先看看信的内容，加载完成后才能交接。';
   else if(mode!=='street')hint=mode==='transition'?'视角切换中，请稍候。':'返回街道后走近目标人物，再继续这段委托。';
+  else if(interaction.approaching)hint='邮差正在走近，请稍候；停下来等它到你身边。';
   else if(!interaction.near)hint='下一步：走近'+target.name+'。地图只标出位置，不会替你交接信。';
-  else if(interaction.busy)hint='邮差正在递信，请等它空出手。';
+  else if(interaction.busy)hint='邮差正在整理邮包，请等它空出手。';
   else hint=snapshot.state==='reply'?'读一下陆行鸟的文字回应，再选择你记下的节拍。':'你已在'+target.name+'身边，可以'+(snapshot.state==='available'?'接取委托。':'交出信件。');
   return {
     title:chapter.title,step:'委托 '+(snapshot.chapter+1)+' / '+chapters.length+' · '+stage,body,hint,

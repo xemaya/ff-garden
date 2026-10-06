@@ -1,0 +1,190 @@
+{
+  "version": 4,
+  "kit": "ff9-crafted-corner-v3",
+  "title": "听风王城",
+  "subtitle": "一日邮差穿过城门，把傍晚的风铃小曲带到广场",
+  "road": {
+    "width": 7.2,
+    "bend": 0.3,
+    "sway": 0.1
+  },
+  "buildings": [
+    {
+      "kind": "home",
+      "name": "回声旅舍",
+      "side": "left",
+      "z": 23.5,
+      "width": 5.2,
+      "depth": 4.8,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "inn",
+      "name": "青瓦邮局",
+      "side": "left",
+      "z": 18.5,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "home",
+      "name": "钟匠小屋",
+      "side": "left",
+      "z": 13.5,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "home",
+      "name": "晨光面包房",
+      "side": "right",
+      "z": 10.5,
+      "width": 5.2,
+      "depth": 4.8,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "inn",
+      "name": "纸页书坊",
+      "side": "right",
+      "z": 5.5,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "kind": "home",
+      "name": "旅人茶屋",
+      "side": "right",
+      "z": 0.5,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 1,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    }
+  ],
+  "provenance": {
+    "author": "hand-authored-royal-district",
+    "revision": 1,
+    "seed": 947
+  },
+  "realization": {
+    "placementAlgorithm": "least-squares-isotonic-roadside-packing",
+    "positions": [
+      {
+        "id": "building-0",
+        "side": "left",
+        "requestedZ": 23.5,
+        "realizedZ": 23.5,
+        "x": -3.575582550113528,
+        "z": 23.26422674242119
+      },
+      {
+        "id": "building-1",
+        "side": "left",
+        "requestedZ": 18.5,
+        "realizedZ": 16.9464,
+        "x": -2.9853066363282457,
+        "z": 16.781183813411364
+      },
+      {
+        "id": "building-2",
+        "side": "left",
+        "requestedZ": 13.5,
+        "realizedZ": 9.780000000000001,
+        "x": -3.254684472858424,
+        "z": 9.695544523971277
+      },
+      {
+        "id": "building-3",
+        "side": "right",
+        "requestedZ": 10.5,
+        "realizedZ": 12.257866666666667,
+        "x": 4.912114858356011,
+        "z": 12.373427219084506
+      },
+      {
+        "id": "building-4",
+        "side": "right",
+        "requestedZ": 5.5,
+        "realizedZ": 5.704266666666666,
+        "x": 4.773976977024038,
+        "z": 5.720349145078818
+      },
+      {
+        "id": "building-5",
+        "side": "right",
+        "requestedZ": 0.5,
+        "realizedZ": -1.4621333333333322,
+        "x": 5.206186892986865,
+        "z": -1.5571931301009356
+      }
+    ]
+  },
+  "district": "royal",
+  "royal": {
+    "name": "听风王城",
+    "bounds": {
+      "minX": -24,
+      "maxX": 24,
+      "minZ": -76,
+      "maxZ": 51
+    },
+    "background": "听风王城的城门每天向旅人敞开。傍晚，街坊会把当天的问候编成一段风铃小曲；今天，由你替邮差送出这三封信。"
+  }
+}

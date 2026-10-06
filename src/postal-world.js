@@ -20,7 +20,7 @@ export function createPostalWorld({plan,getActors,getCouriers,getView,getFailed}
   function interaction(species){
     const actor=actorFor(species),view=getView(),courier=species==='moogle'?getCouriers().find(c=>c.actor===actor):null;
     const behavior=courier?.snapshot();
-    return {species,actorReady:!!actor,near:!!actor&&distance(actor.root.position,view.player)<=interactionRadius[species],streetMode:view.mode==='street',busy:!!behavior&&(behavior.state==='deliver'||behavior.waiting)};
+    return {species,actorReady:!!actor,near:!!actor&&distance(actor.root.position,view.player)<=interactionRadius[species],streetMode:view.mode==='street',approaching:!!behavior?.approaching,busy:!!behavior&&(behavior.state==='deliver'||behavior.waiting)};
   }
   return {
     interaction,targetFor,
