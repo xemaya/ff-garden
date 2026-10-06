@@ -30,6 +30,21 @@ with (BASE/'deploy.lock').open('a') as lock:
   else:
    p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(archive.extractfile(m).read());os.chmod(p,0o644)
  site=target/'site'
+ manifest=target/'release-manifest.json'
+ if manifest.exists():
+  plan=json.loads(manifest.read_text());base_release=plan['baseRelease']
+  if base_release is not None and not re.fullmatch(r'[0-9]{8}T[0-9]{6}Z-[a-f0-9]{7,40}',base_release):raise ValueError('invalid base release')
+  for name,digest in plan['files'].items():
+   p=Path(name)
+   if p.is_absolute() or '..' in p.parts or not re.fullmatch(r'[a-f0-9]{64}',digest):raise ValueError('invalid manifest entry')
+   dest=site/p
+   if not dest.exists():
+    if base_release is None:raise RuntimeError('missing uploaded file')
+    source=BASE/'releases'/base_release/'site'/p
+    if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=digest:raise RuntimeError('base file hash mismatch')
+    dest.parent.mkdir(parents=True,exist_ok=True);os.link(source,dest)
+   if hashlib.sha256(dest.read_bytes()).hexdigest()!=digest:raise RuntimeError('release file hash mismatch')
+  if set(str(p.relative_to(site)) for p in site.rglob('*') if p.is_file())!=set(plan['files']):raise RuntimeError('unexpected release file')
  if not (site/'index.html').exists(): raise RuntimeError('missing entrypoint')
  (target/'archive-sha256.txt').write_text(expected+'\n')
  before=CONFIG.read_bytes();old_snippet=SNIPPET.read_bytes() if SNIPPET.exists() else None

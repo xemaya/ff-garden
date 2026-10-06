@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "release": "20261006T032640Z-110129d6ef21",
+  "url": "https://ff.buplayground.cn",
+  "checks": [
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/?street=residential",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/?street=market",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/?street=workshops&cast=1",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/moogle.html",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/mage.html",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/chocobo.html",
+      "status": 200,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/data/v4/manifest.json",
+      "status": 200,
+      "type": "application/json"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/assets/v3/plaster.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/assets/characters/moogle/moogle-courier-v3.glb",
+      "status": 200,
+      "type": "application/octet-stream"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/assets/characters/mage/black-mage-v2.glb",
+      "status": 200,
+      "type": "application/octet-stream"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/assets/characters/chocobo/chocobo-v1.glb",
+      "status": 200,
+      "type": "application/octet-stream"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/_not_a_real_asset_.png",
+      "status": 404,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/authoring/characters/moogle/moogle-courier-v3.blend",
+      "status": 404,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/.env",
+      "status": 403,
+      "type": "text/html"
+    },
+    {
+      "host": "ff.buplayground.cn",
+      "path": "/",
+      "status": 301,
+      "type": "text/html"
+    },
+    {
+      "host": "ai.buplayground.cn",
+      "path": "/",
+      "status": 302,
+      "type": "text/html"
+    },
+    {
+      "host": "files.buplayground.cn",
+      "path": "/",
+      "status": 302,
+      "type": "text/html"
+    },
+    {
+      "host": "director.buplayground.cn",
+      "path": "/",
+      "status": 302,
+      "type": "text/html"
+    }
+  ],
+  "servedModelHashes": {
+    "assets/characters/moogle/moogle-courier-v3.glb": "ba71de3971fe3b773d231ca528b140aaef8065d0e13fb605f87ad0dde3a5403c",
+    "assets/characters/mage/black-mage-v2.glb": "a0c2000c14038bd20e03ff0025419c95febc6d1050b727f60691b9c390b0fe22",
+    "assets/characters/chocobo/chocobo-v1.glb": "1a03849ddc774da021f385262c9584eff66c6a442a74ee58b8418866dffd85f1"
+  },
+  "sharedNginxOnlyAddedFFInclude": true,
+  "sharedAppsPreserved": true,
+  "existingRenewCronCoversCertificate": true
+}

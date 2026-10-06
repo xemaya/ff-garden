@@ -28,7 +28,7 @@ npm run deploy
 python3 deploy/publish.py --host your-web-host
 ```
 
-流程：六组校验 → 构建 → 检查 Git 工作区干净 → 打包 `dist` → SHA-256 校验上传 → 创建不可覆盖的新 release → 备份旧 nginx/current → 添加专属 include → nginx 配置检查 → 原子切换 current → 平滑重载 → 五个 HTTPS 入口检查。失败时恢复原 current、原专属配置和原共享配置。不会调用世界生成脚本，不删除旧 release，也不重启现有业务。
+流程：六组校验 → 构建 → 检查 Git 工作区干净 → 计算完整 `dist` 文件清单 → 仅打包与当前 release 不同的文件 → SHA-256 校验上传 → 创建不可覆盖的新 release → 备份旧 nginx/current → 添加专属 include → nginx 配置检查 → 原子切换 current → 平滑重载 → 五个 HTTPS 入口检查。失败时恢复原 current、原专属配置和原共享配置。相同素材按 SHA-256 复核后从旧 release 硬链接复用；变更文件总是写入新文件，避免修改旧版本。不会调用世界生成脚本，不删除旧 release，也不重启现有业务。
 
 `--skip-build` 仅供刚完成 `npm run check && npm run build` 的构建使用。发布记录与上传包留在本机 `.deploy/`（Git 忽略）。
 
