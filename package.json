@@ -14,9 +14,10 @@
     "verify:chocobo": "node tools/verify-chocobo.mjs",
     "verify:cast": "node tools/verify-cast.mjs",
     "test:assets": "node --test tools/asset-loading.test.mjs",
-    "check": "npm run test:assets && npm run test:input && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo",
+    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo",
     "deploy": "python3 deploy/publish.py",
-    "test:input": "node --test tools/input-state.test.mjs"
+    "test:input": "node --test tools/input-state.test.mjs",
+    "test:quest": "node --test tools/letter-quest.test.mjs"
   },
   "dependencies": {
     "three": "0.170.0"
