@@ -1,7 +1,7 @@
 # 三封关联委托独立 QA
 
 提交：067074cdc34238a02015078dc11b1be3f71ebf32。
-隔离快照：/Users/mib/Documents/Codex/2026-10-06/task/postal-067074c。使用 git archive，仅提交中受版本控制的内容；未复制 .git、账号配置或未提交文件。src/main.js SHA256 为 02ccc39ba048f98701006dd6eadbac7554fceb7b8c010ec1ccf4ab23182c7233，与 git show 指定提交一致。已有 node_modules 仅作为依赖链接；无安装。未修改主工作区、源码、提交、push 或部署。
+隔离快照：[QA工作目录]。使用 git archive，仅提交中受版本控制的内容；未复制 .git、账号配置或未提交文件。src/main.js SHA256 为 02ccc39ba048f98701006dd6eadbac7554fceb7b8c010ec1ccf4ab23182c7233，与 git show 指定提交一致。已有 node_modules 仅作为依赖链接；无安装。未修改主工作区、源码、提交、push 或部署。
 
 Chrome extension CUA 可用。仅运行快照 Vite 在127.0.0.1:5209，启动前无监听。完成后Ctrl-C停止，端口无监听；视口已reset，QA标签已关闭。
 

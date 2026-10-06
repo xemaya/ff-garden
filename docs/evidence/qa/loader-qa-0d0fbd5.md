@@ -14,6 +14,6 @@
 
 没有请求拦截能力，未做超时、取消、失败、晚到覆盖或decode单飞故障注入；未实际等待5min下载/2min decode超时。用户提供的fakeclock 28项测试属于开发单元测试证据，此QA未重跑或独立确认。
 
-未重测旧剧情/双卡/山体；未修改源、提交、push、部署、安装依赖、权限或调试端口。仅调整本地页面视图。服务session52883 Ctrl-C退出；5209无监听；viewport.reset，测试tab.close。
+未重测旧剧情/双卡/山体；未修改源、提交、push、部署、安装依赖、权限或调试端口。仅调整本地页面视图。服务session[临时标识省略] Ctrl-C退出；5209无监听；viewport.reset，测试tab.close。
 
 证据：loader-evidence-0d0fbd5.json（各页状态/动画与日志）、loader-main-0d0fbd5.jpg（代表主场景）。

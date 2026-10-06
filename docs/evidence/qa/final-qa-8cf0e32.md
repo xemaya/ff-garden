@@ -1,6 +1,6 @@
 # 8cf0e326合并独立QA
 
-提交8cf0e326308684e2d945da1d26fab4005e41db5b；git archive隔离 /Users/mib/Documents/Codex/2026-10-06/task/royal-8cf0e32。src/main.js SHA256与提交一致17fc8cbda962a507069302ddbde5b23ce9c56e2e5b45cdba6a908571001184d3，仅链接已有node_modules。未改源码/主工作区/push/部署。Chrome extension CUA，localhost127.0.0.1:5209专用测试。
+提交8cf0e326308684e2d945da1d26fab4005e41db5b；git archive隔离 [QA工作目录]。src/main.js SHA256与提交一致17fc8cbda962a507069302ddbde5b23ce9c56e2e5b45cdba6a908571001184d3，仅链接已有node_modules。未改源码/主工作区/push/部署。Chrome extension CUA，localhost127.0.0.1:5209专用测试。
 
 ## 需修：1024×768 NPC卡与手记按钮重叠
 

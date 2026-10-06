@@ -1,6 +1,6 @@
 # 992f829针对性独立QA
 
-提交992f82927e7e1d378e9576ebca8f8e99d052a6d2；git archive隔离至 /Users/mib/Documents/Codex/2026-10-06/task/royal-992f829，只链接已核实node_modules，不安装。src/main.js提交/快照SHA256均a9dd93bc9133317f6e9752f239a2f3edafc73e2bd30ce375acfeb9dd0b89ae26。未改主工作区/源码/push/部署。Chrome extension CUA，只运行127.0.0.1:5209。
+提交992f82927e7e1d378e9576ebca8f8e99d052a6d2；git archive隔离至 [QA工作目录]，只链接已核实node_modules，不安装。src/main.js提交/快照SHA256均a9dd93bc9133317f6e9752f239a2f3edafc73e2bd30ce375acfeb9dd0b89ae26。未改主工作区/源码/push/部署。Chrome extension CUA，只运行127.0.0.1:5209。
 
 ## 结果
 

@@ -19,6 +19,6 @@
 
 ## 清理
 
-本地测试旅程最终chapter0/available，只有城门见闻；重置前已完成旅程由内置恢复备份保留。服务session96723已Ctrl-C退出；lsof5209 exit1，无监听；viewport.reset，browser.tabs.list=[]。没有更改开发副本、源码、提交、推送、部署、依赖或权限。
+本地测试旅程最终chapter0/available，只有城门见闻；重置前已完成旅程由内置恢复备份保留。服务session[临时标识省略]已Ctrl-C退出；lsof5209 exit1，无监听；viewport.reset，browser.tabs.list=[]。没有更改开发副本、源码、提交、推送、部署、依赖或权限。
 
 证据：revision-evidence-1bca670.json；revision-gate600-1bca670.jpg；revision-greeting600-1bca670.jpg；revision-greeting-selected600-1bca670.jpg；revision-shop-{inn,postoffice,clock,bakery,books,tea}-1bca670.jpg。

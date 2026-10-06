@@ -1,6 +1,6 @@
 # 听风王城独立QA — ea9be890
 
-指定提交 ea9be89024f69773708e364d4973f15870707378，git archive隔离快照 /Users/mib/Documents/Codex/2026-10-06/task/royal-ea9be89。仅链接已有node_modules；src/main.js SHA256与提交一致（8941163fbad63b0880f7bfa3aaadd283ac895a01755d5ac7986da088f5e52b99）。未测试开发中的目录，未修改源码/主工作区，未安装/push/部署。
+指定提交 ea9be89024f69773708e364d4973f15870707378，git archive隔离快照 [QA工作目录]。仅链接已有node_modules；src/main.js SHA256与提交一致（8941163fbad63b0880f7bfa3aaadd283ac895a01755d5ac7986da088f5e52b99）。未测试开发中的目录，未修改源码/主工作区，未安装/push/部署。
 
 ## 需要先修的视觉缺陷
 

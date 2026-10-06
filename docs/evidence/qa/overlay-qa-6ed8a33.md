@@ -19,7 +19,7 @@ world.dataset.state由渲染帧更新，600px的即时Esc记录落后一帧：60
 
 ## 清理与证据
 
-服务session8553已Ctrl-C退出；lsof5209无监听（exit1）；viewport.reset已执行；browser.tabs.list=[]。未改源码、提交、push或部署。
+服务session[临时标识省略]已Ctrl-C退出；lsof5209无监听（exit1）；viewport.reset已执行；browser.tabs.list=[]。未改源码、提交、push或部署。
 
 - overlay-evidence.json：DOM读取的world状态、NPC隐藏属性、焦点记录。
 - overlay-fixed1024.jpg / overlay-fixed600.jpg：手记展开，NPC隐藏。

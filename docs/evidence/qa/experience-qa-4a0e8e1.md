@@ -30,7 +30,7 @@
 
 ## 清理与证据
 
-server session39257已Ctrl-C停止；lsof5209 exit1，无监听；viewport.reset并关闭测试tab。本次旅程最终completed，无新增见闻；重置前本地旅程备份仍可用。
+server session[临时标识省略]已Ctrl-C停止；lsof5209 exit1，无监听；viewport.reset并关闭测试tab。本次旅程最终completed，无新增见闻；重置前本地旅程备份仍可用。
 
 experience-evidence-4a0e8e1.json包含时间、世界状态、地图矩形/命中与卡片hidden/display。
 
