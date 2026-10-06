@@ -1,0 +1,14 @@
+{
+  "deployed": true,
+  "release": "20261006T033055Z-0e527968c88a",
+  "archiveSha256": "7fbcd7b70786d445d7dbd5d65b984aedc93547fb9121288d4856d0f8dba5e08f",
+  "current": "/data/app/huanghaibin/web/sites/ff-garden/releases/20261006T033055Z-0e527968c88a/site",
+  "previous": "/data/app/huanghaibin/web/sites/ff-garden/releases/20261006T032640Z-110129d6ef21/site",
+  "configBackup": "/data/app/huanghaibin/web/sites/ff-garden/backups/20261006T033055Z-0e527968c88a",
+  "sharedConfigChange": "none",
+  "url": "https://ff.buplayground.cn",
+  "commit": "0e527968c88a",
+  "localArchive": "/Users/huanghaibin/Workspace/games/4090/ff-garden/.deploy/20261006T033055Z-0e527968c88a.tar.gz",
+  "filesReused": 33,
+  "filesUploaded": 1
+}

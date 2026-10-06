@@ -75,4 +75,10 @@ GitHub Actions 在 push main/PR 上执行独立 `npm ci`、全部校验与构建
 - 不存在的资源返回 404；目录不会列出文件；HTTP 跳转 HTTPS。
 - ai/files/director 继续保持原来的门禁跳转。
 
+可以使用仓库中的主机检查脚本复现 HTTP/素材/配置校验：
+
+```sh
+ssh shouyun-4090 'python3 -' < deploy/verify-host.py
+```
+
 首次上线证据与检查结果：`evidence/deployment/`。

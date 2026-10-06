@@ -3,7 +3,7 @@
 - `src/`：实时街道、建筑模块、树与王城、广场、角色及行为。
 - `public/data/`：固定入口样板和三条保存的小模型输出。
 - `public/assets/`：浏览器实际使用的 PNG 与 GLB，包含对照预览所用旧 GLB。
-- `authoring/characters/`：历次 Blender 可编辑工程；不随生产构建发布。
+- `authoring/characters/`：历次 Blender 可编辑工程，贴图已经嵌入并保留仓内相对路径；不随生产构建发布。
 - `art-direction/`：美术目标图、提示词、生成记录、角色 manifest。
 - `tools/build-*.py`：Blender 程序化造型、蒙皮、动画、导出与质量检查。用 Blender `--background --python` 执行，GLB/textures 写到 public，`.blend` 写到 authoring。
 - `tools/verify*.mjs`：场景、角色、资产哈希及扫掠导航检查；运行不需要 GPU。
@@ -26,3 +26,5 @@ FF_GENERATION_HOST=shouyun-4090 npm run generate:streets
 ## 历史记录
 
 复制了当前 FF9 工程的全部源码、原始图片、GLB、Blender 工程、输出布局、文档与检查证据。没有复制 `node_modules`、`dist`、Vite 缓存、重复的 `.blend1` 自动备份；这些分别可重建或有正式 `.blend` 保存。跨阶段经验归档在 `docs/WORLD_GENERATION_LESSONS.md`，其中旧工程路径和早期主机状态是历史事实，当前部署以 `deploy/README.md` 为准。
+
+已有 Blender 工程的贴图便携校验在 `evidence/deployment/blender-portability.json`。可使用 `blender -b --factory-startup --python tools/pack-authoring.py` 重新打包；该脚本不修改运行时 GLB。

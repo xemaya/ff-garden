@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "projects": [
+    {
+      "project": "authoring/characters/chocobo/chocobo-v1.blend",
+      "images": [
+        {
+          "name": "feathers.png",
+          "relativePath": "//../../../public/assets/characters/chocobo/feathers.png",
+          "packed": true
+        },
+        {
+          "name": "leather.png",
+          "relativePath": "//../../../public/assets/characters/chocobo/leather.png",
+          "packed": true
+        }
+      ]
+    },
+    {
+      "project": "authoring/characters/mage/black-mage-v1.blend",
+      "images": [
+        {
+          "name": "cloth-atlas.png",
+          "relativePath": "//../../../public/assets/characters/mage/cloth-atlas.png",
+          "packed": true
+        },
+        {
+          "name": "leather.png",
+          "relativePath": "//../../../public/assets/characters/mage/leather.png",
+          "packed": true
+        }
+      ]
+    },
+    {
+      "project": "authoring/characters/mage/black-mage-v2.blend",
+      "images": [
+        {
+          "name": "cloth-atlas.png",
+          "relativePath": "//../../../public/assets/characters/mage/cloth-atlas.png",
+          "packed": true
+        },
+        {
+          "name": "leather.png",
+          "relativePath": "//../../../public/assets/characters/mage/leather.png",
+          "packed": true
+        }
+      ]
+    },
+    {
+      "project": "authoring/characters/moogle/moogle-courier-v1.blend",
+      "images": [
+        {
+          "name": "fur.png",
+          "relativePath": "//../../../public/assets/characters/moogle/fur.png",
+          "packed": true
+        },
+        {
+          "name": "leather.png",
+          "relativePath": "//../../../public/assets/characters/moogle/leather.png",
+          "packed": true
+        }
+      ]
+    },
+    {
+      "project": "authoring/characters/moogle/moogle-courier-v2.blend",
+      "images": [
+        {
+          "name": "fur.png",
+          "relativePath": "//../../../public/assets/characters/moogle/fur.png",
+          "packed": true
+        },
+        {
+          "name": "leather.png",
+          "relativePath": "//../../../public/assets/characters/moogle/leather.png",
+          "packed": true
+        }
+      ]
+    },
+    {
+      "project": "authoring/characters/moogle/moogle-courier-v3.blend",
+      "images": [
+        {
+          "name": "fur.png",
+          "relativePath": "//../../../public/assets/characters/moogle/fur.png",
+          "packed": true
+        },
+        {
+          "name": "leather.png",
+          "relativePath": "//../../../public/assets/characters/moogle/leather.png",
+          "packed": true
+        }
+      ]
+    }
+  ],
+  "runtimeGLBModified": false
+}

@@ -399,6 +399,6 @@ red_pbr=next(m for m in document['materials'] if m['name']=='Wool pompom')['pbrM
 js=json.dumps(document,separators=(',',':')).encode();js+=b' '*((-len(js))%4)
 rebuilt=struct.pack('<4sII',b'glTF',2,12+8+len(js)+8+len(binary))+struct.pack('<I4s',len(js),b'JSON')+js+struct.pack('<I4s',len(binary),b'BIN\x00')+binary
 (OUT/'moogle-courier-v3.glb').write_bytes(rebuilt)
-AUTHORING=ROOT/'authoring/characters/moogle';AUTHORING.mkdir(parents=True,exist_ok=True);bpy.ops.wm.save_as_mainfile(filepath=str(AUTHORING/'moogle-courier-v3.blend'))
+AUTHORING=ROOT/'authoring/characters/moogle';AUTHORING.mkdir(parents=True,exist_ok=True);bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(AUTHORING/'moogle-courier-v3.blend'))
 report={'boneCount':len(arm.bones),'meshCount':len(objects),'bodyVertices':len(body.data.vertices),'polygons':sum(len(o.data.polygons) for o,label in objects),'actions':[a.name for a in actions],'allWeightsNormalized':True,'sampledGroundContacts':contacts,'sampledSurfaceIntersections':clearance,'revision':'v3 welded sculpt, leaf ears and fitted satchel','bodyConnectedComponents':len(components),'bodyNonmanifoldEdges':nonmanifold,'sampledJointStrain':strain,'strapEndCentersMatchRingCenters':True,'bodyBinding':'Blender bone heat normalized to four influences','beltBinding':'Spine, rigid leather anchored to hip pouch','scale':.85,'source':'authored Blender sculpt/rig with generated material references','training':'none'}
 (EVID/'build-report.json').write_text(json.dumps(report,indent=2));print('MOOGLE_BUILD',json.dumps(report))

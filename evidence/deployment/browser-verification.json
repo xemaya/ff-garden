@@ -1,0 +1,79 @@
+{
+  "origin": "https://ff.buplayground.cn",
+  "streets": [
+    {
+      "id": "workshops",
+      "ready": true,
+      "scenery": {
+        "revision": "branched-trees-royal-city-v3",
+        "trees": 2,
+        "leaves": 9570,
+        "branches": 84,
+        "arches": 16,
+        "windows": 111,
+        "newImageGenerationCalls": 0
+      },
+      "cast": "fountain-neighbors-v2"
+    },
+    {
+      "id": "residential",
+      "ready": true,
+      "scenery": {
+        "revision": "branched-trees-royal-city-v3",
+        "trees": 2,
+        "leaves": 9570,
+        "branches": 84,
+        "arches": 16,
+        "windows": 111,
+        "newImageGenerationCalls": 0
+      },
+      "cast": "fountain-neighbors-v2"
+    },
+    {
+      "id": "market",
+      "ready": true,
+      "scenery": {
+        "revision": "branched-trees-royal-city-v3",
+        "trees": 2,
+        "leaves": 9570,
+        "branches": 84,
+        "arches": 16,
+        "windows": 111,
+        "newImageGenerationCalls": 0
+      },
+      "cast": "fountain-neighbors-v2"
+    }
+  ],
+  "characters": [
+    {
+      "page": "moogle",
+      "ready": true,
+      "clip": "Wave",
+      "asset": "/assets/characters/moogle/moogle-courier-v3.glb"
+    },
+    {
+      "page": "mage",
+      "ready": true,
+      "clip": "Magic",
+      "asset": "/assets/characters/mage/black-mage-v2.glb"
+    },
+    {
+      "page": "chocobo",
+      "ready": true,
+      "clip": "Flap",
+      "asset": "/assets/characters/chocobo/chocobo-v1.glb"
+    }
+  ],
+  "tour": {
+    "finished": true,
+    "progress": 1,
+    "pathLength": 64.22627802833485,
+    "pose": {
+      "x": 2.2,
+      "y": 1.68,
+      "z": -32.5,
+      "yaw": 0.04292663377473995,
+      "pitch": 0.34
+    }
+  }
+}

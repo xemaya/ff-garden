@@ -223,6 +223,6 @@ for o,label in objects:
 bpy.ops.object.select_all(action='DESELECT');rig.select_set(True)
 for o,label in objects:o.select_set(True)
 bpy.context.view_layer.objects.active=rig;bpy.ops.export_scene.gltf(filepath=str(OUT/'black-mage-v2.glb'),export_format='GLB',use_selection=True,export_animations=True,export_animation_mode='ACTIONS',export_anim_single_armature=True,export_merge_animation='ACTION',export_skins=True,export_def_bones=True,export_force_sampling=True,export_optimize_animation_size=True,export_yup=True)
-AUTHORING=ROOT/'authoring/characters/mage';AUTHORING.mkdir(parents=True,exist_ok=True);bpy.ops.wm.save_as_mainfile(filepath=str(AUTHORING/'black-mage-v2.blend'))
+AUTHORING=ROOT/'authoring/characters/mage';AUTHORING.mkdir(parents=True,exist_ok=True);bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(AUTHORING/'black-mage-v2.blend'))
 report={'joints':len(a.bones),'meshes':len(objects),'actions':[a.name for a in actions],'allWeightsNormalized':True,'groundSamples':contacts,'surfaceIntersections':clearance,'scale':.8,'newImageCalls':2,'server4090Tasks':0,'training':'none','coatBinding':'bone heat on closed solid proxy transferred to cloth shell','source':'authored cloth geometry, Blender heat skin, one generated atlas and reused leather'}
 (EVID/'build-report.json').write_text(json.dumps(report,indent=2));print('MAGE_BUILD',json.dumps(report))
