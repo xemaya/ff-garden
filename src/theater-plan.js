@@ -4,7 +4,7 @@ export function makeTheaterStage(){return{
  revision:THEATER_REVISION,
  booth:{x:-10.00,z:-24.00,rotation:.55},
  poster:{x:-10.20,z:-26.50,rotation:.30},
- camera:{x:-8.0,y:1.95,z:-21.6,target:{x:-10,y:1.65,z:-24}},
+ camera:{x:-7.5,y:1.95,z:-19.6,target:{x:-10,y:1.65,z:-24}},
  counterView:{x:-8.5,z:-22.6},
  ship:{x:7,y:23,z:-38,rotation:-.18,scale:1.25}
 };}
