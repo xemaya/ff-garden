@@ -4,6 +4,7 @@ import {createPostalWorld} from '../src/postal-world.js';
 import {createPostalController} from '../src/postal-controller.js';
 import {createMoogleBehavior} from '../src/moogle-behavior.js';
 import {postalView} from '../src/postal-view.js';
+import {createNpcConversation} from '../src/npc-conversation.js';
 import {chapters,discoveries} from '../src/postal-content.js';
 
 function setup(){
@@ -46,7 +47,7 @@ class Element{
  append(...children){this.children.push(...children);}focus(){this.document.activeElement=this;}setAttribute(key,value){this[key]=value;}scrollIntoView(){}
 }
 function dom(){const document={activeElement:null,nodes:new Map(),getElementById(id){assert(this.nodes.has(id),'missing '+id);return this.nodes.get(id);},createElement(){return new Element(this);}};const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');for(const [,id] of html.matchAll(/id="([^"]+)"/g))document.nodes.set(id,new Element(document,id));return document;}
-function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){},getObservation:()=>s.observation||null});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
+function mount(s){const document=dom(),events=new Element(document),toast=[];const controller=createPostalController({document,events,journey:s.journey,world:s.world,toast:text=>toast.push(text),openMap:()=>{s.view.mode='map';},returnToStreet:()=>{s.view.mode='street';},clearInput(){},getObservation:()=>s.observation||null,onEnding:()=>{s.endings=(s.endings||0)+1;}});return {document,events,controller,toast,$:id=>document.getElementById(id)};}
 
 test('complete UI-event slice: separate handoffs, wrong/correct reply, final keepsake',()=>{
  const s=setup(),ui=mount(s);ui.$('letter-quest-open').click();assert(!ui.$('letter-quest-panel').hidden);
@@ -80,4 +81,14 @@ test('recovery UI defaults to cancel, preserves progress on Escape, and exposes 
 
 test('backup storage events refresh recovery choices without discarding an unsaved carrying session',()=>{
  const s=setup(),ui=mount(s);s.storage.setItem=()=>{throw Error('quota');};ui.$('letter-quest-open').click();ui.$('letter-quest-action').click();assert.equal(s.journey.snapshot().state,'carrying');assert.equal(s.journey.snapshot().saved,false);ui.events.emit('storage',{key:'ff-garden.postal-journey.previous.v1'});assert.equal(s.journey.snapshot().state,'carrying');assert.equal(s.journey.snapshot().saved,false);
+});
+
+test('the ending callback only follows an active final handoff, not renders, refresh or restore',()=>{
+ const s=setup(),ui=mount(s);ui.$('letter-quest-open').click();for(let chapter=0;chapter<3;chapter++){ui.$('letter-quest-action').click();ui.$('letter-quest-action').click();if(chapter===1)ui.$('postal-replies').children.find(button=>button.dataset.reply==='short-short-long').click();if(chapter<2)ui.$('postal-continue').click();}
+ assert.equal(s.endings,1);for(let i=0;i<12;i++)ui.controller.update();ui.$('letter-quest-action').click(2);assert.equal(s.endings,1);const loaded={...s,journey:createPostalJourney(s.storage),endings:0};mount(loaded);assert.equal(loaded.endings,0);ui.$('letter-quest-reset').click();ui.$('letter-quest-reset-confirm').click();ui.$('postal-recover-journey').click();ui.$('postal-recovery-confirm').click();assert(s.journey.snapshot().ending);assert.equal(s.endings,1);
+});
+test('nearby conversation changes with the letter and optional observation without granting progress',()=>{
+ const s=setup(),ui=mount(s),conversation=createNpcConversation({document:ui.document,world:s.world,journey:s.journey,clearInput(){},openNotebook:ui.controller.show});conversation.update();const before=ui.$('npc-response').textContent;
+ ui.$('npc-talk').click();assert.equal(s.journey.snapshot().state,'available');assert.equal(s.data.get(JOURNEY_KEY),undefined);assert.equal(s.counts.receive,1);s.journey.accept(s.world.interaction('moogle'));conversation.update();assert.notEqual(ui.$('npc-response').textContent,before);
+ s.journey.discover({id:'royal-gate-message',near:true,streetMode:true});conversation.update();ui.$('npc-talk').click();assert.match(ui.$('npc-response').textContent,/守门人/);assert.equal(s.journey.snapshot().state,'carrying');s.view.mode='map';conversation.update();assert(ui.$('moogle-panel').hidden);
 });

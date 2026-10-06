@@ -65,3 +65,5 @@
 @media(min-height:601px) and (min-width:601px){#minimap{height:clamp(160px,calc(100dvh - 580px),280px);width:auto;max-width:100%;margin-inline:auto}}
 
 #postal-how-to{margin-top:10px;border-top:1px solid #b79f6d44;padding-top:6px}#postal-how-to summary{font-size:12px;min-height:44px;padding:10px 0;cursor:pointer}#postal-how-to summary:focus-visible{outline:2px solid #477968;outline-offset:3px}#postal-sync-notice{color:#735937;border-left:2px solid #ab8959;padding-left:10px}
+
+#npc-talk{min-height:44px;padding:8px 10px;margin:4px 5px 4px 0;border:1px solid #ad95625c;background:#efe2c3;border-radius:3px;font-size:11px}#npc-talk:disabled{opacity:.6}#npc-response{border-left:2px solid #ab8959;padding-left:8px}#moogle-panel{max-height:calc(100dvh - 350px);overflow:auto}#moogle-status{font-size:10px;opacity:.8}

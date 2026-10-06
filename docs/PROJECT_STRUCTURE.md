@@ -38,6 +38,10 @@ FF_GENERATION_HOST=shouyun-4090 npm run generate:streets
 - `postal-world.js`：实际角色、距离、视图和邮差行为映射；不负责DOM或存储。
 - `postal-view.js` 与 `postal-controller.js`：任务提示、手记分页、主动交接/观察、确认与键盘焦点。
 - `postal-observations.js` 与 `observation-markers.js`：实体石牌位置、朝向/距离门槛、世界造型和手记回顾。
+- `street-selection.js`：默认王城、显式旧街与样板、未知district安全回退；不按未知参数构造资源路径。
+- `postal-dialogue.js` 与 `npc-conversation.js`：三个街坊的阶段台词、可选城市旧事、近处主动回应；不改变主线状态。
+- `postal-chime.js`：用既有程序音色播放两短一长，仅响应已启用声音下的主动最终交接。
+- `postal-memorial.js`：恒在的小铃桌与结局纪念物；24个部件，纪念部分合为4个材质网格，显示切换不重建。
 - `view-transitions.js`：保留地图往返时的街道锚点，防止中断动画时保存飞行中的相机位置。
 
 [玩家指南](POSTAL_PLAYER_GUIDE.md)与[本轮设计及验收](postal-journey-design.md)保留运行方式、存档边界和逐切片QA范围。本轮未重新运行模型生成、Blender资产生成或生产部署。

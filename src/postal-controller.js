@@ -4,7 +4,7 @@ import {postalView} from './postal-view.js';
 import {observationSummary} from './postal-observations.js';
 
 // Own the notebook UI; world rendering, navigation and storage rules stay outside.
-export function createPostalController({document,events,journey,world,toast,openMap,returnToStreet,clearInput,getObservation=()=>null}){
+export function createPostalController({document,events,journey,world,toast,openMap,returnToStreet,clearInput,getObservation=()=>null,onEnding=()=>{}}){
   const $=id=>document.getElementById(id),setText=(id,text)=>{if($(id).textContent!==text)$(id).textContent=text;};
   let open=journey.snapshot().state!=='available'||journey.snapshot().chapter>0,feedback='',tab='letters';
   const observationCards=new Map();
@@ -67,7 +67,7 @@ export function createPostalController({document,events,journey,world,toast,open
   }
   function cancelConfirmations(){journey.cancelReset();journey.cancelRecovery();}
   function cancelReset(){const source=journey.snapshot().recoverySource;cancelConfirmations();update();if(open&&world.view().mode==='street')$(source?'postal-recover-'+source:'letter-quest-reset').focus();}
-  function show(){returnToStreet();open=true;update();}
+  function show(){returnToStreet();tab='letters';open=true;update();}
   function selectTab(name){tab=name;update();}
   for(const name of ['letters','observations']){
     $('postal-tab-'+name).addEventListener('click',()=>selectTab(name));
@@ -89,7 +89,7 @@ export function createPostalController({document,events,journey,world,toast,open
     if(!postalView(snapshot,target,context,world.view().mode).canAct||!['available','carrying'].includes(snapshot.state))return;
     if(!world.handoff(kind,species))return;
     const changed=kind==='accept'?journey.accept(context):journey.deliver(context);
-    if(changed){feedback='';toast(kind==='accept'?'已收下：'+chapter.title:journey.snapshot().state==='reply'?'陆行鸟有一个回应，打开手记把它记下来。':'这一封已送达。');}
+    if(changed){if(journey.snapshot().ending)onEnding();feedback='';toast(kind==='accept'?'已收下：'+chapter.title:journey.snapshot().state==='reply'?'陆行鸟有一个回应，打开手记把它记下来。':'这一封已送达。');}
     update();
     if(changed){if(journey.snapshot().state==='reply')replyButtons.values().next().value.focus();else if(journey.snapshot().ending)$('postal-title').focus();else if(journey.snapshot().state==='completed')$('postal-continue').focus();else $('letter-quest-guide').focus();}
   });

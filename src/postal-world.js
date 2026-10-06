@@ -24,6 +24,10 @@ export function createPostalWorld({plan,getActors,getCouriers,getView,getFailed}
   }
   return {
     interaction,targetFor,
+    nearbyPerson(radius=3.4){
+      const view=getView();if(view.mode!=='street')return null;
+      return ['moogle','mage','chocobo'].map(species=>targetFor(species)).filter(target=>target.loaded&&distance(target.position,view.player)<=radius).sort((a,b)=>distance(a.position,view.player)-distance(b.position,view.player))[0]||null;
+    },
     currentTarget(snapshot){if(snapshot.state==='completed')return null;return targetFor(chapters[snapshot.chapter][snapshot.state==='available'?'sender':'recipient']);},
     view:()=>getView(),
     handoff(kind,species){
@@ -33,6 +37,6 @@ export function createPostalWorld({plan,getActors,getCouriers,getView,getFailed}
       if(kind==='deliver'&&species==='moogle')return getCouriers().find(c=>c.actor===actor).receive(getView().player);
       actor.play(species==='mage'?'Greet':'Chirp');return true;
     },
-    replay(species){const context=interaction(species);if(!context.actorReady||!context.near||!context.streetMode)return false;actorFor(species).play(species==='chocobo'?'Chirp':'Greet');return true;}
+    replay(species){const context=interaction(species);if(!context.actorReady||!context.near||!context.streetMode||context.busy)return false;if(species==='moogle')return getCouriers().find(c=>c.actor===actorFor(species)).receive(getView().player);actorFor(species).play(species==='chocobo'?'Chirp':'Greet');return true;}
   };
 }
