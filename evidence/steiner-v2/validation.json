@@ -1,0 +1,15 @@
+{
+  "fullCheckPassed": true,
+  "finalAssetCheckPassed": true,
+  "buildPassed": true,
+  "builtGlbMatchesSource": true,
+  "sourceSha256": "7ff3eb5323ce26904ae82bdbc68ab25532309202a17d7bc04f8a4c9cdf28da71",
+  "browserViews": 4,
+  "browserClips": 4,
+  "mobileWidth": 375,
+  "cityResidents": 33,
+  "cityRoyals": 0,
+  "humanArtAcceptance": "pending; v1 rejected",
+  "newImageGenerationCalls": 0,
+  "remote4090Tasks": 0
+}

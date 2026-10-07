@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {Matrix4,Quaternion,Vector3} from 'three';
 const records=[];
-for(const id of['steiner','zidane','garnet']){
- const file=new URL('../public/assets/characters/royal-cast/'+id+'-v1.glb',import.meta.url),buffer=fs.readFileSync(file);assert.equal(buffer.toString('utf8',0,4),'glTF');assert.equal(buffer.readUInt32LE(8),buffer.length);
+for(const id of process.argv.includes('--steiner-v2')?['steiner']:['steiner','zidane','garnet']){
+ const file=new URL('../public/assets/characters/royal-cast/'+id+(process.argv.includes('--steiner-v2')?'-v2.glb':'-v1.glb'),import.meta.url),buffer=fs.readFileSync(file);assert.equal(buffer.toString('utf8',0,4),'glTF');assert.equal(buffer.readUInt32LE(8),buffer.length);
  const length=buffer.readUInt32LE(12),gltf=JSON.parse(buffer.subarray(20,20+length).toString().trim()),binary=buffer.subarray(28+length),view=new DataView(binary.buffer,binary.byteOffset,binary.byteLength),cache=new Map();
  const sizes={5120:1,5121:1,5122:2,5123:2,5125:4,5126:4},widths={SCALAR:1,VEC2:2,VEC3:3,VEC4:4,MAT4:16},methods={5120:'getInt8',5121:'getUint8',5122:'getInt16',5123:'getUint16',5125:'getUint32',5126:'getFloat32'};
  function read(index){if(cache.has(index))return cache.get(index);const a=gltf.accessors[index],v=gltf.bufferViews[a.bufferView],width=widths[a.type],size=sizes[a.componentType],stride=v.byteStride||width*size,offset=(v.byteOffset||0)+(a.byteOffset||0),rows=[];for(let i=0;i<a.count;i++){const row=[];for(let j=0;j<width;j++){let n=view[methods[a.componentType]](offset+i*stride+j*size,true);if(a.normalized)n/=a.componentType===5121?255:a.componentType===5123?65535:1;assert.ok(Number.isFinite(n));row.push(n);}rows.push(row);}cache.set(index,rows);return rows;}
@@ -20,4 +20,4 @@ for(const id of['steiner','zidane','garnet']){
  for(const image of gltf.images)assert.ok(image.bufferView!==undefined,'Runtime textures must be embedded');
  records.push({id,sha256:createHash('sha256').update(buffer).digest('hex'),bytes:buffer.length,joints:21,vertices,triangles,materialDraws:primitives.length,images:gltf.images.length,clips,allWeightsNormalized:true});
 }
-fs.writeFileSync(new URL('../evidence/royal-cast/asset-verification.json',import.meta.url),JSON.stringify({passed:true,records,artAcceptance:'requires user review',surfaceCollisionScope:'ground only; no claim of universal garment or accessory collision freedom'},null,2)+'\n');console.log(records.map(r=>({id:r.id,joints:r.joints,triangles:r.triangles,clips:r.clips.map(c=>c.name),minimumY:Math.min(...r.clips.map(c=>c.minimumSurfaceY))})));
+fs.writeFileSync(new URL('../evidence/'+(process.argv.includes('--steiner-v2')?'steiner-v2':'royal-cast')+'/asset-verification.json',import.meta.url),JSON.stringify({passed:true,records,artAcceptance:process.argv.includes('--steiner-v2')?'pending user review':'rejected by user on 2026-10-08',surfaceCollisionScope:'ground only; no claim of universal garment or accessory collision freedom'},null,2)+'\n');console.log(records.map(r=>({id:r.id,joints:r.joints,triangles:r.triangles,clips:r.clips.map(c=>c.name),minimumY:Math.min(...r.clips.map(c=>c.minimumSurfaceY))})));
