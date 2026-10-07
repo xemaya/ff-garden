@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "id": "steiner",
+      "sha256": "289886fa8191dd113f0d50d793b887d18908053ec5702023e6c2600db3089e46",
+      "bytes": 9986528,
+      "joints": 21,
+      "vertices": 65422,
+      "triangles": 97832,
+      "materialDraws": 10,
+      "images": 6,
+      "clips": [
+        {
+          "name": "Greet",
+          "seconds": 3.3333332538604736,
+          "weightedAnimatedChannels": 4,
+          "loopSeam": 0.028307467699050903,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.003999839405031747
+        },
+        {
+          "name": "Idle",
+          "seconds": 4.041666507720947,
+          "weightedAnimatedChannels": 2,
+          "loopSeam": 2.9391526281841376e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.003999839405031747
+        },
+        {
+          "name": "Signature",
+          "seconds": 3.3333332538604736,
+          "weightedAnimatedChannels": 6,
+          "loopSeam": 0.028307467699050903,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.003999839405031747
+        },
+        {
+          "name": "Walk",
+          "seconds": 1.125,
+          "weightedAnimatedChannels": 10,
+          "loopSeam": 2.9391526281841376e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.0028426852986662386
+        }
+      ],
+      "allWeightsNormalized": true
+    },
+    {
+      "id": "zidane",
+      "sha256": "da7d25b4959d8583776abe64f3b8fcf1dfac587c1ad06e9708d87df143334708",
+      "bytes": 5837024,
+      "joints": 21,
+      "vertices": 58974,
+      "triangles": 89394,
+      "materialDraws": 10,
+      "images": 6,
+      "clips": [
+        {
+          "name": "Greet",
+          "seconds": 3.3333332538604736,
+          "weightedAnimatedChannels": 7,
+          "loopSeam": 0.028307467699050903,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.004000013212899148
+        },
+        {
+          "name": "Idle",
+          "seconds": 4.041666507720947,
+          "weightedAnimatedChannels": 5,
+          "loopSeam": 2.9391526281841376e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.004000013212898712
+        },
+        {
+          "name": "Signature",
+          "seconds": 3.3333332538604736,
+          "weightedAnimatedChannels": 9,
+          "loopSeam": 0.028307467699050903,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.004000013212899148
+        },
+        {
+          "name": "Walk",
+          "seconds": 1.125,
+          "weightedAnimatedChannels": 13,
+          "loopSeam": 2.9391526281841376e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.002827269981908964
+        }
+      ],
+      "allWeightsNormalized": true
+    },
+    {
+      "id": "garnet",
+      "sha256": "a4781e39406ec22ed1578395f5ff9e38c2ca63451a3206ca2a3854b428e4057f",
+      "bytes": 5580832,
+      "joints": 21,
+      "vertices": 54381,
+      "triangles": 85420,
+      "materialDraws": 11,
+      "images": 6,
+      "clips": [
+        {
+          "name": "Greet",
+          "seconds": 3.3333332538604736,
+          "weightedAnimatedChannels": 5,
+          "loopSeam": 0.028307467699050903,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.004000013212899148
+        },
+        {
+          "name": "Idle",
+          "seconds": 4.041666507720947,
+          "weightedAnimatedChannels": 3,
+          "loopSeam": 2.9391526281841376e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.004000013212898712
+        },
+        {
+          "name": "Signature",
+          "seconds": 3.3333332538604736,
+          "weightedAnimatedChannels": 7,
+          "loopSeam": 0.028307467699050903,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.004000013212899148
+        },
+        {
+          "name": "Walk",
+          "seconds": 1.125,
+          "weightedAnimatedChannels": 11,
+          "loopSeam": 2.9391526281841376e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.002827269981908964
+        }
+      ],
+      "allWeightsNormalized": true
+    }
+  ],
+  "artAcceptance": "requires user review",
+  "surfaceCollisionScope": "ground only; no claim of universal garment or accessory collision freedom"
+}

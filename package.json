@@ -14,13 +14,16 @@
     "verify:chocobo": "node tools/verify-chocobo.mjs",
     "verify:cast": "node tools/verify-cast.mjs",
     "test:assets": "node --test tools/asset-loading.test.mjs",
-    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run verify:theater && npm run verify:city",
+    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run verify:theater && npm run verify:city && npm run verify:royal && npm run verify:city-life && npm run test:city-tour",
     "deploy": "python3 deploy/publish.py",
     "test:input": "node --test tools/input-state.test.mjs",
     "test:quest": "node --test tools/letter-quest.test.mjs",
     "test:guidance": "node --test tools/quest-guidance.test.mjs",
     "verify:theater": "node tools/verify-theater.mjs",
-    "verify:city": "node tools/verify-city.mjs"
+    "verify:city": "node tools/verify-city.mjs",
+    "verify:royal": "node tools/verify-royal-cast.mjs",
+    "verify:city-life": "node tools/verify-city-life.mjs",
+    "test:city-tour": "node --test tools/city-tour.test.mjs"
   },
   "dependencies": {
     "three": "0.170.0"

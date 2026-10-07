@@ -14,6 +14,12 @@
 
 原工坊主街扩展为49栋街区建筑、五个区域、两处庭院和上下城台阶；约390米的回环可实际步行。复用已有材质与角色，新增城区为程序化规则装配，未新增模型调用或训练。验收：`npm run verify:city`。
 
+## 动态街坊与王城三人组
+
+[动态城市](http://127.0.0.1:5209/city.html) · [三人角色工作室](http://127.0.0.1:5209/royal-cast.html?character=all) · [制作与验收](docs/city/CITY_LIFE_ROYAL_CAST_V1.md)
+
+十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。新增Steiner、Zidane、Garnet的骨骼GLB与四动作，已放入城市；三位新角色造型待用户验收。验证：`npm run verify:city-life`、`npm run verify:royal`。
+
 ## 莫古利角色样板
 
 [查看精修莫古利与四个动作](http://127.0.0.1:5209/moogle.html) · [在街景中互动](http://127.0.0.1:5209/?street=workshops&moogle=1) · [角色交付与验证说明](MOOGLE_SAMPLE.md)

@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-08",
+  "imagegenCalls": 5,
+  "server4090Tasks": 0,
+  "training": "none",
+  "source": "image_gen supplies reference turnarounds and face/steel colors; Blender script supplies geometry, skin, rigs and baked motion; cloth colors are procedural",
+  "promptFiles": [
+    "prompts.json",
+    "material-prompts.json"
+  ],
+  "references": [
+    "https://na.finalfantasy.com/titles/finalfantasy9",
+    "https://na.finalfantasy.com/news/1057",
+    "https://na.finalfantasy.com/news/1130"
+  ],
+  "assets": [
+    {
+      "file": "art-direction/royal-cast/steiner-target-v1.png",
+      "bytes": 2608292,
+      "sha256": "23b59e77ccaf215f1ef6dbc7d0460f05a45e0b2ee732863ad23467077fcd616f",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "art-direction/royal-cast/zidane-target-v1.png",
+      "bytes": 2287117,
+      "sha256": "5adde302450031892876653578bb0e79f159d795294526ccb76b6311e340aae4",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "art-direction/royal-cast/garnet-target-v1.png",
+      "bytes": 1932453,
+      "sha256": "edee01f621a63bcb2d04446d602e4dbf7463cb4944d66003fcba4743361e7ce6",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "public/assets/characters/royal-cast/face-atlas.png",
+      "bytes": 1758945,
+      "sha256": "2de671a8a605c6156bcba0d9eb1fcd97cb19dd5aded9e60d4789fa49d415bd46",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "public/assets/characters/royal-cast/steel.png",
+      "bytes": 3835831,
+      "sha256": "b567ba6bed6f3e427f75a939d2c19cb80fcec83ab8030db3d0fd963379e89e91",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "public/assets/characters/royal-cast/steiner-v1.glb",
+      "bytes": 9986528,
+      "sha256": "289886fa8191dd113f0d50d793b887d18908053ec5702023e6c2600db3089e46"
+    },
+    {
+      "file": "public/assets/characters/royal-cast/zidane-v1.glb",
+      "bytes": 5837024,
+      "sha256": "da7d25b4959d8583776abe64f3b8fcf1dfac587c1ad06e9708d87df143334708"
+    },
+    {
+      "file": "public/assets/characters/royal-cast/garnet-v1.glb",
+      "bytes": 5580832,
+      "sha256": "a4781e39406ec22ed1578395f5ff9e38c2ca63451a3206ca2a3854b428e4057f"
+    }
+  ],
+  "humanArtAcceptance": "pending user review"
+}

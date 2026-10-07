@@ -1,0 +1,36 @@
+{
+  "character": "zidane",
+  "joints": 21,
+  "vertices": 44866,
+  "faces": 55299,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Greet",
+    "Signature"
+  ],
+  "maxWeightsPerVertex": 4,
+  "ground": {
+    "Idle": {
+      "frames": 97,
+      "minimumBeforeRootCorrection": 0.003999993205070496
+    },
+    "Walk": {
+      "frames": 27,
+      "minimumBeforeRootCorrection": 0.0009554009884595871
+    },
+    "Greet": {
+      "frames": 80,
+      "minimumBeforeRootCorrection": 0.003999993205070496
+    },
+    "Signature": {
+      "frames": 80,
+      "minimumBeforeRootCorrection": 0.003999993205070496
+    }
+  },
+  "binding": "continuous body bone heat; rigid sculpted costume details bound to named bones; joined mesh for draw-call economy",
+  "source": "authored Blender mesh; generated face-atlas and steel albedo; procedural woven cloth; turnaround references do not generate geometry",
+  "humanArtAcceptance": "pending",
+  "imagegenCallsInBatch": 5,
+  "server4090Tasks": 0
+}
