@@ -1,0 +1,268 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_fl2va_pruned_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "lora_name": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "3": {
+    "class_type": "CLIPLoaderGGUFMiniMaxH3",
+    "inputs": {
+      "clip_name": "qwen3-vl-32b-ultra-heretic-minimax-h3-q6_k.gguf",
+      "vision_name": "qwen3vl_32b_minimax_h3_visual_bf16.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-longtour-20261007/key-50.png"
+    }
+  },
+  "7": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "prompt": "At 10.792 seconds, <Picture 1> is fully referenced. Continue the supplied previous video motion smoothly.\n\nintegrated_multimodal_description: [Shot 1] One continuous calm cinematic camera movement through the same warm, hand-painted Final Fantasy IX-inspired royal town. Glide forward at low street height through the existing stone arch into the fountain square. Shop facades move out of view naturally. The fountain approaches steadily ahead with the royal castle fixed behind it. Preserve golden-brown painterly materials, morning lighting, all existing buildings and street geometry. Scale changes arise only from camera movement. Stable landmarks and smooth parallax, no scene morphing, no cuts, no overlays, no invented objects. Gentle slow motion only.\noverall_soundscape: Quiet soft wind and distant courtyard ambience only. No speech, no vocals, no music.",
+      "width": 864,
+      "height": 480,
+      "length": 260,
+      "last_frame": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "MiniMaxH3MotionContextLoadLatent",
+    "inputs": {
+      "latent_path": "batches/ff9-longtour-20261007/context/repair-seg04_00001.safetensors",
+      "clip_index": 1
+    }
+  },
+  "9": {
+    "class_type": "MiniMaxH3MotionContext",
+    "inputs": {
+      "conditioning": [
+        "7",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "latent": [
+        "7",
+        1
+      ],
+      "context_length": "22",
+      "audio_context_length": 24,
+      "context_latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "conditioning": [
+        "22",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 8,
+      "denoise": 1.0
+    }
+  },
+  "12": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 15031
+    }
+  },
+  "13": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "12",
+        0
+      ],
+      "guider": [
+        "10",
+        0
+      ],
+      "sampler": [
+        "13",
+        0
+      ],
+      "sigmas": [
+        "11",
+        0
+      ],
+      "latent_image": [
+        "7",
+        1
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "5",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "MiniMaxH3MotionContextTrim",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "trim_frames": [
+        "9",
+        1
+      ],
+      "audio": [
+        "16",
+        0
+      ],
+      "fps": 24.0,
+      "match_tail": true
+    }
+  },
+  "18": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ],
+      "fps": 24.0,
+      "audio": [
+        "17",
+        1
+      ]
+    }
+  },
+  "19": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "18",
+        0
+      ],
+      "filename_prefix": "batches/ff9-longtour-20261007/repair-seg-05",
+      "format": "auto",
+      "format.codec": "auto"
+    }
+  },
+  "20": {
+    "class_type": "MiniMaxH3MotionContextSaveLatent",
+    "inputs": {
+      "latent": [
+        "14",
+        0
+      ],
+      "filename_prefix": "batches/ff9-longtour-20261007/context/repair-seg05",
+      "clip_index": 1
+    }
+  },
+  "21": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-longtour-20261007/key-45.png"
+    }
+  },
+  "22": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "9",
+        0
+      ],
+      "latent": [
+        "7",
+        1
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "frame_idx": 141,
+      "image": [
+        "21",
+        0
+      ]
+    }
+  }
+}

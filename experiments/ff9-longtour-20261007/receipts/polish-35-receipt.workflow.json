@@ -1,0 +1,120 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "qwen_image_2.1_bf16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "QwenImage21Cache",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "device": "auto",
+      "dtype": "default"
+    }
+  },
+  "3": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_8b_bf16.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "qwen_image_2.1_vae_bf16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-longtour-20261007/raw-frames/frame-35.png"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-longtour-20261007/B-style.png"
+    }
+  },
+  "7": {
+    "class_type": "TextEncodeQwenImage21",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "prompt": "Image 1 is the ONLY composition, camera and geometry target. Image 2 is STRICTLY the approved color, material and painterly lighting reference; do not copy any character, building, object, poster, text, or camera placement from Image 2. Edit Image 1 into the same beautifully crafted Final Fantasy IX-inspired pre-rendered storybook cinematic style as Image 2. Preserve the exact camera angle, perspective, framing, silhouettes, relative sizes, all visible architecture and objects, and depth ordering of Image 1. Maintain its scene content and spatial layout. Enrich craftsmanship and atmospheric depth: hand-painted weathered timber, carved aged brass, soft crimson fabric, tactile roof tiles, subtle irregular stone paving, elegant ivory stone architecture, warm morning light and restrained golden-brown antique colors, fine painted surface detail without heavy grain. Keep the sky soft and luminous and turn underspecified surrounding flat grass into a continuous natural meadow, not a floating platform. Do not introduce new buildings, roads, people, creatures, vehicles or landmarks. Keep all existing rooflines, arches, street curves and towers identifiable. No UI, subtitles, captions, watermarks or new legible lettering. Output the same 864 by 480 composition.\nPreserve this exact royal-town street and its existing buildings. Do not invent extra streets or replace the distant royal castle.",
+      "negative_prompt": "",
+      "resolution": 0,
+      "vae": [
+        "4",
+        0
+      ],
+      "images.image_1": [
+        "5",
+        0
+      ],
+      "images.image_2": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "7",
+        0
+      ],
+      "negative": [
+        "7",
+        1
+      ],
+      "latent_image": [
+        "7",
+        2
+      ],
+      "seed": 14062,
+      "steps": 25,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0
+    }
+  },
+  "9": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "8",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "batches/ff9-longtour-20261007/polish-35"
+    }
+  }
+}

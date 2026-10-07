@@ -1,0 +1,50 @@
+[
+  {
+    "segment": 1,
+    "seconds": 198.3,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/seg-01-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/seg-01_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 2,
+    "seconds": 231.33,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/seg-02-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/seg-02_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 3,
+    "seconds": 231.31,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/seg-03-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/seg-03_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 4,
+    "seconds": 228.29,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/seg-04-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/seg-04_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 5,
+    "seconds": 228.27,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/seg-05-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/seg-05_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 6,
+    "seconds": 228.29,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/seg-06-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/seg-06_00001_.mp4"
+    ]
+  }
+]

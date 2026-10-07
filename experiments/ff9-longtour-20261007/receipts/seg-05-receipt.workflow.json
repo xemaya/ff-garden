@@ -1,0 +1,240 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_fl2va_pruned_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "lora_name": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "3": {
+    "class_type": "CLIPLoaderGGUFMiniMaxH3",
+    "inputs": {
+      "clip_name": "qwen3-vl-32b-ultra-heretic-minimax-h3-q6_k.gguf",
+      "vision_name": "qwen3vl_32b_minimax_h3_visual_bf16.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ff9-longtour-20261007/key-50.png"
+    }
+  },
+  "7": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "prompt": "For the target video, at 10.792 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced. The opening motion is an exact continuation of the supplied previous video latent.\n\nintegrated_multimodal_description: [Shot 1] One continuous cinematic camera movement inside the same warm, beautifully hand-painted Final Fantasy IX-inspired royal town. Continue through the old royal arch toward the fountain square. The street opens naturally into the stone-paved plaza. Show the same fountain, grassy edges, ticket booth and theater poster, with the little moogle courier and other tiny fantasy neighbors only where they appear in the supplied scene. Ease forward and slightly upward as the town opens out and the royal-city architecture becomes more prominent. Do not add any extra crowd or invent a new plaza. Preserve the established antique golden-brown painterly materials, gently stylized fantasy proportions, light direction and architectural identity. All visible structures retain their shapes and positions; changes in scale come ONLY from smooth camera movement through this same 3D space. No scene morphing, no magical transition, no fade, no cut, no montage, no new city, no newly invented landmarks, no new characters, no text overlays and no logos. Cloud shapes can drift very slowly. Camera motion must be calm, deliberate, smooth and physically plausible.\noverall_soundscape: Faint continuous wind and courtyard ambience, soft rotor hum only near the airship, no speech, no vocals and no music.",
+      "width": 864,
+      "height": 480,
+      "length": 260,
+      "last_frame": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "MiniMaxH3MotionContextLoadLatent",
+    "inputs": {
+      "latent_path": "batches/ff9-longtour-20261007/context/seg04_00001.safetensors",
+      "clip_index": 1
+    }
+  },
+  "9": {
+    "class_type": "MiniMaxH3MotionContext",
+    "inputs": {
+      "conditioning": [
+        "7",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ],
+      "latent": [
+        "7",
+        1
+      ],
+      "context_length": "22",
+      "audio_context_length": 24,
+      "context_latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "conditioning": [
+        "9",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 8,
+      "denoise": 1.0
+    }
+  },
+  "12": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 14031
+    }
+  },
+  "13": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "12",
+        0
+      ],
+      "guider": [
+        "10",
+        0
+      ],
+      "sampler": [
+        "13",
+        0
+      ],
+      "sigmas": [
+        "11",
+        0
+      ],
+      "latent_image": [
+        "7",
+        1
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "5",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "MiniMaxH3MotionContextTrim",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "trim_frames": [
+        "9",
+        1
+      ],
+      "audio": [
+        "16",
+        0
+      ],
+      "fps": 24.0,
+      "match_tail": true
+    }
+  },
+  "18": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ],
+      "fps": 24.0,
+      "audio": [
+        "17",
+        1
+      ]
+    }
+  },
+  "19": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "18",
+        0
+      ],
+      "filename_prefix": "batches/ff9-longtour-20261007/seg-05",
+      "format": "auto",
+      "format.codec": "auto"
+    }
+  },
+  "20": {
+    "class_type": "MiniMaxH3MotionContextSaveLatent",
+    "inputs": {
+      "latent": [
+        "14",
+        0
+      ],
+      "filename_prefix": "batches/ff9-longtour-20261007/context/seg05",
+      "clip_index": 1
+    }
+  }
+}

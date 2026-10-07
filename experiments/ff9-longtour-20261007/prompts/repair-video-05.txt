@@ -1,0 +1,4 @@
+At 10.792 seconds, <Picture 1> is fully referenced. Continue the supplied previous video motion smoothly.
+
+integrated_multimodal_description: [Shot 1] One continuous calm cinematic camera movement through the same warm, hand-painted Final Fantasy IX-inspired royal town. Glide forward at low street height through the existing stone arch into the fountain square. Shop facades move out of view naturally. The fountain approaches steadily ahead with the royal castle fixed behind it. Preserve golden-brown painterly materials, morning lighting, all existing buildings and street geometry. Scale changes arise only from camera movement. Stable landmarks and smooth parallax, no scene morphing, no cuts, no overlays, no invented objects. Gentle slow motion only.
+overall_soundscape: Quiet soft wind and distant courtyard ambience only. No speech, no vocals, no music.

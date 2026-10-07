@@ -1,0 +1,26 @@
+[
+  {
+    "segment": 4,
+    "seconds": 207.3,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/repair-seg-04-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/repair-seg-04_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 5,
+    "seconds": 234.34,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/repair-seg-05-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/repair-seg-05_00001_.mp4"
+    ]
+  },
+  {
+    "segment": 6,
+    "seconds": 240.34,
+    "receipt": "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/repair-seg-06-receipt.json",
+    "outputs": [
+      "batches/ff9-longtour-20261007/repair-seg-06_00001_.mp4"
+    ]
+  }
+]

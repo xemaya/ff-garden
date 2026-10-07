@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "clips": [
+    {
+      "segment": 1,
+      "frames": 243,
+      "seconds": 10.125,
+      "sha256": "3270f497389317be802a03e6d2b87b030c00b49949b7f69b22715ed5146a8f43"
+    },
+    {
+      "segment": 2,
+      "frames": 238,
+      "seconds": 9.916667,
+      "sha256": "50e775fbc9cf0d27591812e3b5d43ac3f658734d22e82fa0368e7cca99219c8c"
+    }
+  ],
+  "descent": "ship exits through top, shadow tracks across ground, street grows into frame",
+  "firstJoin": "visually consistent previous-last and next-first frame"
+}
