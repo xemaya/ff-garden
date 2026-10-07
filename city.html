@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e9e1cb"><title>王城小城 · FF花园</title></head>
+<body><canvas id="city" tabindex="0" aria-label="可游览的王城小城，WASD行走，拖动画面转向"></canvas>
+<header><a class="wordmark" href="/">FF GARDEN <span>王城小城</span></a><p>穿过街巷，再慢慢走向王城。</p></header>
+<aside class="places" aria-label="游览地点"><span class="eyebrow">一座城，几种日常</span><button data-view="street" aria-pressed="true">工坊主街</button><button data-view="market" aria-pressed="false">集市巷</button><button data-view="residential" aria-pressed="false">住宅巷</button><button data-view="courtyard" aria-pressed="false">药草小院</button><button data-view="square" aria-pressed="false">喷泉广场</button><button data-view="upper" aria-pressed="false">上城台阶</button><button data-view="castle" aria-pressed="false">王城观景</button></aside>
+<div class="top-right"><button id="overview" aria-pressed="false">看整座城 ↗</button><button id="map-toggle" aria-expanded="false" aria-controls="map-panel">街巷地图</button><label class="quality">画质<select id="quality"><option value="quality">细致</option><option value="smooth">流畅</option></select></label></div>
+<section id="map-panel" hidden aria-label="街巷地图"><div class="map-title">街道会在这里相遇。<button id="map-close" aria-label="收起地图">×</button></div><svg id="city-map" viewBox="-37 -72 76 127" role="img" aria-label="王城街区道路、街坊和当前位置"></svg><p>工坊主街 · 两侧支巷 · 喷泉广场 · 上城区</p></section>
+<footer><div><span id="where">工坊主街</span><p id="hint">WASD / 方向键行走 · 拖动转向</p></div><div class="tour-controls"><label class="speed"><span class="sr-only">游览速度</span><select id="speed" aria-label="游览速度"><option value="2.4">慢慢逛</option><option value="9">快览</option></select></label><button id="tour">沿街绕一圈 <span>↗</span></button><button id="reset" aria-label="回到街道入口">回入口</button></div></footer>
+<nav class="touch-pad" aria-label="行走控制"><button data-move="w" aria-label="前进">↑</button><button data-move="a" aria-label="左移">←</button><button data-move="s" aria-label="后退">↓</button><button data-move="d" aria-label="右移">→</button></nav>
+<div id="loading" role="status"><span>王城的街巷正在醒来。</span><small>屋顶、庭院、台阶，还有熟悉的邻居。</small></div><p id="notice" role="status" aria-live="polite"></p><output id="city-state" hidden></output>
+<script type="module" src="/src/city-main.js"></script></body></html>

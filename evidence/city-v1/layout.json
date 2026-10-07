@@ -1,0 +1,2690 @@
+{
+  "revision": "royal-neighborhoods-v1",
+  "seed": 1907,
+  "metrics": {
+    "buildings": 49,
+    "heroBuildings": 8,
+    "urbanBuildings": 41,
+    "roads": 37,
+    "courtyards": 2,
+    "districts": 5,
+    "tourLength": 390.1400547663966,
+    "newImageCalls": 0,
+    "newModelCalls": 0
+  },
+  "nodes": {
+    "arrival": {
+      "x": 0,
+      "z": 46
+    },
+    "entry": {
+      "x": -0.06440240696087784,
+      "z": 31
+    },
+    "west-entry": {
+      "x": -19,
+      "z": 31
+    },
+    "east-entry": {
+      "x": 20,
+      "z": 31
+    },
+    "workshops-north": {
+      "x": 0.43683889554471883,
+      "z": 23
+    },
+    "workshops-mid": {
+      "x": 1.035722118824051,
+      "z": 4
+    },
+    "market-mid": {
+      "x": -19,
+      "z": 4
+    },
+    "market-court": {
+      "x": -19,
+      "z": 0.2
+    },
+    "herb-door": {
+      "x": -12.8,
+      "z": 4
+    },
+    "herb-court": {
+      "x": -12.8,
+      "z": 0.2
+    },
+    "weavers-entry": {
+      "x": 10.4,
+      "z": 31
+    },
+    "weavers-court": {
+      "x": 10.4,
+      "z": 23
+    },
+    "main-cross": {
+      "x": 0.5679556786329547,
+      "z": -12
+    },
+    "west-cross": {
+      "x": -19,
+      "z": -12
+    },
+    "east-cross": {
+      "x": 20,
+      "z": -12
+    },
+    "west-square": {
+      "x": -19,
+      "z": -29
+    },
+    "east-square": {
+      "x": 20,
+      "z": -29
+    },
+    "square-west": {
+      "x": -8,
+      "z": -32
+    },
+    "square-east": {
+      "x": 7.5,
+      "z": -32
+    },
+    "square": {
+      "x": 2.2,
+      "z": -32.5
+    },
+    "upper-west": {
+      "x": -17,
+      "z": -49
+    },
+    "upper-east": {
+      "x": 17,
+      "z": -49
+    },
+    "upper-center": {
+      "x": 0,
+      "z": -49
+    },
+    "royal-west": {
+      "x": -17,
+      "z": -62
+    },
+    "royal-east": {
+      "x": 17,
+      "z": -62
+    },
+    "royal-center": {
+      "x": -1,
+      "z": -62
+    },
+    "royal-gate": {
+      "x": -1,
+      "z": -65
+    }
+  },
+  "roads": [
+    {
+      "id": "arrival",
+      "a": "arrival",
+      "b": "entry",
+      "width": 6.2,
+      "points": [
+        {
+          "x": 0,
+          "z": 46
+        },
+        {
+          "x": -0.06440240696087784,
+          "z": 31
+        }
+      ]
+    },
+    {
+      "id": "entry-west",
+      "a": "entry",
+      "b": "west-entry",
+      "width": 5.2,
+      "points": [
+        {
+          "x": -0.06440240696087784,
+          "z": 31
+        },
+        {
+          "x": -19,
+          "z": 31
+        }
+      ]
+    },
+    {
+      "id": "entry-weavers",
+      "a": "entry",
+      "b": "weavers-entry",
+      "width": 5.2,
+      "points": [
+        {
+          "x": -0.06440240696087784,
+          "z": 31
+        },
+        {
+          "x": 10.4,
+          "z": 31
+        }
+      ]
+    },
+    {
+      "id": "entry-east",
+      "a": "weavers-entry",
+      "b": "east-entry",
+      "width": 5.2,
+      "points": [
+        {
+          "x": 10.4,
+          "z": 31
+        },
+        {
+          "x": 20,
+          "z": 31
+        }
+      ]
+    },
+    {
+      "id": "workshops-entry",
+      "a": "entry",
+      "b": "workshops-north",
+      "width": 6.2,
+      "points": [
+        {
+          "x": -0.06440240696087784,
+          "z": 31
+        },
+        {
+          "x": 0,
+          "z": 30
+        },
+        {
+          "x": 0.06440240696087784,
+          "z": 29
+        },
+        {
+          "x": 0.12855280378931258,
+          "z": 28
+        },
+        {
+          "x": 0.1922002531890349,
+          "z": 27
+        },
+        {
+          "x": 0.25509595883390973,
+          "z": 26
+        },
+        {
+          "x": 0.31699432411827444,
+          "z": 25
+        },
+        {
+          "x": 0.3776539968837571,
+          "z": 24
+        },
+        {
+          "x": 0.43683889554471883,
+          "z": 23
+        }
+      ]
+    },
+    {
+      "id": "workshops-workshops-north",
+      "a": "workshops-north",
+      "b": "workshops-mid",
+      "width": 6.2,
+      "points": [
+        {
+          "x": 0.43683889554471883,
+          "z": 23
+        },
+        {
+          "x": 0.49431921211675617,
+          "z": 22
+        },
+        {
+          "x": 0.549872387754874,
+          "z": 21
+        },
+        {
+          "x": 0.6032840565295527,
+          "z": 20
+        },
+        {
+          "x": 0.6543489533094342,
+          "z": 19
+        },
+        {
+          "x": 0.7028717817781249,
+          "z": 18
+        },
+        {
+          "x": 0.7486680387889533,
+          "z": 17
+        },
+        {
+          "x": 0.7915647914546388,
+          "z": 16
+        },
+        {
+          "x": 0.831401403577877,
+          "z": 15
+        },
+        {
+          "x": 0.8680302082528926,
+          "z": 14
+        },
+        {
+          "x": 0.9013171237060614,
+          "z": 13
+        },
+        {
+          "x": 0.9311422096947022,
+          "z": 12
+        },
+        {
+          "x": 0.9574001620459716,
+          "z": 11
+        },
+        {
+          "x": 0.9800007431913037,
+          "z": 10
+        },
+        {
+          "x": 0.9988691468347887,
+          "z": 9
+        },
+        {
+          "x": 1.0139462951850473,
+          "z": 8
+        },
+        {
+          "x": 1.0251890674782271,
+          "z": 7
+        },
+        {
+          "x": 1.0325704588234024,
+          "z": 6
+        },
+        {
+          "x": 1.03607966870955,
+          "z": 5
+        },
+        {
+          "x": 1.035722118824051,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "id": "workshops-workshops-mid",
+      "a": "workshops-mid",
+      "b": "main-cross",
+      "width": 6.2,
+      "points": [
+        {
+          "x": 1.035722118824051,
+          "z": 4
+        },
+        {
+          "x": 1.031519400144925,
+          "z": 3
+        },
+        {
+          "x": 1.0235091495813897,
+          "z": 2
+        },
+        {
+          "x": 1.0117448567484315,
+          "z": 1
+        },
+        {
+          "x": 0.9962956017695324,
+          "z": 0
+        },
+        {
+          "x": 0.9772457253061144,
+          "z": -1
+        },
+        {
+          "x": 0.9546944323113304,
+          "z": -2
+        },
+        {
+          "x": 0.9287553312981793,
+          "z": -3
+        },
+        {
+          "x": 0.899555911196299,
+          "z": -4
+        },
+        {
+          "x": 0.8672369581468957,
+          "z": -5
+        },
+        {
+          "x": 0.8319519148499146,
+          "z": -6
+        },
+        {
+          "x": 0.7938661853305427,
+          "z": -7
+        },
+        {
+          "x": 0.7531563882323755,
+          "z": -8
+        },
+        {
+          "x": 0.7100095619709614,
+          "z": -9
+        },
+        {
+          "x": 0.6646223252930159,
+          "z": -10
+        },
+        {
+          "x": 0.6171999969823785,
+          "z": -11
+        },
+        {
+          "x": 0.5679556786329547,
+          "z": -12
+        }
+      ]
+    },
+    {
+      "id": "market-north",
+      "a": "west-entry",
+      "b": "market-mid",
+      "width": 4.8,
+      "points": [
+        {
+          "x": -19,
+          "z": 31
+        },
+        {
+          "x": -19,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "id": "market-court",
+      "a": "market-mid",
+      "b": "market-court",
+      "width": 4.8,
+      "points": [
+        {
+          "x": -19,
+          "z": 4
+        },
+        {
+          "x": -19,
+          "z": 0.2
+        }
+      ]
+    },
+    {
+      "id": "market-south",
+      "a": "market-court",
+      "b": "west-cross",
+      "width": 4.8,
+      "points": [
+        {
+          "x": -19,
+          "z": 0.2
+        },
+        {
+          "x": -19,
+          "z": -12
+        }
+      ]
+    },
+    {
+      "id": "residential",
+      "a": "east-entry",
+      "b": "east-cross",
+      "width": 4.6,
+      "points": [
+        {
+          "x": 20,
+          "z": 31
+        },
+        {
+          "x": 20,
+          "z": -12
+        }
+      ]
+    },
+    {
+      "id": "cross-west",
+      "a": "main-cross",
+      "b": "west-cross",
+      "width": 4.1,
+      "points": [
+        {
+          "x": 0.5679556786329547,
+          "z": -12
+        },
+        {
+          "x": -19,
+          "z": -12
+        }
+      ]
+    },
+    {
+      "id": "cross-east",
+      "a": "main-cross",
+      "b": "east-cross",
+      "width": 4.1,
+      "points": [
+        {
+          "x": 0.5679556786329547,
+          "z": -12
+        },
+        {
+          "x": 20,
+          "z": -12
+        }
+      ]
+    },
+    {
+      "id": "market-square",
+      "a": "west-cross",
+      "b": "west-square",
+      "width": 4.8,
+      "points": [
+        {
+          "x": -19,
+          "z": -12
+        },
+        {
+          "x": -19,
+          "z": -29
+        }
+      ]
+    },
+    {
+      "id": "homes-square",
+      "a": "east-cross",
+      "b": "east-square",
+      "width": 4.6,
+      "points": [
+        {
+          "x": 20,
+          "z": -12
+        },
+        {
+          "x": 20,
+          "z": -29
+        }
+      ]
+    },
+    {
+      "id": "square-west",
+      "a": "west-square",
+      "b": "square-west",
+      "width": 4,
+      "points": [
+        {
+          "x": -19,
+          "z": -29
+        },
+        {
+          "x": -14,
+          "z": -32
+        },
+        {
+          "x": -8,
+          "z": -32
+        }
+      ]
+    },
+    {
+      "id": "square-east",
+      "a": "east-square",
+      "b": "square-east",
+      "width": 4,
+      "points": [
+        {
+          "x": 20,
+          "z": -29
+        },
+        {
+          "x": 14,
+          "z": -32
+        },
+        {
+          "x": 7.5,
+          "z": -32
+        }
+      ]
+    },
+    {
+      "id": "plaza-west",
+      "a": "square-west",
+      "b": "square",
+      "width": 3.4,
+      "points": [
+        {
+          "x": -8,
+          "z": -32
+        },
+        {
+          "x": 2.2,
+          "z": -32.5
+        }
+      ]
+    },
+    {
+      "id": "plaza-east",
+      "a": "square-east",
+      "b": "square",
+      "width": 3.4,
+      "points": [
+        {
+          "x": 7.5,
+          "z": -32
+        },
+        {
+          "x": 2.2,
+          "z": -32.5
+        }
+      ]
+    },
+    {
+      "id": "plaza-main",
+      "a": "main-cross",
+      "b": "square",
+      "width": 4,
+      "points": [
+        {
+          "x": 0.5679556786329547,
+          "z": -12
+        },
+        {
+          "x": 0.5171093045706021,
+          "z": -13
+        },
+        {
+          "x": -1,
+          "z": -14
+        },
+        {
+          "x": 1.5,
+          "z": -19
+        },
+        {
+          "x": 2.8,
+          "z": -24
+        },
+        {
+          "x": 3.2,
+          "z": -29
+        },
+        {
+          "x": 2.2,
+          "z": -32.5
+        }
+      ]
+    },
+    {
+      "id": "royal-ascent",
+      "a": "square",
+      "b": "upper-center",
+      "width": 5,
+      "points": [
+        {
+          "x": 2.2,
+          "z": -32.5
+        },
+        {
+          "x": 0,
+          "z": -35
+        },
+        {
+          "x": 0,
+          "z": -49
+        }
+      ]
+    },
+    {
+      "id": "royal-axis",
+      "a": "upper-center",
+      "b": "royal-center",
+      "width": 5,
+      "points": [
+        {
+          "x": 0,
+          "z": -49
+        },
+        {
+          "x": -1,
+          "z": -62
+        }
+      ]
+    },
+    {
+      "id": "royal-gate",
+      "a": "royal-center",
+      "b": "royal-gate",
+      "width": 5,
+      "points": [
+        {
+          "x": -1,
+          "z": -62
+        },
+        {
+          "x": -1,
+          "z": -65
+        }
+      ]
+    },
+    {
+      "id": "west-ascent",
+      "a": "west-square",
+      "b": "upper-west",
+      "width": 4.2,
+      "points": [
+        {
+          "x": -19,
+          "z": -29
+        },
+        {
+          "x": -17,
+          "z": -35
+        },
+        {
+          "x": -17,
+          "z": -49
+        }
+      ]
+    },
+    {
+      "id": "east-ascent",
+      "a": "east-square",
+      "b": "upper-east",
+      "width": 4.2,
+      "points": [
+        {
+          "x": 20,
+          "z": -29
+        },
+        {
+          "x": 17,
+          "z": -35
+        },
+        {
+          "x": 17,
+          "z": -49
+        }
+      ]
+    },
+    {
+      "id": "upper-cross-west",
+      "a": "upper-west",
+      "b": "upper-center",
+      "width": 4,
+      "points": [
+        {
+          "x": -17,
+          "z": -49
+        },
+        {
+          "x": 0,
+          "z": -49
+        }
+      ]
+    },
+    {
+      "id": "upper-cross-east",
+      "a": "upper-center",
+      "b": "upper-east",
+      "width": 4,
+      "points": [
+        {
+          "x": 0,
+          "z": -49
+        },
+        {
+          "x": 17,
+          "z": -49
+        }
+      ]
+    },
+    {
+      "id": "upper-west",
+      "a": "upper-west",
+      "b": "royal-west",
+      "width": 4.2,
+      "points": [
+        {
+          "x": -17,
+          "z": -49
+        },
+        {
+          "x": -17,
+          "z": -62
+        }
+      ]
+    },
+    {
+      "id": "upper-east",
+      "a": "upper-east",
+      "b": "royal-east",
+      "width": 4.2,
+      "points": [
+        {
+          "x": 17,
+          "z": -49
+        },
+        {
+          "x": 17,
+          "z": -62
+        }
+      ]
+    },
+    {
+      "id": "royal-cross-west",
+      "a": "royal-west",
+      "b": "royal-center",
+      "width": 4,
+      "points": [
+        {
+          "x": -17,
+          "z": -62
+        },
+        {
+          "x": -1,
+          "z": -62
+        }
+      ]
+    },
+    {
+      "id": "royal-cross-east",
+      "a": "royal-center",
+      "b": "royal-east",
+      "width": 4,
+      "points": [
+        {
+          "x": -1,
+          "z": -62
+        },
+        {
+          "x": 17,
+          "z": -62
+        }
+      ]
+    },
+    {
+      "id": "herb-entry",
+      "a": "workshops-mid",
+      "b": "herb-door",
+      "width": 1.6,
+      "points": [
+        {
+          "x": 1.035722118824051,
+          "z": 4
+        },
+        {
+          "x": -12.8,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "id": "herb-passage",
+      "a": "herb-door",
+      "b": "market-mid",
+      "width": 1.6,
+      "points": [
+        {
+          "x": -12.8,
+          "z": 4
+        },
+        {
+          "x": -19,
+          "z": 4
+        }
+      ]
+    },
+    {
+      "id": "herb-court",
+      "a": "herb-door",
+      "b": "herb-court",
+      "width": 2,
+      "points": [
+        {
+          "x": -12.8,
+          "z": 4
+        },
+        {
+          "x": -12.8,
+          "z": 0.2
+        }
+      ]
+    },
+    {
+      "id": "herb-market",
+      "a": "herb-court",
+      "b": "market-court",
+      "width": 2,
+      "points": [
+        {
+          "x": -12.8,
+          "z": 0.2
+        },
+        {
+          "x": -19,
+          "z": 0.2
+        }
+      ]
+    },
+    {
+      "id": "weavers-door",
+      "a": "workshops-north",
+      "b": "weavers-court",
+      "width": 2.7,
+      "points": [
+        {
+          "x": 0.43683889554471883,
+          "z": 23
+        },
+        {
+          "x": 10.4,
+          "z": 23
+        }
+      ]
+    },
+    {
+      "id": "weavers-passage",
+      "a": "weavers-court",
+      "b": "weavers-entry",
+      "width": 2.7,
+      "points": [
+        {
+          "x": 10.4,
+          "z": 23
+        },
+        {
+          "x": 10.4,
+          "z": 31
+        }
+      ]
+    }
+  ],
+  "buildings": [
+    {
+      "kind": "books",
+      "name": "墨渊书舍",
+      "side": "left",
+      "z": 23.261272190321208,
+      "width": 5.6,
+      "depth": 4.8,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "timber",
+        "chimney": "tall-stone"
+      },
+      "requestedZ": 23.5,
+      "id": "building-0",
+      "x": -3.6254951799970403,
+      "routeZ": 23.5,
+      "rotation": 1.51167084211175,
+      "height": 6.05,
+      "roof": "coral",
+      "wall": "cream",
+      "seed": 823,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "toys",
+      "name": "木灵工坊",
+      "side": "left",
+      "z": 16.756887315383622,
+      "width": 5.2,
+      "depth": 4.4,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.6,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      },
+      "requestedZ": 18.5,
+      "id": "building-1",
+      "x": -3.534769719877621,
+      "routeZ": 16.9464,
+      "rotation": 1.5266064953554095,
+      "height": 6.33,
+      "roof": "sage",
+      "wall": "cream",
+      "seed": 854,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "books",
+      "name": "青简阁",
+      "side": "left",
+      "z": 9.901673736900014,
+      "width": 6.4,
+      "depth": 5.2,
+      "setback": 0.25,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      },
+      "requestedZ": 13.5,
+      "id": "building-2",
+      "x": -2.808775636777083,
+      "routeZ": 9.98,
+      "rotation": 1.5501282951896278,
+      "height": 6.609999999999999,
+      "roof": "coral",
+      "wall": "cream",
+      "seed": 885,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "apothecary",
+      "name": "草木堂",
+      "side": "right",
+      "z": 14.276625427497,
+      "width": 5.6,
+      "depth": 4.8,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      },
+      "requestedZ": 10.5,
+      "id": "building-3",
+      "x": 4.90079471255819,
+      "routeZ": 14.133600000000001,
+      "rotation": -1.6062060596139303,
+      "height": 6.05,
+      "roof": "coral",
+      "wall": "cream",
+      "seed": 916,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "toys",
+      "name": "笑风铃坊",
+      "side": "right",
+      "z": 7.629554387362787,
+      "width": 5.2,
+      "depth": 4.4,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 4,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      },
+      "requestedZ": 7.5,
+      "id": "building-4",
+      "x": 5.308850997385328,
+      "routeZ": 7.580000000000001,
+      "rotation": -1.5823477229315352,
+      "height": 6.33,
+      "roof": "sage",
+      "wall": "cream",
+      "seed": 947,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "books",
+      "name": "琅嬛书屋",
+      "side": "right",
+      "z": 0.5695895228979461,
+      "width": 6.4,
+      "depth": 4.8,
+      "setback": 0.25,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.6,
+        "bay": "octagonal",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      },
+      "requestedZ": 3.5,
+      "id": "building-5",
+      "x": 4.795974201852335,
+      "routeZ": 0.6264000000000003,
+      "rotation": -1.5558061936157541,
+      "height": 6.609999999999999,
+      "roof": "coral",
+      "wall": "cream",
+      "seed": 978,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "apothecary",
+      "name": "药香居",
+      "side": "left",
+      "z": -1.4088968148271934,
+      "width": 5.6,
+      "depth": 4.4,
+      "setback": 0.5,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      },
+      "requestedZ": -1.5,
+      "id": "building-6",
+      "x": -3.0725716805086756,
+      "routeZ": -1.5,
+      "rotation": 1.5933485317884617,
+      "height": 6.05,
+      "roof": "sage",
+      "wall": "cream",
+      "seed": 1009,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "kind": "toys",
+      "name": "稚趣园",
+      "side": "right",
+      "z": -6.501431954632343,
+      "width": 5.2,
+      "depth": 5.2,
+      "setback": 0.75,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      },
+      "requestedZ": -5.5,
+      "id": "building-7",
+      "x": 5.106269973913308,
+      "routeZ": -6.34,
+      "rotation": -1.5331576142137446,
+      "height": 6.33,
+      "roof": "coral",
+      "wall": "cream",
+      "seed": 1040,
+      "district": "workshops",
+      "detail": "hero",
+      "y": 0
+    },
+    {
+      "id": "city-8",
+      "district": "market",
+      "detail": "urban",
+      "x": -16,
+      "z": 23,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.6,
+      "depth": 5.6,
+      "height": 6,
+      "kind": "bakery",
+      "seed": 2203,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-9",
+      "district": "market",
+      "detail": "urban",
+      "x": -16,
+      "z": 15.4,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 5.8,
+      "height": 6.27,
+      "kind": "florist",
+      "seed": 2240,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-10",
+      "district": "market",
+      "detail": "urban",
+      "x": -16,
+      "z": 7.800000000000001,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 6.3,
+      "depth": 4.4,
+      "height": 6.54,
+      "kind": "cafe",
+      "seed": 2277,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-11",
+      "district": "market",
+      "detail": "urban",
+      "x": -16,
+      "z": -7.399999999999999,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 5.6,
+      "height": 6.27,
+      "kind": "apothecary",
+      "seed": 2314,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-12",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": 23,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 7,
+      "height": 6,
+      "kind": "bakery",
+      "seed": 2351,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-13",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": 15.4,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 7.4,
+      "height": 6.27,
+      "kind": "florist",
+      "seed": 2388,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-14",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": 7.800000000000001,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 6.3,
+      "depth": 7,
+      "height": 6.54,
+      "kind": "cafe",
+      "seed": 2425,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-15",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": 0.20000000000000284,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 7.4,
+      "height": 8.1,
+      "kind": "books",
+      "seed": 2462,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.6399999999999997,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-16",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": -7.399999999999999,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 7,
+      "height": 6.27,
+      "kind": "apothecary",
+      "seed": 2499,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-17",
+      "district": "residential",
+      "detail": "urban",
+      "x": 17,
+      "z": 23,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 5.6,
+      "height": 6,
+      "kind": "home",
+      "seed": 2536,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-18",
+      "district": "residential",
+      "detail": "urban",
+      "x": 17,
+      "z": 15.4,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 5.8,
+      "height": 6.27,
+      "kind": "home",
+      "seed": 2573,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-19",
+      "district": "residential",
+      "detail": "urban",
+      "x": 17,
+      "z": 7.800000000000001,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 6.3,
+      "depth": 5.6,
+      "height": 6.54,
+      "kind": "home",
+      "seed": 2610,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-20",
+      "district": "residential",
+      "detail": "urban",
+      "x": 17,
+      "z": 0.20000000000000284,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 5.8,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 2647,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.6399999999999997,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-21",
+      "district": "residential",
+      "detail": "urban",
+      "x": 17,
+      "z": -7.399999999999999,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 5.6,
+      "height": 6.27,
+      "kind": "home",
+      "seed": 2684,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-22",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": 23,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.6,
+      "depth": 7,
+      "height": 6,
+      "kind": "home",
+      "seed": 2721,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-23",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": 15.4,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 7.4,
+      "height": 6.27,
+      "kind": "home",
+      "seed": 2758,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-24",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": 7.800000000000001,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 6.3,
+      "depth": 7,
+      "height": 6.54,
+      "kind": "home",
+      "seed": 2795,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-25",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": 0.20000000000000284,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.6,
+      "depth": 7.4,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 2832,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.6399999999999997,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-26",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": -7.399999999999999,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 7,
+      "height": 6.27,
+      "kind": "home",
+      "seed": 2869,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-27",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": -20,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 6.3,
+      "depth": 7.4,
+      "height": 6.54,
+      "kind": "inn",
+      "seed": 2906,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "none",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-28",
+      "district": "market",
+      "detail": "urban",
+      "x": -22.5,
+      "z": -27.7,
+      "y": 0,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 7,
+      "height": 6,
+      "kind": "home",
+      "seed": 2943,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.36,
+        "bay": "octagonal",
+        "awning": "striped",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-29",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": -20,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 6.3,
+      "depth": 7.4,
+      "height": 6.54,
+      "kind": "inn",
+      "seed": 2980,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-30",
+      "district": "residential",
+      "detail": "urban",
+      "x": 23.3,
+      "z": -27.7,
+      "y": 0,
+      "rotation": -1.5707963267948966,
+      "width": 5.6,
+      "depth": 7,
+      "height": 6,
+      "kind": "home",
+      "seed": 3017,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "timber",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-31",
+      "district": "arrival",
+      "detail": "urban",
+      "x": -24,
+      "z": 36,
+      "y": 0,
+      "rotation": 3.141592653589793,
+      "width": 5.6,
+      "depth": 7.4,
+      "height": 8.1,
+      "kind": "inn",
+      "seed": 3054,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.6399999999999997,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-32",
+      "district": "arrival",
+      "detail": "urban",
+      "x": -16,
+      "z": 36,
+      "y": 0,
+      "rotation": 3.141592653589793,
+      "width": 6.3,
+      "depth": 7,
+      "height": 6.54,
+      "kind": "inn",
+      "seed": 3091,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-33",
+      "district": "arrival",
+      "detail": "urban",
+      "x": -8,
+      "z": 36,
+      "y": 0,
+      "rotation": 3.141592653589793,
+      "width": 5.949999999999999,
+      "depth": 7.4,
+      "height": 6.27,
+      "kind": "inn",
+      "seed": 3128,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-34",
+      "district": "arrival",
+      "detail": "urban",
+      "x": 8,
+      "z": 36,
+      "y": 0,
+      "rotation": 3.141592653589793,
+      "width": 5.949999999999999,
+      "depth": 7.4,
+      "height": 6.27,
+      "kind": "inn",
+      "seed": 3165,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "octagonal",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-35",
+      "district": "arrival",
+      "detail": "urban",
+      "x": 16,
+      "z": 36,
+      "y": 0,
+      "rotation": 3.141592653589793,
+      "width": 6.3,
+      "depth": 7,
+      "height": 6.54,
+      "kind": "inn",
+      "seed": 3202,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-36",
+      "district": "arrival",
+      "detail": "urban",
+      "x": 24,
+      "z": 36,
+      "y": 0,
+      "rotation": 3.141592653589793,
+      "width": 5.6,
+      "depth": 7.4,
+      "height": 8.1,
+      "kind": "inn",
+      "seed": 3239,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.6399999999999997,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-37",
+      "district": "upper",
+      "detail": "urban",
+      "x": -13.6,
+      "z": -43.9,
+      "y": 1.45,
+      "rotation": -1.5707963267948966,
+      "width": 6.3,
+      "depth": 5.6,
+      "height": 6.54,
+      "kind": "inn",
+      "seed": 3276,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-38",
+      "district": "upper",
+      "detail": "urban",
+      "x": -20.3,
+      "z": -43.9,
+      "y": 1.45,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 7.4,
+      "height": 6,
+      "kind": "home",
+      "seed": 3313,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-39",
+      "district": "upper",
+      "detail": "urban",
+      "x": 13.6,
+      "z": -43.9,
+      "y": 1.45,
+      "rotation": 1.5707963267948966,
+      "width": 6.3,
+      "depth": 5.6,
+      "height": 6.54,
+      "kind": "inn",
+      "seed": 3350,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 2.8,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-40",
+      "district": "upper",
+      "detail": "urban",
+      "x": 20.3,
+      "z": -43.9,
+      "y": 1.45,
+      "rotation": -1.5707963267948966,
+      "width": 5.6,
+      "depth": 7.4,
+      "height": 6,
+      "kind": "home",
+      "seed": 3387,
+      "assembly": {
+        "stories": 2,
+        "roof": "clay",
+        "roofRise": 3.08,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-41",
+      "district": "upper",
+      "detail": "urban",
+      "x": -13.6,
+      "z": -56.9,
+      "y": 2.9,
+      "rotation": -1.5707963267948966,
+      "width": 5.6,
+      "depth": 5.8,
+      "height": 6,
+      "kind": "inn",
+      "seed": 3424,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.08,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-42",
+      "district": "upper",
+      "detail": "urban",
+      "x": -20.3,
+      "z": -56.9,
+      "y": 2.9,
+      "rotation": 1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 7,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 3461,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-43",
+      "district": "upper",
+      "detail": "urban",
+      "x": 13.6,
+      "z": -56.9,
+      "y": 2.9,
+      "rotation": 1.5707963267948966,
+      "width": 5.6,
+      "depth": 5.8,
+      "height": 6,
+      "kind": "inn",
+      "seed": 3498,
+      "assembly": {
+        "stories": 2,
+        "roof": "teal",
+        "roofRise": 3.08,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-44",
+      "district": "upper",
+      "detail": "urban",
+      "x": 20.3,
+      "z": -56.9,
+      "y": 2.9,
+      "rotation": -1.5707963267948966,
+      "width": 5.949999999999999,
+      "depth": 7,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 3535,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.36,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "tall-stone"
+      }
+    },
+    {
+      "id": "city-45",
+      "district": "upper",
+      "detail": "urban",
+      "x": -5.15,
+      "z": -46.6,
+      "y": 1.45,
+      "rotation": 3.141592653589793,
+      "width": 4.7,
+      "depth": 5.7,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 3572,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-46",
+      "district": "upper",
+      "detail": "urban",
+      "x": 5.15,
+      "z": -46.6,
+      "y": 1.45,
+      "rotation": 3.141592653589793,
+      "width": 4.7,
+      "depth": 5.7,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 3609,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-47",
+      "district": "upper",
+      "detail": "urban",
+      "x": -5.15,
+      "z": -59.8,
+      "y": 2.9,
+      "rotation": 3.141592653589793,
+      "width": 4.7,
+      "depth": 5.7,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 3646,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    },
+    {
+      "id": "city-48",
+      "district": "upper",
+      "detail": "urban",
+      "x": 5.15,
+      "z": -59.8,
+      "y": 2.9,
+      "rotation": 3.141592653589793,
+      "width": 4.7,
+      "depth": 5.7,
+      "height": 8.1,
+      "kind": "home",
+      "seed": 3683,
+      "assembly": {
+        "stories": 3,
+        "roof": "clay",
+        "roofRise": 3.2,
+        "bay": "none",
+        "awning": "none",
+        "balcony": "none",
+        "chimney": "none"
+      }
+    }
+  ],
+  "courtyards": [
+    {
+      "id": "herb-court",
+      "x": -12.8,
+      "z": 0.2,
+      "w": 8,
+      "d": 6.1,
+      "y": 0
+    },
+    {
+      "id": "weavers-court",
+      "x": 10.4,
+      "z": 22,
+      "w": 3.5,
+      "d": 8.2,
+      "y": 0
+    }
+  ],
+  "views": {
+    "aerial": {
+      "position": [
+        43,
+        46,
+        69
+      ],
+      "target": [
+        0,
+        11,
+        -33
+      ],
+      "label": "王城全景"
+    },
+    "street": {
+      "position": [
+        0,
+        1.7,
+        30
+      ],
+      "target": [
+        0.7915647914546388,
+        2.3,
+        16
+      ],
+      "label": "工坊主街"
+    },
+    "market": {
+      "position": [
+        -19,
+        1.7,
+        29
+      ],
+      "target": [
+        -19,
+        2.1,
+        13
+      ],
+      "label": "集市巷"
+    },
+    "residential": {
+      "position": [
+        20,
+        1.7,
+        26
+      ],
+      "target": [
+        20,
+        2.3,
+        12
+      ],
+      "label": "住宅巷"
+    },
+    "courtyard": {
+      "position": [
+        -15.3,
+        1.7,
+        1.3
+      ],
+      "target": [
+        -10.6,
+        1.1,
+        -0.4
+      ],
+      "label": "药草小院"
+    },
+    "square": {
+      "position": [
+        1.5,
+        1.7,
+        -16.5
+      ],
+      "target": [
+        -1,
+        3.2,
+        -29
+      ],
+      "label": "喷泉广场"
+    },
+    "upper": {
+      "position": [
+        0,
+        3.15,
+        -44
+      ],
+      "target": [
+        -1,
+        10,
+        -67
+      ],
+      "label": "上城台阶"
+    },
+    "castle": {
+      "position": [
+        -1,
+        4.6,
+        -59
+      ],
+      "target": [
+        -1,
+        29,
+        -119
+      ],
+      "label": "王城观景"
+    }
+  },
+  "tour": [
+    {
+      "x": -0.06440240696087784,
+      "z": 31
+    },
+    {
+      "x": 0,
+      "z": 30
+    },
+    {
+      "x": 0.06440240696087784,
+      "z": 29
+    },
+    {
+      "x": 0.12855280378931258,
+      "z": 28
+    },
+    {
+      "x": 0.1922002531890349,
+      "z": 27
+    },
+    {
+      "x": 0.25509595883390973,
+      "z": 26
+    },
+    {
+      "x": 0.31699432411827444,
+      "z": 25
+    },
+    {
+      "x": 0.3776539968837571,
+      "z": 24
+    },
+    {
+      "x": 0.43683889554471883,
+      "z": 23
+    },
+    {
+      "x": 0.49431921211675617,
+      "z": 22
+    },
+    {
+      "x": 0.549872387754874,
+      "z": 21
+    },
+    {
+      "x": 0.6032840565295527,
+      "z": 20
+    },
+    {
+      "x": 0.6543489533094342,
+      "z": 19
+    },
+    {
+      "x": 0.7028717817781249,
+      "z": 18
+    },
+    {
+      "x": 0.7486680387889533,
+      "z": 17
+    },
+    {
+      "x": 0.7915647914546388,
+      "z": 16
+    },
+    {
+      "x": 0.831401403577877,
+      "z": 15
+    },
+    {
+      "x": 0.8680302082528926,
+      "z": 14
+    },
+    {
+      "x": 0.9013171237060614,
+      "z": 13
+    },
+    {
+      "x": 0.9311422096947022,
+      "z": 12
+    },
+    {
+      "x": 0.9574001620459716,
+      "z": 11
+    },
+    {
+      "x": 0.9800007431913037,
+      "z": 10
+    },
+    {
+      "x": 0.9988691468347887,
+      "z": 9
+    },
+    {
+      "x": 1.0139462951850473,
+      "z": 8
+    },
+    {
+      "x": 1.0251890674782271,
+      "z": 7
+    },
+    {
+      "x": 1.0325704588234024,
+      "z": 6
+    },
+    {
+      "x": 1.03607966870955,
+      "z": 5
+    },
+    {
+      "x": 1.035722118824051,
+      "z": 4
+    },
+    {
+      "x": 1.031519400144925,
+      "z": 3
+    },
+    {
+      "x": 1.0235091495813897,
+      "z": 2
+    },
+    {
+      "x": 1.0117448567484315,
+      "z": 1
+    },
+    {
+      "x": 0.9962956017695324,
+      "z": 0
+    },
+    {
+      "x": 0.9772457253061144,
+      "z": -1
+    },
+    {
+      "x": 0.9546944323113304,
+      "z": -2
+    },
+    {
+      "x": 0.9287553312981793,
+      "z": -3
+    },
+    {
+      "x": 0.899555911196299,
+      "z": -4
+    },
+    {
+      "x": 0.8672369581468957,
+      "z": -5
+    },
+    {
+      "x": 0.8319519148499146,
+      "z": -6
+    },
+    {
+      "x": 0.7938661853305427,
+      "z": -7
+    },
+    {
+      "x": 0.7531563882323755,
+      "z": -8
+    },
+    {
+      "x": 0.7100095619709614,
+      "z": -9
+    },
+    {
+      "x": 0.6646223252930159,
+      "z": -10
+    },
+    {
+      "x": 0.6171999969823785,
+      "z": -11
+    },
+    {
+      "x": 0.5679556786329547,
+      "z": -12
+    },
+    {
+      "x": -19,
+      "z": -12
+    },
+    {
+      "x": -19,
+      "z": 0.2
+    },
+    {
+      "x": -19,
+      "z": 4
+    },
+    {
+      "x": -19,
+      "z": 31
+    },
+    {
+      "x": -0.06440240696087784,
+      "z": 31
+    },
+    {
+      "x": 10.4,
+      "z": 31
+    },
+    {
+      "x": 20,
+      "z": 31
+    },
+    {
+      "x": 20,
+      "z": -12
+    },
+    {
+      "x": 20,
+      "z": -29
+    },
+    {
+      "x": 14,
+      "z": -32
+    },
+    {
+      "x": 7.5,
+      "z": -32
+    },
+    {
+      "x": 2.2,
+      "z": -32.5
+    },
+    {
+      "x": 0,
+      "z": -35
+    },
+    {
+      "x": 0,
+      "z": -49
+    },
+    {
+      "x": -1,
+      "z": -62
+    },
+    {
+      "x": -17,
+      "z": -62
+    },
+    {
+      "x": -17,
+      "z": -49
+    },
+    {
+      "x": -17,
+      "z": -35
+    },
+    {
+      "x": -19,
+      "z": -29
+    },
+    {
+      "x": -14,
+      "z": -32
+    },
+    {
+      "x": -8,
+      "z": -32
+    },
+    {
+      "x": 2.2,
+      "z": -32.5
+    },
+    {
+      "x": 3.2,
+      "z": -29
+    },
+    {
+      "x": 2.8,
+      "z": -24
+    },
+    {
+      "x": 1.5,
+      "z": -19
+    },
+    {
+      "x": -1,
+      "z": -14
+    },
+    {
+      "x": 0.5171093045706021,
+      "z": -13
+    },
+    {
+      "x": 0.5679556786329547,
+      "z": -12
+    },
+    {
+      "x": 0.6171999969823785,
+      "z": -11
+    },
+    {
+      "x": 0.6646223252930159,
+      "z": -10
+    },
+    {
+      "x": 0.7100095619709614,
+      "z": -9
+    },
+    {
+      "x": 0.7531563882323755,
+      "z": -8
+    },
+    {
+      "x": 0.7938661853305427,
+      "z": -7
+    },
+    {
+      "x": 0.8319519148499146,
+      "z": -6
+    },
+    {
+      "x": 0.8672369581468957,
+      "z": -5
+    },
+    {
+      "x": 0.899555911196299,
+      "z": -4
+    },
+    {
+      "x": 0.9287553312981793,
+      "z": -3
+    },
+    {
+      "x": 0.9546944323113304,
+      "z": -2
+    },
+    {
+      "x": 0.9772457253061144,
+      "z": -1
+    },
+    {
+      "x": 0.9962956017695324,
+      "z": 0
+    },
+    {
+      "x": 1.0117448567484315,
+      "z": 1
+    },
+    {
+      "x": 1.0235091495813897,
+      "z": 2
+    },
+    {
+      "x": 1.031519400144925,
+      "z": 3
+    },
+    {
+      "x": 1.035722118824051,
+      "z": 4
+    },
+    {
+      "x": 1.03607966870955,
+      "z": 5
+    },
+    {
+      "x": 1.0325704588234024,
+      "z": 6
+    },
+    {
+      "x": 1.0251890674782271,
+      "z": 7
+    },
+    {
+      "x": 1.0139462951850473,
+      "z": 8
+    },
+    {
+      "x": 0.9988691468347887,
+      "z": 9
+    },
+    {
+      "x": 0.9800007431913037,
+      "z": 10
+    },
+    {
+      "x": 0.9574001620459716,
+      "z": 11
+    },
+    {
+      "x": 0.9311422096947022,
+      "z": 12
+    },
+    {
+      "x": 0.9013171237060614,
+      "z": 13
+    },
+    {
+      "x": 0.8680302082528926,
+      "z": 14
+    },
+    {
+      "x": 0.831401403577877,
+      "z": 15
+    },
+    {
+      "x": 0.7915647914546388,
+      "z": 16
+    },
+    {
+      "x": 0.7486680387889533,
+      "z": 17
+    },
+    {
+      "x": 0.7028717817781249,
+      "z": 18
+    },
+    {
+      "x": 0.6543489533094342,
+      "z": 19
+    },
+    {
+      "x": 0.6032840565295527,
+      "z": 20
+    },
+    {
+      "x": 0.549872387754874,
+      "z": 21
+    },
+    {
+      "x": 0.49431921211675617,
+      "z": 22
+    },
+    {
+      "x": 0.43683889554471883,
+      "z": 23
+    },
+    {
+      "x": 0.3776539968837571,
+      "z": 24
+    },
+    {
+      "x": 0.31699432411827444,
+      "z": 25
+    },
+    {
+      "x": 0.25509595883390973,
+      "z": 26
+    },
+    {
+      "x": 0.1922002531890349,
+      "z": 27
+    },
+    {
+      "x": 0.12855280378931258,
+      "z": 28
+    },
+    {
+      "x": 0.06440240696087784,
+      "z": 29
+    },
+    {
+      "x": 0,
+      "z": 30
+    },
+    {
+      "x": -0.06440240696087784,
+      "z": 31
+    }
+  ]
+}
