@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "id": "garnet",
+      "sha256": "ea5032bec4bd61806c3c59c64230df5c5cee5b8b5de1770e9182e4f8f6715f56",
+      "bytes": 8816148,
+      "joints": 21,
+      "vertices": 139580,
+      "triangles": 217462,
+      "materialDraws": 16,
+      "images": 2,
+      "clips": [
+        {
+          "name": "Greet",
+          "seconds": 3.4583332538604736,
+          "weightedAnimatedChannels": 6,
+          "loopSeam": 0.006057762075215578,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.003999927079065813
+        },
+        {
+          "name": "Idle",
+          "seconds": 4.041666507720947,
+          "weightedAnimatedChannels": 3,
+          "loopSeam": 1.9593617421084454e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.003999927078051668
+        },
+        {
+          "name": "Signature",
+          "seconds": 3.4583332538604736,
+          "weightedAnimatedChannels": 5,
+          "loopSeam": 0.006057762075215578,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.003999927079065813
+        },
+        {
+          "name": "Walk",
+          "seconds": 1.25,
+          "weightedAnimatedChannels": 12,
+          "loopSeam": 1.9593617421084454e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.0028591866631329345
+        }
+      ],
+      "allWeightsNormalized": true
+    }
+  ],
+  "artAcceptance": "pending user review",
+  "surfaceCollisionScope": "ground only; no claim of universal garment or accessory collision freedom"
+}

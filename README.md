@@ -20,6 +20,12 @@
 
 十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。Steiner、Zidane、Garnet 的 v1 造型被用户否决，已从城市撤下；旧 GLB 与工作室保留为失败对照。先单独重做 Steiner：[头部修订样本 v4](http://localhost:5209/steiner.html) · [否决与重做记录](docs/city/STEINER_REBUILD_V2.md)。新样本待验收，未放回王城。验证：`npm run verify:city-life`、`npm run verify:royal`。
 
+## Garnet 独立修订样本
+
+[查看 Garnet v2](http://localhost:5209/garnet.html) · [造型与制作记录](docs/city/GARNET_REBUILD_V2.md)
+
+重做身体、腰线、白袖、五官和低束长发；四段动作与素材对照可在工作台查看。新样本待用户验收，未放回王城。检查：`npm run verify:garnet`。
+
 ## 莫古利角色样板
 
 [查看精修莫古利与四个动作](http://127.0.0.1:5209/moogle.html) · [在街景中互动](http://127.0.0.1:5209/?street=workshops&moogle=1) · [角色交付与验证说明](MOOGLE_SAMPLE.md)

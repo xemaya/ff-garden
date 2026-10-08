@@ -1,0 +1,18 @@
+{
+  "finalAssetCheckPassed": true,
+  "buildPassed": true,
+  "builtGlbMatchesSource": true,
+  "sourceSha256": "ea5032bec4bd61806c3c59c64230df5c5cee5b8b5de1770e9182e4f8f6715f56",
+  "oldGarnetV1Preserved": true,
+  "steinerV4Preserved": true,
+  "browserViews": 4,
+  "browserClips": 4,
+  "walkPeakStates": 2,
+  "sourceReferenceDialogPassed": true,
+  "mobile375Passed": true,
+  "independentStudyIdsVerified": true,
+  "humanArtAcceptance": "pending",
+  "newImageGenerationCalls": 0,
+  "remote4090Tasks": 0,
+  "scope": "normalized skin, loop seams, decoded ground samples and browser poses; no universal garment contact or art acceptance claim"
+}
