@@ -1,0 +1,14 @@
+{
+  "assetCheckPassed": true,
+  "buildPassed": true,
+  "builtGlbMatchesSource": true,
+  "sourceSha256": "cb8d14fe9bf52896ef2ad162325ce156b697e4b1be02777c9e6974d4f26ce7d4",
+  "v2Preserved": true,
+  "browserViews": 4,
+  "browserClips": 4,
+  "newImageGenerationCalls": 0,
+  "remote4090Tasks": 0,
+  "humanArtAcceptance": "pending",
+  "headSource": "MakeHuman/MPFB CC0 core geometry, locally prepared female head; fitted and restyled",
+  "mobile375Passed": true
+}

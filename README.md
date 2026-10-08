@@ -22,7 +22,7 @@
 
 ## Garnet 独立修订样本
 
-[查看 Garnet v2](http://localhost:5209/garnet.html) · [造型与制作记录](docs/city/GARNET_REBUILD_V2.md)
+[查看 Garnet v3](http://localhost:5209/garnet.html) · [造型与制作记录](docs/city/GARNET_REBUILD_V2.md)
 
 重做身体、腰线、白袖、五官和低束长发；四段动作与素材对照可在工作台查看。新样本待用户验收，未放回王城。检查：`npm run verify:garnet`。
 

@@ -1,0 +1,15 @@
+{
+  "actor": {
+    "artStatus": "pending",
+    "clip": "Idle",
+    "frozen": false,
+    "height": 1.8,
+    "id": "garnet",
+    "time": 0.5670333378122541,
+    "version": 3,
+    "view": "front"
+  },
+  "height": 667,
+  "scrollWidth": 375,
+  "width": 375
+}

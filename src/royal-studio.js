@@ -8,10 +8,10 @@ import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
 import {SSAOPass} from 'three/addons/postprocessing/SSAOPass.js';
 import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
-import {royalLoaders,loadSteinerV4,loadGarnetV2,createRoyal,ROYAL_CAST as OLD_CAST} from './royal-cast.js';
+import {royalLoaders,loadSteinerV4,loadGarnetV3,createRoyal,ROYAL_CAST as OLD_CAST} from './royal-cast.js';
 const rebuildId=location.pathname.endsWith('/garnet.html')?'garnet':location.pathname.endsWith('/steiner.html')?'steiner':null;
 const rebuilding=Boolean(rebuildId);
-const studies={steiner:{height:2.08,version:4,distance:3.65,faceY:1.46,loader:loadSteinerV4,description:'再收小脸部，重塑下颌、颧骨和眉眼。头部修订样本，尚待验收。'},garnet:{height:1.80,version:2,distance:3.20,faceY:1.63,loader:loadGarnetV2,description:'窄肩与腰线、柔和眉眼、低束长发和垂坠白袖。重塑样本，尚待验收。',signature:'轻轻点头，向路过的人致意。'}};
+const studies={steiner:{height:2.08,version:4,distance:3.65,faceY:1.46,loader:loadSteinerV4,description:'再收小脸部，重塑下颌、颧骨和眉眼。头部修订样本，尚待验收。'},garnet:{height:1.80,version:3,distance:3.20,faceY:1.63,loader:loadGarnetV3,description:'重新构建女性脸型、眼窝与鼻唇结构。脸部修订样本，尚待验收。',signature:'轻轻点头，向路过的人致意。'}};
 const ROYAL_CAST=rebuilding?{[rebuildId]:{...OLD_CAST[rebuildId],...studies[rebuildId]}}:OLD_CAST;
 const $=s=>document.querySelector(s),canvas=$('#portrait');
 try{

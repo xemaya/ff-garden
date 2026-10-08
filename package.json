@@ -25,7 +25,7 @@
     "verify:city-life": "node tools/verify-city-life.mjs",
     "test:city-tour": "node --test tools/city-tour.test.mjs",
     "verify:steiner": "node tools/verify-royal-cast.mjs --steiner-v4",
-    "verify:garnet": "node tools/verify-royal-cast.mjs --garnet-v2"
+    "verify:garnet": "node tools/verify-royal-cast.mjs --garnet-v3"
   },
   "dependencies": {
     "three": "0.170.0"
