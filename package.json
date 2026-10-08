@@ -24,7 +24,7 @@
     "verify:royal": "node tools/verify-royal-cast.mjs",
     "verify:city-life": "node tools/verify-city-life.mjs",
     "test:city-tour": "node --test tools/city-tour.test.mjs",
-    "verify:steiner": "node tools/verify-royal-cast.mjs --steiner-v2"
+    "verify:steiner": "node tools/verify-royal-cast.mjs --steiner-v3"
   },
   "dependencies": {
     "three": "0.170.0"
