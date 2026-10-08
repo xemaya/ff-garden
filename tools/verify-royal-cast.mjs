@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {Matrix4,Quaternion,Vector3} from 'three';
-const records=[],sampleVersion=process.argv.includes('--steiner-v3')?3:process.argv.includes('--steiner-v2')?2:0;
+const records=[],sampleVersion=process.argv.includes('--steiner-v4')?4:process.argv.includes('--steiner-v3')?3:process.argv.includes('--steiner-v2')?2:0;
 for(const id of sampleVersion?['steiner']:['steiner','zidane','garnet']){
  const file=new URL('../public/assets/characters/royal-cast/'+id+(sampleVersion?'-v'+sampleVersion+'.glb':'-v1.glb'),import.meta.url),buffer=fs.readFileSync(file);assert.equal(buffer.toString('utf8',0,4),'glTF');assert.equal(buffer.readUInt32LE(8),buffer.length);
  const length=buffer.readUInt32LE(12),gltf=JSON.parse(buffer.subarray(20,20+length).toString().trim()),binary=buffer.subarray(28+length),view=new DataView(binary.buffer,binary.byteOffset,binary.byteLength),cache=new Map();

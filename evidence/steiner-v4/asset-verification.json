@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "id": "steiner",
+      "sha256": "6ab245f0dbff4ae617f980944a47a1e66a8ed63f6b01b3ef196139fb0366b4a1",
+      "bytes": 9549712,
+      "joints": 21,
+      "vertices": 154364,
+      "triangles": 216884,
+      "materialDraws": 17,
+      "images": 2,
+      "clips": [
+        {
+          "name": "Greet",
+          "seconds": 3.4583332538604736,
+          "weightedAnimatedChannels": 4,
+          "loopSeam": 0.003640563925724649,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.014486998757475056
+        },
+        {
+          "name": "Idle",
+          "seconds": 4.041666507720947,
+          "weightedAnimatedChannels": 2,
+          "loopSeam": 5.163453289458111e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.014486998757475056
+        },
+        {
+          "name": "Signature",
+          "seconds": 3.4583332538604736,
+          "weightedAnimatedChannels": 4,
+          "loopSeam": 0,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.014486998757475056
+        },
+        {
+          "name": "Walk",
+          "seconds": 1.25,
+          "weightedAnimatedChannels": 10,
+          "loopSeam": 5.163453289458111e-18,
+          "decodedPoseSamples": 9,
+          "minimumSurfaceY": 0.002897081764809663
+        }
+      ],
+      "allWeightsNormalized": true
+    }
+  ],
+  "artAcceptance": "pending user review",
+  "surfaceCollisionScope": "ground only; no claim of universal garment or accessory collision freedom"
+}

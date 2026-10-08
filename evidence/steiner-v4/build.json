@@ -1,0 +1,16 @@
+{
+  "character": "steiner",
+  "version": 4,
+  "artAcceptance": "pending user review; v1 rejected",
+  "reference": "https://na.finalfantasy.com/news/1130",
+  "geometry": "face rebuilt with tapered jaw, cheekbones, narrow eyes and sculpted lips; face about 25 percent smaller than v3; helmet fitted closer; v3 body retained; no face atlas",
+  "vertices": 109064,
+  "faces": 123822,
+  "joints": 21,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Greet",
+    "Signature"
+  ]
+}

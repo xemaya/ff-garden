@@ -18,7 +18,7 @@
 
 [动态城市](http://127.0.0.1:5209/city.html) · [旧版失败对照](http://127.0.0.1:5209/royal-cast.html?character=all) · [制作与验收](docs/city/CITY_LIFE_ROYAL_CAST_V1.md)
 
-十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。Steiner、Zidane、Garnet 的 v1 造型被用户否决，已从城市撤下；旧 GLB 与工作室保留为失败对照。先单独重做 Steiner：[重做样本 v3](http://localhost:5209/steiner.html) · [否决与重做记录](docs/city/STEINER_REBUILD_V2.md)。新样本待验收，未放回王城。验证：`npm run verify:city-life`、`npm run verify:royal`。
+十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。Steiner、Zidane、Garnet 的 v1 造型被用户否决，已从城市撤下；旧 GLB 与工作室保留为失败对照。先单独重做 Steiner：[头部修订样本 v4](http://localhost:5209/steiner.html) · [否决与重做记录](docs/city/STEINER_REBUILD_V2.md)。新样本待验收，未放回王城。验证：`npm run verify:city-life`、`npm run verify:royal`。
 
 ## 莫古利角色样板
 
