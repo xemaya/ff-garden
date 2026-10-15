@@ -1,5 +1,13 @@
 import {compileTown,canOccupy} from './layout.js';
 import {planCityDressing} from './city-dressing-plan.js';
+import {observationSites,attachObservationSites} from './postal-observations.js';
+import {attachPostalMemorial} from './postal-memorial.js';
+
+// 一日邮差 in the city: the three story plaques and the memorial table.
+export const CITY_POSTAL={
+  sites:{'royal-gate-message':{x:-3.4,z:42.5,rotation:2.36},'royal-square-pause':{x:-7.2,z:-25.5,rotation:Math.PI/2},'royal-court-guest':{x:5.6,z:-64.9,rotation:0}},
+  memorial:{x:7.6,z:-26.5,rotation:-Math.PI/2}
+};
 
 export const CITY_REVISION='royal-neighborhoods-v1';
 const point=(x,z)=>({x,z});
@@ -84,6 +92,7 @@ export function compileCity(raw,{seed=1907}={}){
     upper:{position:[0,cityHeight(0,-44)+1.7,-44],target:[-1,10,-67],label:'上城台阶'},
     castle:{position:[-1,cityHeight(-1,-52)+1.7,-52],target:[-1,22,-100],label:'王城观景'}
   };
+  plan.postalSites=observationSites(plan,'royal',CITY_POSTAL.sites);attachObservationSites(plan,plan.postalSites);attachPostalMemorial(plan,CITY_POSTAL.memorial);
   const dressing=planCityDressing(plan);plan.dressing=dressing.dressing;plan.colliders.push(...dressing.colliders);
   plan.metrics={buildings:buildings.length,heroBuildings:street.buildings.length,urbanBuildings:buildings.length-street.buildings.length,roads:roads.length,courtyards:courtyards.length,districts:new Set(buildings.map(b=>b.district)).size,tourLength:tour.slice(1).reduce((n,b,i)=>n+Math.hypot(b.x-tour[i].x,b.z-tour[i].z),0),newImageCalls:0,newModelCalls:0,dressing:{props:plan.dressing.props.length,lanterns:plan.dressing.lanterns.length,vines:plan.dressing.vines.length,lines:plan.dressing.lines.length}};
   return plan;

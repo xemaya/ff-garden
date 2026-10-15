@@ -1,11 +1,11 @@
 import {discoveries} from './postal-content.js';
 
 // Observation locations are physical stops, independent of story progression.
-export function observationSites(plan,district){
-  return discoveries.filter(entry=>entry.district===district&&entry.position).map(entry=>({...entry,position:{...entry.position}}));
+export function observationSites(plan,district,positions={}){
+  return discoveries.filter(entry=>entry.district===district&&entry.position).map(entry=>({...entry,position:{...(positions[entry.id]||entry.position)}}));
 }
 export function attachObservationSites(plan,sites){
-  for(const entry of sites)plan.colliders.push({id:'observation-'+entry.id,type:'box',x:entry.position.x,z:entry.position.z,w:1.4,d:.6});
+  for(const entry of sites)plan.colliders.push({id:'observation-'+entry.id,type:'box',x:entry.position.x,z:entry.position.z,w:1.4,d:.6,rotation:entry.position.rotation||0});
   return plan;
 }
 export function observationView(sites,player,mode,recorded){

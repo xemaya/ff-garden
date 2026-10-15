@@ -3,12 +3,13 @@ import {plain,mat} from './materials.js';
 import {batchStatic} from './batch.js';
 
 export const MEMORIAL_POSITION=Object.freeze({x:-6.7,z:-18.5});
-export function attachPostalMemorial(plan){
-  plan.colliders.push({id:'postal-memorial',type:'circle',...MEMORIAL_POSITION,r:.58});
+// The city page passes its own position; other pages use the plaza default.
+export function attachPostalMemorial(plan,position=MEMORIAL_POSITION){
+  plan.colliders.push({id:'postal-memorial',type:'circle',x:position.x,z:position.z,r:.58});
 }
-export function createPostalMemorial(materials={},{marker=false}={}){
+export function createPostalMemorial(materials={},{marker=false,position=MEMORIAL_POSITION,rotation=0}={}){
   const root=new THREE.Group(),keepsake=new THREE.Group(),wood=materials.wood||mat('wood',0x9c7955),gold=plain(0xb89855,.5,.3),paper=plain(0xf0e0b7),green=plain(0x6b8157),petal=plain(0xc5a2b5);let parts=0;
-  root.position.set(MEMORIAL_POSITION.x,0,MEMORIAL_POSITION.z);root.add(keepsake);keepsake.userData.dynamic=true;keepsake.visible=false;
+  root.position.set(position.x,0,position.z);root.rotation.y=rotation;root.add(keepsake);keepsake.userData.dynamic=true;keepsake.visible=false;
   function mesh(group,geometry,material,x,y,z){const m=new THREE.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;group.add(m);parts++;return m;}
   const box=(group,w,h,d,material,x,y,z)=>mesh(group,new THREE.BoxGeometry(w,h,d),material,x,y,z);
   // The support table is always present, so its collider is never invisible.
@@ -33,5 +34,5 @@ export function createPostalMemorial(materials={},{marker=false}={}){
   mesh(keepsake,new THREE.SphereGeometry(.033,8,5),gold,-.16,.91,.06);
   const shape=new THREE.Shape();shape.moveTo(0,-.17);shape.quadraticCurveTo(-.11,-.02,0,.18);shape.quadraticCurveTo(.1,.05,0,-.17);const feather=mesh(keepsake,new THREE.ShapeGeometry(shape,12),paper,.18,.875,.09);feather.rotation.x=-Math.PI/2;feather.rotation.z=.45;box(keepsake,.012,.018,.3,gold,.18,.883,.09);
   const batches=batchStatic(keepsake);let completed=false;
-  return {root,setCompleted(value){if(completed===value)return;completed=value;keepsake.visible=value;},snapshot(){return {completed,position:{...MEMORIAL_POSITION},marker,parts,keepsakeBatches:batches.batches};}};
+  return {root,setCompleted(value){if(completed===value)return;completed=value;keepsake.visible=value;},snapshot(){return {completed,position:{x:position.x,z:position.z},marker,parts,keepsakeBatches:batches.batches};}};
 }

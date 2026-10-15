@@ -1,7 +1,7 @@
 import {canOccupy} from './layout.js';
 
-export function createMoogleBehavior(actor,plan,personIndex,{reduced=false,onDelivered=()=>{}}={}){
- const root=actor.root,anchor={x:root.position.x,z:root.position.z},own=plan.colliders.find(c=>c.id==='person-'+personIndex),safePlan={...plan,colliders:plan.colliders.filter(c=>c!==own)};
+export function createMoogleBehavior(actor,plan,personIndex,{reduced=false,onDelivered=()=>{},ownId='person-'+personIndex}={}){
+ const root=actor.root,anchor={x:root.position.x,z:root.position.z},own=plan.colliders.find(c=>c.id===ownId),safePlan={...plan,colliders:plan.colliders.filter(c=>c!==own)};
  let state='idle',approaching=false,idleTime=0,wait=0,time=0,lastGreeting=-100,nearSeen=false,patrolOut=true,target=null,delivered=0;
  const labels={idle:'在广场边等信',walk:'沿街散步',wave:'向你招手',deliver:'把信递给你'};
  function choose(next){state=next;idleTime=0;if(next!=='walk')approaching=false;actor.play({idle:'Idle',walk:'Walk',wave:'Wave',deliver:'Deliver'}[next]);}

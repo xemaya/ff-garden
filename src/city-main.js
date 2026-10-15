@@ -26,7 +26,9 @@ import {advanceCityTour} from './city-tour.js'
 import {createCityAtmosphere,CITY_TIMES} from './city-atmosphere.js'
 import {buildCityDressing} from './city-dressing.js'
 import {buildCityCastle,GATE_LAMPS} from './city-castle.js'
-import {buildCityOutskirts} from './city-outskirts.js';
+import {buildCityOutskirts} from './city-outskirts.js'
+import './city-postal.css'
+import {createCityPostal,COURIER_ID} from './city-postal.js';
 
 const $=s=>document.querySelector(s),canvas=$('#city'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let noticeTimer;function notice(text){$('#notice').textContent=text;$('#notice').classList.add('visible');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').classList.remove('visible'),3200);}
@@ -48,13 +50,14 @@ try{
   const residents=new Map();plan.people.forEach((p,i)=>{const root=buildFantasyCitizen({...p,legacy:failed.has(p.species)},i,animated);scene.add(root);const a=root.userData[p.species]||{root,play(){},update(){}};residents.set('neighbor-'+i,a);});
   const liveBase=plan,lifeRecipe=makeCityLifeSpecs(liveBase);
   for(const spec of lifeRecipe.specs){if(residents.has(spec.id))continue;let a;if(spec.kind==='npc')a=createTownsfolk(spec.style,spec.seed);else if(!failed.has('mage')){const root=createMage({x:0,z:0},null);a=root.userData.mage;}else{const root=buildFantasyCitizen({species:'mage',legacy:true,x:0,z:0},0,{people:[]});a={root,play(){},update(){}};}scene.add(a.root);residents.set(spec.id,a);}
-  const life=createCityLife(liveBase,residents,{reduced}),walkPlan=life.plan;
+  const life=createCityLife(liveBase,residents,{reduced,external:new Set([COURIER_ID])}),walkPlan=life.plan;
   const atmosphere=createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced,halo:dressing.haloMaterial,extraLamps:GATE_LAMPS,castleWindows:sceneryMaterials().windowMat});
   const storedTime=(()=>{try{return localStorage.getItem('ff-garden.city-time');}catch{return null;}})();
   function setTime(name,remember=true){const t=atmosphere.set(name),next=t==='day'?'dusk':'day';$('#time-toggle').textContent='时辰 '+CITY_TIMES[t].label;$('#time-toggle').setAttribute('aria-pressed',String(t!=='day'));$('#time-toggle').title='切换到'+CITY_TIMES[next].label;if(remember)try{localStorage.setItem('ff-garden.city-time',t);}catch{}}
   setTime(new URLSearchParams(location.search).get('time')||storedTime||'day',false);
   $('#time-toggle').addEventListener('click',()=>setTime(atmosphere.time==='day'?'dusk':'day'));
   $('#life-toggle').textContent='街坊活动 '+(life.active?'开':'关');$('#life-toggle').setAttribute('aria-pressed',String(life.active));$('#life-toggle').addEventListener('click',()=>{life.setActive(!life.active);$('#life-toggle').textContent='街坊活动 '+(life.active?'开':'关');$('#life-toggle').setAttribute('aria-pressed',String(life.active));});
+  let postalHost=null;
   const pose={x:plan.spawn.x,z:plan.spawn.z,y:1.7,yaw:0,pitch:0},movement=createMovementInput(),look=createLookInput();let mode='walk',view='street',touring=false,cursor=1,distance=0,travelled=0,completed=0,blockedSteps=0;let walkReturn={...pose};
   function clearInput(){movement.clear();look.clear();}addEventListener('resize',clearInput);addEventListener('blur',clearInput);document.addEventListener('visibilitychange',clearInput);
   function apply(){camera.position.set(pose.x,pose.y,pose.z);camera.rotation.set(pose.pitch,pose.yaw,0);}
@@ -76,18 +79,23 @@ try{
   svg('circle',{cx:-1,cy:-24,r:2.1,fill:'#6e9b99'});const marker=svg('circle',{cx:pose.x,cy:pose.z,r:1.2,class:'marker'});
   function toggleMap(value){$('#map-panel').hidden=!value;$('#map-toggle').setAttribute('aria-expanded',String(value));}$('#map-toggle').addEventListener('click',()=>toggleMap($('#map-panel').hidden));$('#map-close').addEventListener('click',()=>toggleMap(false));
   const normalizeKey=k=>({'ArrowUp':'w','ArrowDown':'s','ArrowLeft':'a','ArrowRight':'d'}[k]||k.toLowerCase());
-  addEventListener('keydown',e=>{if(e.target.matches('select,input,textarea'))return;const k=normalizeKey(e.key);if(['w','a','s','d'].includes(k)&&mode==='walk'){e.preventDefault();if(touring)stopTour();movement.keyboard.add(k);}if(e.key==='Escape'){stopTour();clearInput();toggleMap(false);}});addEventListener('keyup',e=>movement.keyboard.delete(normalizeKey(e.key)));
-  canvas.addEventListener('pointerdown',e=>{if(look.start(e.pointerId,e.clientX,e.clientY)){canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});}});canvas.addEventListener('pointermove',e=>{const d=look.move(e.pointerId,e.clientX,e.clientY);if(d&&mode==='walk'){if(touring)stopTour();pose.yaw-=d.x*.003;pose.pitch=THREE.MathUtils.clamp(pose.pitch-d.y*.0025,-1.2,1.2);}});for(const event of['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>look.end(e.pointerId,event!=='pointerup'));
+  addEventListener('keydown',e=>{if(e.target.matches('select,input,textarea'))return;if(e.key==='Escape'&&postalHost?.handleEscape()){e.preventDefault();return;}const k=normalizeKey(e.key);if(['w','a','s','d'].includes(k)&&postalHost?.isOpen()){notice('请先收起手记，再继续走动。');return;}if(['w','a','s','d'].includes(k)&&mode==='walk'){e.preventDefault();if(touring)stopTour();movement.keyboard.add(k);}if(e.key==='Escape'){stopTour();clearInput();toggleMap(false);}});addEventListener('keyup',e=>movement.keyboard.delete(normalizeKey(e.key)));
+  canvas.addEventListener('pointerdown',e=>{if(postalHost?.isOpen())return;if(look.start(e.pointerId,e.clientX,e.clientY)){canvas.setPointerCapture(e.pointerId);canvas.focus({preventScroll:true});}});canvas.addEventListener('pointermove',e=>{const d=look.move(e.pointerId,e.clientX,e.clientY);if(d&&mode==='walk'){if(touring)stopTour();pose.yaw-=d.x*.003;pose.pitch=THREE.MathUtils.clamp(pose.pitch-d.y*.0025,-1.2,1.2);}});for(const event of['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(event,e=>look.end(e.pointerId,event!=='pointerup'));
   for(const b of document.querySelectorAll('[data-move]')){b.addEventListener('pointerdown',e=>{if(mode!=='walk')return;stopTour();b.setPointerCapture(e.pointerId);movement.press(e.pointerId,b.dataset.move);});for(const event of['pointerup','pointercancel','lostpointercapture'])b.addEventListener(event,e=>movement.release(e.pointerId));}
   function move(dx,dz){let moved=false;const steps=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.10));for(let i=0;i<steps;i++){const x=pose.x+dx/steps,z=pose.z+dz/steps;if(cityCanOccupy(walkPlan,x,z)){pose.x=x;pose.z=z;moved=true;}else{blockedSteps++;if(!touring){if(cityCanOccupy(walkPlan,x,pose.z)){pose.x=x;moved=true;}if(cityCanOccupy(walkPlan,pose.x,z)){pose.z=z;moved=true;}}}}return moved;}
   function advanceTour(dt){const state={pose,cursor,travelled},r=advanceCityTour(state,plan.tour,Number($('#speed').value),dt,move);cursor=state.cursor;travelled=state.travelled;if(r.bearing!==null){const diff=Math.atan2(Math.sin(r.bearing-pose.yaw),Math.cos(r.bearing-pose.yaw));pose.yaw+=diff*Math.min(1,dt*4.5);pose.pitch=THREE.MathUtils.lerp(pose.pitch,.035,Math.min(1,dt*4));}if(r.finished){completed++;stopTour();$('#where').textContent='又回到了街道入口';notice('已经绕了一圈。还有小院和巷口，可以慢慢看看。');}}
+  let storage=null;try{storage=window.localStorage;}catch{}
+  postalHost=createCityPostal({plan,scene,animated,life,failed,storage,reduced,map,getPose:()=>mode==='walk'?pose:walkReturn,getMode:()=>mode==='walk'?'street':'map',toast:notice,clearInput,stopTour,
+    openMap:()=>{postalHost.postal.hide();toggleMap(true);},returnToStreet:()=>{if(mode==='aerial')$('#overview').click();toggleMap(false);}});
+  // Browser QA only (?qa): place the visitor directly, as a walk would.
+  if(new URLSearchParams(location.search).has('qa'))window.__cityQA={teleport(x,z,yaw=pose.yaw){stopTour();clearInput();if(mode!=='walk')setView(view);Object.assign(pose,{x,z,yaw,pitch:-.12,y:plan.height(x,z)+1.7});apply();return cityCanOccupy(walkPlan,x,z);}};
   setView(new URLSearchParams(location.search).get('view')||'street');if(failed.size)notice('部分邻居暂时使用简化造型，请稍后刷新。');$('#loading').hidden=true;
   let last=performance.now(),frames=[],lastState=0;function frame(now){const wallDt=(now-last)/1000,dt=Math.min(.06,wallDt);last=now;if(document.hidden){requestAnimationFrame(frame);return;}
-    life.update(dt,mode==='walk'?pose:walkReturn);
+    life.update(dt,mode==='walk'?pose:walkReturn);postalHost.update(dt,{paused:mode!=='walk'});
     if(mode==='walk'){if(touring)advanceTour(dt);else{let x=Number(movement.has('d'))-Number(movement.has('a')),z=Number(movement.has('w'))-Number(movement.has('s')),l=Math.hypot(x,z);if(l){x/=l;z/=l;move((Math.cos(pose.yaw)*x-Math.sin(pose.yaw)*z)*3.0*dt,(-Math.sin(pose.yaw)*x-Math.cos(pose.yaw)*z)*3.0*dt);}}
       pose.y=THREE.MathUtils.lerp(pose.y,plan.height(pose.x,pose.z)+1.7,Math.min(1,dt*16));}
     if(animated.royalPlaza)animateRoyalFountain(animated,now/1000);if(animated.crystal)animated.crystal.rotation.y=now*.00022;for(const r of animated.rotors||[])r.rotation.y=now*.004;
     atmosphere.update(now/1000,camera);if(!reduced)outskirts.update(now/1000);apply();renderer.info.reset();composer.render();frames.push(wallDt);if(frames.length>90)frames.shift();marker.setAttribute('cx',pose.x);marker.setAttribute('cy',pose.z);
-    if(now-lastState>300){lastState=now;$('#city-state').dataset.ready='true';$('#city-state').textContent=JSON.stringify({ready:true,revision:plan.revision,mode,view,pose:{x:pose.x,y:pose.y,z:pose.z},touring,tourCursor:cursor,travelled,completedTours:completed,blockedSteps,metrics:plan.metrics,render:{fps:frames.length/frames.reduce((a,b)=>a+b,0),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,chunks:blocks.metrics.districtBatches.length,farChunks:blocks.groups.filter(g=>g.getCurrentLevel()>0).length},charactersFailed:[...failed],life:life.snapshot(),atmosphere:atmosphere.snapshot(),royals:[],royalArtStatus:'withdrawn-after-human-rejection'});}requestAnimationFrame(frame);
+    if(now-lastState>300){lastState=now;$('#city-state').dataset.ready='true';$('#city-state').textContent=JSON.stringify({ready:true,revision:plan.revision,mode,view,pose:{x:pose.x,y:pose.y,z:pose.z},touring,tourCursor:cursor,travelled,completedTours:completed,blockedSteps,metrics:plan.metrics,render:{fps:frames.length/frames.reduce((a,b)=>a+b,0),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,chunks:blocks.metrics.districtBatches.length,farChunks:blocks.groups.filter(g=>g.getCurrentLevel()>0).length},charactersFailed:[...failed],life:life.snapshot(),atmosphere:atmosphere.snapshot(),postal:postalHost.snapshot(),royals:[],royalArtStatus:'withdrawn-after-human-rejection'});}requestAnimationFrame(frame);
   }requestAnimationFrame(frame);
 }catch(e){$('#loading').hidden=false;$('#loading span').textContent='街巷暂时没有打开。';$('#loading small').textContent=e.message;$('#city-state').textContent=JSON.stringify({ready:false,error:e.message});console.error(e);}

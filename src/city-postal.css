@@ -1,0 +1,34 @@
+/* 一日邮差 in the walled city: notebook, nearby plaque card, neighbour card, map marks. */
+[hidden]{display:none!important}
+#nearby,#moogle-panel{position:absolute;right:29px;bottom:92px;width:276px;background:#f2ead7f2;border:1px solid #99835b55;box-shadow:0 10px 32px #4b453922;padding:15px 17px;backdrop-filter:blur(8px);font-size:12px;line-height:1.75;z-index:3}
+#nearby[hidden],#moogle-panel[hidden],#letter-quest-panel[hidden]{display:none}
+#nearby{display:flex;gap:11px;align-items:flex-start}#nearby>span{color:#ad8a4d;font-size:20px;line-height:1.2}
+#nearby strong,#moogle-panel strong{font-size:14px;font-weight:500;letter-spacing:1px}
+#nearby p,#moogle-panel p{margin:6px 0 10px;color:#6c6650}#npc-response{color:#684f32}#npc-response:empty{display:none}
+#moogle-panel button,#postal-observe{background:#eadcb9;border:1px solid #92795555;padding:8px 12px;font-size:12px;margin:0 6px 6px 0;min-height:36px}
+#moogle-panel a{font-size:11px;color:#674d39;text-decoration:none;margin-left:4px}
+#royal-greeting{margin-top:6px}#royal-greeting summary{cursor:pointer;color:#674d39}#royal-greeting-options button{display:block;width:100%;text-align:left}
+#letter-quest-panel{position:absolute;right:29px;top:85px;width:316px;max-height:calc(100vh - 205px);overflow:auto;background:#f1e8d5f5;border:1px solid #99835b66;box-shadow:0 12px 40px #4b453926;padding:16px 18px;backdrop-filter:blur(10px);font-size:12px;line-height:1.8;z-index:4}
+.quest-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.quest-heading strong{font-size:15px;font-weight:500;letter-spacing:1px}
+#letter-quest-close{background:transparent;font-size:22px;width:36px;height:36px}
+.postal-tabs{display:flex;gap:4px;margin:8px 0 4px;border-bottom:1px solid #b39d7144}.postal-tabs button{background:transparent;padding:7px 12px;font-size:12px;border-bottom:2px solid transparent}.postal-tabs button[aria-selected=true]{border-bottom-color:var(--wine);color:var(--wine)}
+#letter-quest-panel p{margin:8px 0}#letter-quest-step,#postal-objective{font-weight:500;color:#735937}#letter-quest-hint{color:#6c6650}#letter-quest-save{color:#905c38}
+#postal-feedback{border-left:2px solid #ab8959;padding-left:10px;color:#684f32}
+.quest-actions{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}
+.quest-actions button,#postal-replay,#postal-continue,#letter-quest-reset{background:#eadcb9;border:1px solid #92795555;padding:8px 12px;font-size:12px;min-height:38px}
+.quest-actions button:disabled,#postal-replay:disabled{opacity:.55;cursor:default}
+#postal-ending{padding:11px 13px;border:1px solid #b79f6d55;background:#f3e8cc99;margin-top:10px}
+#postal-save-tools,#postal-how-to{margin-top:10px;font-size:11px;color:#6c6650}#postal-save-tools summary,#postal-how-to summary{cursor:pointer;color:#674d39}
+#letter-quest-reset{margin-top:8px;background:transparent;font-size:11px}
+#postal-observation-records>*{border-left:2px solid #b39d71;padding-left:9px;margin:9px 0}
+.tour-controls #letter-quest-open{min-width:0}
+#map-quest-target{font-size:11px;line-height:1.7;margin:9px 0 0;color:#735937}#map-quest-target:empty{display:none}
+#city-map .plaque-marker{fill:#efe2c0;stroke:#8e7853;stroke-width:.35}
+#city-map .target-marker{fill:#c9993f;stroke:#f7eedc;stroke-width:.7;opacity:.95}
+#city-map .target-label{font-size:3.2px;fill:#5d4630;font-family:"Songti SC",serif}
+@media(max-width:760px){
+  #letter-quest-panel{left:14px;right:14px;width:auto;top:226px;max-height:calc(100vh - 340px);padding:13px 14px}
+  #nearby,#moogle-panel{right:14px;left:auto;bottom:156px;width:224px;padding:11px 12px;font-size:11px}
+  #moogle-panel a{display:block;margin:6px 0 0}
+  .tour-controls #letter-quest-open span{display:none}
+}
