@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {Matrix4,Quaternion,Vector3} from 'three';
 const garnetSample=process.argv.includes('--garnet-v2')||process.argv.includes('--garnet-v3');
 const records=[],sampleVersion=garnetSample?(process.argv.includes('--garnet-v3')?3:2):process.argv.includes('--steiner-v4')?4:process.argv.includes('--steiner-v3')?3:process.argv.includes('--steiner-v2')?2:0;
+if(!sampleVersion){console.error('Pass --steiner-v4 or --garnet-v3; rejected v1-v3 models were removed on 2026-10-15.');process.exit(2);}
 for(const id of sampleVersion?[garnetSample?'garnet':'steiner']:['steiner','zidane','garnet']){
  const file=new URL('../public/assets/characters/royal-cast/'+id+(sampleVersion?'-v'+sampleVersion+'.glb':'-v1.glb'),import.meta.url),buffer=fs.readFileSync(file);assert.equal(buffer.toString('utf8',0,4),'glTF');assert.equal(buffer.readUInt32LE(8),buffer.length);
  const length=buffer.readUInt32LE(12),gltf=JSON.parse(buffer.subarray(20,20+length).toString().trim()),binary=buffer.subarray(28+length),view=new DataView(binary.buffer,binary.byteOffset,binary.byteLength),cache=new Map();

@@ -20,9 +20,9 @@
 
 ## 动态街坊与王城三人组
 
-[动态城市](http://127.0.0.1:5209/city.html) · [旧版失败对照](http://127.0.0.1:5209/royal-cast.html?character=all) · [制作与验收](docs/city/CITY_LIFE_ROYAL_CAST_V1.md)
+[动态城市](http://127.0.0.1:5209/city.html) · [制作与验收](docs/city/CITY_LIFE_ROYAL_CAST_V1.md)
 
-十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。Steiner、Zidane、Garnet 的 v1 造型被用户否决，已从城市撤下；旧 GLB 与工作室保留为失败对照。先单独重做 Steiner：[头部修订样本 v4](http://localhost:5209/steiner.html) · [否决与重做记录](docs/city/STEINER_REBUILD_V2.md)。新样本待验收，未放回王城。验证：`npm run verify:city-life`、`npm run verify:royal-cast`。
+十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。Steiner、Zidane、Garnet 的 v1 造型被用户否决，已从城市撤下。2026-10-15 起，被否决或被替代的运行模型（三人 v1、Steiner v2/v3、Garnet v2）及旧版对照页 `royal-cast.html` 已从站点移除，只在 Git 历史与 `authoring/` 源文件中保留。先单独重做 Steiner：[头部修订样本 v4](http://localhost:5209/steiner.html) · [否决与重做记录](docs/city/STEINER_REBUILD_V2.md)。新样本待验收，未放回王城。验证：`npm run verify:city-life`、`npm run verify:steiner`、`npm run verify:garnet`。
 
 ## Garnet 独立修订样本
 
