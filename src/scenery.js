@@ -3,6 +3,7 @@ import {rng} from './layout.js';
 let masonry,edge,roof,cityRoofs,bark,leafMaterial,windowMat,iron,gold;
 const stats={revision:'branched-trees-royal-city-v3',trees:0,leaves:0,branches:0,arches:0,windows:0,newImageGenerationCalls:0};
 export function sceneryMetrics(){return {...stats};}
+export function sceneryMaterials(){return{masonry,edge,roof,cityRoofs,iron,gold,windowMat};}
 export function initSceneryMaterials(hero){
  const muted=(source,color,strength,key)=>{const map=source.map.clone();map.repeat.set(.18,.18);map.needsUpdate=true;const m=new THREE.MeshStandardMaterial({color,map,roughness:.95});m.onBeforeCompile=s=>{s.fragmentShader=s.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>\ndiffuseColor.rgb=mix(diffuse,diffuseColor.rgb,${strength.toFixed(2)});`);};m.customProgramCacheKey=()=>key;return m;};
  masonry=muted(hero.plaster,0xbfc0b4,.25,'city-limestone-v3');edge=muted(hero.plaster,0xd1cfc1,.18,'city-trim-v3');roof=muted(hero['roof-teal'],0x526b70,.26,'city-slate-v3');
@@ -65,14 +66,15 @@ function gallery(g,x,z,n){const w=4.6,h=5.2,wall=new THREE.Shape();wall.moveTo(-
  mesh(g,new THREE.ExtrudeGeometry(wall,{depth:2.0,bevelEnabled:true,bevelSize:.06,bevelThickness:.04,bevelSegments:1}),masonry,x,3.0,z);
  box(g,w*n+.6,.36,2.7,edge,x,9.15,z+.9);for(let xx=-w*n/2;xx<=w*n/2;xx+=2.3){box(g,.18,1.02,.18,edge,x+xx,9.72,z+2.2);}box(g,w*n+.6,.18,.34,edge,x,10.22,z+2.2);
 }
-export function buildRoyalBackdrop(){const g=new THREE.Group();
+// The city page passes {gate:false} and builds its own gatehouse in city-castle.js.
+export function buildRoyalBackdrop({gate:withGate=true}={}){const g=new THREE.Group();
  // The lower town is grounded on a terraced base, with recessed open galleries.
  box(g,86,2.8,32,masonry,0,1.28,-84);box(g,87,.30,33,edge,0,2.85,-84);
  gallery(g,-22,-67,7);gallery(g,22,-71,7);
- for(let i=0;i<14;i++){const x=-35+i*5.4,z=-80-(i%3)*5,h=5.8+(i*7%5),w=3.9+(i%3)*.24;const b=new THREE.Group();b.position.set(x,2.9,z);g.add(b);box(b,w,h,5.2,masonry,0,h/2,0);hipRoof(b,w+.65,5.9,2.0+(i%4)*.25,0,h,0,cityRoofs[i%3]);for(const xx of[-1,1])for(let yy=1.3;yy<h-1;yy+=2.5)opening(b,xx,yy,2.62,.63,1.5);box(b,.42,2,.50,edge,1.2,h+1,-1.5);for(const yy of[.2,h*.5])box(b,w+.08,.13,5.28,edge,0,yy,0);for(const xx of[-w/2+.11,w/2-.11])box(b,.19,h+.12,.23,edge,xx,h/2,2.62);}
+ for(let i=0;i<14;i++){const x=-35+i*5.4,z=-80-(i%3)*5,h=5.8+(i*7%5),w=3.9+(i%3)*.24;if(!withGate&&Math.abs(x+1)<11)continue;const b=new THREE.Group();b.position.set(x,2.9,z);g.add(b);box(b,w,h,5.2,masonry,0,h/2,0);hipRoof(b,w+.65,5.9,2.0+(i%4)*.25,0,h,0,cityRoofs[i%3]);for(const xx of[-1,1])for(let yy=1.3;yy<h-1;yy+=2.5)opening(b,xx,yy,2.62,.63,1.5);box(b,.42,2,.50,edge,1.2,h+1,-1.5);for(const yy of[.2,h*.5])box(b,w+.08,.13,5.28,edge,0,yy,0);for(const xx of[-w/2+.11,w/2-.11])box(b,.19,h+.12,.23,edge,xx,h/2,2.62);}
  // An axial gateway connects the palace to the lower district.
  for(let i=0;i<7;i++)box(g,7+i*.42,.30,1.8,edge,-1,.15+i*.38,-60-i*1.55);
- const gate=new THREE.Group();gate.position.set(-1,3,-76);g.add(gate);gallery(gate,0,0,2);hipRoof(gate,10.3,3.6,2.5,0,10.5,1);for(const x of[-5.2,5.2])turret(gate,x,0,.85,12);
+ if(withGate){const gate=new THREE.Group();gate.position.set(-1,3,-76);g.add(gate);gallery(gate,0,0,2);hipRoof(gate,10.3,3.6,2.5,0,10.5,1);for(const x of[-5.2,5.2])turret(gate,x,0,.85,12);}
  const palace=new THREE.Group();palace.position.set(-1,7.0,-119);palace.rotation.y=-.10;g.add(palace);
  box(palace,37,3.8,25,masonry,0,1.9,0);box(palace,38,.45,26,edge,0,3.85,0);
  // Central nave, side aisles and stepped roof volumes read as built architecture.

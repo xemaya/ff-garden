@@ -10,10 +10,10 @@ const c=hex=>new THREE.Color(hex);
 export const CITY_TIMES={
   day:{label:'晴日',sun:[-45,72,30],sunColor:0xffe5b6,sunIntensity:2.7,hemiSky:0xd3efff,hemiGround:0xafa37a,hemiIntensity:.65,fill:0x879bbc,fillIntensity:.33,exposure:.98,environment:.24,
     fog:0xd5dfdc,fogDensity:.0021,zenith:0x5b8fb4,horizon:0xd8e4e3,band:0xf2e3c6,bandStrength:.35,glowColor:0xfff1d6,cloudLit:0xfdfcf8,cloudShade:0xb4c3cf,cloudCover:.50,
-    ridges:[0x8ea592,0x92a5a9,0xa5b5bf],windows:0,lampHeads:0,halo:0,hero:0,lanterns:.12,lamps:0,smoke:0xe9e6df,smokeOpacity:.22},
+    ridges:[0x8ea592,0x92a5a9,0xa5b5bf],windows:0,lampHeads:0,halo:0,castle:0,hero:0,lanterns:.12,lamps:0,smoke:0xe9e6df,smokeOpacity:.22},
   dusk:{label:'黄昏',sun:[-150,30,-75],sunColor:0xffa058,sunIntensity:2.4,hemiSky:0x9796c6,hemiGround:0x8a6450,hemiIntensity:.78,fill:0x7d89c6,fillIntensity:.48,exposure:1.1,environment:.15,
     fog:0xdca88e,fogDensity:.0024,zenith:0x2f4f86,horizon:0xf3b483,band:0xff9b68,bandStrength:.85,glowColor:0xffb36b,cloudLit:0xffc49c,cloudShade:0x857596,cloudCover:.56,
-    ridges:[0x76687a,0x8a7387,0xa18394],windows:1.9,lampHeads:2.6,halo:.6,hero:1.1,lanterns:3.2,lamps:9,smoke:0xc9b8b4,smokeOpacity:.32}
+    ridges:[0x76687a,0x8a7387,0xa18394],windows:1.9,lampHeads:2.6,halo:.6,castle:1.25,hero:1.1,lanterns:3.2,lamps:9,smoke:0xc9b8b4,smokeOpacity:.32}
 };
 
 function skyDome(){
@@ -63,11 +63,11 @@ function chimneySmoke(scene){
   update(0);return{points,update,count:tops.length};
 }
 
-export function createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced,halo}){
+export function createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced,halo,extraLamps=[],castleWindows=null}){
   const dome=skyDome(),range=ridges(),smoke=chimneySmoke(scene),{lit,unlit,lamp}=cityWindowMaterials(),heroPane=plain(0x253d47,.39),lantern=glow(0xffdb9a,.12);
   scene.background=null;scene.add(dome,range,smoke.points);
-  const lamps=CITY_LAMPS.map(([x,z])=>{const l=new THREE.PointLight(0xffb066,0,15,1.8);l.position.set(x,cityHeight(x,z)+3.1,z);scene.add(l);return l;});
-  for(const m of[lit,heroPane])m.emissive=new THREE.Color(0xffb45e);lamp.emissive=new THREE.Color(0xffc172);
+  const lamps=[...CITY_LAMPS,...extraLamps].map(([x,z])=>{const l=new THREE.PointLight(0xffb066,0,15,1.8);l.position.set(x,cityHeight(x,z)+3.1,z);scene.add(l);return l;});
+  for(const m of[lit,heroPane,castleWindows].filter(Boolean))m.emissive=new THREE.Color(0xffb45e);lamp.emissive=new THREE.Color(0xffc172);
   let current='day';
   function set(name){const p=CITY_TIMES[name]||CITY_TIMES.day;current=CITY_TIMES[name]?name:'day';const u=dome.material.uniforms;
     for(const k of['zenith','horizon','band','glowColor','cloudLit','cloudShade'])u[k].value.setHex(p[k]);u.bandStrength.value=p.bandStrength;u.cloudCover.value=p.cloudCover;
@@ -75,7 +75,7 @@ export function createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced,halo}
     sun.color.setHex(p.sunColor);sun.intensity=p.sunIntensity;hemi.color.setHex(p.hemiSky);hemi.groundColor.setHex(p.hemiGround);hemi.intensity=p.hemiIntensity;fill.color.setHex(p.fill);fill.intensity=p.fillIntensity;
     renderer.toneMappingExposure=p.exposure;scene.environmentIntensity=p.environment;scene.fog.color.setHex(p.fog);scene.fog.density=p.fogDensity;
     range.children.forEach((m,i)=>m.material.color.setHex(p.ridges[i]));
-    lit.emissiveIntensity=p.windows;heroPane.emissiveIntensity=p.hero;lantern.emissiveIntensity=p.lanterns;lamp.emissiveIntensity=p.lampHeads;if(halo){halo.opacity=p.halo;halo.visible=p.halo>0;}lamps.forEach(l=>l.intensity=p.lamps);
+    lit.emissiveIntensity=p.windows;heroPane.emissiveIntensity=p.hero;lantern.emissiveIntensity=p.lanterns;lamp.emissiveIntensity=p.lampHeads;if(castleWindows)castleWindows.emissiveIntensity=p.castle;if(halo){halo.opacity=p.halo;halo.visible=p.halo>0;}lamps.forEach(l=>l.intensity=p.lamps);
     smoke.points.material.color.setHex(p.smoke);smoke.points.material.opacity=p.smokeOpacity;return current;}
   return{set,get time(){return current;},labels:Object.fromEntries(Object.entries(CITY_TIMES).map(([k,v])=>[k,v.label])),
     update(seconds,camera){dome.position.copy(camera.position);if(!reduced){dome.material.uniforms.time.value=seconds;smoke.update(seconds);}},

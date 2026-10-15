@@ -82,7 +82,7 @@ export function compileCity(raw,{seed=1907}={}){
     courtyard:{position:[-15.3,1.7,1.3],target:[-10.6,1.1,-.4],label:'药草小院'},
     square:{position:[1.5,1.7,-16.5],target:[-1,3.2,-29],label:'喷泉广场'},
     upper:{position:[0,cityHeight(0,-44)+1.7,-44],target:[-1,10,-67],label:'上城台阶'},
-    castle:{position:[-1,cityHeight(-1,-59)+1.7,-59],target:[-1,29,-119],label:'王城观景'}
+    castle:{position:[-1,cityHeight(-1,-52)+1.7,-52],target:[-1,22,-100],label:'王城观景'}
   };
   const dressing=planCityDressing(plan);plan.dressing=dressing.dressing;plan.colliders.push(...dressing.colliders);
   plan.metrics={buildings:buildings.length,heroBuildings:street.buildings.length,urbanBuildings:buildings.length-street.buildings.length,roads:roads.length,courtyards:courtyards.length,districts:new Set(buildings.map(b=>b.district)).size,tourLength:tour.slice(1).reduce((n,b,i)=>n+Math.hypot(b.x-tour[i].x,b.z-tour[i].z),0),newImageCalls:0,newModelCalls:0,dressing:{props:plan.dressing.props.length,lanterns:plan.dressing.lanterns.length,vines:plan.dressing.vines.length,lines:plan.dressing.lines.length}};
