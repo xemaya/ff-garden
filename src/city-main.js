@@ -25,7 +25,8 @@ import {createTownsfolk} from './townsfolk.js';
 import {advanceCityTour} from './city-tour.js'
 import {createCityAtmosphere,CITY_TIMES} from './city-atmosphere.js'
 import {buildCityDressing} from './city-dressing.js'
-import {buildCityCastle,GATE_LAMPS} from './city-castle.js';
+import {buildCityCastle,GATE_LAMPS} from './city-castle.js'
+import {buildCityOutskirts} from './city-outskirts.js';
 
 const $=s=>document.querySelector(s),canvas=$('#city'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let noticeTimer;function notice(text){$('#notice').textContent=text;$('#notice').classList.add('visible');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').classList.remove('visible'),3200);}
@@ -42,7 +43,7 @@ try{
   function resize(){const ratio=Math.min(devicePixelRatio,$('#quality').value==='smooth'?1:1.25);renderer.setPixelRatio(ratio);renderer.setSize(innerWidth,innerHeight,false);composer.setPixelRatio(ratio);composer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();aa.material.uniforms.resolution.value.set(1/(innerWidth*ratio),1/(innerHeight*ratio));}
   addEventListener('resize',resize);resize();$('#quality').addEventListener('change',()=>{ao.enabled=$('#quality').value==='quality';sun.shadow.mapSize.set(ao.enabled?2048:1024,ao.enabled?2048:1024);sun.shadow.map?.dispose();sun.shadow.map=null;resize();});
   const animated={people:[],flags:[]},main=new THREE.Group();main.add(buildHeroStreet(plan.street));for(const b of plan.buildings.filter(b=>b.detail==='hero'))main.add(buildHeroHouse(b));main.add(buildStreetGate());batchStatic(main);scene.add(main);
-  const staticGround=new THREE.Group();staticGround.add(buildCityGround(plan),buildCityEdges(plan),buildCityBacks(plan),buildPlazaPaving(),buildPlazaTurf(),buildRoyalBackdrop({gate:false}),buildCityCastle());for(const tree of plan.trees)staticGround.add(buildGardenTree(tree));for(const b of plan.benches)staticGround.add(buildGardenBench(b));for(const p of plan.props)staticGround.add(buildProp(p));staticGround.add(buildTheaterCorner(plan.street.theaterStage));batchStatic(staticGround);scene.add(staticGround);const dressing=buildCityDressing(plan);scene.add(dressing.group);
+  const staticGround=new THREE.Group();staticGround.add(buildCityGround(plan),buildCityEdges(plan),buildCityBacks(plan),buildPlazaPaving(),buildPlazaTurf(),buildRoyalBackdrop({gate:false}),buildCityCastle());for(const tree of plan.trees)staticGround.add(buildGardenTree(tree));for(const b of plan.benches)staticGround.add(buildGardenBench(b));for(const p of plan.props)staticGround.add(buildProp(p));staticGround.add(buildTheaterCorner(plan.street.theaterStage));batchStatic(staticGround);scene.add(staticGround);const dressing=buildCityDressing(plan);scene.add(dressing.group);const outskirts=buildCityOutskirts(plan.seed);scene.add(outskirts.group);
   const blocks=buildCityBlocks(plan);scene.add(...blocks.groups);const fountain=buildRoyalFountain(animated);batchStatic(fountain);scene.add(fountain);scene.add(buildRefinedTheaterShip(animated,plan.street.theaterStage.ship));
   const residents=new Map();plan.people.forEach((p,i)=>{const root=buildFantasyCitizen({...p,legacy:failed.has(p.species)},i,animated);scene.add(root);const a=root.userData[p.species]||{root,play(){},update(){}};residents.set('neighbor-'+i,a);});
   const liveBase=plan,lifeRecipe=makeCityLifeSpecs(liveBase);
@@ -86,7 +87,7 @@ try{
     if(mode==='walk'){if(touring)advanceTour(dt);else{let x=Number(movement.has('d'))-Number(movement.has('a')),z=Number(movement.has('w'))-Number(movement.has('s')),l=Math.hypot(x,z);if(l){x/=l;z/=l;move((Math.cos(pose.yaw)*x-Math.sin(pose.yaw)*z)*3.0*dt,(-Math.sin(pose.yaw)*x-Math.cos(pose.yaw)*z)*3.0*dt);}}
       pose.y=THREE.MathUtils.lerp(pose.y,plan.height(pose.x,pose.z)+1.7,Math.min(1,dt*16));}
     if(animated.royalPlaza)animateRoyalFountain(animated,now/1000);if(animated.crystal)animated.crystal.rotation.y=now*.00022;for(const r of animated.rotors||[])r.rotation.y=now*.004;
-    atmosphere.update(now/1000,camera);apply();renderer.info.reset();composer.render();frames.push(wallDt);if(frames.length>90)frames.shift();marker.setAttribute('cx',pose.x);marker.setAttribute('cy',pose.z);
+    atmosphere.update(now/1000,camera);if(!reduced)outskirts.update(now/1000);apply();renderer.info.reset();composer.render();frames.push(wallDt);if(frames.length>90)frames.shift();marker.setAttribute('cx',pose.x);marker.setAttribute('cy',pose.z);
     if(now-lastState>300){lastState=now;$('#city-state').dataset.ready='true';$('#city-state').textContent=JSON.stringify({ready:true,revision:plan.revision,mode,view,pose:{x:pose.x,y:pose.y,z:pose.z},touring,tourCursor:cursor,travelled,completedTours:completed,blockedSteps,metrics:plan.metrics,render:{fps:frames.length/frames.reduce((a,b)=>a+b,0),calls:renderer.info.render.calls,triangles:renderer.info.render.triangles,chunks:blocks.metrics.districtBatches.length,farChunks:blocks.groups.filter(g=>g.getCurrentLevel()>0).length},charactersFailed:[...failed],life:life.snapshot(),atmosphere:atmosphere.snapshot(),royals:[],royalArtStatus:'withdrawn-after-human-rejection'});}requestAnimationFrame(frame);
   }requestAnimationFrame(frame);
 }catch(e){$('#loading').hidden=false;$('#loading span').textContent='街巷暂时没有打开。';$('#loading small').textContent=e.message;$('#city-state').textContent=JSON.stringify({ready:false,error:e.message});console.error(e);}

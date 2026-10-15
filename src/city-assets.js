@@ -3,6 +3,7 @@ import {plain} from './materials.js';
 import {rng} from './layout.js';
 import {cityHeight} from './city-plan.js';
 import {batchStatic} from './batch.js';
+import {cityTerrainHeight,terrainMaterial} from './city-outskirts.js';
 
 let kit;
 export function initCityMaterials(hero){
@@ -132,7 +133,7 @@ export function buildCityEdges(plan){const g=new THREE.Group(),random=rng(plan.s
   archway(g,-19,27.5,4.6);archway(g,20,27.5,4.5);
   for(const [x,z]of CITY_LAMPS){box(g,.13,3.5,.13,kit.iron,x,cityHeight(x,z)+1.75,z);box(g,.34,.43,.34,kit.lantern,x,cityHeight(x,z)+3.35,z);mesh(g,new THREE.ConeGeometry(.31,.24,4),kit.iron,x,cityHeight(x,z)+3.68,z).rotation.y=Math.PI/4;}
   // Outside terrain is only a setting for the walled city.
-  const terrain=new THREE.PlaneGeometry(430,340,55,50);terrain.rotateX(-Math.PI/2);terrain.translate(0,-.6,-30);const p=terrain.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i),fade=THREE.MathUtils.smoothstep(Math.abs(x),39,86);p.setY(i,-.6+fade*(3.0+2.3*Math.sin(x*.04+z*.027)+1.0*Math.cos(z*.04)));}terrain.computeVertexNormals();const land=mesh(g,terrain,plain(0x84906d));land.castShadow=false;
+  const terrain=new THREE.PlaneGeometry(430,340,172,136);terrain.rotateX(-Math.PI/2);terrain.translate(0,0,-30);const p=terrain.attributes.position;for(let i=0;i<p.count;i++)p.setY(i,cityTerrainHeight(p.getX(i),p.getZ(i)));terrain.computeVertexNormals();const land=mesh(g,terrain,terrainMaterial());land.castShadow=false;
   for(let i=0;i<13;i++){const x=-185+i*31,z=-195-random()*35,r=23+random()*17,hill=mesh(g,new THREE.SphereGeometry(r,16,10),plain([0x9ea994,0xaebaa3,0x93a790][i%3]),x,-4,z);hill.scale.set(1.5,.40+random()*.28,1.0);hill.castShadow=false;}
 
   return g;
