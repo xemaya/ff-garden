@@ -11,11 +11,17 @@ export function initCityMaterials(hero){
   const roof=[hero['roof-clay'].clone(),hero['roof-teal'].clone()];
   roof[0].color.setHex(0xc7ac97);roof[1].color.setHex(0x9dada3);
   kit={plaster,wood,roof,paving:hero.pavers,stone:new THREE.MeshStandardMaterial({map:hero.plaster.map,color:0xc3baa5,roughness:.96}),dark:plain(0x293d40),gold:plain(0x978058,.63,.25),iron:plain(0x424c46,.78,.16),cloth:[plain(0xdfcda8),plain(0xa96751)],ivy:plain(0x6c7850),lantern:plain(0x978058,.63,.25).clone(),paneLit:new THREE.MeshStandardMaterial({color:0x293d40,roughness:.85}),paneUnlit:new THREE.MeshStandardMaterial({color:0x293d40,roughness:.85})};
-  kit.paneLit.userData.count=0;kit.paneUnlit.userData.count=0;paneIndex=0;
+  kit.paneLit.userData.count=0;kit.paneUnlit.userData.count=0;paneIndex=0;flowerIndex=0;kit.bloom=[0xd8616b,0xf0c35a,0xe9e3f2,0xb06fb5].map(c=>plain(c,.7));
+  for(const m of[...kit.plaster,kit.stone])weather(m);
 }
-let paneIndex=0;
+let paneIndex=0,flowerIndex=0;
+// Grime near the ground and faint rain streaks, from world position only (no new textures).
+// Base height follows the three city terraces, which change only along z.
+function weather(m){m.onBeforeCompile=s=>{s.vertexShader=s.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vWeatherPos;').replace('#include <worldpos_vertex>','#include <worldpos_vertex>\nvWeatherPos=(modelMatrix*vec4(transformed,1.)).xyz;');
+  s.fragmentShader=s.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWeatherPos;\nfloat wHash(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5);}\nfloat wNoise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(wHash(i),wHash(i+vec2(1,0)),f.x),mix(wHash(i+vec2(0,1)),wHash(i+vec2(1,1)),f.x),f.y);}').replace('#include <map_fragment>','#include <map_fragment>\nfloat wBase=vWeatherPos.z>-39.?0.:(vWeatherPos.z>-52.?1.45:2.9);float wH=vWeatherPos.y-wBase;float wN=wNoise(vec2(vWeatherPos.x+vWeatherPos.z,vWeatherPos.y*.9)*1.7);float grime=(1.-smoothstep(.0,.75+wN*.5,wH))*step(-.05,wH);float streak=smoothstep(.62,.95,wNoise(vec2((vWeatherPos.x+vWeatherPos.z)*4.,vWeatherPos.y*.18)))*smoothstep(.8,2.5,wH);diffuseColor.rgb*=1.-grime*.30-streak*.10;diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*vec3(.86,.94,.78),grime*wN*.55);');};m.customProgramCacheKey=()=>'city-weather';}
 // Deterministic by build order: about two in five windows belong to the lit set.
 function pane(){const h=Math.sin(++paneIndex*12.9898)*43758.5453,m=(h-Math.floor(h))<.4?kit.paneLit:kit.paneUnlit;m.userData.count++;return m;}
+export function cityKit(){return kit;}
 export function cityWindowMaterials(){return{lit:kit.paneLit,unlit:kit.paneUnlit,lamp:kit.lantern};}
 // Street lamp posts at junctions, sides of the courtyards and the upper stairs.
 export const CITY_LAMPS=[[-19,26],[20,26],[-19,-8],[20,-8],[-17,-48],[17,-48]].map(([x,z])=>[x+2.2,z]);
@@ -27,6 +33,7 @@ function window(g,x,y,z,w=.78,h=1.45){
   mesh(g,new THREE.ShapeGeometry(arch(w,h),10),pane(),x,y,z);
   const rim=arch(w+.21,h+.10);rim.holes.push(new THREE.Path(arch(w,h).getPoints(10)));mesh(g,new THREE.ExtrudeGeometry(rim,{depth:.085,bevelEnabled:false,curveSegments:8}),kit.wood,x,y-.02,z+.016);
   box(g,.045,h-.08,.04,kit.gold,x,y+h/2,z+.10);box(g,w,.045,.04,kit.gold,x,y+h*.43,z+.10);box(g,w+.3,.105,.24,kit.stone,x,y-.07,z+.1);
+  if(y>3){const f=Math.sin(++flowerIndex*78.233)*43758.5453;if(f-Math.floor(f)<.34){box(g,w+.12,.2,.24,kit.wood,x,y-.22,z+.24);for(let i=0;i<7;i++){const u=x-w/2+.06+i*(w-.12)/6,leaf=mesh(g,new THREE.IcosahedronGeometry(.17,0),kit.ivy,u,y-.02+(i%2)*.05,z+.27);leaf.scale.set(1,.85,.8);leaf.castShadow=false;for(const k of[0,1]){const bloom=mesh(g,new THREE.IcosahedronGeometry(.075,0),kit.bloom[(flowerIndex+i+k)%kit.bloom.length],u+(k?.07:-.06),y+.1+k*.05,z+.33+k*.03);bloom.castShadow=false;}}}}
   for(const side of[-1,1]){const shutter=box(g,w*.25,h*.77,.08,kit.wood,x+side*w*.67,y+h*.41,z+.04);shutter.rotation.y=side*.20;box(g,w*.28,.075,.09,kit.gold,x+side*w*.67,y+.21,z+.09);}
 }
 function curvedRoof(w,d,rise,detail=true){const pos=[],uv=[],nx=detail?22:10,nz=detail?16:6;

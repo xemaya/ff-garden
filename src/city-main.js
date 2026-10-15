@@ -23,7 +23,8 @@ import {createMovementInput,createLookInput} from './input-state.js';
 import {makeCityLifeSpecs,createCityLife} from './city-life.js';
 import {createTownsfolk} from './townsfolk.js';
 import {advanceCityTour} from './city-tour.js'
-import {createCityAtmosphere,CITY_TIMES} from './city-atmosphere.js';
+import {createCityAtmosphere,CITY_TIMES} from './city-atmosphere.js'
+import {buildCityDressing} from './city-dressing.js';
 
 const $=s=>document.querySelector(s),canvas=$('#city'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let noticeTimer;function notice(text){$('#notice').textContent=text;$('#notice').classList.add('visible');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').classList.remove('visible'),3200);}
@@ -40,13 +41,13 @@ try{
   function resize(){const ratio=Math.min(devicePixelRatio,$('#quality').value==='smooth'?1:1.25);renderer.setPixelRatio(ratio);renderer.setSize(innerWidth,innerHeight,false);composer.setPixelRatio(ratio);composer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();aa.material.uniforms.resolution.value.set(1/(innerWidth*ratio),1/(innerHeight*ratio));}
   addEventListener('resize',resize);resize();$('#quality').addEventListener('change',()=>{ao.enabled=$('#quality').value==='quality';sun.shadow.mapSize.set(ao.enabled?2048:1024,ao.enabled?2048:1024);sun.shadow.map?.dispose();sun.shadow.map=null;resize();});
   const animated={people:[],flags:[]},main=new THREE.Group();main.add(buildHeroStreet(plan.street));for(const b of plan.buildings.filter(b=>b.detail==='hero'))main.add(buildHeroHouse(b));main.add(buildStreetGate());batchStatic(main);scene.add(main);
-  const staticGround=new THREE.Group();staticGround.add(buildCityGround(plan),buildCityEdges(plan),buildCityBacks(plan),buildPlazaPaving(),buildPlazaTurf(),buildRoyalBackdrop());for(const tree of plan.trees)staticGround.add(buildGardenTree(tree));for(const b of plan.benches)staticGround.add(buildGardenBench(b));for(const p of plan.props)staticGround.add(buildProp(p));staticGround.add(buildTheaterCorner(plan.street.theaterStage));batchStatic(staticGround);scene.add(staticGround);
+  const staticGround=new THREE.Group();staticGround.add(buildCityGround(plan),buildCityEdges(plan),buildCityBacks(plan),buildPlazaPaving(),buildPlazaTurf(),buildRoyalBackdrop());for(const tree of plan.trees)staticGround.add(buildGardenTree(tree));for(const b of plan.benches)staticGround.add(buildGardenBench(b));for(const p of plan.props)staticGround.add(buildProp(p));staticGround.add(buildTheaterCorner(plan.street.theaterStage));batchStatic(staticGround);scene.add(staticGround);const dressing=buildCityDressing(plan);scene.add(dressing.group);
   const blocks=buildCityBlocks(plan);scene.add(...blocks.groups);const fountain=buildRoyalFountain(animated);batchStatic(fountain);scene.add(fountain);scene.add(buildRefinedTheaterShip(animated,plan.street.theaterStage.ship));
   const residents=new Map();plan.people.forEach((p,i)=>{const root=buildFantasyCitizen({...p,legacy:failed.has(p.species)},i,animated);scene.add(root);const a=root.userData[p.species]||{root,play(){},update(){}};residents.set('neighbor-'+i,a);});
   const liveBase=plan,lifeRecipe=makeCityLifeSpecs(liveBase);
   for(const spec of lifeRecipe.specs){if(residents.has(spec.id))continue;let a;if(spec.kind==='npc')a=createTownsfolk(spec.style,spec.seed);else if(!failed.has('mage')){const root=createMage({x:0,z:0},null);a=root.userData.mage;}else{const root=buildFantasyCitizen({species:'mage',legacy:true,x:0,z:0},0,{people:[]});a={root,play(){},update(){}};}scene.add(a.root);residents.set(spec.id,a);}
   const life=createCityLife(liveBase,residents,{reduced}),walkPlan=life.plan;
-  const atmosphere=createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced});
+  const atmosphere=createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced,halo:dressing.haloMaterial});
   const storedTime=(()=>{try{return localStorage.getItem('ff-garden.city-time');}catch{return null;}})();
   function setTime(name,remember=true){const t=atmosphere.set(name),next=t==='day'?'dusk':'day';$('#time-toggle').textContent='时辰 '+CITY_TIMES[t].label;$('#time-toggle').setAttribute('aria-pressed',String(t!=='day'));$('#time-toggle').title='切换到'+CITY_TIMES[next].label;if(remember)try{localStorage.setItem('ff-garden.city-time',t);}catch{}}
   setTime(new URLSearchParams(location.search).get('time')||storedTime||'day',false);
