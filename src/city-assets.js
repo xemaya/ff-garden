@@ -10,14 +10,21 @@ export function initCityMaterials(hero){
   const wood=hero.wood.clone();wood.color.setHex(0xa39179);
   const roof=[hero['roof-clay'].clone(),hero['roof-teal'].clone()];
   roof[0].color.setHex(0xc7ac97);roof[1].color.setHex(0x9dada3);
-  kit={plaster,wood,roof,paving:hero.pavers,stone:new THREE.MeshStandardMaterial({map:hero.plaster.map,color:0xc3baa5,roughness:.96}),dark:plain(0x293d40),gold:plain(0x978058,.63,.25),iron:plain(0x424c46,.78,.16),cloth:[plain(0xdfcda8),plain(0xa96751)],ivy:plain(0x6c7850)};
+  kit={plaster,wood,roof,paving:hero.pavers,stone:new THREE.MeshStandardMaterial({map:hero.plaster.map,color:0xc3baa5,roughness:.96}),dark:plain(0x293d40),gold:plain(0x978058,.63,.25),iron:plain(0x424c46,.78,.16),cloth:[plain(0xdfcda8),plain(0xa96751)],ivy:plain(0x6c7850),lantern:plain(0x978058,.63,.25).clone(),paneLit:new THREE.MeshStandardMaterial({color:0x293d40,roughness:.85}),paneUnlit:new THREE.MeshStandardMaterial({color:0x293d40,roughness:.85})};
+  kit.paneLit.userData.count=0;kit.paneUnlit.userData.count=0;paneIndex=0;
 }
+let paneIndex=0;
+// Deterministic by build order: about two in five windows belong to the lit set.
+function pane(){const h=Math.sin(++paneIndex*12.9898)*43758.5453,m=(h-Math.floor(h))<.4?kit.paneLit:kit.paneUnlit;m.userData.count++;return m;}
+export function cityWindowMaterials(){return{lit:kit.paneLit,unlit:kit.paneUnlit,lamp:kit.lantern};}
+// Street lamp posts at junctions, sides of the courtyards and the upper stairs.
+export const CITY_LAMPS=[[-19,26],[20,26],[-19,-8],[20,-8],[-17,-48],[17,-48]].map(([x,z])=>[x+2.2,z]);
 function mesh(g,geo,m,x=0,y=0,z=0){const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;g.add(o);return o;}
 function box(g,w,h,d,m,x=0,y=0,z=0){return mesh(g,new THREE.BoxGeometry(w,h,d),m,x,y,z);}
 function beam(g,a,b,w=.1,m=kit.wood){const from=new THREE.Vector3(...a),to=new THREE.Vector3(...b),v=to.clone().sub(from),o=mesh(g,new THREE.BoxGeometry(w,v.length(),w),m);o.position.copy(from).add(to).multiplyScalar(.5);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v.normalize());return o;}
 function arch(w,h){const s=new THREE.Shape();s.moveTo(-w/2,0);s.lineTo(-w/2,h-w/2);s.quadraticCurveTo(-w/2,h,0,h);s.quadraticCurveTo(w/2,h,w/2,h-w/2);s.lineTo(w/2,0);s.closePath();return s;}
 function window(g,x,y,z,w=.78,h=1.45){
-  mesh(g,new THREE.ShapeGeometry(arch(w,h),10),kit.dark,x,y,z);
+  mesh(g,new THREE.ShapeGeometry(arch(w,h),10),pane(),x,y,z);
   const rim=arch(w+.21,h+.10);rim.holes.push(new THREE.Path(arch(w,h).getPoints(10)));mesh(g,new THREE.ExtrudeGeometry(rim,{depth:.085,bevelEnabled:false,curveSegments:8}),kit.wood,x,y-.02,z+.016);
   box(g,.045,h-.08,.04,kit.gold,x,y+h/2,z+.10);box(g,w,.045,.04,kit.gold,x,y+h*.43,z+.10);box(g,w+.3,.105,.24,kit.stone,x,y-.07,z+.1);
   for(const side of[-1,1]){const shutter=box(g,w*.25,h*.77,.08,kit.wood,x+side*w*.67,y+h*.41,z+.04);shutter.rotation.y=side*.20;box(g,w*.28,.075,.09,kit.gold,x+side*w*.67,y+.21,z+.09);}
@@ -33,7 +40,7 @@ function urbanHouse(b,far=false){const g=new THREE.Group(),w=b.width,h=b.height,
   for(const z of[.16,-d-.16]){const s=new THREE.Shape();s.moveTo(-w/2,0);for(let i=0;i<=16;i++){const x=-w/2+i*w/16;s.lineTo(x,a.roofRise*(1-Math.abs(x)/(w/2))**1.5);}s.lineTo(w/2,0);s.closePath();mesh(g,new THREE.ShapeGeometry(s),wall,0,h,z).material.side=THREE.DoubleSide;}
   beam(g,[0,h+a.roofRise,.45],[0,h+a.roofRise,-d-.45],.15);
   for(const x of[-w/2,w/2])beam(g,[x,h,.40],[x,h,-d-.40],.19);
-  if(a.chimney==='tall-stone'){box(g,.65,3.0,.7,kit.stone,w*.29,h+1.0,-d*.65);box(g,.84,.17,.9,kit.wood,w*.29,h+2.55,-d*.65);}
+  if(a.chimney==='tall-stone'){box(g,.65,3.0,.7,kit.stone,w*.29,h+1.0,-d*.65);box(g,.84,.17,.9,kit.wood,w*.29,h+2.55,-d*.65);if(!far){const top=new THREE.Object3D();top.position.set(w*.29,h+2.75,-d*.65);top.userData.chimneyTop=true;g.add(top);}}
   if(!far){
     for(const [z,angle]of[[.19,0],[-d-.19,Math.PI]]){const f=new THREE.Group();f.position.z=z;f.rotation.y=angle;g.add(f);window(f,0,h+.44,.06,.64,1.13);for(const side of[-1,1]){beam(f,[side*w*.42,h+.10,.08],[side*w*.10,h+a.roofRise*.70,.08],.11);for(let i=0;i<12;i++){const x0=side*(w+.8)/2*i/12,x1=side*(w+.8)/2*(i+1)/12,y0=h+a.roofRise*(1-i/12)**1.5+.10*(i/12)**2,y1=h+a.roofRise*(1-(i+1)/12)**1.5+.10*((i+1)/12)**2;beam(f,[x0,y0,.20],[x1,y1,.20],.10);}}}
     // Four complete faces support walking around blocks, not just a front facade.
@@ -116,7 +123,7 @@ export function buildCityEdges(plan){const g=new THREE.Group(),random=rng(plan.s
   for(const r of[0,Math.PI/2]){const clock=new THREE.Group();clock.rotation.y=r;tower.add(clock);mesh(clock,new THREE.CircleGeometry(.91,24),kit.gold,0,9.7,1.69);mesh(clock,new THREE.CircleGeometry(.81,24),kit.dark,0,9.7,1.70);beam(clock,[0,9.7,1.73],[0,10.30,1.73],.045,kit.gold);beam(clock,[0,9.7,1.73],[.44,9.92,1.73],.045,kit.gold);}
   // Reused timber arches give side alleys an identity without new image assets.
   archway(g,-19,27.5,4.6);archway(g,20,27.5,4.5);
-  for(const [x,z]of[[-19,26],[20,26],[-19,-8],[20,-8],[-17,-48],[17,-48]]){box(g,.13,3.5,.13,kit.iron,x+2.2,cityHeight(x,z)+1.75,z);box(g,.34,.43,.34,kit.gold,x+2.2,cityHeight(x,z)+3.35,z);mesh(g,new THREE.ConeGeometry(.31,.24,4),kit.iron,x+2.2,cityHeight(x,z)+3.68,z).rotation.y=Math.PI/4;}
+  for(const [x,z]of CITY_LAMPS){box(g,.13,3.5,.13,kit.iron,x,cityHeight(x,z)+1.75,z);box(g,.34,.43,.34,kit.lantern,x,cityHeight(x,z)+3.35,z);mesh(g,new THREE.ConeGeometry(.31,.24,4),kit.iron,x,cityHeight(x,z)+3.68,z).rotation.y=Math.PI/4;}
   // Outside terrain is only a setting for the walled city.
   const terrain=new THREE.PlaneGeometry(430,340,55,50);terrain.rotateX(-Math.PI/2);terrain.translate(0,-.6,-30);const p=terrain.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i),fade=THREE.MathUtils.smoothstep(Math.abs(x),39,86);p.setY(i,-.6+fade*(3.0+2.3*Math.sin(x*.04+z*.027)+1.0*Math.cos(z*.04)));}terrain.computeVertexNormals();const land=mesh(g,terrain,plain(0x84906d));land.castShadow=false;
   for(let i=0;i<13;i++){const x=-185+i*31,z=-195-random()*35,r=23+random()*17,hill=mesh(g,new THREE.SphereGeometry(r,16,10),plain([0x9ea994,0xaebaa3,0x93a790][i%3]),x,-4,z);hill.scale.set(1.5,.40+random()*.28,1.0);hill.castShadow=false;}
