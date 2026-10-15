@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "records": {
+    "A-raw": {
+      "duration": 5.166667,
+      "frames": 124,
+      "size": [
+        864,
+        480
+      ],
+      "fps": "24/1",
+      "bytes": 1003682,
+      "sha256": "e2e1e9baf63544a324f079dfdadf3044ceb9b20d87f4b96ec5ce16dfc078b2bd"
+    },
+    "B-raw": {
+      "duration": 5.166667,
+      "frames": 124,
+      "size": [
+        864,
+        480
+      ],
+      "fps": "24/1",
+      "bytes": 1554770,
+      "sha256": "b8bfd859af516386f9da1cf8333a95405dad1c59a8ba044c25d9039a57845f81"
+    },
+    "A": {
+      "duration": 5.0,
+      "frames": 120,
+      "size": [
+        864,
+        480
+      ],
+      "fps": "24/1",
+      "bytes": 821323,
+      "sha256": "20ac75f72e6a4ac29f297cdeb30ddbecc02b30f1a4c9dfc14d999b4ada23958b"
+    },
+    "B": {
+      "duration": 5.0,
+      "frames": 120,
+      "size": [
+        864,
+        480
+      ],
+      "fps": "24/1",
+      "bytes": 1262523,
+      "sha256": "158accbcd1194def997765ab2fdfd1c346405d7d33d2e469e5aeed56508b0a62"
+    },
+    "AB-side-by-side": {
+      "duration": 5.0,
+      "frames": 120,
+      "size": [
+        1728,
+        480
+      ],
+      "fps": "24/1",
+      "bytes": 1897813,
+      "sha256": "4871272c8d1ca1d6d49c5ec7dc9cf4bb2a5761e43febf0ab60bc42eb3dd6c7c1"
+    }
+  }
+}

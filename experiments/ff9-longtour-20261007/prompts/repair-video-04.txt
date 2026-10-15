@@ -1,0 +1,4 @@
+At 0 seconds, <Picture 1> is the exact opening frame. At 10.083 seconds, <Picture 2> is fully referenced.
+
+integrated_multimodal_description: [Shot 1] One continuous calm cinematic camera movement through the same warm, hand-painted Final Fantasy IX-inspired royal town. Keep the camera at human eye level below the shop eaves and glide straight forward along the narrow cobblestone street. The existing stone arch approaches ahead. Keep an open empty sky. Do not rise above the rooftops. Shop walls remain tall on both sides. Preserve golden-brown painterly materials, morning lighting, all existing buildings and street geometry. Scale changes arise only from camera movement. Stable landmarks and smooth parallax, no scene morphing, no cuts, no overlays, no invented objects. Gentle slow motion only.
+overall_soundscape: Quiet soft wind and distant courtyard ambience only. No speech, no vocals, no music.

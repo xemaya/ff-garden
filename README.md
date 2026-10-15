@@ -12,6 +12,24 @@
 
 本地预览：<http://127.0.0.1:5209/>。原 FF7 实验继续保留在 <http://127.0.0.1:5207/>。
 
+## 城市布景样板
+
+[本地游览王城小城](http://127.0.0.1:5209/city.html) · [城市装配与验收记录](docs/city/CITY_V1.md)
+
+原工坊主街扩展为49栋街区建筑、五个区域、两处庭院和上下城台阶；约390米的回环可实际步行。复用已有材质与角色，新增城区为程序化规则装配，未新增模型调用或训练。验收：`npm run verify:city`。
+
+## 动态街坊与王城三人组
+
+[动态城市](http://127.0.0.1:5209/city.html) · [旧版失败对照](http://127.0.0.1:5209/royal-cast.html?character=all) · [制作与验收](docs/city/CITY_LIFE_ROYAL_CAST_V1.md)
+
+十名魔导士协同巡逻、两只莫古力蹦跳、陆行鸟绕广场游走、18位路人分区活动。Steiner、Zidane、Garnet 的 v1 造型被用户否决，已从城市撤下；旧 GLB 与工作室保留为失败对照。先单独重做 Steiner：[头部修订样本 v4](http://localhost:5209/steiner.html) · [否决与重做记录](docs/city/STEINER_REBUILD_V2.md)。新样本待验收，未放回王城。验证：`npm run verify:city-life`、`npm run verify:royal-cast`。
+
+## Garnet 独立修订样本
+
+[查看 Garnet v3](http://localhost:5209/garnet.html) · [造型与制作记录](docs/city/GARNET_REBUILD_V2.md)
+
+重做身体、腰线、白袖、五官和低束长发；四段动作与素材对照可在工作台查看。新样本待用户验收，未放回王城。检查：`npm run verify:garnet`。
+
 ## 莫古利角色样板
 
 [查看精修莫古利与四个动作](http://127.0.0.1:5209/moogle.html) · [在街景中互动](http://127.0.0.1:5209/?street=workshops&moogle=1) · [角色交付与验证说明](MOOGLE_SAMPLE.md)

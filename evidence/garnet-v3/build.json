@@ -1,0 +1,19 @@
+{
+  "character": "garnet",
+  "version": 3,
+  "artAcceptance": "pending user review; v1 rejected",
+  "reference": "art-direction/royal-cast/garnet-target-v1.png",
+  "geometry": "CC0 female facial topology with real eyelids nose and lips fitted to Garnet body; anatomical socket eyes; v2 costume retained; no face atlas",
+  "vertices": 153299,
+  "faces": 165992,
+  "joints": 21,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Greet",
+    "Signature"
+  ],
+  "binding": "named anatomical regions blended with normalized maximum four influences; rigid accessories",
+  "newImageCalls": 0,
+  "remote4090Tasks": 0
+}

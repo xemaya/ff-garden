@@ -1,0 +1,217 @@
+{
+  "gpu": 0,
+  "port": 8188,
+  "existingComfyInstanceReused": true,
+  "newServicesStarted": 0,
+  "sharedServicesStopped": 0,
+  "gpuMemoryCacheReleased": false,
+  "queuesAfter": {
+    "8188": {
+      "running": 0,
+      "pending": 0
+    },
+    "8189": {
+      "running": 0,
+      "pending": 0
+    },
+    "8190": {
+      "running": 0,
+      "pending": 0
+    },
+    "8191": {
+      "running": 0,
+      "pending": 0
+    },
+    "8192": {
+      "running": 0,
+      "pending": 0
+    },
+    "8193": {
+      "unavailable": "URLError"
+    },
+    "8194": {
+      "running": 0,
+      "pending": 0
+    }
+  },
+  "modelTasks": [
+    {
+      "prompt_id": "eb96d16a-e990-49cc-ae45-77929548bdd0",
+      "phase": "completed",
+      "seconds": 14.34,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-00_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "f8982165-b6b8-45e1-95f7-4d6110f50d2a",
+      "phase": "completed",
+      "seconds": 12.4,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-05_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "1b250813-dd45-4078-8a24-4486cbf97b0d",
+      "phase": "completed",
+      "seconds": 12.39,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-10_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "30593179-583d-4080-a161-a38605bce060",
+      "phase": "completed",
+      "seconds": 12.32,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-15_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "97b97805-fc40-432e-b304-cd539f7769e4",
+      "phase": "completed",
+      "seconds": 12.3,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-20_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "27913a6e-1454-4c94-b1c1-32a326f97a9f",
+      "phase": "completed",
+      "seconds": 12.39,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-30_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "868c96d4-38a3-467d-b882-656513fbbe1e",
+      "phase": "completed",
+      "seconds": 12.36,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-40_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "40e4f371-6848-427e-862d-c466da4431ae",
+      "phase": "completed",
+      "seconds": 12.35,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-50_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "c50be447-bb44-458c-8857-275d97b5bef2",
+      "phase": "completed",
+      "seconds": 12.43,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-60_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "1f4a5fb1-84d9-4173-b5c8-e40caf4d88d6",
+      "phase": "completed",
+      "seconds": 12.33,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-00-corrected_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "5a245845-643e-4d62-89ad-2e906e038d53",
+      "phase": "completed",
+      "seconds": 198.19,
+      "outputs": [
+        "batches/ff9-longtour-20261007/seg-01_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "1f9eee0d-a85a-4276-974d-c3839ab72bae",
+      "phase": "completed",
+      "seconds": 231.22,
+      "outputs": [
+        "batches/ff9-longtour-20261007/seg-02_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "7852db7f-4fd7-4113-b338-735b74155931",
+      "phase": "completed",
+      "seconds": 231.19,
+      "outputs": [
+        "batches/ff9-longtour-20261007/seg-03_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "608dc034-1243-463a-a634-3f7525d46fa7",
+      "phase": "completed",
+      "seconds": 228.18,
+      "outputs": [
+        "batches/ff9-longtour-20261007/seg-04_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "afb16b95-a8ca-4585-8051-f68c1c38875f",
+      "phase": "completed",
+      "seconds": 228.17,
+      "outputs": [
+        "batches/ff9-longtour-20261007/seg-05_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "9c8428a0-b421-477d-b201-a17addad1b80",
+      "phase": "completed",
+      "seconds": 228.18,
+      "outputs": [
+        "batches/ff9-longtour-20261007/seg-06_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "e5bbe672-fe91-473c-8f77-35ad05f08af7",
+      "phase": "completed",
+      "seconds": 12.35,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-35_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "42f02ae9-66d0-4a25-9f27-ebac8f2dbdc1",
+      "phase": "completed",
+      "seconds": 10.36,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-45_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "aad88758-34ab-4a73-a25f-1f04fd91c1a2",
+      "phase": "completed",
+      "seconds": 10.68,
+      "outputs": [
+        "/data/app/huanghaibin/output/batches/ff9-longtour-20261007/polish-55_00001_.png"
+      ]
+    },
+    {
+      "prompt_id": "0fb96661-92c5-45ac-8645-39be9b0597cc",
+      "phase": "completed",
+      "seconds": 207.19,
+      "outputs": [
+        "batches/ff9-longtour-20261007/repair-seg-04_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "9bc95c39-9f78-4075-8bdf-06b72ec84eb2",
+      "phase": "completed",
+      "seconds": 234.22,
+      "outputs": [
+        "batches/ff9-longtour-20261007/repair-seg-05_00001_.mp4"
+      ]
+    },
+    {
+      "prompt_id": "b7641aba-7ba4-43fe-9d73-49846b457c78",
+      "phase": "completed",
+      "seconds": 240.22,
+      "outputs": [
+        "batches/ff9-longtour-20261007/repair-seg-06_00001_.mp4"
+      ]
+    }
+  ],
+  "totalModelTaskWallSeconds": 2185.76,
+  "note": "Includes rejected image and excluded original video segments. Receipt elapsed is model task wall time, not a GPU utilization integral."
+}

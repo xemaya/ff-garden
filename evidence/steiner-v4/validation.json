@@ -1,0 +1,22 @@
+{
+  "finalAssetCheckPassed": true,
+  "buildPassed": true,
+  "builtGlbMatchesSource": true,
+  "sourceSha256": "6ab245f0dbff4ae617f980944a47a1e66a8ed63f6b01b3ef196139fb0366b4a1",
+  "v3GlbPreserved": true,
+  "browserViews": 4,
+  "browserClips": 4,
+  "sourceReferenceDialogPassed": true,
+  "humanArtAcceptance": "pending",
+  "newImageGenerationCalls": 0,
+  "remote4090Tasks": 0,
+  "faceTransformRelativeToV3": [
+    0.7568,
+    0.792,
+    0.748
+  ],
+  "helmetLowering": 0.045,
+  "faceMethod": "continuous relief, inset aligned eyes, BVH-conformed eyebrows and mouth",
+  "scope": "decoded skin ground samples and browser visual poses; no universal garment-contact claim",
+  "mobile375Passed": true
+}

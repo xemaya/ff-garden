@@ -1,0 +1,306 @@
+[
+  {
+    "view": "street",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "street",
+      "pose": {
+        "x": 0,
+        "y": 1.7,
+        "z": 30
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 114.89850631941957,
+        "calls": 1620,
+        "triangles": 7346919,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "market",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "market",
+      "pose": {
+        "x": -19,
+        "y": 1.7,
+        "z": 29
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 100.91948867459207,
+        "calls": 1640,
+        "triangles": 7230475,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "residential",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "residential",
+      "pose": {
+        "x": 20,
+        "y": 1.6999999999999997,
+        "z": 26
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 96.4010282776314,
+        "calls": 1590,
+        "triangles": 7272531,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "courtyard",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "courtyard",
+      "pose": {
+        "x": -15.3,
+        "y": 1.6999999999999997,
+        "z": 1.3
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 95.98976109214667,
+        "calls": 1396,
+        "triangles": 7044947,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "square",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "square",
+      "pose": {
+        "x": 1.5,
+        "y": 1.6999999999999997,
+        "z": -16.5
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 99.53550099536017,
+        "calls": 1216,
+        "triangles": 5769433,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "upper",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "upper",
+      "pose": {
+        "x": 0,
+        "y": 3.1499999999999995,
+        "z": -44
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 104.8462255358779,
+        "calls": 895,
+        "triangles": 4569665,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "castle",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "walk",
+      "view": "castle",
+      "pose": {
+        "x": -1,
+        "y": 4.6,
+        "z": -59
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 118.70218939593603,
+        "calls": 887,
+        "triangles": 4155281,
+        "chunks": 8,
+        "farChunks": 0
+      },
+      "charactersFailed": []
+    }
+  },
+  {
+    "view": "aerial",
+    "state": {
+      "ready": true,
+      "revision": "royal-neighborhoods-v1",
+      "mode": "aerial",
+      "view": "castle",
+      "pose": {
+        "x": 43,
+        "y": 46,
+        "z": 69
+      },
+      "touring": false,
+      "tourCursor": 115,
+      "travelled": 390.1363701588588,
+      "completedTours": 1,
+      "blockedSteps": 0,
+      "metrics": {
+        "buildings": 49,
+        "heroBuildings": 8,
+        "urbanBuildings": 41,
+        "roads": 37,
+        "courtyards": 2,
+        "districts": 5,
+        "tourLength": 390.1400547663966,
+        "newImageCalls": 0,
+        "newModelCalls": 0
+      },
+      "render": {
+        "fps": 115.56240369799866,
+        "calls": 1702,
+        "triangles": 7196835,
+        "chunks": 8,
+        "farChunks": 1
+      },
+      "charactersFailed": []
+    }
+  }
+]

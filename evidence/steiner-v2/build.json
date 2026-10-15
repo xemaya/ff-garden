@@ -1,0 +1,16 @@
+{
+  "character": "steiner",
+  "version": 2,
+  "artAcceptance": "pending user review; v1 rejected",
+  "reference": "https://na.finalfantasy.com/news/1130",
+  "geometry": "dedicated silhouette and sculpted face; no face atlas",
+  "vertices": 117015,
+  "faces": 128296,
+  "joints": 21,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Greet",
+    "Signature"
+  ]
+}

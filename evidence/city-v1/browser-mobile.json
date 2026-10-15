@@ -1,0 +1,42 @@
+{
+  "controls": [
+    {
+      "bottom": 51,
+      "left": 277,
+      "right": 361,
+      "text": "看整座城 ↗",
+      "top": 18
+    },
+    {
+      "bottom": 89,
+      "left": 277,
+      "right": 361,
+      "text": "街巷地图",
+      "top": 56
+    },
+    {
+      "bottom": 750,
+      "left": 173,
+      "right": 225,
+      "text": "慢慢逛快览",
+      "top": 728
+    },
+    {
+      "bottom": 756,
+      "left": 237,
+      "right": 361,
+      "text": "沿街绕一圈 ↗",
+      "top": 722
+    },
+    {
+      "bottom": 794,
+      "left": 309,
+      "right": 361,
+      "text": "回入口",
+      "top": 760
+    }
+  ],
+  "height": 812,
+  "scrollWidth": 375,
+  "width": 375
+}

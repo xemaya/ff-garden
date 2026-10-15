@@ -1,0 +1,22 @@
+{
+  "finalAssetCheckPassed": true,
+  "buildPassed": true,
+  "builtGlbMatchesSource": true,
+  "sourceSha256": "aa4d6ef545e9c2e836593ea25a3cb7be1f1e6f96f2d1e74fee995fc116b41336",
+  "v2GlbPreserved": true,
+  "browserViews": 4,
+  "browserClips": 4,
+  "walkPeakStates": 2,
+  "humanArtAcceptance": "pending",
+  "newImageGenerationCalls": 0,
+  "remote4090Tasks": 0,
+  "headScale": [
+    0.87,
+    0.9,
+    0.87
+  ],
+  "bodyWidthScale": 1.09,
+  "upperBodyHeightScale": 1.08,
+  "scope": "decoded skin ground samples and browser visual poses; no universal garment-contact claim",
+  "mobile375Passed": true
+}

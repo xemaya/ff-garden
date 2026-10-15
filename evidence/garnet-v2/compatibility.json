@@ -1,0 +1,32 @@
+[
+  {
+    "actor": {
+      "artStatus": "pending",
+      "clip": "Idle",
+      "frozen": false,
+      "height": 1.8,
+      "id": "garnet",
+      "time": 2.9460363533972265,
+      "version": 2,
+      "view": "front"
+    },
+    "height": 667,
+    "scrollWidth": 375,
+    "width": 375
+  },
+  {
+    "actor": {
+      "artStatus": "pending",
+      "clip": "Idle",
+      "frozen": false,
+      "height": 2.08,
+      "id": "steiner",
+      "time": 3.2132363534449153,
+      "version": 4,
+      "view": "front"
+    },
+    "height": 667,
+    "scrollWidth": 375,
+    "width": 375
+  }
+]

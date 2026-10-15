@@ -1,0 +1,39 @@
+{
+  "experiment": "FF9 raw 3D frame versus polished frame",
+  "arms": {
+    "A": "raw rendered frame",
+    "B": "same frame polished by Qwen-Image-2.1"
+  },
+  "shared": {
+    "videoModel": "minimax_h3_fl2va_pruned_fp8_scaled.safetensors",
+    "turbo": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+    "size": [
+      864,
+      480
+    ],
+    "requestedSeconds": 5,
+    "modelFrames": 124,
+    "fps": 24,
+    "steps": 8,
+    "seed": 14027,
+    "sampler": "res_multistep",
+    "scheduler": "simple",
+    "videoPrompt": "video-prompt.txt"
+  },
+  "imagePolish": {
+    "model": "qwen_image_2.1_bf16.safetensors",
+    "steps": 25,
+    "denoise": 1.0,
+    "seed": 14027,
+    "referenceResolution": 0
+  },
+  "changingVariable": "first frame only",
+  "otherStyleLoras": [],
+  "retries": 1,
+  "failedPolish": {
+    "denoise": 0.65,
+    "result": "B-polish-failed-low-denoise.png",
+    "reason": "TextEncodeQwenImage21 outputs empty latent, not source image latent; partial denoising caused repeated miniature figures",
+    "correction": "Use standard full sampling with original image as reference conditioning"
+  }
+}

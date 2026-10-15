@@ -14,7 +14,7 @@
     "verify:chocobo": "node tools/verify-chocobo.mjs",
     "verify:cast": "node tools/verify-cast.mjs",
     "test:assets": "node --test tools/asset-loading.test.mjs tools/hero-textures.test.mjs tools/asset-deadlines.test.mjs tools/asset-transport.test.mjs tools/startup-loading.test.mjs",
-    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run test:journey && npm run test:royal && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run test:theater && npm run verify:theater",
+    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run test:journey && npm run test:royal && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run test:theater && npm run verify:theater && npm run verify:city && npm run verify:royal-cast && npm run verify:steiner && npm run verify:garnet && npm run verify:city-life && npm run test:city-tour",
     "deploy": "python3 deploy/publish.py",
     "test:input": "node --test tools/input-state.test.mjs tools/view-transitions.test.mjs",
     "test:quest": "node --test tools/letter-quest.test.mjs",
@@ -22,7 +22,13 @@
     "test:journey": "node --test tools/postal-journey.test.mjs tools/postal-integration.test.mjs tools/postal-recovery.test.mjs tools/postal-observations.test.mjs tools/postal-sync.test.mjs tools/postal-entry-sound.test.mjs tools/postal-dialogue.test.mjs",
     "test:royal": "node --test tools/royal-layout.test.mjs tools/royal-wayfinding.test.mjs tools/royal-greetings.test.mjs tools/royal-story-displays.test.mjs",
     "test:theater": "node --test tools/theater-integration.test.mjs tools/theater-papers.test.mjs",
-    "verify:theater": "node tools/verify-theater.mjs"
+    "verify:theater": "node tools/verify-theater.mjs",
+    "verify:city": "node tools/verify-city.mjs",
+    "verify:royal-cast": "node tools/verify-royal-cast.mjs",
+    "verify:city-life": "node tools/verify-city-life.mjs",
+    "test:city-tour": "node --test tools/city-tour.test.mjs",
+    "verify:steiner": "node tools/verify-royal-cast.mjs --steiner-v4",
+    "verify:garnet": "node tools/verify-royal-cast.mjs --garnet-v3"
   },
   "dependencies": {
     "three": "0.170.0"

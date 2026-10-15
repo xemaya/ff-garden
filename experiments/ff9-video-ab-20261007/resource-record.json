@@ -1,0 +1,21 @@
+{
+  "gpu": 0,
+  "port": 8188,
+  "existingComfyInstanceReused": true,
+  "newServicesStarted": 0,
+  "sharedServicesStopped": 0,
+  "jobsAfter": {
+    "running": 0,
+    "pending": 0
+  },
+  "modelTaskWallSeconds": {
+    "imageRejected": 12.3,
+    "imageAccepted": 8.3,
+    "A": 96.1,
+    "B": 99.1
+  },
+  "totalModelTaskWallSeconds": 215.8,
+  "imageJobs": 2,
+  "videoJobs": 2,
+  "gpuMemoryCacheReleased": false
+}

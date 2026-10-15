@@ -1,0 +1,105 @@
+{
+  "states": [
+    {
+      "id": "steiner",
+      "clip": "Idle",
+      "time": 1.6974999332427978,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Idle",
+      "time": 1.6974999332427978,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "side"
+    },
+    {
+      "id": "steiner",
+      "clip": "Idle",
+      "time": 1.6974999332427978,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "back"
+    },
+    {
+      "id": "steiner",
+      "clip": "Idle",
+      "time": 1.6974999332427978,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "face"
+    },
+    {
+      "id": "steiner",
+      "clip": "Idle",
+      "time": 1.6974999332427978,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Walk",
+      "time": 0.525,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Greet",
+      "time": 1.452499966621399,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Signature",
+      "time": 1.452499966621399,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Walk",
+      "time": 0.3125,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "side"
+    },
+    {
+      "id": "steiner",
+      "clip": "Walk",
+      "time": 0.9375,
+      "frozen": true,
+      "height": 2.24,
+      "version": 3,
+      "artStatus": "pending",
+      "view": "side"
+    }
+  ],
+  "artAcceptance": "pending"
+}

@@ -1,0 +1,16 @@
+{
+  "character": "steiner",
+  "version": 3,
+  "artAcceptance": "pending user review; v1 rejected",
+  "reference": "https://na.finalfantasy.com/news/1130",
+  "geometry": "smaller head assembly; stronger torso; swept feather; wrapping shoulder, forearm, thigh and ankle plates; no face atlas",
+  "vertices": 106175,
+  "faces": 118212,
+  "joints": 21,
+  "actions": [
+    "Idle",
+    "Walk",
+    "Greet",
+    "Signature"
+  ]
+}

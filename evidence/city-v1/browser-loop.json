@@ -1,0 +1,35 @@
+{
+  "ready": true,
+  "revision": "royal-neighborhoods-v1",
+  "mode": "walk",
+  "view": "street",
+  "pose": {
+    "x": -0.06440240696087784,
+    "y": 1.7000000000000002,
+    "z": 31
+  },
+  "touring": false,
+  "tourCursor": 115,
+  "travelled": 390.1363701588588,
+  "completedTours": 1,
+  "blockedSteps": 0,
+  "metrics": {
+    "buildings": 49,
+    "heroBuildings": 8,
+    "urbanBuildings": 41,
+    "roads": 37,
+    "courtyards": 2,
+    "districts": 5,
+    "tourLength": 390.1400547663966,
+    "newImageCalls": 0,
+    "newModelCalls": 0
+  },
+  "render": {
+    "fps": 119.99999999999994,
+    "calls": 887,
+    "triangles": 4362299,
+    "chunks": 8,
+    "farChunks": 0
+  },
+  "charactersFailed": []
+}

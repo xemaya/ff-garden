@@ -1,0 +1,23 @@
+{
+  "origin": "https://ff.buplayground.cn",
+  "booth": {
+    "ready": true,
+    "revision": "tantalus-theater-v1"
+  },
+  "ship": {
+    "ready": true,
+    "mode": "ship"
+  },
+  "ticketAndPosterDialogsChecked": true,
+  "street": {
+    "ready": true,
+    "revision": "tantalus-theater-v1"
+  },
+  "tour": {
+    "finished": true,
+    "progress": 1,
+    "pathLength": 64.22627802833485,
+    "pendingCharacters": [],
+    "failedCharacters": []
+  }
+}

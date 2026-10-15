@@ -1,0 +1,127 @@
+{
+  "checks": [
+    {
+      "id": "steiner",
+      "clip": "Idle",
+      "time": 0.5332000000000118,
+      "frozen": false,
+      "height": 2.19,
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Walk",
+      "time": 0.29979999999998835,
+      "frozen": false,
+      "height": 2.19,
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Greet",
+      "time": 0.2916999999999535,
+      "frozen": false,
+      "height": 2.19,
+      "view": "front"
+    },
+    {
+      "id": "steiner",
+      "clip": "Signature",
+      "time": 0.2922999999999884,
+      "frozen": false,
+      "height": 2.19,
+      "view": "front"
+    },
+    {
+      "id": "zidane",
+      "clip": "Idle",
+      "time": 0.4916999999999535,
+      "frozen": false,
+      "height": 1.85,
+      "view": "front"
+    },
+    {
+      "id": "zidane",
+      "clip": "Walk",
+      "time": 0.2987000000000117,
+      "frozen": false,
+      "height": 1.85,
+      "view": "front"
+    },
+    {
+      "id": "zidane",
+      "clip": "Greet",
+      "time": 0.29179999999998835,
+      "frozen": false,
+      "height": 1.85,
+      "view": "front"
+    },
+    {
+      "id": "zidane",
+      "clip": "Signature",
+      "time": 0.3165999999999768,
+      "frozen": false,
+      "height": 1.85,
+      "view": "front"
+    },
+    {
+      "id": "garnet",
+      "clip": "Idle",
+      "time": 2.67831621236786,
+      "frozen": false,
+      "height": 1.78,
+      "view": "front"
+    },
+    {
+      "id": "garnet",
+      "clip": "Walk",
+      "time": 0.32500000000000007,
+      "frozen": false,
+      "height": 1.78,
+      "view": "front"
+    },
+    {
+      "id": "garnet",
+      "clip": "Greet",
+      "time": 0.25760000000003497,
+      "frozen": false,
+      "height": 1.78,
+      "view": "front"
+    },
+    {
+      "id": "garnet",
+      "clip": "Signature",
+      "time": 0.30770000000001163,
+      "frozen": false,
+      "height": 1.78,
+      "view": "front"
+    }
+  ],
+  "all": {
+    "id": "all",
+    "actors": [
+      {
+        "id": "steiner",
+        "clip": "Idle",
+        "time": 1.6974999332427978,
+        "frozen": true,
+        "height": 2.19
+      },
+      {
+        "id": "zidane",
+        "clip": "Idle",
+        "time": 1.6974999332427978,
+        "frozen": true,
+        "height": 1.85
+      },
+      {
+        "id": "garnet",
+        "clip": "Idle",
+        "time": 1.6974999332427978,
+        "frozen": true,
+        "height": 1.78
+      }
+    ],
+    "view": "front"
+  }
+}

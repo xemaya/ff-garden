@@ -1,0 +1,296 @@
+{
+  "title": "FF9 飞空剧场、长街与王城",
+  "recipe": "approved B: 3D keyframes + Qwen image polish + H3 FL2VA Turbo8",
+  "targetSeconds": 60,
+  "size": [
+    864,
+    480
+  ],
+  "fps": 24,
+  "gpu": 0,
+  "port": 8188,
+  "keyframeTimes": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60
+  ],
+  "segments": [
+    {
+      "index": 1,
+      "storyStart": 0,
+      "storyEnd": 10,
+      "requestedSeconds": 10,
+      "steps": 8,
+      "seed": 14027,
+      "motionContextFrames": 0
+    },
+    {
+      "index": 2,
+      "storyStart": 10,
+      "storyEnd": 20,
+      "requestedSeconds": 9.5,
+      "steps": 8,
+      "seed": 14028,
+      "motionContextFrames": 22
+    },
+    {
+      "index": 3,
+      "storyStart": 20,
+      "storyEnd": 30,
+      "requestedSeconds": 9.5,
+      "steps": 8,
+      "seed": 14029,
+      "motionContextFrames": 22
+    },
+    {
+      "index": 4,
+      "storyStart": 30,
+      "storyEnd": 40,
+      "requestedSeconds": 10,
+      "steps": 8,
+      "seed": 15030,
+      "motionContextFrames": 0,
+      "repair": true
+    },
+    {
+      "index": 5,
+      "storyStart": 40,
+      "storyEnd": 50,
+      "requestedSeconds": 9.5,
+      "steps": 8,
+      "seed": 15031,
+      "motionContextFrames": 22,
+      "repair": true
+    },
+    {
+      "index": 6,
+      "storyStart": 50,
+      "storyEnd": 60,
+      "requestedSeconds": 9.5,
+      "steps": 8,
+      "seed": 15032,
+      "motionContextFrames": 22,
+      "repair": true
+    }
+  ],
+  "cameraPath": "aerial incoming theater ship, descend at street entrance, forward along actual workshop street, reveal royal city",
+  "shipPlacement": "cinematic copy at (2,22,43), bow facing arriving camera; live game layout unchanged",
+  "imagePolish": {
+    "steps": 25,
+    "denoise": 1.0,
+    "styleReference": "../ff9-video-ab-20261007/B-first.png"
+  },
+  "newServicesStarted": 0,
+  "rawFrameHashes": {
+    "0": "8b04eb219ce63d9b637eb071dfb34d722e7f938b1313263d718002bfc90aaaef",
+    "5": "0a5d75d89bb5fcb6191979ab4e0e659e14270610b87d2068a5ebdbfed13c401a",
+    "10": "6bb63ff433489bbded0fdb25e062b52bf5096da29cd73631120c66059f8408e6",
+    "15": "b82184f6d13fbe48ed4d266873b20b732d75f0be9b2790bdbe7573a6fd4c4826",
+    "20": "cc982b46bdd541730d474a9b13595a98fcf590d8f490bef5ce2302c298c75921",
+    "30": "4d6a257d2ee862f70fcd9953329a8811782b4dacc98881d4e2ac4e968b0af1b4",
+    "40": "42d5b6f16825e504e54207658c9f76a3aa4236a71bbbc6eebd3f29999bb98234",
+    "50": "d4bc1561d3825f2415f620bd153f0e22a958e0266352ee29608f37f8ba2e4c9f",
+    "60": "5276b8a20b1eb10065006733dc4fcaea8f6453b8e794d4dabee419bdc3f8b688",
+    "35": "3c233750ceda03f09510a35fa9d1d9b3b24b5b9a67ee77765616bf8cf633f968",
+    "45": "16ddf35f1a2d171f3b4b8a2979cccdcbc69862db3a091b554c1eb0c25f116649",
+    "55": "56841163f51df85d747c239931c9b0ed883ebf2522700d31b80faf0a87fcc390"
+  },
+  "estimatedNativeFrames": [
+    243,
+    238,
+    238,
+    243,
+    238,
+    238
+  ],
+  "estimatedNativeSeconds": 59.916666666666664,
+  "continuation": "previous sampler AV latent tail, 22 frames and tail audio; last keyframe anchors route destination",
+  "midGuides": {
+    "1": {
+      "storyTime": 5,
+      "rawFrameIndex": 121
+    },
+    "2": {
+      "storyTime": 15,
+      "rawFrameIndex": 141
+    },
+    "4": {
+      "storyTime": 35,
+      "rawFrameIndex": 121
+    },
+    "5": {
+      "storyTime": 45,
+      "rawFrameIndex": 141
+    },
+    "6": {
+      "storyTime": 55,
+      "rawFrameIndex": 141
+    }
+  },
+  "polishedFrameHashes": {
+    "key-00.png": "60e876f9bcb5714fee7b07382641662822c9f2f88bffca2c411af6d58ab3ebcd",
+    "key-05.png": "2de0932d5e2d8f1c8b328fa9efe8357ed270cf9394835e659655cd82b5f2beb2",
+    "key-10.png": "d9e63ddd5ff2b5f795a0fddec22708ea5e1866fdc91c4529562faca5838a976b",
+    "key-15.png": "694c906e8c91f7c15b2f5fe30186c55472e116ac1668bda05a591f60733527a5",
+    "key-20.png": "f1ad95838c2af937db82d0e0a369fc232ba3c895f5d1ad6682e0b6c6bb7f8894",
+    "key-30.png": "6115777ed527b5e992f721074b67a61237c7e94972c68d39f0a710cec633e008",
+    "key-40.png": "b6a06fdb6c5223b5fbcac22867eb3b7afd4cb1f8cb6d961031a85ec8da189881",
+    "key-50.png": "b1dd6bcb7b7ce014fa04892a5f770dbfc345932f846d3c30150b9e696dd4cf2f",
+    "key-60.png": "27640554c856c352904603724beb7c1782274ff6aa91187e4a91349cbc013692"
+  },
+  "rejectedKeyframes": [
+    {
+      "time": 0,
+      "reason": "copied approved style reference content instead of aerial layout",
+      "file": "keyframes/key-00-rejected-style-copy.png"
+    }
+  ],
+  "correctedOpening": {
+    "reference": "raw-frames/frame-00.png",
+    "styleReferenceRemoved": true,
+    "seed": 14127,
+    "steps": 25,
+    "denoise": 1.0
+  },
+  "acceptedKeyframes": {
+    "00": {
+      "file": "keyframes/key-00.png",
+      "sha256": "df15a68df14c9b12fc9609a4b5e9cb9beb16e0b1d0b6e232e8e2e77ec30b8377"
+    },
+    "05": {
+      "file": "keyframes/key-05.png",
+      "sha256": "2de0932d5e2d8f1c8b328fa9efe8357ed270cf9394835e659655cd82b5f2beb2"
+    },
+    "10": {
+      "file": "keyframes/key-10.png",
+      "sha256": "d9e63ddd5ff2b5f795a0fddec22708ea5e1866fdc91c4529562faca5838a976b"
+    },
+    "15": {
+      "file": "keyframes/key-15.png",
+      "sha256": "694c906e8c91f7c15b2f5fe30186c55472e116ac1668bda05a591f60733527a5"
+    },
+    "20": {
+      "file": "keyframes/key-20.png",
+      "sha256": "f1ad95838c2af937db82d0e0a369fc232ba3c895f5d1ad6682e0b6c6bb7f8894"
+    },
+    "30": {
+      "file": "keyframes/key-30.png",
+      "sha256": "6115777ed527b5e992f721074b67a61237c7e94972c68d39f0a710cec633e008"
+    },
+    "40": {
+      "file": "keyframes/key-40.png",
+      "sha256": "b6a06fdb6c5223b5fbcac22867eb3b7afd4cb1f8cb6d961031a85ec8da189881"
+    },
+    "50": {
+      "file": "keyframes/key-50.png",
+      "sha256": "b1dd6bcb7b7ce014fa04892a5f770dbfc345932f846d3c30150b9e696dd4cf2f"
+    },
+    "60": {
+      "file": "keyframes/key-60.png",
+      "sha256": "27640554c856c352904603724beb7c1782274ff6aa91187e4a91349cbc013692"
+    },
+    "35": {
+      "file": "keyframes/key-35.png",
+      "sha256": "329a28319906c56d41193d50ebd1b72ee34664da2be5e8bdd23df43090cf8c3c"
+    },
+    "45": {
+      "file": "keyframes/key-45.png",
+      "sha256": "0c65d93c35fc852e49950dc130bf7cf4917929e3de54da3d5ccf367d9a1390b5"
+    },
+    "55": {
+      "file": "keyframes/key-55.png",
+      "sha256": "95739d1fe43cbbae9986e93094f4bb7d32cdc0fc9f3bdf13a7cc2db2934a1e75"
+    }
+  },
+  "openingReview": {
+    "passed": true,
+    "frames": 243,
+    "duration": 10.125,
+    "observations": "theater airship grows progressively; hull, props and distant city remain recognizable"
+  },
+  "descentReview": {
+    "passed": true,
+    "frames": 238,
+    "duration": 9.916666666666666,
+    "observations": "airship leaves overhead, shadow passes over meadow, camera descends toward same street entrance without cutting"
+  },
+  "rejectedSegments": [
+    {
+      "segment": 4,
+      "reason": "invented a second modern-looking aircraft and raised camera over rooftops",
+      "file": "clips/seg-04.mp4"
+    }
+  ],
+  "repairPlan": {
+    "segments": [
+      4,
+      5,
+      6
+    ],
+    "addedMidKeyframes": [
+      35,
+      45,
+      55
+    ],
+    "segment4Start": "actual last frame of accepted segment3",
+    "segment4MotionContextReset": true,
+    "removeRotorAudioFromStreetPrompts": true,
+    "keepMidCameraBelowEaves": true
+  },
+  "originalDownstreamSegmentsExcluded": [
+    5,
+    6
+  ],
+  "attemptedInterrupt6": "No matching running task; original segment6 had already completed. No shared service interrupted.",
+  "repair4Review": {
+    "passed": true,
+    "frames": 243,
+    "duration": 10.125,
+    "observations": "Camera travels forward below the eaves through existing shops; no additional flying vehicles; intermediate guide reached without rising over roofs."
+  },
+  "repair5Review": {
+    "passed": true,
+    "frames": 238,
+    "duration": 9.916666666666666,
+    "observations": "Smooth forward passage under stone arch; fountain, mage and chocobo approach with parallax; castle stays ahead; no extra vehicles."
+  },
+  "repair6Review": {
+    "passed": true,
+    "frames": 238,
+    "duration": 9.916666666666666,
+    "observations": "Camera advances toward castle and gradually tilts up; sword spire revealed fully. Minor painted texture/window drift remains, no scene cuts or invented flying objects."
+  },
+  "acceptedVideoFiles": [
+    "clips/seg-01.mp4",
+    "clips/seg-02.mp4",
+    "clips/seg-03.mp4",
+    "clips/repair-seg-04.mp4",
+    "clips/repair-seg-05.mp4",
+    "clips/repair-seg-06.mp4"
+  ],
+  "visualLimitations": [
+    "Generated local painted surface and window details can drift; this is not geometrically exact renderer output."
+  ],
+  "status": "complete",
+  "deliveredSeconds": 59.916666666666664,
+  "fullFilmReview": {
+    "passed": true,
+    "sampleEverySeconds": 2,
+    "contactFile": "full-film-review.png",
+    "browserPlayback": true,
+    "browserChapterSeeks": [
+      30,
+      40,
+      50
+    ]
+  }
+}

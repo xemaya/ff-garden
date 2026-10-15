@@ -31,3 +31,10 @@
 - 浏览器实际检查：两种资产模式、旋翼暂停、原位环顾、纸品展开/关闭、主街查看点与完整漫游；结果与截图在 `evidence/theater/`。
 
 视觉是否达到目标由用户验收，自动化通行与构建通过不代表最终美术验收。
+
+## 线上发布 · 2026-10-07（北京时间）
+
+- [资产预览](https://ff.buplayground.cn/theater.html) · [飞空剧场](https://ff.buplayground.cn/theater.html?ship=1) · [街区中的售票亭](https://ff.buplayground.cn/?street=workshops&theater=1)
+- 发布源码提交：`67c8e629a544`；线上 release：`20261006T160708Z-67c8e629a544`。
+- 旧版本保留，专属 nginx 和共享主配置均未修改；静态素材增量发布，无 GPU 作业。
+- 发布记录、文件校验、HTTP/浏览器结果见 `evidence/theater/deployment-2026-10-07/`。

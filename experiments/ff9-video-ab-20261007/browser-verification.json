@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "videos": [
+    {
+      "currentTime": 0.275274,
+      "duration": 5,
+      "error": null,
+      "id": "video-A",
+      "paused": true,
+      "readyState": 4
+    },
+    {
+      "currentTime": 0.274706,
+      "duration": 5,
+      "error": null,
+      "id": "video-B",
+      "paused": true,
+      "readyState": 4
+    }
+  ],
+  "syncDeltaSeconds": 0.0005680000000000129
+}

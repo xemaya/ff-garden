@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "clips": [
+    {
+      "file": "seg-01.mp4",
+      "frames": 243,
+      "duration": 10.125
+    },
+    {
+      "file": "seg-02.mp4",
+      "frames": 238,
+      "duration": 9.916666666666666
+    },
+    {
+      "file": "seg-03.mp4",
+      "frames": 238,
+      "duration": 9.916666666666666
+    },
+    {
+      "file": "repair-seg-04.mp4",
+      "frames": 243,
+      "duration": 10.125
+    },
+    {
+      "file": "repair-seg-05.mp4",
+      "frames": 238,
+      "duration": 9.916666666666666
+    },
+    {
+      "file": "repair-seg-06.mp4",
+      "frames": 238,
+      "duration": 9.916666666666666
+    }
+  ],
+  "frames": 1438,
+  "seconds": 59.916666666666664,
+  "fps": 24,
+  "size": [
+    864,
+    480
+  ],
+  "sha256": "b3c8d4d8162d867e37543e48f605cbdc1ea10e2e46200d13c238d89c3fe5e43b",
+  "audio": "muted display version; native audio retained in source clips",
+  "joins": "native AV motion context for 1\u21922\u21923 and 4\u21925\u21926; 3\u21924 uses exact decoded previous last frame with fresh first-frame conditioning; no fades or filler",
+  "noCrossfadesOrLoopFiller": true
+}

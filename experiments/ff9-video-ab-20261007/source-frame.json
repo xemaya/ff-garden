@@ -1,0 +1,20 @@
+{
+  "size": [
+    864,
+    480
+  ],
+  "sha256": "b7b12148cedceab7a58a30720fbaff05efab1a83fbc66f49ba487059fdc3de2b",
+  "source": "Three.js clean capture",
+  "character": "moogle-courier-v3.glb",
+  "scene": "tantalus-theater-v1",
+  "pose": "Idle@0.08",
+  "B-first": {
+    "size": [
+      864,
+      480
+    ],
+    "sha256": "3e4b16f609fc0f5cc76eeccd7fadea8e442124f66c88924db1aef52e79bb75cc",
+    "source": "Qwen-Image-2.1 reference edit, full sampling denoise=1",
+    "compositionAcceptance": "same moogle and theater set retained; warmer palette and extra surface details"
+  }
+}
