@@ -9,6 +9,7 @@
 - **时辰**：右上角「时辰」切换晴日 / 黄昏（也可 `?time=dusk`）。黄昏时窗户与街灯点亮，王城窗口与大门灯笼亮起。
 - **一日邮差**：喷泉广场的邮差莫古利、书桌旁的魔导士、树荫边的陆行鸟依次交接；底栏「手记」查看委托与见闻，底栏小字给出方向与距离。石牌在城门内侧、喷泉旁和王城大门前。进度键 `ff-garden.postal-journey.v2` 与旧页面共用，旧进度可直接继续。
 - **早期版本**：听风王城 `/?district=royal`、三条旧街 `/?street=workshops|market|residential` 与入口样板仍保留原链接，城内左栏「早期版本」可进入。
+- **面包房（可进店）**：集市巷入口左手第一家（`city-8`）。走到门前按 E 或点「推门进去」；店内是独立的小场景（炉火、柜台、面包架、面包师），走出门口、按 E 或 Esc 回到街上。晴日/黄昏各有光线和面包师台词。代码在 `src/city-shop.js`，`npm run test:city-shop` 检查门在立面上、门外可达、店内柜台与出口可达。
 - **检查**：`npm run test:city-postal` 检查石牌可读位置、三位角色与纪念桌可达；浏览器 QA 用 `/city.html?qa` 暴露的 `window.__cityQA.teleport(x,z,yaw)` 驱动整段邮路。
 
 线上：<https://ff.buplayground.cn/> · [部署与回滚](deploy/README.md) · 仓库：<https://github.com/xemaya/ff-garden>。

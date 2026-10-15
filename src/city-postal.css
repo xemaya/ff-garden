@@ -32,3 +32,12 @@
   #moogle-panel a{display:block;margin:6px 0 0}
   .tour-controls #letter-quest-open span{display:none}
 }
+/* The bakery: door card on the street, baker card inside, and the fade between them. */
+.shop-card{position:absolute;display:flex;gap:11px;align-items:flex-start;background:#f2ead7f2;border:1px solid #99835b55;box-shadow:0 10px 32px #4b453922;padding:13px 16px;backdrop-filter:blur(8px);font-size:12px;line-height:1.7;z-index:3}
+.shop-card>span{color:#ad8a4d;font-size:20px;line-height:1.2}.shop-card strong{font-size:14px;font-weight:500;letter-spacing:1px}.shop-card p{margin:5px 0 9px;color:#6c6650;max-width:240px}
+.shop-card button{background:#eadcb9;border:1px solid #92795555;padding:8px 12px;font-size:12px;min-height:36px}.shop-card kbd{font:10px Georgia,serif;border:1px solid #92795577;padding:0 4px;margin-left:6px;color:#7a6142}
+#shop-door{left:50%;transform:translateX(-50%);bottom:150px}
+#shop-talk{right:29px;bottom:92px;width:300px}
+#shop-fade{position:fixed;inset:0;background:#1d150e;opacity:0;pointer-events:none;transition:opacity .32s;z-index:4}#shop-fade.on{opacity:1}
+body.in-shop #nearby,body.in-shop #moogle-panel{display:none!important}
+@media(max-width:760px){#shop-door,#shop-talk{left:auto;transform:none;right:14px;bottom:156px;width:224px;padding:11px 12px;font-size:11px}.shop-card kbd{display:none}}

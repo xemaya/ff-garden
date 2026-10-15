@@ -14,7 +14,7 @@
     "verify:chocobo": "node tools/verify-chocobo.mjs",
     "verify:cast": "node tools/verify-cast.mjs",
     "test:assets": "node --test tools/asset-loading.test.mjs tools/hero-textures.test.mjs tools/asset-deadlines.test.mjs tools/asset-transport.test.mjs tools/startup-loading.test.mjs",
-    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run test:journey && npm run test:royal && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run test:theater && npm run verify:theater && npm run verify:city && npm run verify:steiner && npm run verify:garnet && npm run verify:city-life && npm run test:city-tour && npm run test:city-postal",
+    "check": "npm run test:assets && npm run test:input && npm run test:quest && npm run test:guidance && npm run test:journey && npm run test:royal && npm run verify && npm run verify:v4 && npm run verify:cast && npm run verify:moogle && npm run verify:mage && npm run verify:chocobo && npm run test:theater && npm run verify:theater && npm run verify:city && npm run verify:steiner && npm run verify:garnet && npm run verify:city-life && npm run test:city-tour && npm run test:city-postal && npm run test:city-shop",
     "deploy": "python3 deploy/publish.py",
     "test:input": "node --test tools/input-state.test.mjs tools/view-transitions.test.mjs",
     "test:quest": "node --test tools/letter-quest.test.mjs",
@@ -28,7 +28,8 @@
     "test:city-tour": "node --test tools/city-tour.test.mjs",
     "verify:steiner": "node tools/verify-royal-cast.mjs --steiner-v4",
     "verify:garnet": "node tools/verify-royal-cast.mjs --garnet-v3",
-    "test:city-postal": "node --test tools/city-postal.test.mjs"
+    "test:city-postal": "node --test tools/city-postal.test.mjs",
+    "test:city-shop": "node --test tools/city-shop.test.mjs"
   },
   "dependencies": {
     "three": "0.170.0"
