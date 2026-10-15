@@ -140,7 +140,7 @@ export function buildHeroStreet(plan={}){const p=new THREE.Group(),pos=[],uv=[],
     const w=.54+random()*.035,d=.53+random()*.04,shape=new THREE.Shape();const bevel=.07;shape.moveTo(-w/2+bevel,-d/2);shape.lineTo(w/2-bevel,-d/2+.015);shape.lineTo(w/2,-d/2+bevel);shape.lineTo(w/2-.013,d/2-bevel);shape.lineTo(w/2-bevel,d/2);shape.lineTo(-w/2+bevel,d/2-.012);shape.lineTo(-w/2,d/2-bevel);shape.lineTo(-w/2,-d/2+bevel);shape.closePath();
     const g=new THREE.ExtrudeGeometry(shape,{depth:.018,bevelEnabled:true,bevelThickness:.01,bevelSize:.019,bevelSegments:1});g.rotateX(-Math.PI/2);
     const a=g.attributes.uv;for(let i=0;i<a.count;i++)a.setXY(i,(col%4+.32+a.getX(i)*.48)/4,(row%4+.33+a.getY(i)*.48)/4);
-    const o=mesh(p,g,materials.pavers,x,.060+random()*.009,z);o.rotation.y=(random()-.5)*.05;metrics.sculptedPavers++;
+    const o=mesh(p,g,materials.pavers,x,(plan.paverBase??.060)+random()*.009,z);o.rotation.y=(random()-.5)*.05;metrics.sculptedPavers++;
   }
   for(let z=32.6;z>end+.3;z-=.66)for(const side of[-1,1]){const q=rs(z,side,half-.04);stoneBlock(p,.23,.14,.61,q.x,.075,q.z,Math.round(z*12)+side);}
   // A restrained drainage groove and pockets of moss at shaded kerbs.

@@ -92,9 +92,12 @@ export function buildCityBacks(plan){const g=new THREE.Group();
   }return g;
 }
 function flat(g,w,d,x,y,z,m){const geo=new THREE.PlaneGeometry(w,d);geo.rotateX(-Math.PI/2);const uv=geo.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*w/4,uv.getY(i)*d/4);const o=mesh(g,geo,m,x,y,z);o.castShadow=false;return o;}
-function roadRibbon(road){const pos=[],uv=[];let distance=0;
+// Roads share one height and one world-space texture mapping: where ribbons overlap at a
+// junction they show the same stones, so the coplanar overlap cannot flicker.
+export const ROAD_Y=.066,CITY_PAVER_BASE=ROAD_Y+.006;
+function roadRibbon(road){const pos=[],uv=[];
   for(let i=1;i<road.points.length;i++){const a=road.points[i-1],b=road.points[i],length=Math.hypot(b.x-a.x,b.z-a.z),segments=Math.max(1,Math.ceil(length/.20)),nx=-(b.z-a.z)/length*road.width/2,nz=(b.x-a.x)/length*road.width/2;
-    for(let j=0;j<segments;j++){const aa={x:a.x+(b.x-a.x)*j/segments,z:a.z+(b.z-a.z)*j/segments},bb={x:a.x+(b.x-a.x)*(j+1)/segments,z:a.z+(b.z-a.z)*(j+1)/segments};for(const[p,side,u]of[[aa,-1,0],[aa,1,1],[bb,-1,0],[aa,1,1],[bb,1,1],[bb,-1,0]]){pos.push(p.x+side*nx,cityHeight(p.x,p.z)+.066,p.z+side*nz);uv.push(u*road.width/4,(distance+Math.hypot(p.x-a.x,p.z-a.z))/4);}}distance+=length;
+    for(let j=0;j<segments;j++){const aa={x:a.x+(b.x-a.x)*j/segments,z:a.z+(b.z-a.z)*j/segments},bb={x:a.x+(b.x-a.x)*(j+1)/segments,z:a.z+(b.z-a.z)*(j+1)/segments};for(const[p,side]of[[aa,-1],[aa,1],[bb,-1],[aa,1],[bb,1],[bb,-1]]){const px=p.x+side*nx,pz=p.z+side*nz;pos.push(px,cityHeight(p.x,p.z)+ROAD_Y,pz);uv.push(px/4,-pz/4);}}
   }const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geo.computeVertexNormals();return geo;
 }
 export function buildCityGround(plan){const g=new THREE.Group();
@@ -121,7 +124,7 @@ export function buildCityGround(plan){const g=new THREE.Group();
   for(const [x,z,w,d]of[[-31.2,11,1,24],[32,10,1,26]]){box(g,w,.35,d,kit.stone,x,.17,z);box(g,w-.25,.035,d-.25,kit.ivy,x,.37,z);}
   return g;
 }
-function archway(g,x,z,width=5.4,y=0){for(const side of[-1,1]){box(g,.68,3.1,.8,kit.stone,x+side*(width/2+.35),y+1.55,z);box(g,.94,.2,1,kit.wood,x+side*(width/2+.35),y+3.0,z);}const s=arch(width+1.5,4.5);s.holes.push(new THREE.Path(arch(width,4.0).getPoints(20)));mesh(g,new THREE.ExtrudeGeometry(s,{depth:.6,bevelEnabled:false}),kit.stone,x,y,z-.3);}
+function archway(g,x,z,width=5.4,y=0){for(const side of[-1,1]){box(g,.68,3.1,.8,kit.stone,x+side*(width/2+.35),y+1.55,z);box(g,.94,.2,1,kit.wood,x+side*(width/2+.35),y+3.02,z);}const s=arch(width+1.5,4.5);s.holes.push(new THREE.Path(arch(width,4.0).getPoints(20)));mesh(g,new THREE.ExtrudeGeometry(s,{depth:.6,bevelEnabled:false}),kit.stone,x,y,z-.3);}
 export function buildCityEdges(plan){const g=new THREE.Group(),random=rng(plan.seed);
   for(const side of[-1,1]){box(g,1.1,3.2,111,kit.stone,side<0?-33:34,1.4,-10);box(g,1.4,.22,111.5,kit.wood,side<0?-33:34,3.1,-10);for(let z=43;z>-67;z-=7.3)box(g,1.5,.60,.95,kit.stone,side<0?-33:34,3.37,z);}
   for(const side of[-1,1])box(g,28.2,3.2,1.1,kit.stone,side*18.7,1.4,46.8);
