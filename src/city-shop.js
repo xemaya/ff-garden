@@ -121,15 +121,18 @@ export function createCityShop({plan,timeOf}){
   const baker=createTownsfolk(0,2203);baker.root.position.set(layout.counter.x,0,-3.45);scene.add(baker.root);
   const stops=[{x:-.7,z:-3.45,face:0,wait:7},{x:ox+.15,z:oz+1.45,face:Math.PI,wait:4.5},{x:.2,z:-3.5,face:0,wait:5}];let stop=0,waiting=stops[0].wait,bakerYaw=0;
   function setTime(time){const dusk=time==='dusk';pane.color.setHex(dusk?0xe0884a:0xf4f1e4);daylight.color.setHex(dusk?0xff9a55:0xfff3e2);daylight.intensity=dusk?.7:3.8;hemi.color.setHex(dusk?0xb7a6c4:0xf1ede2);hemi.intensity=dusk?.1:.38;lampGlass.emissiveIntensity=dusk?2.4:1.0;for(const l of lamps)l.intensity=dusk?3.6:1.6;ovenBase=dusk?7:5;}
-  let lastTime=null,clock=0,ovenBase=6;
+  let lastTime=null,clock=0,ovenBase=6,held=0;
   function update(dt,player){clock+=dt;const time=timeOf();if(time!==lastTime){lastTime=time;setTime(time);}
     const flicker=.82+.12*Math.sin(clock*7.1)+.08*Math.sin(clock*13.7+1.3)+.05*Math.sin(clock*23.1);ovenLight.intensity=ovenBase*flicker;fire.emissiveIntensity=2.4*flicker;
     const s=stops[stop],p=baker.root.position,dx=s.x-p.x,dz=s.z-p.z,dist=Math.hypot(dx,dz);let moving=false,want=s.face;
-    if(dist>.05){moving=true;const step=Math.min(dist,.55*dt);p.x+=dx/dist*step;p.z+=dz/dist*step;want=Math.atan2(dx,dz);}
+    if(held>0){held-=dt;if(player)want=Math.atan2(player.x-p.x,player.z-p.z);}
+    else if(dist>.05){moving=true;const step=Math.min(dist,.55*dt);p.x+=dx/dist*step;p.z+=dz/dist*step;want=Math.atan2(dx,dz);}
     else{const near=player&&Math.hypot(player.x-p.x,player.z-p.z)<3.2;if(near&&stop!==1)want=Math.atan2(player.x-p.x,player.z-p.z);waiting-=dt;if(waiting<=0){stop=(stop+1)%stops.length;waiting=stops[stop].wait;}}
     bakerYaw+=Math.atan2(Math.sin(want-bakerYaw),Math.cos(want-bakerYaw))*Math.min(1,dt*5);baker.root.rotation.y=bakerYaw;baker.update(dt,moving);}
   const canOccupy=(x,z,r=.3)=>layout.canOccupy(x,z,r)&&Math.hypot(x-baker.root.position.x,z-baker.root.position.z)>r+.28;
   return{scene,layout,canOccupy,name:'面包房',building,update,baker:baker.root,
+    // Keep the baker at the counter, facing the visitor, while they talk.
+    hold(seconds){held=seconds;},
     lines:()=>bakerLines(timeOf()),
     nearBaker:p=>Math.hypot(p.x-baker.root.position.x,p.z-baker.root.position.z)<2.6,
     nearDoorOutside:p=>Math.hypot(p.x-f.outside.x,p.z-f.outside.z)<DOOR_REACH,

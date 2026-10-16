@@ -10,7 +10,13 @@
     "districts": 5,
     "tourLength": 390.1400547663966,
     "newImageCalls": 0,
-    "newModelCalls": 0
+    "newModelCalls": 0,
+    "dressing": {
+      "props": 34,
+      "lanterns": 22,
+      "vines": 19,
+      "lines": 9
+    }
   },
   "walkSamples": 18856,
   "allRoadsConnected": true,

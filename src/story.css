@@ -1,0 +1,100 @@
+.story{position:fixed;inset:0;pointer-events:none;z-index:4;font-family:"Songti SC","Noto Serif SC",Georgia,serif;color:var(--ink,#4c4635)}
+.story [hidden]{display:none!important}
+.story kbd{font:11px Georgia,serif;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin:0 2px;opacity:.85}
+
+/* Cinematic: letterbox bars, a veil for fades, and the HUD steps aside. */
+.story-bar{position:absolute;left:0;right:0;height:0;background:#120f0c;transition:height .55s cubic-bezier(.3,.7,.2,1)}
+.story-bar-top{top:0}.story-bar-bottom{bottom:0}
+body.story-letterbox .story-bar{height:9vh}
+.story-veil{position:absolute;inset:0;background:#120f0c;opacity:0}
+.story-skip{position:absolute;right:28px;bottom:calc(9vh + 12px);font-size:11px;letter-spacing:1px;color:#f3e9d2;opacity:0;transition:opacity .4s}
+body.story-letterbox .story-skip{opacity:.7}
+body.story-cinematic header,body.story-cinematic .places,body.story-cinematic .top-right,body.story-cinematic footer,body.story-cinematic #nearby,body.story-cinematic #moogle-panel,body.story-cinematic .shop-card,body.story-cinematic #notice,body.story-cinematic .touch-pad,body.story-cinematic #map-panel,body.story-cinematic .story-tracker,body.story-cinematic .story-hand{opacity:0;pointer-events:none!important;transition:opacity .35s}
+
+/* Dialogue: a paper box with a name tab, typed out letter by letter. */
+.story-dialog{position:absolute;left:50%;bottom:calc(9vh + 22px);transform:translateX(-50%);width:min(660px,calc(100vw - 32px));min-height:96px;background:#f4ecd8f5;border:1px solid #8d7651;box-shadow:0 0 0 4px #f4ecd8c0,0 0 0 5px #8d765166,0 14px 40px #1d160e55;padding:22px 26px 20px;pointer-events:auto;cursor:pointer;animation:story-rise .28s ease-out}
+body:not(.story-letterbox) .story-dialog{bottom:96px}
+.story-dialog p{margin:0;font-size:17px;line-height:1.85;letter-spacing:.5px;min-height:2em}
+.story-name{position:absolute;top:-15px;left:20px;background:#784f43;color:#f6ead0;font-size:13px;letter-spacing:3px;padding:5px 14px 5px 16px;box-shadow:0 2px 8px #3a271d44}
+.story-dialog.narration{background:#1b1612e8;border-color:#c9b58a66;box-shadow:0 0 0 4px #1b161280,0 14px 40px #00000066;color:#efe3c6;text-align:center}
+.story-dialog.narration p{font-style:italic;color:#efe3c6}
+.story-caret{position:absolute;right:18px;bottom:10px;font-size:10px;font-style:normal;color:#8d7651;opacity:0}
+.story-dialog.done .story-caret{opacity:1;animation:story-bob .9s ease-in-out infinite}
+@keyframes story-rise{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes story-bob{50%{transform:translateY(3px)}}
+
+/* World-space prompt and quest markers. */
+.story-prompt{position:absolute;left:0;top:0;margin:-58px 0 0 -14px;display:flex;align-items:center;gap:7px;background:#f4ecd8f2;border:1px solid #8d7651;padding:8px 13px 8px 9px;font-size:14px;letter-spacing:1px;pointer-events:auto;box-shadow:0 6px 18px #2c22173a;animation:story-pop .32s cubic-bezier(.3,1.6,.5,1);white-space:nowrap}
+.story-prompt kbd{background:#784f43;color:#f6ead0;border-color:#784f43;font-size:12px;padding:1px 6px}
+.story-prompt small{font-size:11px;color:#8a7654;letter-spacing:1px}
+.story-prompt small:empty{display:none}
+@keyframes story-pop{from{transform:scale(.6);opacity:0}}
+.story-markers{position:absolute;inset:0}
+.story-marker{position:absolute;left:0;top:0;margin:-46px 0 0 -13px;width:26px;text-align:center}
+.story-marker b{display:block;width:26px;height:26px;line-height:26px;border-radius:50%;background:#e9b44c;color:#4a2f14;font:bold 17px Georgia,serif;box-shadow:0 0 0 2px #fff4d6,0 0 16px #ffcf6b;animation:story-float 1.6s ease-in-out infinite}
+.story-marker i{display:block;margin-top:4px;font:11px/1 "Songti SC",serif;font-style:normal;color:#fff8e6;text-shadow:0 1px 4px #000a;white-space:nowrap;transform:translateX(calc(-50% + 13px));width:max-content}
+.story-marker.edge b{opacity:.75;transform:scale(.8)}
+@keyframes story-float{50%{transform:translateY(-5px)}}
+.story-bubble{position:absolute;left:0;top:0;margin:-70px 0 0 -16px;font:bold 30px Georgia,serif;color:#fff6dc;text-shadow:0 0 10px #ffb34d,0 2px 4px #000}
+.story-bubble.pop{animation:story-pop .3s cubic-bezier(.3,1.8,.5,1)}
+
+/* Quest tracker. */
+.story-tracker{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:min(380px,44vw);background:#f2ead7e6;border:1px solid #8d765155;border-top:3px solid #784f43;padding:10px 16px 11px;backdrop-filter:blur(6px);box-shadow:0 6px 22px #4b45391a}
+.story-tracker-kicker{font-size:10px;letter-spacing:3px;color:#8a7654}
+.story-tracker strong{display:block;font-size:15px;letter-spacing:2px;margin:3px 0 4px}
+.story-tracker p{margin:0;font-size:12px;line-height:1.7}
+.story-tracker ul{margin:5px 0 0;padding:0;list-style:none;font-size:11px;line-height:1.8;color:#6c6148}
+.story-tracker li::before{content:'○ ';color:#a08a5f}
+.story-tracker li.done{color:#9b9178;text-decoration:line-through}
+.story-tracker li.done::before{content:'● ';color:#784f43}
+.story-tracker.flash{animation:story-flash 1.2s ease-out}
+@keyframes story-flash{0%{box-shadow:0 0 0 0 #e9b44c,0 6px 22px #4b45391a}30%{box-shadow:0 0 0 6px #e9b44c66,0 6px 22px #4b45391a}}
+
+/* Held item. */
+.story-hand{position:absolute;right:29px;bottom:96px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;background:#f2ead7e6;border:1px solid #8d765155;padding:8px 13px;font-size:12px;pointer-events:auto;text-align:right}
+.story-hand-label{font-size:9px;letter-spacing:3px;color:#8a7654}
+.story-hand strong{font-size:13px;letter-spacing:1px}
+.story-hand em{font-style:normal;font-size:11px;color:#784f43}
+.story-hand em:empty{display:none}
+.story-hand.actionable{cursor:pointer}
+
+/* Item toast. */
+.story-item{position:absolute;left:50%;top:26%;width:max-content;max-width:92vw;white-space:nowrap;transform:translate(-50%,0);text-align:center;opacity:0;transition:opacity .4s,transform .4s;background:radial-gradient(ellipse at center,#1b1612cc 0,#1b161299 55%,transparent 72%);padding:26px 70px;color:#f6ead0}
+.story-item.on{opacity:1;transform:translate(-50%,-8px)}
+.story-item span{display:block;font-size:10px;letter-spacing:5px;color:#e9c37a}
+.story-item strong{display:block;font-size:22px;letter-spacing:4px;margin:6px 0 4px;text-shadow:0 0 14px #ffcf6b88}
+.story-item p{margin:0;font-size:12px;letter-spacing:1px;opacity:.85}
+
+/* Title cards. */
+.story-card{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#120f0cb0;pointer-events:auto;opacity:0;transition:opacity .6s}
+.story-card.on{opacity:1}
+.story-card>div{text-align:center;color:#f3e7cc;padding:24px}
+.story-card-kicker{font-size:11px;letter-spacing:7px;color:#e1bd78}
+.story-card h2{font-weight:normal;font-size:clamp(28px,5vw,44px);letter-spacing:10px;margin:18px 0 12px;text-shadow:0 0 30px #ffbf6b55}
+.story-card-sub{font-size:15px;letter-spacing:3px;margin:0;opacity:.9}
+.story-card-keep{font-size:12px;letter-spacing:2px;margin:26px 0 0;color:#e1bd78}
+.story-card nav{display:flex;gap:10px;justify-content:center;margin-top:26px}
+.story-card nav:empty{display:none}
+.story-card nav button{background:transparent;border:1px solid #e1bd7888;color:#f3e7cc;padding:9px 16px;font-size:12px;letter-spacing:2px}
+.story-card small{display:block;margin-top:22px;font-size:10px;letter-spacing:3px;opacity:.55}
+
+/* The letter: handwritten paper. */
+.story-letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#120f0c99;pointer-events:auto;opacity:0;transition:opacity .35s}
+.story-letter.on{opacity:1}
+.story-letter article{width:min(520px,calc(100vw - 32px));max-height:calc(100vh - 60px);overflow:auto;background:linear-gradient(#0000 0 0),repeating-linear-gradient(#f6ecd4 0 31px,#d9c9a3 31px 32px);background-color:#f6ecd4;padding:34px 38px 26px;box-shadow:0 30px 60px #00000066,inset 0 0 60px #c9ad7a55;transform:rotate(-1deg) translateY(12px);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:"Kaiti SC","STKaiti","KaiTi","Songti SC",serif;color:#4a3a28}
+.story-letter.on article{transform:rotate(-1deg) translateY(0)}
+.story-letter-to{margin:0 0 14px;font-size:17px;line-height:32px}
+.story-letter-body p{margin:0;font-size:16px;line-height:32px;text-indent:2em}
+.story-letter-from{margin:14px 0 0;text-align:right;font-size:16px;line-height:32px}
+.story-letter button{display:block;margin:20px auto 0;background:#784f43;color:#f6ead0;padding:9px 18px;font:13px "Songti SC",serif;letter-spacing:2px}
+
+@media(max-width:760px){
+  .story-tracker{top:196px;left:auto;right:14px;transform:none;width:min(230px,56vw);padding:8px 11px}
+  .story-tracker strong{font-size:13px}.story-tracker p{font-size:11px}
+  .story-dialog{padding:18px 18px 16px;min-height:84px}.story-dialog p{font-size:15px}
+  body:not(.story-letterbox) .story-dialog{bottom:150px}
+  .story-hand{right:14px;bottom:150px}
+  .story-letter article{padding:24px 22px 20px}
+  .story-letter-body p,.story-letter-from{font-size:15px}
+}
+#city-map .story-map-target{fill:#e9b44c66;stroke:#b8801c;stroke-width:.7}

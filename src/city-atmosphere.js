@@ -68,16 +68,19 @@ export function createCityAtmosphere({scene,renderer,sun,fill,hemi,reduced,halo,
   scene.background=null;scene.add(dome,range,smoke.points);
   const lamps=[...CITY_LAMPS,...extraLamps].map(([x,z])=>{const l=new THREE.PointLight(0xffb066,0,15,1.8);l.position.set(x,cityHeight(x,z)+3.1,z);scene.add(l);return l;});
   for(const m of[lit,heroPane,castleWindows].filter(Boolean))m.emissive=new THREE.Color(0xffb45e);lamp.emissive=new THREE.Color(0xffc172);
-  let current='day';
+  let current='day',streetLights=null;
+  // Street lamps and wall lanterns can be held dark or lit one by one (the lamplighter story);
+  // null gives them back to the time of day.
+  function applyLights(){const p=CITY_TIMES[current],o=streetLights,amb=o?o.ambient:1;lantern.emissiveIntensity=Math.max(CITY_TIMES.day.lanterns,p.lanterns*amb);lamp.emissiveIntensity=p.lampHeads*amb;if(halo){halo.opacity=p.halo*amb;halo.visible=halo.opacity>0;}lamps.forEach((l,i)=>l.intensity=p.lamps*(o?(o.lamps?.[i]??amb):1));}
   function set(name){const p=CITY_TIMES[name]||CITY_TIMES.day;current=CITY_TIMES[name]?name:'day';const u=dome.material.uniforms;
     for(const k of['zenith','horizon','band','glowColor','cloudLit','cloudShade'])u[k].value.setHex(p[k]);u.bandStrength.value=p.bandStrength;u.cloudCover.value=p.cloudCover;
     u.sunDir.value.set(...p.sun).normalize();sun.position.copy(sun.target.position).addScaledVector(u.sunDir.value,200);sun.shadow.camera.far=420;sun.shadow.camera.updateProjectionMatrix();
     sun.color.setHex(p.sunColor);sun.intensity=p.sunIntensity;hemi.color.setHex(p.hemiSky);hemi.groundColor.setHex(p.hemiGround);hemi.intensity=p.hemiIntensity;fill.color.setHex(p.fill);fill.intensity=p.fillIntensity;
     renderer.toneMappingExposure=p.exposure;scene.environmentIntensity=p.environment;scene.fog.color.setHex(p.fog);scene.fog.density=p.fogDensity;
     range.children.forEach((m,i)=>m.material.color.setHex(p.ridges[i]));
-    lit.emissiveIntensity=p.windows;heroPane.emissiveIntensity=p.hero;lantern.emissiveIntensity=p.lanterns;lamp.emissiveIntensity=p.lampHeads;if(castleWindows)castleWindows.emissiveIntensity=p.castle;if(halo){halo.opacity=p.halo;halo.visible=p.halo>0;}lamps.forEach(l=>l.intensity=p.lamps);
+    lit.emissiveIntensity=p.windows;heroPane.emissiveIntensity=p.hero;if(castleWindows)castleWindows.emissiveIntensity=p.castle;applyLights();
     smoke.points.material.color.setHex(p.smoke);smoke.points.material.opacity=p.smokeOpacity;return current;}
-  return{set,get time(){return current;},labels:Object.fromEntries(Object.entries(CITY_TIMES).map(([k,v])=>[k,v.label])),
+  return{set,get time(){return current;},lampPositions:lamps.map(l=>l.position.clone()),setStreetLights(value){streetLights=value?{ambient:value.ambient??0,lamps:value.lamps||null}:null;applyLights();},get streetLightsHeld(){return!!streetLights;},labels:Object.fromEntries(Object.entries(CITY_TIMES).map(([k,v])=>[k,v.label])),
     update(seconds,camera){dome.position.copy(camera.position);if(!reduced){dome.material.uniforms.time.value=seconds;smoke.update(seconds);}},
     snapshot(){return{time:current,chimneys:smoke.count,lamps:lamps.length,windowsLit:lit.userData.count||0,windowsUnlit:unlit.userData.count||0};}};
 }
