@@ -26,7 +26,7 @@
   ],
   "artStatus": "pending human review",
   "fullFilmRerecorded": true,
-  "productionDeployed": false,
+  "productionDeployed": true,
   "recordingAuthorization": "Explicit user approval on 2026-10-17 to run tools/film/record.py with Playwright",
   "frameCount": 8524,
   "durationSeconds": 284.1333333333333,
@@ -41,5 +41,19 @@
     "frames": "8520",
     "durationSeconds": 284.116009
   },
-  "encodingNote": "8524 raw frames captured. The shortest-stream mux ends video at frame 8520 during the closing black hold; the full original audio is retained."
+  "encodingNote": "8524 raw frames captured. The shortest-stream mux ends video at frame 8520 during the closing black hold; the full original audio is retained.",
+  "deployment": {
+    "release": "20261016T164750Z-5206f32bdadb",
+    "commit": "5206f32bdadb",
+    "publicVideo": "https://ff.buplayground.cn/film/lamplighter.mp4?v=20261017",
+    "remoteAndLocalSha256": "3ee63be80d34836f1df3fdf90af2e3f6dd2b743f30f5ac68a915d32639f517fb",
+    "browser": {
+      "width": 1920,
+      "height": 1080,
+      "duration": 284.116009,
+      "playedToSeconds": 14.384966,
+      "error": null
+    },
+    "originalAssetCheckoutPreserved": true
+  }
 }
