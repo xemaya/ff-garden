@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d0a08">
+<title>寄给点灯人的信 · 幻想小城的邮差</title>
+<style>
+:root{--ink:#f1e3c2;--gold:#d9b673;--bg:#0d0a08}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Songti SC","Noto Serif SC",Georgia,serif}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:56px 16px 48px;background:radial-gradient(ellipse at 50% 0,#2a1d12 0,#0d0a08 62%)}
+.kicker{font:12px Georgia,serif;letter-spacing:8px;color:var(--gold)}
+h1{font-weight:normal;font-size:clamp(30px,5vw,48px);letter-spacing:.4em;margin:18px 0 10px;text-indent:.4em;text-align:center;text-shadow:0 0 36px #ffbf6b40}
+.sub{margin:0;font-size:15px;letter-spacing:4px;opacity:.85;text-align:center}
+.rule{width:180px;height:1px;margin:26px auto 30px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.screen{width:min(1100px,100%);aspect-ratio:16/9;background:#000;box-shadow:0 0 0 1px #d9b67333,0 30px 80px #000c,0 0 120px #ffb34d14}
+video{display:block;width:100%;height:100%}
+.story{width:min(720px,100%);margin-top:36px;font-size:15px;line-height:2;letter-spacing:1px;opacity:.88}
+.story p{margin:0 0 12px;text-indent:2em}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.actions a{color:var(--ink);text-decoration:none;border:1px solid #d9b67388;padding:11px 20px;font-size:13px;letter-spacing:3px}
+.actions a.primary{background:#784f43;border-color:#784f43}
+.actions a:hover{border-color:var(--gold)}
+footer{margin-top:44px;font:11px Georgia,serif;letter-spacing:5px;color:#d9b67388}
+</style>
+</head>
+<body>
+<span class="kicker">FF GARDEN · 幻想小城的邮差</span>
+<h1>寄给点灯人的信</h1>
+<p class="sub">支线 · 第一封信</p>
+<div class="rule"></div>
+<div class="screen"><video src="lamplighter.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video></div>
+<div class="story">
+<p>面包房的面粉袋里夹着一封没有地址的信，收件人只写着：“每天黄昏，点亮第一盏灯的人”。</p>
+<p>见习邮差在王城里打听了一圈，黄昏时坐在城门石凳上等，看见巡逻队里最小的黑魔导士把八盏灯一盏一盏点亮。他不会写回信，只托邮差把一盏小火苗挂到城里最高的地方——城西山坡上，风车的灯亮了三下：两短，一长。</p>
+</div>
+<div class="actions"><a class="primary" href="/city.html">亲自走一遍 ↗</a><a href="/">回到王城小城</a></div>
+<footer>每一封信，都会有回音。</footer>
+</body>
+</html>

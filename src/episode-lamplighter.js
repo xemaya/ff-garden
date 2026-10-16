@@ -245,7 +245,9 @@ export function createLamplighterEpisode({director,sfx,plan,scene,camera,pose,at
       if(wasDay){await c.fade(1,.5);setTime('dusk');await c.fade(0,.6);}
       const hookAt=hookWorld.clone().add(V(0,-.3,0));
       await fly(c,lantern,handWorld('lantern'),hookAt,.9,{arc:.25,scene});lantern.rotation.set(0,0,0);
-      await c.camTo({pos:V(pose.x+1.2,h(pose.x,pose.z)+2.6,pose.z+2.2),look:hookAt,fov:50},1.1);
+      // Frame the lantern against the city, looking the way the windmill lies.
+      const toMill=V(mill.x-hookAt.x,0,mill.z-hookAt.z).normalize(),side=V(toMill.z,0,-toMill.x);
+      await c.camTo({pos:hookAt.clone().addScaledVector(toMill,-1.6).addScaledVector(side,-1.2).add(V(0,.35,0)),look:hookAt.clone().addScaledVector(toMill,3).add(V(0,-.35,0)),fov:50},1.1);
       await c.say(LINES.hang);
       const from=c.camera().pos;await c.camTo({pos:V(from.x-4,24,from.z+6),look:V(mill.x,millY-1.5,mill.z),fov:30},3.6,'soft');
       await c.wait(.8);
