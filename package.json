@@ -30,7 +30,8 @@
     "verify:garnet": "node tools/verify-royal-cast.mjs --garnet-v3",
     "test:city-postal": "node --test tools/city-postal.test.mjs",
     "test:story": "node --test tools/lamplighter-story.test.mjs",
-    "test:city-shop": "node --test tools/city-shop.test.mjs"
+    "test:city-shop": "node --test tools/city-shop.test.mjs",
+    "film": "python3 tools/film/record.py"
   },
   "dependencies": {
     "three": "0.170.0"

@@ -8,3 +8,6 @@ __pycache__/
 .env.*
 !.env.example
 .deploy/
+
+# Story films are large binaries: built with tools/film, deployed from the local copy, never committed.
+public/film/*.mp4
