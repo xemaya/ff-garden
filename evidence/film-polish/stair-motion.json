@@ -1,0 +1,86 @@
+[
+  {
+    "fps": 30,
+    "speed": 1.5,
+    "revision": "before",
+    "maxFrameDeltaM": 0.09885458301461414,
+    "maxVerticalAcceleration": 87.00000000000001
+  },
+  {
+    "fps": 30,
+    "speed": 1.5,
+    "revision": "after",
+    "maxFrameDeltaM": 0.05349725093399993,
+    "maxVerticalAcceleration": 4.151553689401144
+  },
+  {
+    "fps": 30,
+    "speed": 2,
+    "revision": "before",
+    "maxFrameDeltaM": 0.1069800557519871,
+    "maxVerticalAcceleration": 87.00000000000001
+  },
+  {
+    "fps": 30,
+    "speed": 2,
+    "revision": "after",
+    "maxFrameDeltaM": 0.0704370280922042,
+    "maxVerticalAcceleration": 6.940795727925053
+  },
+  {
+    "fps": 30,
+    "speed": 3,
+    "revision": "before",
+    "maxFrameDeltaM": 0.12038288553982301,
+    "maxVerticalAcceleration": 87.00000000000001
+  },
+  {
+    "fps": 30,
+    "speed": 3,
+    "revision": "after",
+    "maxFrameDeltaM": 0.1022099937908596,
+    "maxVerticalAcceleration": 13.647650511326681
+  },
+  {
+    "fps": 60,
+    "speed": 1.5,
+    "revision": "before",
+    "maxFrameDeltaM": 0.05060973186745965,
+    "maxVerticalAcceleration": 174.00000000000003
+  },
+  {
+    "fps": 60,
+    "speed": 1.5,
+    "revision": "after",
+    "maxFrameDeltaM": 0.026763634566669303,
+    "maxVerticalAcceleration": 4.218822358726371
+  },
+  {
+    "fps": 60,
+    "speed": 2,
+    "revision": "before",
+    "maxFrameDeltaM": 0.05436454155798831,
+    "maxVerticalAcceleration": 174.00000000000003
+  },
+  {
+    "fps": 60,
+    "speed": 2,
+    "revision": "after",
+    "maxFrameDeltaM": 0.03525593552034012,
+    "maxVerticalAcceleration": 7.100239153420418
+  },
+  {
+    "fps": 60,
+    "speed": 3,
+    "revision": "before",
+    "maxFrameDeltaM": 0.06134297599430605,
+    "maxVerticalAcceleration": 174.00000000000003
+  },
+  {
+    "fps": 60,
+    "speed": 3,
+    "revision": "after",
+    "maxFrameDeltaM": 0.05120625026826575,
+    "maxVerticalAcceleration": 14.184690407756761
+  }
+]

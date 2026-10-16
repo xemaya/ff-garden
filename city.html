@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e9e1cb"><title>王城小城 · FF花园</title></head>
+<html lang="zh-CN"><head><link rel="icon" href="data:,"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e9e1cb"><title>王城小城 · FF花园</title></head>
 <body><canvas id="city" tabindex="0" aria-label="可游览的王城小城，WASD行走，拖动画面转向"></canvas>
 <header><a class="wordmark" href="/">FF GARDEN <span>王城小城</span></a><p>穿过街巷，再慢慢走向王城。</p></header>
 <aside class="places" aria-label="游览地点"><span class="eyebrow">一座城，几种日常</span><button data-view="street" aria-pressed="true">工坊主街</button><button data-view="market" aria-pressed="false">集市巷</button><button data-view="residential" aria-pressed="false">住宅巷</button><button data-view="courtyard" aria-pressed="false">药草小院</button><button data-view="square" aria-pressed="false">喷泉广场</button><button data-view="upper" aria-pressed="false">上城台阶</button><button data-view="castle" aria-pressed="false">王城观景</button><span class="eyebrow residents-label">街坊正在这里生活</span><button data-life="patrol">魔导士巡逻队</button><button data-life="moogle">蹦跳的莫古力</button><button data-life="chocobo">游走的陆行鸟</button><a class="studio-link" href="/steiner.html">Steiner 重做工作台 ↗</a><span class="eyebrow residents-label">早期版本</span><a class="studio-link" href="/?district=royal">听风王城 ↗</a><a class="studio-link" href="/?street=workshops">三条旧街 ↗</a></aside>
@@ -21,4 +21,7 @@
 </aside>
 <nav class="touch-pad" aria-label="行走控制"><button data-move="w" aria-label="前进">↑</button><button data-move="a" aria-label="左移">←</button><button data-move="s" aria-label="后退">↓</button><button data-move="d" aria-label="右移">→</button></nav>
 <div id="shop-door" class="shop-card" hidden><span>✧</span><div><strong id="shop-door-name">面包房</strong><p id="shop-door-text"></p><button id="shop-door-action">推门进去 <kbd>E</kbd></button></div></div><aside id="shop-talk" class="shop-card" hidden><span>✧</span><div><strong>面包师</strong><p id="shop-talk-text"></p><button id="shop-talk-more">再聊一句</button></div></aside><div id="shop-fade" aria-hidden="true"></div><div id="loading" role="status"><span>王城的街巷正在醒来。</span><small>屋顶、庭院、台阶，还有熟悉的邻居。</small></div><p id="notice" role="status" aria-live="polite"></p><output id="city-state" hidden></output>
-<script type="module" src="/src/city-main.js"></script></body></html>
+<script type="module">
+if(import.meta.env.DEV && new URLSearchParams(location.search).has("capture")) await import("./tools/film/film-init.js");
+await import("./src/city-main.js");
+</script></body></html>

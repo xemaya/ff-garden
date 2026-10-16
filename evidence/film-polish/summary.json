@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-17",
+  "baseCommit": "316f9c20dc6216dd15be413f7f778149442daa83",
+  "sourceFilm": "https://ff.buplayground.cn/film/lamplighter.mp4",
+  "sourceFilmSha256": "372262646ce9ba8a9b15c91eaa907cee79e66e79945544ee42239083274a7378",
+  "checks": {
+    "existingSuite": "passed",
+    "filmRegressionTests": 4,
+    "build": "passed",
+    "browserStairFrames": 301,
+    "browserErrors": [],
+    "actualBrowserCamera": {
+      "frames": 301,
+      "startZ": -36.06666666666667,
+      "endZ": -55,
+      "maxFrameHeightDeltaM": 0.07043702809220553,
+      "maxVerticalAcceleration": 6.940795727933047
+    },
+    "isolatedRecordingPreflight": "passed: zero console/page errors, zero failed asset requests, all characters loaded"
+  },
+  "fixes": [
+    "Exclude sprites from SSAO depth/normal overrides, restore their visibility afterward",
+    "Continuous camera-only stair support plus frame-rate independent damping",
+    "Textured and batched windmill architecture, visible sail orientation, shared answering-window placement",
+    "Instanced wheat, leaf sprays, grass detail and softer field boundaries"
+  ],
+  "artStatus": "pending human review",
+  "fullFilmRerecorded": true,
+  "productionDeployed": false,
+  "recordingAuthorization": "Explicit user approval on 2026-10-17 to run tools/film/record.py with Playwright",
+  "frameCount": 8524,
+  "durationSeconds": 284.1333333333333,
+  "audio": "Original mastered AAC preserved byte-for-byte; sha256 6e52595109023690818bf16ebd76d030220afd4bbe3f295f740d1207846eaec9",
+  "recordingNote": "Initial capture completed every frame and story step, then stopped audio export on favicon.ico 404. A dedicated preflight identified only the favicon, now fixed. Valid image frames retained.",
+  "encodedFilm": {
+    "sha256": "3ee63be80d34836f1df3fdf90af2e3f6dd2b743f30f5ac68a915d32639f517fb",
+    "bytes": 71263028,
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "frames": "8520",
+    "durationSeconds": 284.116009
+  },
+  "encodingNote": "8524 raw frames captured. The shortest-stream mux ends video at frame 8520 during the closing black hold; the full original audio is retained."
+}

@@ -1,0 +1,13 @@
+{
+  "frames": 8524,
+  "t0": 0,
+  "end": 284.1333333333333,
+  "every": 1,
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "complete": true,
+  "audioMode": "original mastered AAC, identical 8524-frame timeline",
+  "frameRecordingError": null,
+  "initialConsoleError": "favicon.ico 404; isolated preflight confirmed no missing scene assets; favicon fixed"
+}

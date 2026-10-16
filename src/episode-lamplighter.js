@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {createLamplighterState,LETTER,LINES,CARDS,ITEMS,TITLE,SPEAKERS,objective} from './lamplighter-story.js';
 import {shopFrame} from './city-shop.js';
-import {cityTerrainHeight} from './city-outskirts.js';
+import {cityTerrainHeight,WINDMILLS} from './city-outskirts.js';
 import {plain} from './materials.js';
 import {createMage} from './mage.js';
 import {createTownsfolk} from './townsfolk.js';
@@ -95,7 +95,7 @@ export function createLamplighterEpisode({director,sfx,plan,scene,camera,pose,at
   function holdLights(levels){lightsHeld=!!levels;if(levels){lampLevels=levels;atmosphere.setStreetLights({lamps:lampLevels,ambient:lampLevels.reduce((a,b)=>a+b,0)/lampLevels.length});}else atmosphere.setStreetLights(null);}
 
   // The windmill answers from the west hill.
-  const mill=sites.windmill,toCity=V(-mill.x,0,-30-mill.z).normalize();
+  const mill=sites.windmill,toCity=V(Math.sin(WINDMILLS[1].yaw),0,Math.cos(WINDMILLS[1].yaw));
   const millGlow=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,color:0xffb347,transparent:true,depthWrite:false,opacity:0,fog:false}));millGlow.position.set(mill.x+toCity.x*2.6,cityTerrainHeight(mill.x,mill.z)+7.2,mill.z+toCity.z*2.6);millGlow.scale.setScalar(10);millGlow.visible=false;scene.add(millGlow);
   const millPane=new THREE.MeshBasicMaterial({color:0x2b2119,toneMapped:false}),millWindow=new THREE.Mesh(new THREE.PlaneGeometry(1.1,1.5),millPane);millWindow.position.set(mill.x+toCity.x*2.32,millGlow.position.y,mill.z+toCity.z*2.32);millWindow.lookAt(millWindow.position.clone().add(toCity));scene.add(millWindow);
   let millLevel=0;

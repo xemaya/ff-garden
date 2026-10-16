@@ -1,0 +1,12 @@
+✔ halo quads do not enter the normal/depth pass; render visibility is restored (2.81975ms)
+✔ each stair flight has a continuous camera support with flat joins (0.301958ms)
+✔ camera damping is stable across frame rates (0.074042ms)
+✔ the final windmill sails face the actual final-shot observation point (0.050416ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.968416
